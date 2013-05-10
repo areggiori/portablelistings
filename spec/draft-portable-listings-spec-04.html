@@ -216,9 +216,7 @@ Link<br />
 Multilingual Fields<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#interoperability-considerations">7.3.</a>&nbsp;
 Interoperability Considerations<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#define-new-profiles">7.4.</a>&nbsp;
-Defining New Profiles<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#referencing-profiles">7.5.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#referencing-profiles">7.4.</a>&nbsp;
 Referencing Profiles<br />
 <a href="#core-profile">8.</a>&nbsp;
 Core Profile<br />
@@ -290,16 +288,18 @@ IANA Considerations<br />
 Security Considerations<br />
 <a href="#Acknowledgements">11.</a>&nbsp;
 Acknowledgements<br />
-<a href="#anchor13">12.</a>&nbsp;
-Examples<br />
-<a href="#anchor14">13.</a>&nbsp;
-Compatibility with EBUCore and other standards<br />
-<a href="#rfc.references1">14.</a>&nbsp;
+<a href="#changes">12.</a>&nbsp;
+Change Log<br />
+<a href="#rfc.references1">13.</a>&nbsp;
 References<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references1">14.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references1">13.1.</a>&nbsp;
 Normative References<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references2">14.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rfc.references2">13.2.</a>&nbsp;
 Informative References<br />
+<a href="#anchor15">Appendix&nbsp;A.</a>&nbsp;
+Examples<br />
+<a href="#anchor16">Appendix&nbsp;B.</a>&nbsp;
+Compatibility with EBUCore and other standards<br />
 <a href="#rfc.authors">&#167;</a>&nbsp;
 Author's Address<br />
 </p>
@@ -443,9 +443,9 @@ Definitions</h3>
 </dd>
 <dt>Profile:</dt>
 <dd>
-            A profile identifies a particular format (or schema) for the various Entries, their respective object types, the definition of their fields and allowed values (including canonical values) for the Entry being described.
-            Definitions of valid relationships between Entries are also identified in a profile. A profile is expressed using an atomic set of data modelling rules as defined in <a class='info' href='#structure'>Section&nbsp;7.1<span> (</span><span class='info'>Basic Structure</span><span>)</span></a>.
-            The <tt>core</tt> profile is integral part of this specification and is being specified in <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a>.
+            A particular format (or schema) for the various Entries per <a class='info' href='#RFC6906'>[RFC6906]<span> (</span><span class='info'>Wilde, E., &ldquo;The 'profile' Link Relation Type,&rdquo; March&nbsp;2013.</span><span>)</span></a>.
+            In the scope of this specification a profile is expressed using an atomic set of data modelling rules as defined in <a class='info' href='#structure'>Section&nbsp;7.1<span> (</span><span class='info'>Basic Structure</span><span>)</span></a>.
+            The <tt>core</tt> profile is integral part of this specification as defined in <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a>.
           
 </dd>
 </dl></blockquote><p>
@@ -1091,14 +1091,6 @@ Response Format</h3>
           </p>
 <ul class="text">
 <li>
-              <tt>lang</tt>: the content language of the metadata Entries if not specified otherwise (see <a class='info' href='#multilingual-fields'>Section&nbsp;7.2<span> (</span><span class='info'>Multilingual Fields</span><span>)</span></a>).
-            
-</li>
-<li>
-              <tt>profile</tt>: an array of strings containing the identifiers for the profiles used to describe their metadata Entries. This represent the default profiles if not specified otherwise (see also <a class='info' href='#referencing-profiles'>Section&nbsp;7.5<span> (</span><span class='info'>Referencing Profiles</span><span>)</span></a>).
-            
-</li>
-<li>
               <tt>startIndex</tt>: the index of the first result returned in this response, relative to the starting index of all results that would be returned if no <tt>startIndex</tt> had been requested. In general, this will be equal to the value requested by the <tt>startIndex</tt>, or 0 if no specific <tt>startIndex</tt> was requested.
             
 </li>
@@ -1236,15 +1228,28 @@ WWW-Authenticate: Basic realm="sample.site.org"
 Listings Format</h3>
 
 <p>
-        The Portable Listings format defines the constructs necessary to express an individual audiovisual content metadata Entry or a list of Entries as requested by the Consumer. The format specification and conformance is expressed in terms of <tt>profiles</tt>.
+        The Portable Listings format is expressed in terms of profiles identified with a URI per <a class='info' href='#RFC6906'>[RFC6906]<span> (</span><span class='info'>Wilde, E., &ldquo;The 'profile' Link Relation Type,&rdquo; March&nbsp;2013.</span><span>)</span></a>.
       
 </p>
 <p>
-        A profile is a specification using the basic structure in <a class='info' href='#structure'>Section&nbsp;7.1<span> (</span><span class='info'>Basic Structure</span><span>)</span></a> to define and identify the named object types, fields, values and relationships required to be present in an Entry. A profile MAY also define addition requirements and guidelines for a Consumer application. Each profile is identified with a URI. An Entry is defined to be "compliant" with a profile if and only if it adheres to all of the requirements set forth in a profile description. A Entry MAY be compliant with multiple profiles (see <a class='info' href='#referencing-profiles'>Section&nbsp;7.5<span> (</span><span class='info'>Referencing Profiles</span><span>)</span></a>). A profile it is intended only as an informative guide to Consumer applications interpreting the information contained within an Entry and it does not impose any behavioral requirements on implementations. Unless specifically forbidden by a particular profile definition, a Entry can contain arbitrary fields and relationships. Consumer MAY choose to ignore any unknown information and continue processing.
+        In the scope of this specification a profile is defined using the basic structures defined in <a class='info' href='#structure'>Section&nbsp;7.1<span> (</span><span class='info'>Basic Structure</span><span>)</span></a>.
+        In addition a profile MAY also define addition constraints and guidelines for a Consumer application.
       
 </p>
 <p>
-        The <tt>core profile</tt> is integral part of this document and it is the only profile that a Portable Listings implementation is required to support (see <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a>). Support for other profiles is optional. If a Consumer is presented with an Entry expressed using a profile unknown to the Consumer, the Consumer MAY choose to ignore that profile and continue processing.
+        An Entry is defined to be "compliant" with a profile if and only if it adheres to the format structures, the contraints and the requirements set in a profile description.
+        A Entry MAY be compliant with multiple profiles.
+      
+</p>
+<p>
+        
+        Unless specifically forbidden by a particular profile definition, an Entry can contain arbitrary fields and relationships.
+        Consumer MAY choose to ignore any unknown information and continue processing.
+      
+</p>
+<p>
+        This specification defines the <tt>core profile</tt> and it is the only profile that a Portable Listings implementation is required to support (see <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a>).
+        Support for other profiles is optional. If a Consumer is presented with an Entry expressed using an unknown profile, the Consumer MAY choose to ignore it and continue processing.
         
         
       
@@ -1261,7 +1266,8 @@ Basic Structure</h3>
         The order in which Entry fields and relationships are defined is not significant.
         By definition an Entry has object type of <tt>entry</tt>.
         Objects are represented in a result set with the <tt>entry</tt> element (see <a class='info' href='#response-format'>Section&nbsp;6.3<span> (</span><span class='info'>Response Format</span><span>)</span></a>) and the object type is specified using lowercased object type name as value of the <tt>objectType</tt> field.
-        Unless specified otherwise and as general rule, all fields and relationships applying to a specific Entry type SHOULD BE also applicable to any Entry sub-type (e.g. fields and relationships for <tt>programme</tt> they also apply to <tt>series</tt>).
+        
+        Unless specified otherwise and as general rule, all fields and relationships applying to a specific Entry type SHALL BE  applicable to any Entry sub-type (e.g. fields and relationships defined for <tt>programme</tt> apply to <tt>series</tt>).
       
 </p>
 <a name="fields"></a><br /><hr />
@@ -1505,7 +1511,7 @@ Relationships</h3>
 </dd>
 <dt>type: (ENUM)</dt>
 <dd>
-                        If non-empty or null, the media type is defined to be <tt>application/listings+json</tt>. Eventually the <tt>profile</tt> mime-type parameter MAY be used on the media type as specified in <a class='info' href='#referencing-profiles'>Section&nbsp;7.5<span> (</span><span class='info'>Referencing Profiles</span><span>)</span></a>.
+                        If non-empty or null, the media type is defined to be <tt>application/listings+json</tt>.  The <tt>profile</tt> media type parameter MAY be specified as defined in <a class='info' href='#referencing-profiles'>Section&nbsp;7.4<span> (</span><span class='info'>Referencing Profiles</span><span>)</span></a>.
                     
 </dd>
 <dt>rel: (ENUM or IRI)</dt>
@@ -1708,7 +1714,7 @@ Link</h3>
 Multilingual Fields</h3>
 
 <p>
-          The <tt>Content-Language</tt> HTTP header SHOUDL BE used by a Service Provider to signal a Consumer that the fields returned are expressed in a specific language. Alternatively the <tt>lang</tt> attribute in the response format header MAY be used by a Service Provider to signal a Consumer about the default language used to express the field values (see <a class='info' href='#response-format'>Section&nbsp;6.3<span> (</span><span class='info'>Response Format</span><span>)</span></a>). Any language information in the responde header overrides the value of the HTTP header. If the language is not specified, the field language is left undefined.
+          The <tt>Content-Language</tt> HTTP header SHOUDL BE used by a Service Provider to signal a Consumer that the fields returned are expressed in a specific language. If the language is not specified, the fields language is left undefined.
         
 </p>
 <p>
@@ -1725,29 +1731,27 @@ Interoperability Considerations</h3>
         The <tt>core profile</tt> described in <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a> is intended to provide a foundation upon which such interoperability MAY be based. New profiles MAY choose to either extend or modify the requirements specified by the core. Profiles that seek only to extend the core without changing any of those core requirements will have a much greater chance of ensuring appropriate levels of interoperability. Profiles that modify the core requirements run the risk of breaking interoperability in Portable Listings implementations. Because of this, for the sake of protecting interoperability, it is highly recommended that new profiles seek to extend the core rather than modify it.
       
 </p>
-<a name="define-new-profiles"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.7.4"></a><h3>7.4.&nbsp;
-Defining New Profiles</h3>
-
-<p>
-        A profile identifies a particular format (or schema) for the various Entries, their respective object types, the definition of their fields and allowed values (including canonical values) for the Entry being described.
-        Definitions of valid relationships between Entries are also identified in a profile. A profile is expressed using an atomic set of data modelling rules as defined in <a class='info' href='#structure'>Section&nbsp;7.1<span> (</span><span class='info'>Basic Structure</span><span>)</span></a>.
-        The <tt>core</tt> profile is integral part of this specification and is being specified in <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a>.
-      
-</p>
-<p>
-          By leveraging on the basic structures defined in <a class='info' href='#structure'>Section&nbsp;7.1<span> (</span><span class='info'>Basic Structure</span><span>)</span></a> alternative profiles MAY be defined and referenced to express application-specific information.
-      
-</p>
 <a name="referencing-profiles"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.7.5"></a><h3>7.5.&nbsp;
+<a name="rfc.section.7.4"></a><h3>7.4.&nbsp;
 Referencing Profiles</h3>
 
 <p>
-            The <tt>Content-Type</tt> HTTP header with the <tt>profile</tt> parameter SHOUDL BE used by a Service Provider to signal a Consumer that the Entries returned are expressed using specific profiles.
-            Alternatively profiles can be referenced once from a result set (see <a class='info' href='#response-format'>Section&nbsp;6.3<span> (</span><span class='info'>Response Format</span><span>)</span></a>) or from individual listed Entries using the Simple Plural Field <tt>profile</tt>.
+            A Service Provider SHOULD signal a Consumer that the Entries are expssed using specific profiles by returning the <tt>Content-Type</tt> HTTP header with the media type parameter <tt>profile</tt> containing a whitespace-separated list of the profile URIs used.
+        
+</p>
+<p>
+            Alternatively profiles MAY be referenced per <a class='info' href='#RFC6906'>[RFC6906]<span> (</span><span class='info'>Wilde, E., &ldquo;The 'profile' Link Relation Type,&rdquo; March&nbsp;2013.</span><span>)</span></a> as follow:
+            </p>
+<ul class="text">
+<li>From individual metadata Entries using the <tt>links</tt> field with a "rel" attribute of "profile".
+</li>
+<li>Returning the <tt>Link</tt> HTTP header in responses.
+</li>
+</ul><p>
+        
+</p>
+<p>
             A Provider SHOULD return a profile identifier with each Consumer request. 
             The <tt>core profile</tt> is the default profile for all Entries returned by a Service Provider unless otherwise specified.
             Consumer SHOULD ignore any Entry object types, fields or relationship they do not understand.
@@ -1800,7 +1804,7 @@ Reference Data</h3>
 
 <p>
           Well-defined Canonical Values MAY BE used for string-valued fields as reference data. For example, a Canonical Value can be used to express the <tt>type</tt> sub-field in a Complex Field.
-          Where possible and useful the Reference Data and Canonical Values SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes <a class='info' href='#EBU-REFERENCEDATA'>[EBU&#8209;REFERENCEDATA]<span> (</span><span class='info'>EBU, &ldquo;European Broadcasting Union - Metadata Reference Data,&rdquo; .</span><span>)</span></a> or TV-Anytime Content Commercial or Alert <a class='info' href='#TV-ANYTIME'>[TV&#8209;ANYTIME]<span> (</span><span class='info'>ETSI, &ldquo;TV Anytime,&rdquo; .</span><span>)</span></a> registries.
+          Where possible and useful the Reference Data and Canonical Values SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes <a class='info' href='#EBU-REFERENCEDATA'>[EBU&#8209;REFERENCEDATA]<span> (</span><span class='info'>EBU, &ldquo;European Broadcasting Union - Metadata Reference Data,&rdquo; .</span><span>)</span></a> or the TV-Anytime Classification Schemes <a class='info' href='#TV-ANYTIME'>[TV&#8209;ANYTIME]<span> (</span><span class='info'>ETSI, &ldquo;TV Anytime,&rdquo; .</span><span>)</span></a>.
           A Provider MAY either use the well-defined and standardised lists of Canonical Values or it MAY define application specific values which a Consumer can reference.
         
 </p>
@@ -1987,7 +1991,7 @@ Entry</h3>
 </dd>
 <dt>objectType: (ENUM)</dt>
 <dd>
-                The object type of the Entry record. A profile defines the possible allowed Canonical Values for the <tt>objectType</tt> field (see <a class='info' href='#define-new-profiles'>Section&nbsp;7.4<span> (</span><span class='info'>Defining New Profiles</span><span>)</span></a>).
+                The object type of the Entry record. A profile defines the possible allowed Canonical Values for the <tt>objectType</tt> field (see <a class='info' href='#listings-format'>Section&nbsp;7<span> (</span><span class='info'>Listings Format</span><span>)</span></a>).
                 Different Entries requested by a Consumer can have a different object type. This specification reserves the <tt>entry</tt> value for referring to object types of Entry, and by definition an Entry without a <tt>objectType</tt> field or with a <tt>objectType</tt> value equal to <tt>null</tt> it is assumed to be of object type Entry.                
                 The list of valid Canonical Values for this field consists of the list of lowercased object type names defined in <a class='info' href='#object-types'>Section&nbsp;8.3<span> (</span><span class='info'>Object Types</span><span>)</span></a>.
               
@@ -2006,51 +2010,11 @@ Entry</h3>
                 Note the <tt>updatedSince</tt> and the <tt>updatedUntil</tt> Query Parameters described in <a class='info' href='#query-params'>Section&nbsp;6.2<span> (</span><span class='info'>Query Parameters</span><span>)</span></a> can be used to select only Entries whose <tt>updated</tt> value is equal to or more recent than a given TIMESTAMP or equal to or older than a given TIMESTAMP respectively. This enables Consumers to repeatedly access a metadata Entry and only request newly added or updated Entries since the last access time.
               
 </dd>
-<dt>metadataSource: (LINK)</dt>
+<dt>links: [LINK]</dt>
 <dd>
-                A standard source from which the Entry metadata record was generated from as defined by section 4.2.11 of <a class='info' href='#RFC4287'>[RFC4287]<span> (</span><span class='info'>Nottingham, M., Ed. and R. Sayre, Ed., &ldquo;The Atom Syndication Format,&rdquo; December&nbsp;2005.</span><span>)</span></a> using the least minimum number of fields.
-                This enables Providers to simply represent aggregation of Entries.
-                The source field is expressed using the LINK construct with the following differences:
+                A metadata Entry MAY have associated one ore more links to external Web resources.
                 
-<blockquote class="text"><dl>
-<dt>href: (IRI)</dt>
-<dd>                    
-                    REQUIRED. The IRI of the source MUST BE a valid Initial Identifier suitable for discovery of the source Portable Listings API Provider endpoint from where the metadata Entry was derived from as explained in <a class='info' href='#discovery'>Section&nbsp;5<span> (</span><span class='info'>Discovery</span><span>)</span></a>.
-                    Unless otherwise specified, this is the Primary Sub-Field for the purposes of sorting and filtering.
-                  
-</dd>
-<dt>rel: (ENUM)</dt>
-<dd>
-                    The rel value MUST BE the "via" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
-                    If this property is omitted or null it MUST BE processed as if the value was the string "via".
-                  
-</dd>
-<dt>updated: (TIMESTAMP)</dt>
-<dd>
-                     If available, the most recent date the details of the source was updated (i.e. the modified date of the source). The value MUST be a valid TIMESTAMP (e.g. <tt>2010-01-12T07:56:22Z</tt>).
-                  
-</dd>
-</dl></blockquote>
-              
-</dd>
-<dt>metadataRights: (LINK)</dt>
-<dd>
-                The copyright license terms under which the Entry content metadata is provided.
-                If the field is set, the <tt>rel</tt> sub-field MUST have the <tt>license</tt> value.
-              
-</dd>
-<dt>metadataProvider: (CONTACT)</dt>
-<dd>
-                The CONTACT creating and publishing the metadata instances as served by a Service Provider.
-                The creator of the resource described by the metadata Entry.
-                The relationship associates an ENTRY to zero or one CONTACT.
-              
-</dd>
-<dt>profile: [IRI]</dt>
-<dd>
-                An array of IRI containing the identifiers for the profiles used to describe the metadata Entry.
-                This represent the default profile if not specified otherwise (see also <a class='info' href='#referencing-profiles'>Section&nbsp;7.5<span> (</span><span class='info'>Referencing Profiles</span><span>)</span></a>)
-                If an Entry does not explicitly specify any value for the profile field it MUST conform to the <tt>core profile</tt>.
+                A Provider SHOULD NOT use the links element to express relationships by-reference as this complicates processing by the Consumer.
               
 </dd>
 </dl></blockquote><p>
@@ -2091,14 +2055,60 @@ Content</h3>
                 The subtitle of the piece of content.
               
 </dd>
-<dt>summary: (STRING or HTML)</dt>
+<dt>alternativeTitle: [COMPLEX]</dt>
 <dd>
-                A short summary about the piece of content.
+                    An alternative name of the piece of content.
+                    
+<blockquote class="text"><dl>
+<dt>type: (ENUM)</dt>
+<dd>
+                            The type of field for this instance (e.g. 'original', 'art_work_original', 'pledged', 'secondary', 'working').
+                            The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Title types.
+                            The <tt>main</tt> and <tt>subtitle</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
+                        
+</dd>
+<dt>value: (STRING or HTML)</dt>
+<dd>
+                            The alternative name text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        
+</dd>
+</dl></blockquote>
               
 </dd>
 <dt>synopsis: (STRING or HTML)</dt>
 <dd>
-                A short synopsis about the piece of content.
+                A brief or condensed statement giving a general view about the piece of content e.g. a brief summary of the plot of a novel, motion picture, play, etc.
+              
+</dd>
+<dt>summary: (STRING or HTML)</dt>
+<dd>
+                A comprehensive and usually brief abstract, recapitulation, or compendium of of actions and events in the piece of content.
+              
+</dd>
+<dt>description: [COMPLEX]</dt>
+<dd>
+                    An extended description of the piece of content other than the information provided with the <tt>synopsis</tt> and <tt>summary</tt> fields.
+                    The extended description MAY also consist of outlines, lists, bullet points, edit decision lists, indexes and have references to external media and graphical material.
+                    
+<blockquote class="text"><dl>
+<dt>type: (ENUM)</dt>
+<dd>
+                            The type of field for this instance (e.g. 'abstract', 'transcript', 'excerpt', 'promotional_information').
+                            The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Description types.
+                            The <tt>synopsis</tt> and  <tt>summary</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
+                        
+</dd>
+<dt>value: (STRING or HTML)</dt>
+<dd>
+                            The extended description text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        
+</dd>
+<dt>media: [LINK]</dt>
+<dd>
+                            Additional reference material associated with the extended description (e.g. artwork, presentations).
+                        
+</dd>
+</dl></blockquote>
               
 </dd>
 <dt>categories: [COMPLEX]</dt>
@@ -2126,13 +2136,6 @@ Content</h3>
                 A user-defined category or label for the piece of content, e.g. "coolshow" or "web20".
                 These values SHOULD be case-insensitive, and there SHOULD NOT be multiple tags provided for a given Entry that differ only in case.
                 Note that this field is a Plural Simple Field, meaning each instance consists only of a string value.
-              
-</dd>
-<dt>links: [LINK]</dt>
-<dd>
-                A piece of content MAY have associated one ore more links to external Web resources.
-                
-                A Provider SHOULD NOT use the links element to express relationships by-reference as this complicates processing by the Consumer.
               
 </dd>
 <dt>creator: [CONTACT]</dt>
@@ -2205,26 +2208,6 @@ Content</h3>
 </dl></blockquote>
               
 </dd>
-<dt>alternativeTitle: [COMPLEX]</dt>
-<dd>
-                An alternative name of the piece of content.
-                
-<blockquote class="text"><dl>
-<dt>type: (ENUM)</dt>
-<dd>
-                        The type of field for this instance (e.g. 'original', 'art_work_original', 'pledged', 'secondary', 'working').
-                        The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Title types.
-                        The <tt>main</tt> and <tt>subtitle</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
-                    
-</dd>
-<dt>value: (STRING or HTML)</dt>
-<dd>
-                        The alternative name text. This is the Primary Sub-Field for the purposes of sorting and filtering.
-                    
-</dd>
-</dl></blockquote>
-              
-</dd>
 <dt>aliases: [IRI or STRING]</dt>
 <dd>
                 Additional or alternative identifiers for the piece of content.
@@ -2235,32 +2218,6 @@ Content</h3>
                 A list of keywords and phrases assigned by the Provider to the piece of content, e.g. "sports" or "live".
                 These values SHOULD be case-insensitive, and there SHOULD NOT be multiple keywords provided for a given Entry that differ only in case.
                 Note that this field is a Plural Simple Field, meaning each instance consists only of a string value.
-              
-</dd>
-<dt>description: [COMPLEX]</dt>
-<dd>
-                An extended description of the piece of content other than the information provided with the <tt>summary</tt> and <tt>synopsis</tt> fields.
-                The extended description MAY also consist of outlines, lists, bullet points, edit decision lists, indexes and have references to external media and graphical material.
-                
-<blockquote class="text"><dl>
-<dt>type: (ENUM)</dt>
-<dd>
-                        The type of field for this instance (e.g. 'abstract', 'transcript', 'excerpt', 'promotional_information').
-                        The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Description types.
-                        The <tt>summary</tt> and  <tt>synopsis</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
-                    
-</dd>
-<dt>value: (STRING or HTML)</dt>
-<dd>
-                        The extended description text. This is the Primary Sub-Field for the purposes of sorting and filtering.
-                    
-</dd>
-<dt>media: [LINK]</dt>
-<dd>
-                        Additional reference material associated with the extended description (e.g. artwork, presentations). 
-                    
-</dd>
-</dl></blockquote>
               
 </dd>
 <dt>genre: [COMPLEX]</dt>
@@ -3448,9 +3405,9 @@ IANA Considerations</h3>
             
 <blockquote class="text"><dl>
 <dt>"profile":</dt>
-<dd> This parameter contains the profile identifiers used
-                    in the definition of the Entry metadata. If this attribute is omitted implementations
-                    MUST process the media type as if the value were the string "http://portablelistings.net/profiles/core/1.0/".
+<dd> This parameter contains a whitespace-separated list
+                    of profile URIs used to express the Entries metadata as defined in Section 3.1 of <a class='info' href='#RFC6906'>[RFC6906]<span> (</span><span class='info'>Wilde, E., &ldquo;The 'profile' Link Relation Type,&rdquo; March&nbsp;2013.</span><span>)</span></a>. If this attribute is omitted implementations
+                    MUST process the media type as if the value was the string "http://portablelistings.net/profiles/core/1.0/".
                     
 </dd>
 </dl></blockquote>
@@ -3496,9 +3453,129 @@ Acknowledgements</h3>
         
       
 </p>
-<a name="anchor13"></a><br /><hr />
+<a name="changes"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.12"></a><h3>12.&nbsp;
+Change Log</h3>
+
+<p>Changes from -03 version (Draft C)
+            </p>
+<ul class="text">
+<li>Updated profile definitions per RFC6906.
+</li>
+<li>Moved "links" to Entry level.
+</li>
+<li>Dropped "profile" from Entry.
+</li>
+<li>Dropped "metadataSource" from Entry. The links "via" Lynk Type can be used instead.
+</li>
+<li>Dropped "metadataRights" from Entry. The links "copyright" Lynk Type can be used instead.
+</li>
+<li>Dropped "metadataProvider" from Entry. The links HTML5 "author" Lynk Type can be used instead.
+</li>
+<li>Removed "lang" and "profile" from response format
+</li>
+<li>Removed Defining New Profiles section
+</li>
+</ul><p>
+        
+</p>
+<a name="rfc.references"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.13"></a><h3>13.&nbsp;
+References</h3>
+
+<a name="rfc.references1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>13.1.&nbsp;Normative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="RFC2119">[RFC2119]</a></td>
+<td class="author-text"><a href="mailto:sob@harvard.edu">Bradner, S.</a>, &ldquo;<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>,&rdquo; BCP&nbsp;14, RFC&nbsp;2119, March&nbsp;1997 (<a href="http://www.rfc-editor.org/rfc/rfc2119.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2119.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2119.xml">XML</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2616">[RFC2616]</a></td>
+<td class="author-text"><a href="mailto:fielding@ics.uci.edu">Fielding, R.</a>, <a href="mailto:jg@w3.org">Gettys, J.</a>, <a href="mailto:mogul@wrl.dec.com">Mogul, J.</a>, <a href="mailto:frystyk@w3.org">Frystyk, H.</a>, <a href="mailto:masinter@parc.xerox.com">Masinter, L.</a>, <a href="mailto:paulle@microsoft.com">Leach, P.</a>, and <a href="mailto:timbl@w3.org">T. Berners-Lee</a>, &ldquo;<a href="http://tools.ietf.org/html/rfc2616">Hypertext Transfer Protocol -- HTTP/1.1</a>,&rdquo; RFC&nbsp;2616, June&nbsp;1999 (<a href="http://www.rfc-editor.org/rfc/rfc2616.txt">TXT</a>, <a href="http://www.rfc-editor.org/rfc/rfc2616.ps">PS</a>, <a href="http://www.rfc-editor.org/rfc/rfc2616.pdf">PDF</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2616.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2616.xml">XML</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC2617">[RFC2617]</a></td>
+<td class="author-text"><a href="mailto:john@math.nwu.edu">Franks, J.</a>, <a href="mailto:pbaker@verisign.com">Hallam-Baker, P.</a>, <a href="mailto:jeff@AbiSource.com">Hostetler, J.</a>, <a href="mailto:lawrence@agranat.com">Lawrence, S.</a>, <a href="mailto:paulle@microsoft.com">Leach, P.</a>, Luotonen, A., and <a href="mailto:stewart@OpenMarket.com">L. Stewart</a>, &ldquo;<a href="http://tools.ietf.org/html/rfc2617">HTTP Authentication: Basic and Digest Access Authentication</a>,&rdquo; RFC&nbsp;2617, June&nbsp;1999 (<a href="http://www.rfc-editor.org/rfc/rfc2617.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2617.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2617.xml">XML</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC3339">[RFC3339]</a></td>
+<td class="author-text"><a href="mailto:GK@ACM.ORG">Klyne, G., Ed.</a> and <a href="mailto:chris.newman@sun.com">C. Newman</a>, &ldquo;<a href="http://tools.ietf.org/html/rfc3339">Date and Time on the Internet: Timestamps</a>,&rdquo; RFC&nbsp;3339, July&nbsp;2002 (<a href="http://www.rfc-editor.org/rfc/rfc3339.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc3339.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc3339.xml">XML</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC3987">[RFC3987]</a></td>
+<td class="author-text">Duerst, M. and M. Suignard, &ldquo;<a href="http://tools.ietf.org/html/rfc3987">Internationalized Resource Identifiers (IRIs)</a>,&rdquo; RFC&nbsp;3987, January&nbsp;2005 (<a href="http://www.rfc-editor.org/rfc/rfc3987.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC4281">[RFC4281]</a></td>
+<td class="author-text">Gellens, R., Singer, D., and P. Frojdh, &ldquo;<a href="http://tools.ietf.org/html/rfc4281">The Codecs Parameter for "Bucket" Media Types</a>,&rdquo; RFC&nbsp;4281, November&nbsp;2005 (<a href="http://www.rfc-editor.org/rfc/rfc4281.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC4627">[RFC4627]</a></td>
+<td class="author-text">Crockford, D., &ldquo;<a href="http://tools.ietf.org/html/rfc4627">The application/json Media Type for JavaScript Object Notation (JSON)</a>,&rdquo; RFC&nbsp;4627, July&nbsp;2006 (<a href="http://www.rfc-editor.org/rfc/rfc4627.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC5646">[RFC5646]</a></td>
+<td class="author-text">Phillips, A. and M. Davis, &ldquo;<a href="http://tools.ietf.org/html/rfc5646">Tags for Identifying Languages</a>,&rdquo; BCP&nbsp;47, RFC&nbsp;5646, September&nbsp;2009 (<a href="http://www.rfc-editor.org/rfc/rfc5646.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC5988">[RFC5988]</a></td>
+<td class="author-text">Nottingham, M., &ldquo;<a href="http://tools.ietf.org/html/rfc5988">Web Linking</a>,&rdquo; RFC&nbsp;5988, October&nbsp;2010 (<a href="http://www.rfc-editor.org/rfc/rfc5988.txt">TXT</a>).</td></tr>
+<tr><td class="author-text" valign="top"><a name="RFC6906">[RFC6906]</a></td>
+<td class="author-text">Wilde, E., &ldquo;<a href="http://tools.ietf.org/html/rfc6906">The 'profile' Link Relation Type</a>,&rdquo; RFC&nbsp;6906, March&nbsp;2013 (<a href="http://www.rfc-editor.org/rfc/rfc6906.txt">TXT</a>).</td></tr>
+</table>
+
+<a name="rfc.references2"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<h3>13.2.&nbsp;Informative References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><a name="ANSI-SMPTE-12M-1986">[ANSI-SMPTE-12M-1986]</a></td>
+<td class="author-text">SMPTE, &ldquo;<a href="http://en.wikipedia.org/wiki/SMPTE_time_code">SMPTE time code</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="ATOM-MEDIA">[ATOM-MEDIA]</a></td>
+<td class="author-text">Atkins, M., &ldquo;<a href="http://martin.atkins.me.uk/specs/atommedia">Atom Media Extensions</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="ATOM-PROFILES">[ATOM-PROFILES]</a></td>
+<td class="author-text">&ldquo;<a href="http://intertwingly.net/wiki/pie/PaceProfileAttribute">Atom Profiles Proposal</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="BBC-PROGRAMMES">[BBC-PROGRAMMES]</a></td>
+<td class="author-text">BBC, &ldquo;<a href="http://purl.org/ontology/po/">Programmes ontology</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="DCMI-PERIOD">[DCMI-PERIOD]</a></td>
+<td class="author-text">&ldquo;<a href="http://dublincore.org/documents/dcmi-period/">DCMI Period Encoding Scheme</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="EBU-OBJECTMODEL">[EBU-OBJECTMODEL]</a></td>
+<td class="author-text">EBU, &ldquo;<a href="http://www.slideshare.net/EUscreen/evain-ebu-metadata-euscreen-mykonos">EBU Object Model</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="EBU-REFERENCEDATA">[EBU-REFERENCEDATA]</a></td>
+<td class="author-text">EBU, &ldquo;<a href="http://tech.ebu.ch/lang/en/MetadataReferenceData">European Broadcasting Union - Metadata Reference Data</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="EBU-ROLE-CODES">[EBU-ROLE-CODES]</a></td>
+<td class="author-text">EBU, &ldquo;<a href="http://www.ebu.ch/metadata/cs/web/ebu_RoleCodeCS_p.xml.htm">European Broadcasting Union - Role Codes</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="EBUCORE">[EBUCORE]</a></td>
+<td class="author-text">EBU, &ldquo;<a href="http://tech.ebu.ch/docs/tech/tech3293v1_2.pdf">EBU – TECH 3293 - EBU Core Metadata Set (EBU Core) v.1.2</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="GEO-JSON">[GEO-JSON]</a></td>
+<td class="author-text">&ldquo;<a href="http://geojson.org/geojson-spec.html">The GeoJSON Format Specification</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="HOSTMETA">[HOSTMETA]</a></td>
+<td class="author-text">Eran Hammer-Lahav, E., &ldquo;<a href="http://tools.ietf.org/html/draft-hammer-hostmeta">Web Host Metadata</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="HTML5">[HTML5]</a></td>
+<td class="author-text">W3C, &ldquo;<a href="http://dev.w3.org/html5/spec/Overview.html">HTML5 - A vocabulary and associated APIs for HTML and XHTML</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="HTML5-MM">[HTML5-MM]</a></td>
+<td class="author-text">W3C, &ldquo;<a href="http://www.w3.org/WAI/PF/HTML/wiki/Media_Multitrack_Media_API">Media Multitrack API</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="IANA-MIMEREG">[IANA-MIMEREG]</a></td>
+<td class="author-text">IANA, &ldquo;<a href="http://www.iana.org/assignments/media-types/">MIME Media Types</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="ISO3166-country">[ISO3166-country]</a></td>
+<td class="author-text">ISO, &ldquo;<a href="http://en.wikipedia.org/wiki/ISO_3166">ISO 3166</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="ISO8601-duration">[ISO8601-duration]</a></td>
+<td class="author-text">ISO, &ldquo;<a href="http://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="JSON-SYN">[JSON-SYN]</a></td>
+<td class="author-text">&ldquo;<a href="http://martin.atkins.me.uk/specs/jsonsyn">JSON Syndication Format</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="MEDIA-FRAGMENTS-URI">[MEDIA-FRAGMENTS-URI]</a></td>
+<td class="author-text">W3C, &ldquo;<a href="http://www.w3.org/2008/WebVideo/Fragments/WD-media-fragments-spec/">Media Fragments URI 1.0</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="MEDIA-RSS">[MEDIA-RSS]</a></td>
+<td class="author-text">Yahoo! Inc. and RSS Advisory Board, &ldquo;<a href="http://www.rssboard.org/media-rss">Media RSS Specification</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="MIMEREG">[MIMEREG]</a></td>
+<td class="author-text">Freed, N. and J. Klensin, &ldquo;<a href="http://tools.ietf.org/html/rfc4288">Media Type Specifications and Registration Procedures</a>,&rdquo; BCP&nbsp;13, RFC&nbsp;4288, December&nbsp;2005.</td></tr>
+<tr><td class="author-text" valign="top"><a name="OAuth 2.0">[OAuth 2.0]</a></td>
+<td class="author-text">&ldquo;<a href="http://tools.ietf.org/html/draft-ietf-oauth-v2">The OAuth 2.0 Authorization Protocol</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="OpenSearch">[OpenSearch]</a></td>
+<td class="author-text">Clinton, D., &ldquo;<a href="http://www.opensearch.org/Specifications/OpenSearch/1.1/Draft_3">OpenSearch 1.1</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="OpenSocial">[OpenSocial]</a></td>
+<td class="author-text">&ldquo;<a href="http://opensocial-resources.googlecode.com/svn/spec/2.0/Social-API-Server.xml">OpenSocial Social API Server Specification 2.0 DRAFT</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="PortableContacts">[PortableContacts]</a></td>
+<td class="author-text">Smarr, J., &ldquo;<a href="http://portablecontacts.net/draft-spec.html">Portable Contacts 1.0 Draft C</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="TV-ANYTIME">[TV-ANYTIME]</a></td>
+<td class="author-text">ETSI, &ldquo;<a href="http://www.etsi.org/website/technologies/tvanytime.aspx">TV Anytime</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="WEBFINGER">[WEBFINGER]</a></td>
+<td class="author-text">&ldquo;<a href="http://code.google.com/p/webfinger/wiki/WebFingerProtocol">The Webfinger Protocol</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="XRD">[XRD]</a></td>
+<td class="author-text">&ldquo;<a href="http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html">Extensible Resource Descriptor (XRD) Version 1.0 - Committee Draft 02</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="XSD-DATATYPES">[XSD-DATATYPES]</a></td>
+<td class="author-text">Biron, P. and A. Malhotra, &ldquo;<a href="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes Second Edition</a>,&rdquo; October&nbsp;2004.</td></tr>
+</table>
+
+<a name="anchor15"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.A"></a><h3>Appendix A.&nbsp;
 Examples</h3>
 
 <p>
@@ -3666,9 +3743,9 @@ Content-Type: application/listings+json;
 
       
 </p>
-<a name="anchor14"></a><br /><hr />
+<a name="anchor16"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.13"></a><h3>13.&nbsp;
+<a name="rfc.section.B"></a><h3>Appendix B.&nbsp;
 Compatibility with EBUCore and other standards</h3>
 
 <p>
@@ -3683,99 +3760,6 @@ Compatibility with EBUCore and other standards</h3>
         Although Portable Listings is an independent spec, with a more limited scope than other broadcast and television industry and Web standards, any proposed changes to the Portable Listings spec SHOULD BE considered in the context of other communities, and we should strive not to break compatibility unless it is truly necessary, e.g. if the goals of different standard communities diverge significantly in the future.
       
 </p>
-<a name="rfc.references"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.14"></a><h3>14.&nbsp;
-References</h3>
-
-<a name="rfc.references1"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<h3>14.1.&nbsp;Normative References</h3>
-<table width="99%" border="0">
-<tr><td class="author-text" valign="top"><a name="RFC2119">[RFC2119]</a></td>
-<td class="author-text"><a href="mailto:sob@harvard.edu">Bradner, S.</a>, &ldquo;<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>,&rdquo; BCP&nbsp;14, RFC&nbsp;2119, March&nbsp;1997 (<a href="http://www.rfc-editor.org/rfc/rfc2119.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2119.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2119.xml">XML</a>).</td></tr>
-<tr><td class="author-text" valign="top"><a name="RFC2616">[RFC2616]</a></td>
-<td class="author-text"><a href="mailto:fielding@ics.uci.edu">Fielding, R.</a>, <a href="mailto:jg@w3.org">Gettys, J.</a>, <a href="mailto:mogul@wrl.dec.com">Mogul, J.</a>, <a href="mailto:frystyk@w3.org">Frystyk, H.</a>, <a href="mailto:masinter@parc.xerox.com">Masinter, L.</a>, <a href="mailto:paulle@microsoft.com">Leach, P.</a>, and <a href="mailto:timbl@w3.org">T. Berners-Lee</a>, &ldquo;<a href="http://tools.ietf.org/html/rfc2616">Hypertext Transfer Protocol -- HTTP/1.1</a>,&rdquo; RFC&nbsp;2616, June&nbsp;1999 (<a href="http://www.rfc-editor.org/rfc/rfc2616.txt">TXT</a>, <a href="http://www.rfc-editor.org/rfc/rfc2616.ps">PS</a>, <a href="http://www.rfc-editor.org/rfc/rfc2616.pdf">PDF</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2616.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2616.xml">XML</a>).</td></tr>
-<tr><td class="author-text" valign="top"><a name="RFC2617">[RFC2617]</a></td>
-<td class="author-text"><a href="mailto:john@math.nwu.edu">Franks, J.</a>, <a href="mailto:pbaker@verisign.com">Hallam-Baker, P.</a>, <a href="mailto:jeff@AbiSource.com">Hostetler, J.</a>, <a href="mailto:lawrence@agranat.com">Lawrence, S.</a>, <a href="mailto:paulle@microsoft.com">Leach, P.</a>, Luotonen, A., and <a href="mailto:stewart@OpenMarket.com">L. Stewart</a>, &ldquo;<a href="http://tools.ietf.org/html/rfc2617">HTTP Authentication: Basic and Digest Access Authentication</a>,&rdquo; RFC&nbsp;2617, June&nbsp;1999 (<a href="http://www.rfc-editor.org/rfc/rfc2617.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2617.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2617.xml">XML</a>).</td></tr>
-<tr><td class="author-text" valign="top"><a name="RFC3339">[RFC3339]</a></td>
-<td class="author-text"><a href="mailto:GK@ACM.ORG">Klyne, G., Ed.</a> and <a href="mailto:chris.newman@sun.com">C. Newman</a>, &ldquo;<a href="http://tools.ietf.org/html/rfc3339">Date and Time on the Internet: Timestamps</a>,&rdquo; RFC&nbsp;3339, July&nbsp;2002 (<a href="http://www.rfc-editor.org/rfc/rfc3339.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc3339.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc3339.xml">XML</a>).</td></tr>
-<tr><td class="author-text" valign="top"><a name="RFC3987">[RFC3987]</a></td>
-<td class="author-text">Duerst, M. and M. Suignard, &ldquo;<a href="http://tools.ietf.org/html/rfc3987">Internationalized Resource Identifiers (IRIs)</a>,&rdquo; RFC&nbsp;3987, January&nbsp;2005 (<a href="http://www.rfc-editor.org/rfc/rfc3987.txt">TXT</a>).</td></tr>
-<tr><td class="author-text" valign="top"><a name="RFC4281">[RFC4281]</a></td>
-<td class="author-text">Gellens, R., Singer, D., and P. Frojdh, &ldquo;<a href="http://tools.ietf.org/html/rfc4281">The Codecs Parameter for "Bucket" Media Types</a>,&rdquo; RFC&nbsp;4281, November&nbsp;2005 (<a href="http://www.rfc-editor.org/rfc/rfc4281.txt">TXT</a>).</td></tr>
-<tr><td class="author-text" valign="top"><a name="RFC4287">[RFC4287]</a></td>
-<td class="author-text"><a href="mailto:mnot@pobox.com">Nottingham, M., Ed.</a> and <a href="mailto:rfsayre@boswijck.com">R. Sayre, Ed.</a>, &ldquo;<a href="http://tools.ietf.org/html/rfc4287">The Atom Syndication Format</a>,&rdquo; RFC&nbsp;4287, December&nbsp;2005 (<a href="http://www.rfc-editor.org/rfc/rfc4287.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc4287.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc4287.xml">XML</a>).</td></tr>
-<tr><td class="author-text" valign="top"><a name="RFC4627">[RFC4627]</a></td>
-<td class="author-text">Crockford, D., &ldquo;<a href="http://tools.ietf.org/html/rfc4627">The application/json Media Type for JavaScript Object Notation (JSON)</a>,&rdquo; RFC&nbsp;4627, July&nbsp;2006 (<a href="http://www.rfc-editor.org/rfc/rfc4627.txt">TXT</a>).</td></tr>
-<tr><td class="author-text" valign="top"><a name="RFC5646">[RFC5646]</a></td>
-<td class="author-text">Phillips, A. and M. Davis, &ldquo;<a href="http://tools.ietf.org/html/rfc5646">Tags for Identifying Languages</a>,&rdquo; BCP&nbsp;47, RFC&nbsp;5646, September&nbsp;2009 (<a href="http://www.rfc-editor.org/rfc/rfc5646.txt">TXT</a>).</td></tr>
-<tr><td class="author-text" valign="top"><a name="RFC5988">[RFC5988]</a></td>
-<td class="author-text">Nottingham, M., &ldquo;<a href="http://tools.ietf.org/html/rfc5988">Web Linking</a>,&rdquo; RFC&nbsp;5988, October&nbsp;2010 (<a href="http://www.rfc-editor.org/rfc/rfc5988.txt">TXT</a>).</td></tr>
-</table>
-
-<a name="rfc.references2"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<h3>14.2.&nbsp;Informative References</h3>
-<table width="99%" border="0">
-<tr><td class="author-text" valign="top"><a name="ANSI-SMPTE-12M-1986">[ANSI-SMPTE-12M-1986]</a></td>
-<td class="author-text">SMPTE, &ldquo;<a href="http://en.wikipedia.org/wiki/SMPTE_time_code">SMPTE time code</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="ATOM-MEDIA">[ATOM-MEDIA]</a></td>
-<td class="author-text">Atkins, M., &ldquo;<a href="http://martin.atkins.me.uk/specs/atommedia">Atom Media Extensions</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="ATOM-PROFILES">[ATOM-PROFILES]</a></td>
-<td class="author-text">&ldquo;<a href="http://intertwingly.net/wiki/pie/PaceProfileAttribute">Atom Profiles Proposal</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="BBC-PROGRAMMES">[BBC-PROGRAMMES]</a></td>
-<td class="author-text">BBC, &ldquo;<a href="http://purl.org/ontology/po/">Programmes ontology</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="DCMI-PERIOD">[DCMI-PERIOD]</a></td>
-<td class="author-text">&ldquo;<a href="http://dublincore.org/documents/dcmi-period/">DCMI Period Encoding Scheme</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="EBU-OBJECTMODEL">[EBU-OBJECTMODEL]</a></td>
-<td class="author-text">EBU, &ldquo;<a href="http://www.slideshare.net/EUscreen/evain-ebu-metadata-euscreen-mykonos">EBU Object Model</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="EBU-REFERENCEDATA">[EBU-REFERENCEDATA]</a></td>
-<td class="author-text">EBU, &ldquo;<a href="http://tech.ebu.ch/lang/en/MetadataReferenceData">European Broadcasting Union - Metadata Reference Data</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="EBU-ROLE-CODES">[EBU-ROLE-CODES]</a></td>
-<td class="author-text">EBU, &ldquo;<a href="http://www.ebu.ch/metadata/cs/web/ebu_RoleCodeCS_p.xml.htm">European Broadcasting Union - Role Codes</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="EBUCORE">[EBUCORE]</a></td>
-<td class="author-text">EBU, &ldquo;<a href="http://tech.ebu.ch/docs/tech/tech3293v1_2.pdf">EBU – TECH 3293 - EBU Core Metadata Set (EBU Core) v.1.2</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="GEO-JSON">[GEO-JSON]</a></td>
-<td class="author-text">&ldquo;<a href="http://geojson.org/geojson-spec.html">The GeoJSON Format Specification</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="HOSTMETA">[HOSTMETA]</a></td>
-<td class="author-text">Eran Hammer-Lahav, E., &ldquo;<a href="http://tools.ietf.org/html/draft-hammer-hostmeta">Web Host Metadata</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="HTML5">[HTML5]</a></td>
-<td class="author-text">W3C, &ldquo;<a href="http://dev.w3.org/html5/spec/Overview.html">HTML5 - A vocabulary and associated APIs for HTML and XHTML</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="HTML5-MM">[HTML5-MM]</a></td>
-<td class="author-text">W3C, &ldquo;<a href="http://www.w3.org/WAI/PF/HTML/wiki/Media_Multitrack_Media_API">Media Multitrack API</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="IANA-MIMEREG">[IANA-MIMEREG]</a></td>
-<td class="author-text">IANA, &ldquo;<a href="http://www.iana.org/assignments/media-types/">MIME Media Types</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="ISO3166-country">[ISO3166-country]</a></td>
-<td class="author-text">ISO, &ldquo;<a href="http://en.wikipedia.org/wiki/ISO_3166">ISO 3166</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="ISO8601-duration">[ISO8601-duration]</a></td>
-<td class="author-text">ISO, &ldquo;<a href="http://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="JSON-SYN">[JSON-SYN]</a></td>
-<td class="author-text">&ldquo;<a href="http://martin.atkins.me.uk/specs/jsonsyn">JSON Syndication Format</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="MEDIA-FRAGMENTS-URI">[MEDIA-FRAGMENTS-URI]</a></td>
-<td class="author-text">W3C, &ldquo;<a href="http://www.w3.org/2008/WebVideo/Fragments/WD-media-fragments-spec/">Media Fragments URI 1.0</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="MEDIA-RSS">[MEDIA-RSS]</a></td>
-<td class="author-text">Yahoo! Inc. and RSS Advisory Board, &ldquo;<a href="http://www.rssboard.org/media-rss">Media RSS Specification</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="MIMEREG">[MIMEREG]</a></td>
-<td class="author-text">Freed, N. and J. Klensin, &ldquo;<a href="http://tools.ietf.org/html/rfc4288">Media Type Specifications and Registration Procedures</a>,&rdquo; BCP&nbsp;13, RFC&nbsp;4288, December&nbsp;2005.</td></tr>
-<tr><td class="author-text" valign="top"><a name="OAuth 2.0">[OAuth 2.0]</a></td>
-<td class="author-text">&ldquo;<a href="http://tools.ietf.org/html/draft-ietf-oauth-v2">The OAuth 2.0 Authorization Protocol</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="OpenSearch">[OpenSearch]</a></td>
-<td class="author-text">Clinton, D., &ldquo;<a href="http://www.opensearch.org/Specifications/OpenSearch/1.1/Draft_3">OpenSearch 1.1</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="OpenSocial">[OpenSocial]</a></td>
-<td class="author-text">&ldquo;<a href="http://opensocial-resources.googlecode.com/svn/spec/2.0/Social-API-Server.xml">OpenSocial Social API Server Specification 2.0 DRAFT</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="PortableContacts">[PortableContacts]</a></td>
-<td class="author-text">Smarr, J., &ldquo;<a href="http://portablecontacts.net/draft-spec.html">Portable Contacts 1.0 Draft C</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="TV-ANYTIME">[TV-ANYTIME]</a></td>
-<td class="author-text">ETSI, &ldquo;<a href="http://www.etsi.org/website/technologies/tvanytime.aspx">TV Anytime</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="WEBFINGER">[WEBFINGER]</a></td>
-<td class="author-text">&ldquo;<a href="http://code.google.com/p/webfinger/wiki/WebFingerProtocol">The Webfinger Protocol</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="XRD">[XRD]</a></td>
-<td class="author-text">&ldquo;<a href="http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html">Extensible Resource Descriptor (XRD) Version 1.0 - Committee Draft 02</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="XSD-DATATYPES">[XSD-DATATYPES]</a></td>
-<td class="author-text">Biron, P. and A. Malhotra, &ldquo;<a href="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes Second Edition</a>,&rdquo; October&nbsp;2004.</td></tr>
-</table>
-
 <a name="rfc.authors"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <h3>Author's Address</h3>

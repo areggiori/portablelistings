@@ -96,8 +96,8 @@ Reggiori                                                        [Page 1]
    14. References . . . . . . . . . . . . . . . . . . . . . . . . . . 55
      14.1. Normative References . . . . . . . . . . . . . . . . . . . 55
      14.2. Informative References . . . . . . . . . . . . . . . . . . 56
+   Appendix A.  Changes . . . . . . . . . . . . . . . . . . . . . . . 58
    Author's Address . . . . . . . . . . . . . . . . . . . . . . . . . 58
-
 
 
 
@@ -3214,6 +3214,11 @@ Reggiori                                                       [Page 57]
               <http://www.w3.org/TR/xmlschema-2/>.
 
 
+Appendix A.  Changes
+
+   Changes from -03 version (Draft C)
+
+
 Author's Address
 
    Alberto Attilio Reggiori
@@ -3221,11 +3226,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
-
-
-
-
 
 
 

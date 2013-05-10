@@ -141,9 +141,9 @@ ISSUES:
             The role played by the Target Entry in a Relationship with a given Source Entry is defined to be the name or label of the relationship itself.
           </t>
           <t hangText="Profile:">
-            A profile identifies a particular format (or schema) for the various Entries, their respective object types, the definition of their fields and allowed values (including canonical values) for the Entry being described.
-            Definitions of valid relationships between Entries are also identified in a profile. A profile is expressed using an atomic set of data modelling rules as defined in <xref target="structure"/>.
-            The <spanx style="verb">core</spanx> profile is integral part of this specification and is being specified in <xref target="core-profile" />.
+            A particular format (or schema) for the various Entries per <xref target="RFC6906"/>.
+            In the scope of this specification a profile is expressed using an atomic set of data modelling rules as defined in <xref target="structure"/>.
+            The <spanx style="verb">core</spanx> profile is integral part of this specification as defined in <xref target="core-profile" />.
           </t>
           <!--
             TODO:
@@ -816,12 +816,6 @@ Content-Type: application/listings+json
           The root element is an anonymous JSON object. The root node MUST contain the following child nodes, and MAY contain additional nodes that the Service Provider wishes to add to expose additional information. Note that <spanx style="verb">startIndex</spanx>, <spanx style="verb">itemsPerPage</spanx>, and <spanx style="verb">totalResults</spanx> are based on <xref target="OpenSearch" />. See the Appendix for a full example.
           <list style="symbols">
             <t>
-              <spanx style="verb">lang</spanx>: the content language of the metadata Entries if not specified otherwise (see <xref target="multilingual-fields"/>).
-            </t>
-            <t>
-              <spanx style="verb">profile</spanx>: an array of strings containing the identifiers for the profiles used to describe their metadata Entries. This represent the default profiles if not specified otherwise (see also <xref target="referencing-profiles"/>).
-            </t>
-            <t>
               <spanx style="verb">startIndex</spanx>: the index of the first result returned in this response, relative to the starting index of all results that would be returned if no <spanx style="verb">startIndex</spanx> had been requested. In general, this will be equal to the value requested by the <spanx style="verb">startIndex</spanx>, or 0 if no specific <spanx style="verb">startIndex</spanx> was requested.
             </t>
             <t>
@@ -935,13 +929,25 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
     <section title="Listings Format" anchor="listings-format">
       <t>
-        The Portable Listings format defines the constructs necessary to express an individual audiovisual content metadata Entry or a list of Entries as requested by the Consumer. The format specification and conformance is expressed in terms of <spanx style="verb">profiles</spanx>.
+        The Portable Listings format is expressed in terms of profiles identified with a URI per <xref target="RFC6906"/>.
       </t>
       <t>
-        A profile is a specification using the basic structure in <xref target="structure"/> to define and identify the named object types, fields, values and relationships required to be present in an Entry. A profile MAY also define addition requirements and guidelines for a Consumer application. Each profile is identified with a URI. An Entry is defined to be "compliant" with a profile if and only if it adheres to all of the requirements set forth in a profile description. A Entry MAY be compliant with multiple profiles (see <xref target="referencing-profiles"/>). A profile it is intended only as an informative guide to Consumer applications interpreting the information contained within an Entry and it does not impose any behavioral requirements on implementations. Unless specifically forbidden by a particular profile definition, a Entry can contain arbitrary fields and relationships. Consumer MAY choose to ignore any unknown information and continue processing.
+        In the scope of this specification a profile is defined using the basic structures defined in <xref target="structure"/>.
+        In addition a profile MAY also define addition constraints and guidelines for a Consumer application.
       </t>
       <t>
-        The <spanx style="verb">core profile</spanx> is integral part of this document and it is the only profile that a Portable Listings implementation is required to support (see <xref target="core-profile"/>). Support for other profiles is optional. If a Consumer is presented with an Entry expressed using a profile unknown to the Consumer, the Consumer MAY choose to ignore that profile and continue processing.
+        An Entry is defined to be "compliant" with a profile if and only if it adheres to the format structures, the contraints and the requirements set in a profile description.
+        A Entry MAY be compliant with multiple profiles.
+      </t>
+      <t>
+        <!-- A profile it is intended only as an informative guide to Consumer applications interpreting the information contained within an Entry and it does not impose any
+        behavioral requirements on implementations.-->
+        Unless specifically forbidden by a particular profile definition, an Entry can contain arbitrary fields and relationships.
+        Consumer MAY choose to ignore any unknown information and continue processing.
+      </t>
+      <t>
+        This specification defines the <spanx style="verb">core profile</spanx> and it is the only profile that a Portable Listings implementation is required to support (see <xref target="core-profile"/>).
+        Support for other profiles is optional. If a Consumer is presented with an Entry expressed using an unknown profile, the Consumer MAY choose to ignore it and continue processing.
         
         <!--
             TODO:
@@ -964,7 +970,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
         The order in which Entry fields and relationships are defined is not significant.
         By definition an Entry has object type of <spanx style="verb">entry</spanx>.
         Objects are represented in a result set with the <spanx style="verb">entry</spanx> element (see <xref target="response-format"/>) and the object type is specified using lowercased object type name as value of the <spanx style="verb">objectType</spanx> field.
-        Unless specified otherwise and as general rule, all fields and relationships applying to a specific Entry type SHOULD BE also applicable to any Entry sub-type (e.g. fields and relationships for <spanx style="verb">programme</spanx> they also apply to <spanx style="verb">series</spanx>).
+        <!-- TODO: Improve this and talk about how to "automatically inherit the default metadata signalled in parents/ancestors" -->
+        Unless specified otherwise and as general rule, all fields and relationships applying to a specific Entry type SHALL BE  applicable to any Entry sub-type (e.g. fields and relationships defined for <spanx style="verb">programme</spanx> apply to <spanx style="verb">series</spanx>).
       </t>
       <section title="Fields" anchor="fields">
         <t>
@@ -1138,7 +1145,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         Although a Provider SHOULD NOT reference Entries on another Provider as this complicates processing by the Consumer.
                     </t>
                     <t hangText="type: (ENUM)">
-                        If non-empty or null, the media type is defined to be <spanx style="verb">application/listings+json</spanx>. Eventually the <spanx style="verb">profile</spanx> mime-type parameter MAY be used on the media type as specified in <xref target="referencing-profiles"/>.
+                        If non-empty or null, the media type is defined to be <spanx style="verb">application/listings+json</spanx>.  The <spanx style="verb">profile</spanx> media type parameter MAY be specified as defined in <xref target="referencing-profiles"/>.
                     </t>
                     <t hangText="rel: (ENUM or IRI)">
                         <!-- It is the field used to filter relationships by type (see <xref target="query-params"/>). -->
@@ -1175,7 +1182,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   <!--
                   <t hangText="profile: [IRI]">
                     An array of IRI containing the identifiers for the profiles used to describe their metadata Entries included.
-                    This represent the default profiles if not specified otherwise (see also <xref target="referencing-profiles"/>).
+                    This represent the default profiles for the included Entry if not specified otherwise (see also <xref target="referencing-profiles"/>).
                   </t>
                   -->
                   <t hangText="primary: (BOOLEAN)">
@@ -1421,7 +1428,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
       <section title="Multilingual Fields" anchor="multilingual-fields">
         <t>
-          The <spanx style="verb">Content-Language</spanx> HTTP header SHOUDL BE used by a Service Provider to signal a Consumer that the fields returned are expressed in a specific language. Alternatively the <spanx style="verb">lang</spanx> attribute in the response format header MAY be used by a Service Provider to signal a Consumer about the default language used to express the field values (see <xref target="response-format"/>). Any language information in the responde header overrides the value of the HTTP header. If the language is not specified, the field language is left undefined.
+          The <spanx style="verb">Content-Language</spanx> HTTP header SHOUDL BE used by a Service Provider to signal a Consumer that the fields returned are expressed in a specific language. If the language is not specified, the fields language is left undefined.
         </t>
         <t>
           A Provider MAY return fields in multiple languages using the MIME multipart/alternative Content-Type in combination with the Content-Language header (see section 4.2 in <xref target="RFC5646"/>). 
@@ -1439,24 +1446,19 @@ WWW-Authenticate: Basic realm="sample.site.org"
         The <spanx style="verb">core profile</spanx> described in <xref target="core-profile"/> is intended to provide a foundation upon which such interoperability MAY be based. New profiles MAY choose to either extend or modify the requirements specified by the core. Profiles that seek only to extend the core without changing any of those core requirements will have a much greater chance of ensuring appropriate levels of interoperability. Profiles that modify the core requirements run the risk of breaking interoperability in Portable Listings implementations. Because of this, for the sake of protecting interoperability, it is highly recommended that new profiles seek to extend the core rather than modify it.
       </t>
       </section>
-
-      <section title="Defining New Profiles" anchor="define-new-profiles">
-
-      <t>
-        A profile identifies a particular format (or schema) for the various Entries, their respective object types, the definition of their fields and allowed values (including canonical values) for the Entry being described.
-        Definitions of valid relationships between Entries are also identified in a profile. A profile is expressed using an atomic set of data modelling rules as defined in <xref target="structure"/>.
-        The <spanx style="verb">core</spanx> profile is integral part of this specification and is being specified in <xref target="core-profile" />.
-      </t>
-
-      <t>
-          By leveraging on the basic structures defined in <xref target="structure"/> alternative profiles MAY be defined and referenced to express application-specific information.
-      </t>
-      </section>
       
       <section title="Referencing Profiles" anchor="referencing-profiles">
         <t>
-            The <spanx style="verb">Content-Type</spanx> HTTP header with the <spanx style="verb">profile</spanx> parameter SHOUDL BE used by a Service Provider to signal a Consumer that the Entries returned are expressed using specific profiles.
-            Alternatively profiles can be referenced once from a result set (see <xref target="response-format"/>) or from individual listed Entries using the Simple Plural Field <spanx style="verb">profile</spanx>.
+            A Service Provider SHOULD signal a Consumer that the Entries are expssed using specific profiles by returning the <spanx style="verb">Content-Type</spanx> HTTP header with the media type parameter <spanx style="verb">profile</spanx> containing a whitespace-separated list of the profile URIs used.
+        </t>
+        <t>
+            Alternatively profiles MAY be referenced per <xref target="RFC6906"/> as follow:
+            <list style="symbols">
+                <t>From individual metadata Entries using the <spanx style="verb">links</spanx> field with a "rel" attribute of "profile".</t>
+                <t>Returning the <spanx style="verb">Link</spanx> HTTP header in responses.</t>
+            </list>
+        </t>
+        <t>
             A Provider SHOULD return a profile identifier with each Consumer request. 
             The <spanx style="verb">core profile</spanx> is the default profile for all Entries returned by a Service Provider unless otherwise specified.
             Consumer SHOULD ignore any Entry object types, fields or relationship they do not understand.
@@ -1539,7 +1541,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
         <!-- see "dictionary" / "lookup" output structure and lookuptable=1 params -->
         <t>
           Well-defined Canonical Values MAY BE used for string-valued fields as reference data. For example, a Canonical Value can be used to express the <spanx style="verb">type</spanx> sub-field in a Complex Field.
-          Where possible and useful the Reference Data and Canonical Values SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes <xref target="EBU-REFERENCEDATA"/> or TV-Anytime Content Commercial or Alert <xref target="TV-ANYTIME" /> registries.
+          Where possible and useful the Reference Data and Canonical Values SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes <xref target="EBU-REFERENCEDATA"/> or the TV-Anytime Classification Schemes <xref target="TV-ANYTIME" />.
           A Provider MAY either use the well-defined and standardised lists of Canonical Values or it MAY define application specific values which a Consumer can reference.
         </t>
         <!--
@@ -1730,7 +1732,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Unless otherwise specified, the displayName value is used for the purposes of sorting and filtering.
               </t>
               <t hangText="objectType: (ENUM)">
-                The object type of the Entry record. A profile defines the possible allowed Canonical Values for the <spanx style="verb">objectType</spanx> field (see <xref target="define-new-profiles" />).
+                The object type of the Entry record. A profile defines the possible allowed Canonical Values for the <spanx style="verb">objectType</spanx> field (see <xref target="listings-format" />).
                 Different Entries requested by a Consumer can have a different object type. This specification reserves the <spanx style="verb">entry</spanx> value for referring to object types of Entry, and by definition an Entry without a <spanx style="verb">objectType</spanx> field or with a <spanx style="verb">objectType</spanx> value equal to <spanx style="verb">null</spanx> it is assumed to be of object type Entry.                
                 The list of valid Canonical Values for this field consists of the list of lowercased object type names defined in <xref target="object-types"/>.
               </t>                            
@@ -1744,37 +1746,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 If the Entry has never been modified since its initial creation, the value MUST be the same as the value of <spanx style="verb">published</spanx>.
                 Note the <spanx style="verb">updatedSince</spanx> and the <spanx style="verb">updatedUntil</spanx> Query Parameters described in <xref target="query-params" /> can be used to select only Entries whose <spanx style="verb">updated</spanx> value is equal to or more recent than a given TIMESTAMP or equal to or older than a given TIMESTAMP respectively. This enables Consumers to repeatedly access a metadata Entry and only request newly added or updated Entries since the last access time.
               </t>
-              <t hangText="metadataSource: (LINK)">
-                A standard source from which the Entry metadata record was generated from as defined by section 4.2.11 of <xref target="RFC4287" /> using the least minimum number of fields.
-                This enables Providers to simply represent aggregation of Entries.
-                The source field is expressed using the LINK construct with the following differences:
-                <list style="hanging">
-                  <t hangText="href: (IRI)">                    
-                    REQUIRED. The IRI of the source MUST BE a valid Initial Identifier suitable for discovery of the source Portable Listings API Provider endpoint from where the metadata Entry was derived from as explained in <xref target="discovery"/>.
-                    Unless otherwise specified, this is the Primary Sub-Field for the purposes of sorting and filtering.
-                  </t>
-                  <t hangText="rel: (ENUM)">
-                    The rel value MUST BE the "via" relation type as defined in section 6.2.2. of <xref target="RFC5988" />.
-                    If this property is omitted or null it MUST BE processed as if the value was the string "via".
-                  </t>
-                  <t hangText="updated: (TIMESTAMP)">
-                     If available, the most recent date the details of the source was updated (i.e. the modified date of the source). The value MUST be a valid TIMESTAMP (e.g. <spanx style="verb">2010-01-12T07:56:22Z</spanx>).
-                  </t>
-                </list>
-              </t>
-              <t hangText="metadataRights: (LINK)">
-                The copyright license terms under which the Entry content metadata is provided.
-                If the field is set, the <spanx style="verb">rel</spanx> sub-field MUST have the <spanx style="verb">license</spanx> value.
-              </t>
-              <t hangText="metadataProvider: (CONTACT)">
-                The CONTACT creating and publishing the metadata instances as served by a Service Provider.
-                The creator of the resource described by the metadata Entry.
-                The relationship associates an ENTRY to zero or one CONTACT.
-              </t>
-              <t hangText="profile: [IRI]">
-                An array of IRI containing the identifiers for the profiles used to describe the metadata Entry.
-                This represent the default profile if not specified otherwise (see also <xref target="referencing-profiles"/>)
-                If an Entry does not explicitly specify any value for the profile field it MUST conform to the <spanx style="verb">core profile</spanx>.
+              <t hangText="links: [LINK]">
+                A metadata Entry MAY have associated one ore more links to external Web resources.
+                <!--Say that any other relationship defined (e.g. metadataRights) will override the value of any corresponding link in this Plural Field...-->
+                A Provider SHOULD NOT use the links element to express relationships by-reference as this complicates processing by the Consumer.
               </t>
             </list>
           </t>
@@ -1813,11 +1788,54 @@ WWW-Authenticate: Basic realm="sample.site.org"
               <t hangText="subtitle: (STRING or HTML)">
                 The subtitle of the piece of content.
               </t>
-              <t hangText="summary: (STRING or HTML)">
-                A short summary about the piece of content.
+              <t hangText="alternativeTitle: [COMPLEX]">
+                    An alternative name of the piece of content.
+                    <list style="hanging">
+                        <t hangText="type: (ENUM)">
+                            The type of field for this instance (e.g. 'original', 'art_work_original', 'pledged', 'secondary', 'working').
+                            The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Title types.
+                            The <spanx style="verb">main</spanx> and <spanx style="verb">subtitle</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
+                        </t>
+                        <t hangText="value: (STRING or HTML)">
+                            The alternative name text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        </t>
+                        <!--
+                         <t hangText="attributionDate: (TIMESTAMP)">
+                         The date at which the specific title was attributed.
+                         </t>
+                         <t hangText="note: (STRING or HTML)">
+                         A note on the title to provide additional contextual information.
+                         </t>
+                         -->
+                    </list>
               </t>
               <t hangText="synopsis: (STRING or HTML)">
-                A short synopsis about the piece of content.
+                A brief or condensed statement giving a general view about the piece of content e.g. a brief summary of the plot of a novel, motion picture, play, etc.
+              </t>
+              <t hangText="summary: (STRING or HTML)">
+                A comprehensive and usually brief abstract, recapitulation, or compendium of of actions and events in the piece of content.
+              </t>
+              <t hangText="description: [COMPLEX]">
+                    An extended description of the piece of content other than the information provided with the <spanx style="verb">synopsis</spanx> and <spanx style="verb">summary</spanx> fields.
+                    The extended description MAY also consist of outlines, lists, bullet points, edit decision lists, indexes and have references to external media and graphical material.
+                    <list style="hanging">
+                        <t hangText="type: (ENUM)">
+                            The type of field for this instance (e.g. 'abstract', 'transcript', 'excerpt', 'promotional_information').
+                            The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Description types.
+                            The <spanx style="verb">synopsis</spanx> and  <spanx style="verb">summary</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
+                        </t>
+                        <t hangText="value: (STRING or HTML)">
+                            The extended description text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        </t>
+                        <t hangText="media: [LINK]">
+                            Additional reference material associated with the extended description (e.g. artwork, presentations).
+                        </t>
+                        <!--
+                         <t hangText="note: (STRING or HTML)">
+                         A note on the extended description to provide additional contextual information.
+                         </t>
+                         -->
+                    </list>
               </t>
               <!-- add spatial coverage http://geojson.org/geojson-spec.html -->
               <!-- add temporal coverage see DCMI Period -->
@@ -1841,11 +1859,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 These values SHOULD be case-insensitive, and there SHOULD NOT be multiple tags provided for a given Entry that differ only in case.
                 Note that this field is a Plural Simple Field, meaning each instance consists only of a string value.
               </t>
-              <t hangText="links: [LINK]">
-                A piece of content MAY have associated one ore more links to external Web resources.
-                <!--Say that any other relationship defined (e.g. metadataRights) will override the value of any corresponding link in this Plural Field...-->
-                A Provider SHOULD NOT use the links element to express relationships by-reference as this complicates processing by the Consumer.
-              </t>
               <t hangText="creator: [CONTACT]">
                 The creator of the piece of content.
               </t>
@@ -1866,7 +1879,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     </t>
                 </list>
               </t>
-            
               <t hangText="created: (TIMESTAMP or PERIOD)">
                 The creation date for a particular version or rendition of the piece of content across its life cycle.
               </t>
@@ -1914,27 +1926,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
               </t>
               -->
 
-              <t hangText="alternativeTitle: [COMPLEX]">
-                An alternative name of the piece of content.
-                <list style="hanging"> 
-                    <t hangText="type: (ENUM)">
-                        The type of field for this instance (e.g. 'original', 'art_work_original', 'pledged', 'secondary', 'working').
-                        The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Title types.
-                        The <spanx style="verb">main</spanx> and <spanx style="verb">subtitle</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
-                    </t>
-                    <t hangText="value: (STRING or HTML)">
-                        The alternative name text. This is the Primary Sub-Field for the purposes of sorting and filtering.
-                    </t>
-                    <!--
-                    <t hangText="attributionDate: (TIMESTAMP)">
-                        The date at which the specific title was attributed.
-                    </t>
-                    <t hangText="note: (STRING or HTML)">
-                        A note on the title to provide additional contextual information.
-                    </t>
-                    -->
-               </list>
-              </t>
               <t hangText="aliases: [IRI or STRING]">
                 Additional or alternative identifiers for the piece of content.
               </t>
@@ -1942,28 +1933,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 A list of keywords and phrases assigned by the Provider to the piece of content, e.g. "sports" or "live".
                 These values SHOULD be case-insensitive, and there SHOULD NOT be multiple keywords provided for a given Entry that differ only in case.
                 Note that this field is a Plural Simple Field, meaning each instance consists only of a string value.
-              </t>
-              <t hangText="description: [COMPLEX]">
-                An extended description of the piece of content other than the information provided with the <spanx style="verb">summary</spanx> and <spanx style="verb">synopsis</spanx> fields.
-                The extended description MAY also consist of outlines, lists, bullet points, edit decision lists, indexes and have references to external media and graphical material.
-                <list style="hanging"> 
-                    <t hangText="type: (ENUM)">
-                        The type of field for this instance (e.g. 'abstract', 'transcript', 'excerpt', 'promotional_information').
-                        The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Description types.
-                        The <spanx style="verb">summary</spanx> and  <spanx style="verb">synopsis</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
-                    </t>  
-                    <t hangText="value: (STRING or HTML)">
-                        The extended description text. This is the Primary Sub-Field for the purposes of sorting and filtering.
-                    </t>
-                    <t hangText="media: [LINK]">
-                        Additional reference material associated with the extended description (e.g. artwork, presentations). 
-                    </t>
-                    <!--
-                    <t hangText="note: (STRING or HTML)">
-                        A note on the extended description to provide additional contextual information.
-                    </t>
-                    -->
-               </list>
               </t>
               <t hangText="genre: [COMPLEX]">
                 The genre categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
@@ -2819,9 +2788,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
           <t hangText="Optional parameters:">
             <list style="hanging"> 
-                    <t hangText='"profile":'> This parameter contains the profile identifiers used
-                    in the definition of the Entry metadata. If this attribute is omitted implementations
-                    MUST process the media type as if the value were the string "http://portablelistings.net/profiles/core/1.0/".
+                <t hangText='"profile":'> This parameter contains a whitespace-separated list
+                    of profile URIs used to express the Entries metadata as defined in Section 3.1 of <xref target="RFC6906"/>. If this attribute is omitted implementations
+                    MUST process the media type as if the value was the string "http://portablelistings.net/profiles/core/1.0/".
                     </t>
             </list>
           </t>
@@ -2858,7 +2827,452 @@ WWW-Authenticate: Basic realm="sample.site.org"
    -->
       </t>
     </section>
-
+      
+    <section title="Change Log" anchor="changes">
+        <t>Changes from -03 version (Draft C)
+            <list style="symbols">
+                <t>Updated profile definitions per RFC6906.</t>
+                <t>Moved "links" to Entry level.</t>
+                <t>Dropped "profile" from Entry.</t>
+                <t>Dropped "metadataSource" from Entry. The links "via" Lynk Type can be used instead.</t>
+                <t>Dropped "metadataRights" from Entry. The links "copyright" Lynk Type can be used instead.</t>
+                <t>Dropped "metadataProvider" from Entry. The links HTML5 "author" Lynk Type can be used instead.</t>
+                <t>Removed "lang" and "profile" from response format</t>
+                <t>Removed Defining New Profiles section</t>
+            </list>
+        </t>
+    </section>
+  </middle>
+    
+  <back>
+      <references title="Normative References">
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
+          <!--<?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2425.xml"?>-->
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2616.xml"?>
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2617.xml"?>
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.5646.xml"?>
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.3987.xml"?>
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.3339.xml"?>
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.4627.xml"?>
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.5988.xml"?>
+          <!--<?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml"?>-->
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.4281.xml"?>
+          <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.6906.xml"?>
+      </references>
+      
+      <references title="Informative References">
+          <reference anchor="OAuth 2.0">
+              <front>
+                  <title>The OAuth 2.0 Authorization Protocol</title>
+                  <author fullname="Eran Hammer-Lahav">
+                      <organization/>
+                  </author>
+                  <author fullname="D. Recordon">
+                      <organization/>
+                  </author>
+                  <author fullname="D. Hardt">
+                      <organization/>
+                  </author>
+              </front>
+              <format type="HTML" target="http://tools.ietf.org/html/draft-ietf-oauth-v2" />
+          </reference>
+          
+          <reference anchor="XRD">
+              <front>
+                  <title>Extensible Resource Descriptor (XRD) Version 1.0 - Committee Draft 02</title>
+                  <author fullname="Peter Davis">
+                      <organization />
+                  </author>
+                  <author fullname="Eran Hammer-Lahav">
+                      <organization />
+                  </author>
+              </front>
+              <format type="HTML" target="http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html" />
+          </reference>
+          
+          <reference anchor="OpenSearch">
+              <front>
+                  <title>OpenSearch 1.1</title>
+                  <author initials="D.C." surname="Clinton" fullname="DeWitt Clinton">
+                      <organization>A9</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://www.opensearch.org/Specifications/OpenSearch/1.1/Draft_3" />
+          </reference>
+          
+          <reference anchor="PortableContacts">
+              <front>
+                  <title>Portable Contacts 1.0 Draft C</title>
+                  <author initials="J" surname="Smarr" fullname="Joseph Smarr">
+                      <organization />
+                  </author>
+              </front>
+              <format type="HTML" target="http://portablecontacts.net/draft-spec.html" />
+          </reference>
+          
+          <!--
+           <reference anchor="Atom-Activity-Base-Schema">
+           <front>
+           <title>Atom Activity Base Schema (Draft)</title>
+           <author fullname="M. Atkins">
+           <organization>SAY Media</organization>
+           </author>
+           <author fullname="D. Recordon">
+           <organization>Six Apart, Facebook</organization>
+           </author>
+           <author fullname="C. Messina">
+           <organization>Citizen Agency, Google</organization>
+           </author>
+           <author fullname="M. Keller">
+           <organization>MySpace, Facebook</organization>
+           </author>
+           <author fullname="A. Steinberg">
+           <organization>Facebook</organization>
+           </author>
+           <author fullname="R. Dolin">
+           <organization>Microsoft</organization>
+           </author>
+           </front>
+           <format type="HTML" target="http://activitystrea.ms/head/activity-schema.html" />
+           </reference>
+           
+           <reference anchor="JSON-Activity-Streams">
+           <front>
+           <title>JSON Activity Streams (Draft)</title>
+           <author fullname="J. Snell">
+           <organization>IBM</organization>
+           </author>
+           <author fullname="M. Atkins">
+           <organization>SAY Media</organization>
+           </author>
+           <author fullname="W. Norris">
+           <organization>Google</organization>
+           </author>
+           <author fullname="C. Messina">
+           <organization>Citizen Agency, Google</organization>
+           </author>
+           <author fullname="M. Wilkinson">
+           <organization>MySpace, Facebook, Socialcast</organization>
+           </author>
+           <author fullname="R. Dolin">
+           <organization>Microsoft</organization>
+           </author>
+           </front>
+           <format type="HTML" target="http://activitystrea.ms/head/json-activity.html" />
+           </reference>
+           -->
+          
+          <reference anchor="OpenSocial">
+              <front>
+                  <title>OpenSocial Social API Server Specification 2.0 DRAFT</title>
+                  <author>
+                      <organization />
+                  </author>
+              </front>
+              <format type="HTML" target="http://opensocial-resources.googlecode.com/svn/spec/2.0/Social-API-Server.xml" />
+          </reference>
+          
+          <reference anchor="HTML5">
+              <front>
+                  <title>HTML5 - A vocabulary and associated APIs for HTML and XHTML</title>
+                  <author>
+                      <organization>W3C</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://dev.w3.org/html5/spec/Overview.html" />
+          </reference>
+          
+          <reference anchor="EBUCORE">
+              <front>
+                  <title>EBU – TECH 3293 - EBU Core Metadata Set (EBU Core) v.1.2</title>
+                  <author fullname="PMC">
+                      <organization>EBU</organization>
+                  </author>
+              </front>
+              <format type="PDF" target="http://tech.ebu.ch/docs/tech/tech3293v1_2.pdf" />
+          </reference>
+          
+          <reference anchor="EBU-OBJECTMODEL">
+              <front>
+                  <title>EBU Object Model</title>
+                  <author fullname="MAG">
+                      <organization>EBU</organization>
+                  </author>
+              </front>
+              <format type="PDF" target="http://www.slideshare.net/EUscreen/evain-ebu-metadata-euscreen-mykonos" />
+          </reference>
+          
+          <reference anchor="TV-ANYTIME">
+              <front>
+                  <title>TV Anytime</title>
+                  <author>
+                      <organization>ETSI</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://www.etsi.org/website/technologies/tvanytime.aspx" />
+          </reference>
+          
+          <reference anchor="BBC-PROGRAMMES">
+              <front>
+                  <title>Programmes ontology</title>
+                  <author>
+                      <organization>BBC</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://purl.org/ontology/po/" />
+          </reference>
+          
+          <reference anchor="ATOM-MEDIA">
+              <front>
+                  <title>Atom Media Extensions</title>
+                  <author initials="M." surname="Atkins" fullname="M. Atkins">
+                      <organization>Six Apart Ltd</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://martin.atkins.me.uk/specs/atommedia" />
+          </reference>
+          
+          <reference anchor="MEDIA-RSS">
+              <front>
+                  <title>Media RSS Specification</title>
+                  <author>
+                      <organization>Yahoo! Inc.</organization>
+                  </author>
+                  <author>
+                      <organization>RSS Advisory Board</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://www.rssboard.org/media-rss" />
+          </reference>
+          
+          <reference anchor="HTML5-MM">
+              <front>
+                  <title>Media Multitrack API</title>
+                  <author>
+                      <organization>W3C</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://www.w3.org/WAI/PF/HTML/wiki/Media_Multitrack_Media_API" />
+          </reference>
+          
+          <reference anchor="HOSTMETA">
+              <front>
+                  <title>Web Host Metadata</title>
+                  <author initials="E.H.-L." surname="Eran Hammer-Lahav" fullname="Eran Hammer-Lahav">
+                      <organization>Yahoo!</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://tools.ietf.org/html/draft-hammer-hostmeta" />
+          </reference>
+          
+          <!--
+           <reference anchor="GRAPHAPI">
+           <front>
+           <title>Graph API</title>
+           <author>
+           <organization>Facebook</organization>
+           </author>
+           </front>
+           <format type="HTML" target="http://developers.facebook.com/docs/api" />
+           </reference>
+           -->
+          
+          <reference anchor="EBU-REFERENCEDATA">
+              <front>
+                  <title>European Broadcasting Union - Metadata Reference Data</title>
+                  <author>
+                      <organization>EBU</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://tech.ebu.ch/lang/en/MetadataReferenceData" />
+          </reference>
+          
+          <reference anchor="EBU-ROLE-CODES">
+              <front>
+                  <title>European Broadcasting Union - Role Codes</title>
+                  <author>
+                      <organization>EBU</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://www.ebu.ch/metadata/cs/web/ebu_RoleCodeCS_p.xml.htm" />
+          </reference>
+          
+          <reference anchor="ATOM-PROFILES">
+              <front>
+                  <title>Atom Profiles Proposal</title>
+                  <author fullname="M. Nottingham">
+                      <organization />
+                  </author>
+              </front>
+              <format type="HTML" target="http://intertwingly.net/wiki/pie/PaceProfileAttribute" />
+          </reference>
+          
+          <reference anchor="JSON-SYN">
+              <front>
+                  <title>JSON Syndication Format</title>
+                  <author fullname="M. Atkins">
+                      <organization />
+                  </author>
+              </front>
+              <format type="HTML" target="http://martin.atkins.me.uk/specs/jsonsyn" />
+          </reference>
+          
+          <reference anchor="WEBFINGER">
+              <front>
+                  <title>The Webfinger Protocol</title>
+                  <author fullname="Eran Hammer-Lahav">
+                      <organization/>
+                  </author>
+                  <author fullname="Fitzpatrick, B.">
+                      <organization/>
+                  </author>
+                  <author fullname="Cook, B.">
+                      <organization/>
+                  </author>
+                  <author fullname="Panzer, J.">
+                      <organization/>
+                  </author>
+                  <author fullname="J. Gregorio">
+                      <organization/>
+                  </author>
+              </front>
+              <format type="HTML" target="http://code.google.com/p/webfinger/wiki/WebFingerProtocol" />
+          </reference>
+          
+          <reference anchor="XSD-DATATYPES" target="http://www.w3.org/TR/xmlschema-2/">
+              <front>
+                  <title>XML Schema Part 2: Datatypes Second Edition</title>
+                  <author initials='P.V.'
+                      surname='Biron'
+                      fullname='Paul V. Biron'>
+                      <organization>Kaiser Permanente, for Health Level Seven</organization>
+                  </author>
+                  <author initials='A.'
+                      surname='Malhotra'
+                      fullname='Ashok Malhotra'>
+                      <organization>Microsoft</organization>
+                  </author>
+                  <date month='October' year='2004' />
+              </front>
+          </reference>
+          
+          <reference anchor="MIMEREG">
+              <front>
+                  <title>Media Type Specifications and Registration Procedures</title>
+                  <author initials="N." surname="Freed" fullname="N. Freed">
+                      <organization/></author>
+                  <author initials="J." surname="Klensin" fullname="J. Klensin">
+                      <organization/></author>
+                  <date year="2005" month="December"/>
+              </front>
+              <seriesInfo name="BCP" value="13"/>
+              <seriesInfo name="RFC" value="4288"/>
+          </reference>
+          
+          <reference anchor="IANA-MIMEREG">
+              <front>
+                  <title>MIME Media Types</title>
+                  <author>
+                      <organization>IANA</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://www.iana.org/assignments/media-types/" />
+          </reference>
+          
+          <!--
+           <reference anchor="JSONPath" target="http://goessner.net/articles/JsonPath/">
+           <front>
+           <title>JSONPath - XPath for JSON</title>
+           <author initials="S." surname="Gössner" fullname="Stefan Gössner">
+           <organization/></author>
+           <date year="2007" month="February" day="21"/>
+           </front>
+           </reference>
+           -->
+          
+          <reference anchor="ISO8601-duration">
+              <front>
+                  <title>ISO 8601</title>
+                  <author>
+                      <organization>ISO</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://en.wikipedia.org/wiki/ISO_8601#Durations" />
+          </reference>
+          
+          <reference anchor="DCMI-PERIOD">
+              <front>
+                  <title>DCMI Period Encoding Scheme</title>
+                  <author fullname="Simon Cox">
+                      <organization/>
+                  </author>
+                  <author fullname="Andy Powell">
+                      <organization/>
+                  </author>
+                  <author fullname="Andrew Wilson">
+                      <organization/>
+                  </author>
+              </front>
+              <format type="HTML" target="http://dublincore.org/documents/dcmi-period/" />
+          </reference>
+          
+          <reference anchor="ANSI-SMPTE-12M-1986">
+              <front>
+                  <title>SMPTE time code</title>
+                  <author>
+                      <organization>SMPTE</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://en.wikipedia.org/wiki/SMPTE_time_code" />
+          </reference>
+          
+          <reference anchor="ISO3166-country">
+              <front>
+                  <title>ISO 3166</title>
+                  <author>
+                      <organization>ISO</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://en.wikipedia.org/wiki/ISO_3166" />
+          </reference>
+          
+          <reference anchor="GEO-JSON">
+              <front>
+                  <title>The GeoJSON Format Specification</title>
+                  <author fullname="Howard Butler">
+                      <organization/>
+                  </author>
+                  <author fullname="Martin Daly">
+                      <organization/>
+                  </author>
+                  <author fullname="Allan Doyle">
+                      <organization/>
+                  </author>
+                  <author fullname="Sean Gillies">
+                      <organization/>
+                  </author>
+                  <author fullname="Tim Schaub">
+                      <organization/>
+                  </author>
+                  <author fullname="Christopher Schmidt">
+                      <organization/>
+                  </author>
+              </front>
+              <format type="HTML" target="http://geojson.org/geojson-spec.html" />
+          </reference>
+          
+          <reference anchor="MEDIA-FRAGMENTS-URI">
+              <front>
+                  <title>Media Fragments URI 1.0</title>
+                  <author>
+                      <organization>W3C</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://www.w3.org/2008/WebVideo/Fragments/WD-media-fragments-spec/" />
+          </reference>
+          
+      </references>
+      
     <!-- add proper and more examples based, episodes, series, brands, collections, movies, subtitles/accessibility etc. -->
     <section title="Examples">
       <t>
@@ -3050,437 +3464,7 @@ Content-Type: application/listings+json;
             -> formalise grammar for API and profile - prob will need to split up spec in multiple ones: framework, API, data model, profile/s etc...
             -> clarify PBCore standard relationship
     -->
-
-  </middle>
-
-  <back>
-    <references title="Normative References">
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
-      <!--<?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2425.xml"?>-->
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2616.xml"?>
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.2617.xml"?>
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.5646.xml"?>
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.3987.xml"?>
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.3339.xml"?>
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.4627.xml"?>
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.4287.xml"?>
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.5988.xml"?>
-      <!--<?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.3986.xml"?>-->
-      <?rfc include="http://xml.resource.org/public/rfc/bibxml/reference.RFC.4281.xml"?>
-    </references>
-
-    <references title="Informative References">      
-      <reference anchor="OAuth 2.0">
-        <front>
-          <title>The OAuth 2.0 Authorization Protocol</title>
-          <author fullname="Eran Hammer-Lahav">
-            <organization/>
-          </author>
-          <author fullname="D. Recordon">
-            <organization/>
-          </author>
-          <author fullname="D. Hardt">
-            <organization/>
-          </author>
-        </front>
-        <format type="HTML" target="http://tools.ietf.org/html/draft-ietf-oauth-v2" />
-      </reference>
-
-      <reference anchor="XRD">
-        <front>
-          <title>Extensible Resource Descriptor (XRD) Version 1.0 - Committee Draft 02</title>
-          <author fullname="Peter Davis">
-            <organization />
-          </author>
-          <author fullname="Eran Hammer-Lahav">
-            <organization />
-          </author>
-        </front>
-        <format type="HTML" target="http://docs.oasis-open.org/xri/xrd/v1.0/xrd-1.0.html" />
-      </reference>
-
-      <reference anchor="OpenSearch">
-        <front>
-          <title>OpenSearch 1.1</title>
-          <author initials="D.C." surname="Clinton" fullname="DeWitt Clinton">
-            <organization>A9</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://www.opensearch.org/Specifications/OpenSearch/1.1/Draft_3" />
-      </reference>
-
-      <reference anchor="PortableContacts">
-        <front>
-          <title>Portable Contacts 1.0 Draft C</title>
-          <author initials="J" surname="Smarr" fullname="Joseph Smarr">
-            <organization />
-          </author>
-        </front>
-        <format type="HTML" target="http://portablecontacts.net/draft-spec.html" />
-      </reference>
       
-      <!--
-      <reference anchor="Atom-Activity-Base-Schema">
-        <front>
-          <title>Atom Activity Base Schema (Draft)</title>
-          <author fullname="M. Atkins">
-            <organization>SAY Media</organization>
-          </author>
-          <author fullname="D. Recordon">
-            <organization>Six Apart, Facebook</organization>
-          </author>
-          <author fullname="C. Messina">
-            <organization>Citizen Agency, Google</organization>
-          </author>
-          <author fullname="M. Keller">
-            <organization>MySpace, Facebook</organization>
-          </author>
-          <author fullname="A. Steinberg">
-            <organization>Facebook</organization>
-          </author>
-          <author fullname="R. Dolin">
-            <organization>Microsoft</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://activitystrea.ms/head/activity-schema.html" />
-      </reference>
-      
-      <reference anchor="JSON-Activity-Streams">
-        <front>
-          <title>JSON Activity Streams (Draft)</title>
-          <author fullname="J. Snell">
-            <organization>IBM</organization>
-          </author>
-          <author fullname="M. Atkins">
-            <organization>SAY Media</organization>
-          </author>
-          <author fullname="W. Norris">
-            <organization>Google</organization>
-          </author>
-          <author fullname="C. Messina">
-            <organization>Citizen Agency, Google</organization>
-          </author>
-          <author fullname="M. Wilkinson">
-            <organization>MySpace, Facebook, Socialcast</organization>
-          </author>
-          <author fullname="R. Dolin">
-            <organization>Microsoft</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://activitystrea.ms/head/json-activity.html" />
-      </reference>
-      -->
-
-      <reference anchor="OpenSocial">
-        <front>
-          <title>OpenSocial Social API Server Specification 2.0 DRAFT</title>
-          <author>
-            <organization />
-          </author>
-        </front>
-        <format type="HTML" target="http://opensocial-resources.googlecode.com/svn/spec/2.0/Social-API-Server.xml" />
-      </reference>
-
-      <reference anchor="HTML5">
-        <front>
-          <title>HTML5 - A vocabulary and associated APIs for HTML and XHTML</title>
-          <author>
-            <organization>W3C</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://dev.w3.org/html5/spec/Overview.html" />
-      </reference>
-      
-      <reference anchor="EBUCORE">
-        <front>
-          <title>EBU – TECH 3293 - EBU Core Metadata Set (EBU Core) v.1.2</title>
-          <author fullname="PMC">
-            <organization>EBU</organization>
-          </author>
-        </front>
-        <format type="PDF" target="http://tech.ebu.ch/docs/tech/tech3293v1_2.pdf" />
-      </reference>
-
-      <reference anchor="EBU-OBJECTMODEL">
-        <front>
-          <title>EBU Object Model</title>
-          <author fullname="MAG">
-            <organization>EBU</organization>
-          </author>
-        </front>
-        <format type="PDF" target="http://www.slideshare.net/EUscreen/evain-ebu-metadata-euscreen-mykonos" />
-      </reference>
-      
-      <reference anchor="TV-ANYTIME">
-        <front>
-          <title>TV Anytime</title>
-          <author>
-            <organization>ETSI</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://www.etsi.org/website/technologies/tvanytime.aspx" />
-      </reference>
-      
-      <reference anchor="BBC-PROGRAMMES">
-        <front>
-          <title>Programmes ontology</title>
-          <author>
-            <organization>BBC</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://purl.org/ontology/po/" />
-      </reference>
-
-      <reference anchor="ATOM-MEDIA">
-        <front>
-          <title>Atom Media Extensions</title>
-          <author initials="M." surname="Atkins" fullname="M. Atkins">
-            <organization>Six Apart Ltd</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://martin.atkins.me.uk/specs/atommedia" />
-      </reference>
-      
-      <reference anchor="MEDIA-RSS">
-        <front>
-          <title>Media RSS Specification</title>
-          <author>
-            <organization>Yahoo! Inc.</organization>
-          </author>
-          <author>
-            <organization>RSS Advisory Board</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://www.rssboard.org/media-rss" />
-      </reference>
-
-      <reference anchor="HTML5-MM">
-        <front>
-          <title>Media Multitrack API</title>
-          <author>
-            <organization>W3C</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://www.w3.org/WAI/PF/HTML/wiki/Media_Multitrack_Media_API" />
-      </reference>
-
-      <reference anchor="HOSTMETA">
-        <front>
-          <title>Web Host Metadata</title>
-          <author initials="E.H.-L." surname="Eran Hammer-Lahav" fullname="Eran Hammer-Lahav">
-            <organization>Yahoo!</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://tools.ietf.org/html/draft-hammer-hostmeta" />
-      </reference>
-      
-      <!--
-      <reference anchor="GRAPHAPI">
-        <front>
-          <title>Graph API</title>
-          <author>
-            <organization>Facebook</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://developers.facebook.com/docs/api" />
-      </reference>
-      -->
-      
-      <reference anchor="EBU-REFERENCEDATA">
-        <front>
-          <title>European Broadcasting Union - Metadata Reference Data</title>
-          <author>
-            <organization>EBU</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://tech.ebu.ch/lang/en/MetadataReferenceData" />
-      </reference>
-      
-      <reference anchor="EBU-ROLE-CODES">
-        <front>
-          <title>European Broadcasting Union - Role Codes</title>
-          <author>
-            <organization>EBU</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://www.ebu.ch/metadata/cs/web/ebu_RoleCodeCS_p.xml.htm" />
-      </reference>
-      
-      <reference anchor="ATOM-PROFILES">
-        <front>
-          <title>Atom Profiles Proposal</title>
-          <author fullname="M. Nottingham">
-            <organization />
-          </author>
-        </front>
-        <format type="HTML" target="http://intertwingly.net/wiki/pie/PaceProfileAttribute" />
-      </reference>
-      
-      <reference anchor="JSON-SYN">
-        <front>
-          <title>JSON Syndication Format</title>
-          <author fullname="M. Atkins">
-            <organization />
-          </author>
-        </front>
-        <format type="HTML" target="http://martin.atkins.me.uk/specs/jsonsyn" />
-      </reference>
-      
-      <reference anchor="WEBFINGER">
-        <front>
-          <title>The Webfinger Protocol</title>
-          <author fullname="Eran Hammer-Lahav">
-            <organization/>
-          </author>
-          <author fullname="Fitzpatrick, B.">
-            <organization/>
-          </author>
-          <author fullname="Cook, B.">
-            <organization/>
-          </author>
-          <author fullname="Panzer, J.">
-            <organization/>
-          </author>
-          <author fullname="J. Gregorio">
-            <organization/>
-          </author>
-        </front>
-        <format type="HTML" target="http://code.google.com/p/webfinger/wiki/WebFingerProtocol" />
-      </reference>
-
-      <reference anchor="XSD-DATATYPES" target="http://www.w3.org/TR/xmlschema-2/">
-        <front>
-            <title>XML Schema Part 2: Datatypes Second Edition</title>
-            <author initials='P.V.'
-             surname='Biron'
-             fullname='Paul V. Biron'>
-            <organization>Kaiser Permanente, for Health Level Seven</organization>
-            </author>
-            <author initials='A.'
-             surname='Malhotra'
-             fullname='Ashok Malhotra'>
-                <organization>Microsoft</organization>
-            </author>
-            <date month='October' year='2004' />
-       </front>
-     </reference>
-     
-     <reference anchor="MIMEREG">
-        <front>
-            <title>Media Type Specifications and Registration Procedures</title>
-            <author initials="N." surname="Freed" fullname="N. Freed">
-            <organization/></author>
-            <author initials="J." surname="Klensin" fullname="J. Klensin">
-            <organization/></author>
-            <date year="2005" month="December"/>
-        </front>
-        <seriesInfo name="BCP" value="13"/>
-        <seriesInfo name="RFC" value="4288"/>
-    </reference>
-   
-    <reference anchor="IANA-MIMEREG">
-        <front>
-          <title>MIME Media Types</title>
-          <author>
-            <organization>IANA</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://www.iana.org/assignments/media-types/" />
-      </reference>
-    
-    <!--
-    <reference anchor="JSONPath" target="http://goessner.net/articles/JsonPath/">
-        <front>
-            <title>JSONPath - XPath for JSON</title>
-            <author initials="S." surname="Gössner" fullname="Stefan Gössner">
-            <organization/></author>
-            <date year="2007" month="February" day="21"/>
-        </front>
-    </reference>
-    -->
-
-    <reference anchor="ISO8601-duration">
-        <front>
-          <title>ISO 8601</title>
-          <author>
-            <organization>ISO</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://en.wikipedia.org/wiki/ISO_8601#Durations" />
-    </reference>
-          
-    <reference anchor="DCMI-PERIOD">
-        <front>
-          <title>DCMI Period Encoding Scheme</title>
-          <author fullname="Simon Cox">
-            <organization/>
-          </author>
-          <author fullname="Andy Powell">
-            <organization/>
-          </author>
-          <author fullname="Andrew Wilson">
-            <organization/>
-          </author>
-        </front>
-        <format type="HTML" target="http://dublincore.org/documents/dcmi-period/" />
-    </reference>
-    
-    <reference anchor="ANSI-SMPTE-12M-1986">
-        <front>
-          <title>SMPTE time code</title>
-          <author>
-            <organization>SMPTE</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://en.wikipedia.org/wiki/SMPTE_time_code" />
-    </reference>
-    
-    <reference anchor="ISO3166-country">
-        <front>
-          <title>ISO 3166</title>
-          <author>
-            <organization>ISO</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://en.wikipedia.org/wiki/ISO_3166" />
-    </reference>
-    
-    <reference anchor="GEO-JSON">
-        <front>
-          <title>The GeoJSON Format Specification</title>
-          <author fullname="Howard Butler">
-            <organization/>
-          </author>
-          <author fullname="Martin Daly">
-            <organization/>
-          </author>
-          <author fullname="Allan Doyle">
-            <organization/>
-          </author>
-          <author fullname="Sean Gillies">
-            <organization/>
-          </author>
-          <author fullname="Tim Schaub">
-            <organization/>
-          </author>
-          <author fullname="Christopher Schmidt">
-            <organization/>
-          </author>
-        </front>
-        <format type="HTML" target="http://geojson.org/geojson-spec.html" />
-    </reference>
-    
-    <reference anchor="MEDIA-FRAGMENTS-URI">
-        <front>
-          <title>Media Fragments URI 1.0</title>
-          <author>
-            <organization>W3C</organization>
-          </author>
-        </front>
-        <format type="HTML" target="http://www.w3.org/2008/WebVideo/Fragments/WD-media-fragments-spec/" />
-    </reference>
-
-    </references>
   </back>
 
 </rfc>
