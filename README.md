@@ -32,4 +32,4 @@ Our design is focused around ease of adoption, which means a few things:
 
 Here is the current [draft spec](http://www.portablelistings.net/spec/portable-listings-spec.html) and the [mailing list](http://groups.google.com/group/portablelistings).
 
-<blockquote>This project is currently being undertaken by [Derrick Media](http://www.derrickmedia.com). We need your help, join the [discussion](http://groups.google.com/group/portablelistings)!.</blockquote>
+This project is currently being undertaken by [Derrick Media](http://www.derrickmedia.com). We need your help, join the [discussion](http://groups.google.com/group/portablelistings)!.
