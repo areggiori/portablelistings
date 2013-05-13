@@ -126,7 +126,7 @@ ISSUES:
             An Entry relationship which link to another Entry via a well-known named relationship and that can have at most one value, e.g. a programme <spanx style="verb">service</spanx>.
           </t>
           <t hangText="Plural Relationship:">
-            An Entry relationship which link to another Entry via a well-known named relationship and that can have multiple values, e.g. a series <spanx style="verb">episodes</spanx>.
+            An Entry relationship which link to another Entry via a well-known named relationship and that can have multiple values, e.g. a series <spanx style="verb">programmes</spanx>.
           </t>
           <t hangText="Sub-Entry:">
             An Entry which is related to another entry via a well-known relationship.
@@ -166,6 +166,10 @@ ISSUES:
         Mechanisms are defined to specify alternative languages and refer to related metadata and resources. This document also defines the procedure by which particular audiovisual content metadata formats,
         called profiles, for carrying application-specific information can be defined and referenced, and the conventions such formats must follow. It is expected that other specifications
         will be produced that define such formats for various applications.        
+      </t>
+      <t>
+        This specification also defines and adds the following additional link relation types to the "Link Relations" registry established by <xref target="RFC5988"/>:
+        "promotional-information", "review", "highlights", "screenplay", "transcript", "shot-list", "edit-decision-list", "rundown" and "dopesheet".
       </t>
     
       <section title="Goals">
@@ -346,9 +350,9 @@ Content-Type: application/listings+json
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
-        "type": "original_title",
-        "value": "Northwest Passage"
-      },
+              "type": "original",
+              "value": "Northwest Passage"
+              },
       "objectType": "episode",
       "summary": "The small northwest town of
                   Twin Peaks, Washington
@@ -440,9 +444,9 @@ Content-Type: application/listings+json
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
-        "type": "original_title",
-        "value": "Northwest Passage"
-      },
+              "type": "original",
+              "value": "Northwest Passage"
+              },
       "objectType": "episode",
       "summary": "The small northwest town of Twin Peaks,
                   Washington is shaken when the body of
@@ -756,8 +760,9 @@ Content-Type: application/listings+json
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
-        "value": "Northwest Passage"
-      },
+              "type": "original",
+              "value": "Northwest Passage"
+              },
       "contributor": [
         {
           "entry": {
@@ -970,7 +975,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
         The order in which Entry fields and relationships are defined is not significant.
         By definition an Entry has object type of <spanx style="verb">entry</spanx>.
         Objects are represented in a result set with the <spanx style="verb">entry</spanx> element (see <xref target="response-format"/>) and the object type is specified using lowercased object type name as value of the <spanx style="verb">objectType</spanx> field.
-        <!-- TODO: Improve this and talk about how to "automatically inherit the default metadata signalled in parents/ancestors" -->
+        <!-- TODO - Improve this and talk about how to "automatically inherit the default metadata signalled in parents/ancestors" -->
         Unless specified otherwise and as general rule, all fields and relationships applying to a specific Entry type SHALL BE  applicable to any Entry sub-type (e.g. fields and relationships defined for <spanx style="verb">programme</spanx> apply to <spanx style="verb">series</spanx>).
       </t>
       <section title="Fields" anchor="fields">
@@ -1076,17 +1081,22 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             This string generally is specified to contain a valid Canonical Value picked from a pre-defined list.
                             For example in an <spanx style="verb">alternativeTitle</spanx> the <spanx style="verb">type</spanx> sub-field string value could be <spanx style="verb">original</spanx> or <spanx style="verb">working</spanx> (see <xref target="reference-data"/>).
                         </t>
-                        <!--
-                        <t hangText="typeLabel: (STRING or HTML)">
-                            A human readable label or name associated to the <spanx style="verb">type</spanx> sub-field.
-                            For example for <spanx style="verb">alternativeTitle</spanx> with the <spanx style="verb">type</spanx> sub-field value of <spanx style="verb">working</spanx> the <spanx style="verb">typeLabel</spanx> sub-field string value would be <spanx style="verb">Working Title</spanx>.
-                            A Provider MAY return alternative multilingual labels to a Consumer (see <xref target="multilingual-fields"/>).
+                        <t hangText="label: (STRING)">
+                            A human readable label or name associated to the <spanx style="verb">value</spanx> sub-field.
                         </t>
-                        -->
                         <t hangText="primary: (BOOLEAN)">
                             A Boolean value indicating whether this instance of the Plural Field is the primary or preferred value of for this field, e.g. the preferred mailing address or primary e-mail address.
                             Service Providers MUST NOT mark more than one instance of the same Plural Field as primary="true", and MAY choose not to mark any fields as primary, if this information is not available.
                             For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
+                        </t>
+                        <t hangText="attributionDate: (TIMESTAMP)">
+                         The date at which the specific attribute vaue was attributed.
+                        </t>
+                        <t hangText="note: (STRING or HTML)">
+                         A note on the attribute value to provide additional contextual information.
+                        </t>
+                        <t hangText="lang: (LANGUAGE)">
+                            The language of the attribute value. The value MUST be a valid LANGUAGE Canonical Value.
                         </t>
                     </list>
                     <!--
@@ -1149,18 +1159,18 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     </t>
                     <t hangText="rel: (ENUM or IRI)">
                         <!-- It is the field used to filter relationships by type (see <xref target="query-params"/>). -->
-                        The value must be a valid relation type as defined by section 4 of <xref target="RFC5988" />.
+                        The value must be a valid relation type as defined in <xref target="IANA-RELREG" /> or in <xref target="additional-link-relation-types"/>.
                         If this attribute is omitted it MUST BE processed as if the value were the string "related".
                     </t>
-                    <t hangText="hreflang: (ENUM)">
-                        The content language of the metadata Entry referenced if not specified otherwise (see <xref target="multilingual-fields"/>).
+                    <t hangText="hreflang: (LANGUAGE)">
+                        The content language of the metadata Entry referenced.
+                        The value MUST be a valid LANGUAGE Canonical Value.
                     </t>
                     <t hangText="label: (STRING)">
-                        If non-empty or null, the label SHOULD match the main <spanx style="verb">displayName</spanx> field of the Sub-Entry.
+                        If non-empty or null, the label SHOULD match the <spanx style="verb">displayName</spanx> field of the Sub-Entry.
                     </t>
                 </list>
                 A Provider MAY define additional fields if necessary.
-                The link structure fields <spanx style="verb">metadataRightsHref</spanx> and <spanx style="verb">metadataProviderId</spanx> SHOULD NOT be used to convey information about the provider and rights of the Entry metadata, but the Entry specific fields SHOULD BE used, see <xref target="entry-type"/>.
               </t>
               <t hangText="by-value">
                 The relationship is formatted using an "inline entry" Complex Field structure defined as follows:
@@ -1170,14 +1180,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   </t>
                   <t hangText="rel: (ENUM or IRI)">
                     The link relation type. <!-- It is the field used to filter relationships by type (see <xref target="query-params"/>). -->
-                    The value must be a valid relation type as defined by section 4 of <xref target="RFC5988" />.
+                    The value must be a valid relation type as defined in <xref target="IANA-RELREG" /> or in <xref target="additional-link-relation-types"/>.
                     If this attribute is omitted it MUST BE processed as if the value were the string "related".
                   </t>
-                  <t hangText="lang: (ENUM)">
-                    The content language of the metadata Entry included if not specified otherwise (see <xref target="multilingual-fields"/>).
+                  <t hangText="lang: (LANGUAGE)">
+                    The content language of the metadata Entry included.
+                    The value MUST be a valid LANGUAGE Canonical Value.
                   </t>
                   <t hangText="label: (STRING)">
-                    The label SHOULD match the main <spanx style="verb">displayName</spanx> field of the Sub-Entry.
+                    The label SHOULD match the <spanx style="verb">displayName</spanx> field of the Sub-Entry.
                   </t>
                   <!--
                   <t hangText="profile: [IRI]">
@@ -1327,7 +1338,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     Unless otherwise specified, this is the Primary Sub-Field for the field having this construct as value, for the purposes of sorting and filtering.
                   </t>
                   <t hangText="rel: (ENUM or IRI)">
-                    The link relation type. Unless otherwise specified, the rel value MUST be a valid Canonical Value as defined by section 4 of <xref target="RFC5988" />.
+                    The link relation type. Unless otherwise specified, the rel value MUST be a valid Canonical Value as defined in <xref target="IANA-RELREG" /> or in <xref target="additional-link-relation-types"/>.
                     If this property is omitted or null it MUST BE processed as if the value was the string "alternate".
                   </t>
                   <t hangText="type: (ENUM)">
@@ -1358,18 +1369,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 </list>
 
                 Unless otherwise specified, when the link construct is used in a Plural Field, Providers MAY return the link construct with the same href and rel values combination more than once with different type, hreflang, label, length, width, height or duration, but MUST NOT return more than once the same type and hreflang combination for a given href with rel field of value "alternate".
-            </t>
-            <t>
-                In addition, a link construct may contain information about the provider and rights of the link metadata using the following optional fields:
-
-                <list style="hanging">
-                    <t hangText="metadataRightsHref: (IRI)">
-                        The IRI of the copyright license terms under which the LINK structure metadata is provided.
-                    </t>
-                    <t hangText="metadataProviderId: (STRING)">
-                        The unique idenfieir of the CONTACT creating and publishing the LINK structure metadata. See also <xref target="contact-type" />.
-                    </t>
-                </list>
             </t>
             </section>
         
@@ -1474,7 +1473,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
             
         at least mention it, and how to "pushes" ? pub-sub ?
         -->
-      
+
     </section>
     
     <section title="Core Profile" anchor="core-profile">
@@ -1587,6 +1586,89 @@ WWW-Authenticate: Basic realm="sample.site.org"
             </t>
         </section>
         
+        <section title="Additional Link Relation Types" anchor="additional-link-relation-types">
+            <t>
+                This specification defines a number of additional link relation types that can used to further describe audiovisual content as defined in the EBU Metadata Reference Data and Classification Schemes <xref target="EBU-REFERENCEDATA"/>.
+            </t>
+            <section anchor="promotional-information" title="&quot;promotional-information&quot;">
+                <t>
+                    The "promotional-information" link relation can be used to refer to something devised to publicize or advertise a resource or associated product about the link's context.
+                </t>
+                <t>
+                    Multiple products can be indicated through the use of multiple "promotional-information" link relations.
+                </t>
+            </section>
+            <section anchor="review" title="&quot;review&quot;">
+                <t>
+                    The "review" link relation can be used to refer to a critical article or report concerning the link's context, e.g. a critique or an evaluation.
+                </t>
+                <t>
+                    Multiple reviews can be indicated through the use of multiple "review" link relations.
+                </t>
+            </section>
+            <section anchor="highlights" title="&quot;highlights&quot;">
+                <t>
+                    The "highlights" link relation can be used to refer to a resource that represents striking, noticeable aspects of the link's context.
+                </t>
+                <t>
+                    Multiple highlights can be indicated through the use of multiple "highlights" link relations.
+                </t>
+            </section>
+            <section anchor="screenplay" title="&quot;screenplay&quot;">
+                <t>
+                    The "screenplay" link relation can be used to refer to a resource that represents the text specifying content of a production or performance, used as a guide to the link's context.
+                    A screenplay MAY include character and setting profiles, production directives (audio, lighting, scenery, camera moves), as well as dialogue to be recited by talent.
+                </t>
+                <t>
+                    Multiple screenplays can be indicated through the use of multiple "screenplay" link relations.
+                </t>
+            </section>
+            <section anchor="transcript" title="&quot;transcript&quot;">
+                <t>
+                    The "transcript" link relation can be used to refer to an exact copy or reproduction (e.g. of a dialog or interview) of the link's context.
+                </t>
+                <t>
+                    Multiple transcripts can be indicated through the use of multiple "transcript" link relations.
+                </t>
+            </section>
+            <section anchor="shot-list" title="&quot;shot-list&quot;">
+                <t>
+                    The "shot-list" link relation can be used to refer to a resource that represents freeform textual listing of shots, for example indexed against time or frame count.
+                </t>
+                <t>
+                    Multiple shot lists can be indicated through the use of multiple "shot-list" link relations.
+                </t>
+            </section>
+            <section anchor="edit-decision-list" title="&quot;edit-decision-list&quot;">
+                <t>
+                    The "edit-decision-list" link relation can be used to refer to a resource that represents an Edit Decision List (EDL) expressed as handwritten or computer-generated compilation of all edits (marked by their time code in points and out points) to be executed in a video production.
+                </t>
+                <t>
+                    Multiple edit decision lists can be indicated through the use of multiple "edit-decision-list" link relations.
+                </t>
+            </section>
+            <section anchor="rundown" title="&quot;rundown&quot;">
+                <t>
+                    The "rundown" link relation can be used to refer to a resource that represents a rundown.
+                    A rundown sheet is a simple review of the script for the with directions for the various crew members.
+                    It can also be breaking the show into "blocks" split by commercial breaks and it lists all the different pieces of the show and what should happen during these pieces (e.g. a graphic will display, or a video tape will be played).
+                    This is useful for the crew so that they do not have to read through an entire script during production, they have the show in a simplified form.
+                    A rundown can be used for playout.
+                </t>
+                <t>
+                    Multiple rundown can be indicated through the use of multiple "rundown" link relations.
+                </t>
+            </section>
+            <section anchor="dopesheet" title="&quot;dopesheet&quot;">
+                <t>
+                    The "dopesheet" link relation can be used to refer to a resource that represents an exposure sheet which allows an animator to organize his thinking and give instructions to the cameraman on how the animation is to be shot.
+                </t>
+                <t>
+                    Multiple expoure sheets can be indicated through the use of multiple "dopesheet" link relations.
+                </t>
+            </section>
+        </section>
+
         <section title="Object Types" anchor="object-types">
         <!-- TODO
                 -> fix story about \r and \n escaping other unicode chars - take text from google json style guidelines - perhaps move this text to Person/Contact/PoCo legacy part
@@ -1726,7 +1808,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Usually, an internal database ID will be the right choice here, e.g. <spanx style="verb">"12345"</spanx>.
               </t>
               <t hangText="displayName: (STRING)">
-                REQUIRED. The name of this Entry, suitable for display to end-users.
+                REQUIRED. The short name of this Entry, suitable for display to end-users.
                 Each Entry returned MUST include a non-empty <spanx style="verb">displayName</spanx> value.
                 The value provided SHOULD be the primary textual field by which the Entry is normally displayed by the Service Provider when presenting it to end-users.
                 Unless otherwise specified, the displayName value is used for the purposes of sorting and filtering.
@@ -1780,33 +1862,25 @@ WWW-Authenticate: Basic realm="sample.site.org"
         
           <t>
             <list style="hanging">
-            
               <t hangText="title: (STRING or HTML)">
                 The main name of the piece of content.
                 The title value provided MAY differ from the Entry <spanx style="verb">displayName</spanx>.
               </t>
               <t hangText="subtitle: (STRING or HTML)">
-                The subtitle of the piece of content.
+                    The subtitle of the piece of content.
               </t>
               <t hangText="alternativeTitle: [COMPLEX]">
-                    An alternative name of the piece of content.
+                    An alternative name of the piece of content other than the information provided with the <spanx style="verb">displayName</spanx>, <spanx style="verb">title</spanx> and <spanx style="verb">subtitle</spanx> fields.
                     <list style="hanging">
                         <t hangText="type: (ENUM)">
-                            The type of field for this instance (e.g. 'original', 'art_work_original', 'pledged', 'secondary', 'working').
-                            The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Title types.
-                            The <spanx style="verb">main</spanx> and <spanx style="verb">subtitle</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
+                            The type of field for this instance.
+                            The value SHOULD BE selected from the following list: <spanx style="verb">secondary</spanx>, <spanx style="verb">alternativeSecondary</spanx>, <spanx style="verb">original</spanx>, <spanx style="verb">artWorkOriginal</spanx>, <spanx style="verb">pledged</spanx>, <spanx style="verb">version</spanx>, <spanx style="verb">working</spanx>, <spanx style="verb">alternativeWorking</spanx>, <spanx style="verb">long</spanx>, <spanx style="verb">full</spanx>, <spanx style="verb">abridged</spanx>, <spanx style="verb">transmission</spanx>, <spanx style="verb">published</spanx>, <spanx style="verb">international</spanx>, <spanx style="verb">translation</spanx>, <spanx style="verb">pseudo</spanx>, <spanx style="verb">ingest</spanx>.
+                            The <spanx style="verb">short</spanx>, <spanx style="verb">main</spanx> and <spanx style="verb">subtitle</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
+                            When the <spanx style="verb">international</spanx> and <spanx style="verb">translation</spanx> values are used the <spanx style="verb">lang</spanx> sub-field MAY used to specify the language of the alternative name text.
                         </t>
                         <t hangText="value: (STRING or HTML)">
-                            The alternative name text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                            REQUIRED. The alternative name text. This is the Primary Sub-Field for the purposes of sorting and filtering.
                         </t>
-                        <!--
-                         <t hangText="attributionDate: (TIMESTAMP)">
-                         The date at which the specific title was attributed.
-                         </t>
-                         <t hangText="note: (STRING or HTML)">
-                         A note on the title to provide additional contextual information.
-                         </t>
-                         -->
                     </list>
               </t>
               <t hangText="synopsis: (STRING or HTML)">
@@ -1816,49 +1890,23 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 A comprehensive and usually brief abstract, recapitulation, or compendium of of actions and events in the piece of content.
               </t>
               <t hangText="description: [COMPLEX]">
-                    An extended description of the piece of content other than the information provided with the <spanx style="verb">synopsis</spanx> and <spanx style="verb">summary</spanx> fields.
+                    An extended textual description of the piece of content other than the information provided with the <spanx style="verb">synopsis</spanx> and <spanx style="verb">summary</spanx> fields.
                     The extended description MAY also consist of outlines, lists, bullet points, edit decision lists, indexes and have references to external media and graphical material.
                     <list style="hanging">
                         <t hangText="type: (ENUM)">
-                            The type of field for this instance (e.g. 'abstract', 'transcript', 'excerpt', 'promotional_information').
-                            The value SHOULD BE selected from a standard list of values such as the EBU Metadata Reference Data and Classification Schemes Description types.
-                            The <spanx style="verb">synopsis</spanx> and  <spanx style="verb">summary</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
+                            The type of field for this instance.
+                            The value SHOULD BE selected from the following list: <spanx style="verb">annotation</spanx>, <spanx style="verb">annotationSynopsis</spanx>, <spanx style="verb">abstract</spanx>, <spanx style="verb">anecdotalCommentsAndReflections</spanx>, <spanx style="verb">theme</spanx>, <spanx style="verb">purpose</spanx>, <spanx style="verb">outline</spanx>, <spanx style="verb">cueWords</spanx>, <spanx style="verb">cueInWords</spanx>, <spanx style="verb">cueOutWords</spanx>, <spanx style="verb">process</spanx>, <spanx style="verb">assessment</spanx>, <spanx style="verb">editoralComments</spanx>, <spanx style="verb">keyPoints</spanx>, <spanx style="verb">shotDescription</spanx>, <spanx style="verb">creditLine</spanx>, <spanx style="verb">instructions</spanx>, <spanx style="verb">modelInformation</spanx>, <spanx style="verb">artwork</spanx>, <spanx style="verb">event</spanx>, <spanx style="verb">releaseInformation</spanx>, <spanx style="verb">intention</spanx>, <spanx style="verb">shotComment</spanx>, <spanx style="verb">citation</spanx>.
+                            The <spanx style="verb">synopsis</spanx> and <spanx style="verb">summary</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
                         </t>
                         <t hangText="value: (STRING or HTML)">
-                            The extended description text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                            REQUIRED. The extended description text. This is the Primary Sub-Field for the purposes of sorting and filtering.
                         </t>
-                        <t hangText="media: [LINK]">
-                            Additional reference material associated with the extended description (e.g. artwork, presentations).
-                        </t>
-                        <!--
-                         <t hangText="note: (STRING or HTML)">
-                         A note on the extended description to provide additional contextual information.
-                         </t>
-                         -->
                     </list>
               </t>
               <!-- add spatial coverage http://geojson.org/geojson-spec.html -->
               <!-- add temporal coverage see DCMI Period -->
 
               <!-- Plural fields -->
-              <t hangText="categories: [COMPLEX]">
-                A category from a taxonomy or controlled vocabulary scheme associated to the piece of content.
-                <list style="hanging"> 
-                    <t hangText="type: (ENUM)">
-                        A link or code to or within a classification scheme.
-                        The value SHOULD BE selected from a standard list of values.
-                        A Provider SHOULD use any type values as necessary.
-                    </t>
-                    <t hangText="value: (STRING)">
-                        A human readable label or name associated to the <spanx style="verb">type</spanx> sub-field. This is the Primary Sub-Field for the purposes of sorting and filtering.
-                    </t>
-                </list>
-              </t>
-              <t hangText="tags: [STRING]">
-                A user-defined category or label for the piece of content, e.g. "coolshow" or "web20".
-                These values SHOULD be case-insensitive, and there SHOULD NOT be multiple tags provided for a given Entry that differ only in case.
-                Note that this field is a Plural Simple Field, meaning each instance consists only of a string value.
-              </t>
               <t hangText="creator: [CONTACT]">
                 The creator of the piece of content.
               </t>
@@ -1869,10 +1917,13 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Contributors to the piece of content.
                 The following fields are additionally defined for the contributor relationship:
                 <list style="hanging">
-                    <t hangText="role: (ENUM)">
+                    <t hangText="role: (ENUM or IRI)">
                         REQUIRED. A Canonical Value representing the role played by the Target Entry as contributor (e.g. author, director, actor, producer).
                         The value SHOULD BE selected from a standard list of values such as the European Broadcasting Union Role Codes <xref target="EBU-ROLE-CODES"/>.
                         This is the Primary Sub-Field for the purposes of sorting and filtering.
+                    </t>
+                    <t hangText="roleLabel: (STRING)">
+                        A human readable label or name associated to the <spanx style="verb">role</spanx> sub-field.
                     </t>
                     <t hangText="stageName: (STRING or HTML)">
                         A human readable label or name attributed to the contact on stage (e.g. 'character name' or 'interviewer').
@@ -1891,43 +1942,41 @@ WWW-Authenticate: Basic realm="sample.site.org"
               <t hangText="digitised: (TIMESTAMP or PERIOD)">
                 The date when the piece of content was digitised.
               </t>
+              <t hangText="released: (TIMESTAMP or PERIOD)">
+                    The date when the piece of content was released.
+              </t>
+              <t hangText="copyrighted: (TIMESTAMP or PERIOD)">
+                    The date when the piece of content was copyrighted.
+              </t>
               <t hangText="alternativeDate: [COMPLEX]">
-                An alternative date of the piece of content (e.g. 'release_date', 'production_date', 'date_accepted', 'date_submitted').
+                An alternative date of the piece of content.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The type of field for this instance.
+                        The type of field for this instance  (e.g. 'productionDate', 'dateAccepted', 'dateSubmitted').
                         The value SHOULD BE selected from a standard list of values.
                     </t>  
                     <t hangText="value: (TIMESTAMP or PERIOD)">
-                        The alternative date. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        REQUIRED. The alternative date. This is the Primary Sub-Field for the purposes of sorting and filtering.
                     </t>
                </list>
               </t>
-              <!-- The following fields are all optional and MAY be used by a Provider to express ancillary information about other fields already defined.-->
-
-              <!--
-              <t hangText="titleAttributionDate: (TIMESTAMP)">
-                The date at which the title of the piece of content was attributed.
-              </t>
-              <t hangText="titleNote: (STRING or HTML)">
-                A note on the title of the piece of content providing additional contextual information.
-              </t>
-              <t hangText="subtitleAttributionDate: (TIMESTAMP)">
-                The date at which the subtitle of the piece of content was attributed.
-              </t>
-              <t hangText="subtitleNote: (STRING or HTML)">
-                A note on the subtitle of the piece of content providing additional contextual information.
-              </t>
-              <t hangText="summaryNote: (STRING or HTML)">
-                A note on the summary of the piece of content providing additional contextual information.
-              </t>
-              <t hangText="synopsisNote: (STRING or HTML)">
-                A note on the synopsis of the piece of content providing additional contextual information.
-              </t>
-              -->
-
               <t hangText="aliases: [IRI or STRING]">
                 Additional or alternative identifiers for the piece of content.
+              </t>
+              <t hangText="category: [COMPLEX]">
+                    A category from a taxonomy or controlled vocabulary scheme associated to the piece of content.
+                    <list style="hanging">
+                        <t hangText="value: (ENUM OR IRI)">
+                            REQUIRED. A link or code to or within a classification scheme.
+                            The value SHOULD BE selected from a standard list of values.
+                            This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        </t>
+                    </list>
+              </t>
+              <t hangText="tags: [STRING]">
+                    A user-defined category or label for the piece of content, e.g. "coolshow" or "web20".
+                    These values SHOULD be case-insensitive, and there SHOULD NOT be multiple tags provided for a given Entry that differ only in case.
+                    Note that this field is a Plural Simple Field, meaning each instance consists only of a string value.
               </t>
               <t hangText="keywords: [STRING]">
                 A list of keywords and phrases assigned by the Provider to the piece of content, e.g. "sports" or "live".
@@ -1937,26 +1986,36 @@ WWW-Authenticate: Basic realm="sample.site.org"
               <t hangText="genre: [COMPLEX]">
                 The genre categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
                 <list style="hanging"> 
-                    <t hangText="type: (ENUM)">
-                        The type of field for this instance.
+                    <t hangText="value: (ENUM or IRI)">
+                        REQUIRED. The value of field for this instance.
                         The value SHOULD BE selected from a standard list of values such as the EBU Content Genre, Intention or the TV-Anytime Content Commercial or Content Alert types.
-                     </t>  
-                    <t hangText="value: (STRING)">
-                        A human readable label or name associated to the <spanx style="verb">type</spanx> sub-field.
                         This is the Primary Sub-Field for the purposes of sorting and filtering.
                     </t>
                </list>
               </t>
               <t hangText="targetAudience: [COMPLEX]">
-                The target audience (demographic, geographic or guidance) categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx> (e.g. parental controls such as PG, 14A, R or geographic audience like regional, multinational).
+                The target audience (demographic, geographic or guidance) categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
                 <list style="hanging"> 
-                    <t hangText="type: (ENUM)">
-                        The type of field for this instance.
+                    <t hangText="value: (ENUM or IRI)">
+                        REQUIRED. The value of field for this instance (e.g. parental controls such as PG, 14A, R or geographic audience like regional, multinational).
                         The value SHOULD BE selected from a standard list of values such as the EBU Intended Audience or Parent Guidance types.
-                     </t>  
-                    <t hangText="value: (STRING)">
-                        A human readable label or name associated to the <spanx style="verb">type</spanx> sub-field.
                         This is the Primary Sub-Field for the purposes of sorting and filtering.
+                    </t>
+                    <t hangText="reason: (STRING or HTML)">
+                        The reason, if any, why a particular audience has been identified.
+                    </t>
+                    <t hangText="linkToLogo: (LINK)">
+                        A URI to point to the location of a pictogram representative of the targeted audience.
+                    </t>
+                    <t hangText="notRated: (BOOLEAN)">
+                        A flag to indicate that the media resource has not been rated (if set to true).
+                    </t>
+                    <t hangText="adultContent: (BOOLEAN)">
+                        A flag to indicate is the media resource contains adult content (if set to true).
+                    </t>
+                    <!-- TODO - add country region -->
+                    <t hangText="targetRegion: (COUNTRY or STRING)">
+                        The target country and region for the rating.
                     </t>
                </list>
               </t>
@@ -1964,14 +2023,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
               <t hangText="format: (COMPLEX)">
                 The editorial format categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
                 <list style="hanging"> 
-                    <t hangText="type: (ENUM)">
-                        The type of field for this instance (e.g. 'fiction', 'presentation', 'cartoon').
+                    <t hangText="value: (ENUM or IRI)">
+                        REQUIRED. The value of field for this instance (e.g. 'fiction', 'presentation', 'cartoon').
                         The value SHOULD BE selected from a standard list of values such as the EBU Editorial Format types.
-                     </t>  
-                    <t hangText="value: (STRING)">
-                        A human readable label or name associated to the <spanx style="verb">type</spanx> sub-field.
                         This is the Primary Sub-Field for the purposes of sorting and filtering.
-                    </t>
+                     </t>
                </list>
               </t>
     
@@ -1992,30 +2048,22 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         The value SHOULD BE selected from a standard list of values.
                     </t>  
                     <t hangText="value: (STRING or HTML)">
-                        The source textual description. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        REQUIRED. The source textual description. This is the Primary Sub-Field for the purposes of sorting and filtering.
                     </t>
                     <t hangText="media: [LINK]">
                         Additional reference material associated with the source description. 
                     </t>
-                    <!--
-                    <t hangText="note: (STRING or HTML)">
-                        A note on the extended description to provide additional contextual information.
-                    </t>
-                    -->
                </list>
               </t>
               <t hangText="language: [COMPLEX]">
                 Identifies languages of the content and their use.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The language purpose (e.g. 'main', 'voice over', 'dubbed dialogue'). 
-                        The value SHOULD BE selected from a standard list of values such as the EBU Language Purpose codes.
+                        The language purpose.
+                        The value SHOULD BE selected from the following list: <spanx style="verb">audio</spanx>, <spanx style="verb">mainOriginalLanguage</spanx>, <spanx style="verb">mainDubbedLanguage</spanx>, <spanx style="verb">additionalOriginalLanguage</spanx>, <spanx style="verb">additionalDubbedLanguage</spanx>, <spanx style="verb">descriptiveVideoInformation</spanx>, <spanx style="verb">supplementalCommentary</spanx>, <spanx style="verb">directorCommentary</spanx>, <spanx style="verb">audioDescription</spanx>, <spanx style="verb">supplementaryAudioProgramme</spanx>, <spanx style="verb">educationalNotes</spanx>, <spanx style="verb">voiceOver</spanx>, <spanx style="verb">originalCommentary</spanx>, <spanx style="verb">dubbedCommentary</spanx>, <spanx style="verb">originalNarration</spanx>, <spanx style="verb">dubbedDialogue</spanx>, <spanx style="verb">dubbedNarration</spanx>, <spanx style="verb">interviewerLanguage</spanx>, <spanx style="verb">intervieweeLanguage</spanx>, <spanx style="verb">text</spanx>, <spanx style="verb">textDescription</spanx>, <spanx style="verb">transcript</spanx>, <spanx style="verb">caption</spanx>, <spanx style="verb">openCaption</spanx>, <spanx style="verb">closedCaption</spanx>, <spanx style="verb">supplemental</spanx>, <spanx style="verb">titles</spanx>, <spanx style="verb">subtitles</spanx>, <spanx style="verb">openSubtitles</spanx>, <spanx style="verb">closedSubtitles</spanx>, <spanx style="verb">songLyrics</spanx>, <spanx style="verb">signLanguage</spanx>, <spanx style="verb">dubbedSignLanguage</spanx>.                        
                     </t>  
                     <t hangText="value: (LANGUAGE)">
-                        The language of the track.
-                    </t>
-                    <t hangText="label: (STRING)">
-                        A human readable label or name associated to the <spanx style="verb">value</spanx> sub-field.
+                        REQUIRED. The language value.
                         This is the Primary Sub-Field for the purposes of sorting and filtering.
                     </t>
                 </list>
@@ -2025,11 +2073,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Location information associated with the piece of content.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The type of field for this instance (e.g. 'filming_location', 'depicted_location', 'creation_location').
+                        The type of field for this instance (e.g. 'filmingLocation', 'depictedLocation', 'creationLocation').
                         The value SHOULD BE selected from a standard list of values.
                     </t>  
                     <t hangText="value: (PLACE)">
-                        The actual geographical place.
+                        REQUIRED. The actual geographical place.
                     </t>
                     <t hangText="label: (STRING)">
                         A human readable label or name associated to the <spanx style="verb">value</spanx> sub-field.
@@ -2046,11 +2094,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Temporal coverage information associated with the piece of content.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The type of field for this instance (e.g. 'filming_period', 'depicted_period').
+                        The type of field for this instance (e.g. 'filmingPeriod', 'depictedPeriod').
                         The value SHOULD BE selected from a standard list of values.
                     </t>  
                     <t hangText="value: (PERIOD)">
-                        The actual temporal coverage period.
+                        REQUIRED. The actual temporal coverage period.
                     </t>
                     <t hangText="label: (STRING)">
                         A human readable label or name associated to the <spanx style="verb">value</spanx> sub-field.
@@ -2069,25 +2117,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
               </t>
               
               <!-- add policy here or to the version / location ?! -->
-              
-              <t hangText="firstTransmissionDate: (TIMESTAMP)">
-                The first transmission or publication date and time.
-                This is the Primary Sub-Field for the purposes of sorting and filtering.
-              </t>
-              <t hangText="firstTransmissionChannel: (CHANNEL)">
-                The first transmission or publication channel.
-              </t>
-
-              <t hangText="repeats: [CHANNEL]">
-                Information about the publication history of the piece of content.
-                A repeated transmission or publication.
-                The following fields are additionally defined for the repeats relationship:
-                <list style="hanging">  
-                    <t hangText="date: (TIMESTAMP)">
-                        The repeat transmission or publication date and time.
-                    </t>
-               </list>
-              </t>
               
               <t hangText="contentVersion: (STRING or NUMBER)">
                 The version of the content.
@@ -2159,14 +2188,27 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t hangText="clips: [CLIP]">
                     Associate a Programme to a clip (e.g. trailer, preview, interview).
                 </t>
-                <t hangText="awards: [AWARDS]">
+                <t hangText="awards: [AWARD]">
                     A list of awards or awards nominations for a programme.
                 </t>
                 <t hangText="country: (COUNTRY)">
                     The country where the programme has been released.
                 </t>
-                <t hangText="releaseDate: (TIMESTAMP or PERIOD)">
-                    The release date and time or period of the programme.
+                <t hangText="firstTransmissionDate: (TIMESTAMP)">
+                    The first transmission or publication date and time.
+                </t>
+                <t hangText="firstTransmissionChannel: (CHANNEL)">
+                    The first transmission or publication channel.
+                </t>
+                <t hangText="repeats: [CHANNEL]">
+                    Information about the publication history of the programme.
+                    A repeated transmission or publication.
+                    The following fields are additionally defined for the repeats relationship:
+                    <list style="hanging">
+                        <t hangText="date: (TIMESTAMP)">
+                            The repeat transmission or publication date and time.
+                        </t>
+                    </list>
                 </t>
             </list>            
         </t>
@@ -2181,15 +2223,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
             <list style="hanging">
                 <t hangText="programmes: [PROGRAMME]">
-                    The list of Programmes inside the Programme Group.
-                </t>
-                <t hangText="series: [SERIES]">
-                    The list of Series in a Programme Group (e.g. part of a Brand or Series).
-                    This relationship MUST BE used instead of the more generic <spanx style="verb">programmes</spanx> relationship to refer to objects of type Series.
-                </t>
-                <t hangText="episodes: [EPISODE]">
-                    The list of Episodes in a Programme Group (e.g. part of a Brand or Series).
-                    This relationship MUST BE used instead of the more generic <spanx style="verb">programmes</spanx> relationship to refer to objects of type Episodes.
+                    The list of Programmes inside the Programme Group (e.g. the list of Series part of a Brand or Episodes part of a Series).
                 </t>
             </list>            
         </t>
@@ -2304,7 +2338,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The value SHOULD BE selected from a standard list of values such as the EBU Storage Media types.
                         </t>  
                         <t hangText="value: (STRING)">
-                            A label associated with the type value. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                            REQUIRED. A label associated with the type value. This is the Primary Sub-Field for the purposes of sorting and filtering.
                         </t>
                     </list>
                 </t>
@@ -2778,34 +2812,145 @@ WWW-Authenticate: Basic realm="sample.site.org"
         
     <section anchor="IANA" title="IANA Considerations">
       <t>A Entry object, when serialised to a byte stream using the JSON grammar, can be identified with the following media type:
-      <list
-          style="hanging">
-          <t hangText="MIME Media Type Name">application</t>
+          <list style="hanging">
+              <t hangText="MIME Media Type Name">application</t>
 
-          <t hangText="MIME Subtype Name">listings+json</t>
+              <t hangText="MIME Subtype Name">listings+json</t>
 
-          <t hangText="Required Parameters">none</t>
+              <t hangText="Required Parameters">none</t>
 
-          <t hangText="Optional parameters:">
-            <list style="hanging"> 
-                <t hangText='"profile":'> This parameter contains a whitespace-separated list
-                    of profile URIs used to express the Entries metadata as defined in Section 3.1 of <xref target="RFC6906"/>. If this attribute is omitted implementations
-                    MUST process the media type as if the value was the string "http://portablelistings.net/profiles/core/1.0/".
-                    </t>
-            </list>
+              <t hangText="Optional parameters:">
+                  <list style="hanging">
+                      <t hangText='"profile":'> This parameter contains a whitespace-separated list
+                          of profile URIs used to express the Entries metadata as defined in Section 3.1 of <xref target="RFC6906"/>. If this attribute is omitted implementations
+                          MUST process the media type as if the value was the string "http://portablelistings.net/profiles/core/1.0/".
+                      </t>
+                  </list>
+              </t>
+
+              <t hangText="Encoding Considerations">As defined for
+                  application/json in <xref target="RFC4627"></xref>.</t>
+
+              <t hangText="Security Considerations">As defined for
+                  application/json in <xref target="RFC4627"></xref>.</t>
+
+              <t hangText="Published Specification">This specification.</t>
+
+              <t hangText="Applications that use this media type">No applications
+                  are currently known to use this media type.</t>
+          </list>
+      </t>
+      <t>
+        The "Link Relation Types" registry has been updated with the following entries:
+      </t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: promotional-information</t>
+                  <t>
+                      Description: Refers to a resource devised to publicize or advertise a resource or associated product about the link's context.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="promotional-information"/>
+                  </t>
+              </list>
           </t>
-
-          <t hangText="Encoding Considerations">As defined for
-          application/json in <xref target="RFC4627"></xref>.</t>
-
-          <t hangText="Security Considerations">As defined for
-          application/json in <xref target="RFC4627"></xref>.</t>
-
-          <t hangText="Published Specification">This specification.</t>
-
-          <t hangText="Applications that use this media type">No applications
-          are currently known to use this media type.</t>
-        </list></t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: review</t>
+                  <t>
+                      Description: Refers to a resource containings a critical article or report concerning the link's context.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="review"/>
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: highlights</t>
+                  <t>
+                      Description: Refers to a resource that represents striking, noticeable aspects of the link's context.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="highlights"/>
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: screenplay</t>
+                  <t>
+                      Description: Refers to a resource that represents the text specifying content of a production or performance, used as a guide to the link's context.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="screenplay"/>
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: transcript</t>
+                  <t>
+                      Description: Refers to an exact copy or reproduction of the link's context.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="transcript"/>
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: shot-list</t>
+                  <t>
+                      Description: Refers to a resource that represents freeform textual listing of shots, for example indexed against time or frame count.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="shot-list"/>
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: edit-decision-list</t>
+                  <t>
+                      Description: Refers to a resource that represents an Edit Decision List (EDL) expressed as handwritten or computer-generated compilation of all edits (marked by their time code in points and out points) to be executed in a video production.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="edit-decision-list"/>
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: rundown</t>
+                  <t>
+                      Description: Refers to a resource containing a simple review of the script for the with directions for the various crew members.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="rundown"/>
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: dopesheet</t>
+                  <t>
+                      Description: Refers to a resource that represents an exposure sheet which allows an animator to organize his thinking and give instructions to the cameraman on how the animation is to be shot.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="dopesheet"/>
+                  </t>
+              </list>
+          </t>
     </section>
 
     <section anchor="Security" title="Security Considerations">
@@ -2839,6 +2984,19 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Dropped "metadataProvider" from Entry. The links HTML5 "author" Lynk Type can be used instead.</t>
                 <t>Removed "lang" and "profile" from response format</t>
                 <t>Removed Defining New Profiles section</t>
+                <t>Added "attributionDate", "note" and "lang" sub-fileds to Complex fields.</t>
+                <t>Corrected "lang" sub-filed definition for relationships.</t>
+                <t>Simplified "alternativeTitle" definition.</t>
+                <t>Added "Additional Link Relation Types" section.</t>
+                <t>Renamed "categories" to "category", removed "type" sub-field and defined "value" sub-filed as ENUM or IRI.</t>
+                <t>Updated "language" primary sub-filed to "value", removed "label" and simplified "type" definition.</t>
+                <t>Updated "contributor" sub-filed "role" as ENUM or IRI.</t>
+                <t>Added "label" sub-field to default Complex Type definition."</t>
+                <t>Updated "genre", "targetAudience" and "format" definitions so that "value" is primary sub-field as ENUM or IRI.</t>
+                <t>Added "released" and "copyrighted" dates.</t>
+                <t>Added "reason", "linkToLogo", "notRated", "adultContent" and "targetRegion" to "targetAudience".</t>
+                <t>Moved "firstTransmissionDate", "firstTransmissionChannel" and "repeats" to Programme level.</t>
+                <t>Removed "episodes" and "series" from Programme.</t>
             </list>
         </t>
     </section>
@@ -2984,12 +3142,12 @@ WWW-Authenticate: Basic realm="sample.site.org"
           
           <reference anchor="EBUCORE">
               <front>
-                  <title>EBU – TECH 3293 - EBU Core Metadata Set (EBU Core) v.1.2</title>
+                  <title>EBU – TECH 3293 - EBU Core Metadata Set (EBU Core) v.1.4</title>
                   <author fullname="PMC">
                       <organization>EBU</organization>
                   </author>
               </front>
-              <format type="PDF" target="http://tech.ebu.ch/docs/tech/tech3293v1_2.pdf" />
+              <format type="PDF" target="http://tech.ebu.ch/docs/tech/tech3293v1_4.pdf" />
           </reference>
           
           <reference anchor="EBU-OBJECTMODEL">
@@ -3178,7 +3336,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
               </front>
               <format type="HTML" target="http://www.iana.org/assignments/media-types/" />
           </reference>
-          
+          <reference anchor="IANA-RELREG">
+              <front>
+                  <title>Link Relation Types</title>
+                  <author>
+                      <organization>IANA</organization>
+                  </author>
+              </front>
+              <format type="HTML" target="http://www.iana.org/assignments/link-relations/link-relations.xml" />
+          </reference>
           <!--
            <reference anchor="JSONPath" target="http://goessner.net/articles/JsonPath/">
            <front>
@@ -3308,7 +3474,7 @@ Content-Type: application/listings+json;
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
-        "type": "original_title",
+        "type": "original",
         "value": "Northwest Passage"
       },
       "objectType": "episode",
