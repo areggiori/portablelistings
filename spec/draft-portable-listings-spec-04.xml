@@ -69,7 +69,7 @@ ISSUES:
           <t hangText="Content Metadata:">
             <!--Content metadata is a well-defined concept in the broadcast and television industry -->
             It is structured information that describes, explains, locates, or makes it easier to retrieve, use, or manage a piece of audiovisual content.
-            Examples of metadata records include detailed information about a television show episode (title, synopsis, series, brand, creator, contributor, release date, etc.), a film (title, synopsis, genre, year, duration, etc.), an advert on television (title, advert brand, advert product, advert code, product code etc.), a broadcast event on a television schedule (broadcast channel name, start/end time, country, language, etc.) and so on. <!-- While the term metadata is genrally used to refer to data about data, in the remaining of this document we will refer any other information about the content metadata as ancillary or system information to avoid further confusing the reader. -->
+            Examples of metadata records include detailed information about a television show episode (title, synopsis, series, brand, creator, contributor, release date, etc.), a film (title, synopsis, genre, year, duration, etc.), an advert on television (title, advert brand, advert product, advert code, product code etc.), a broadcast event on a television schedule (broadcast service name, start/end time, country, language, etc.) and so on. <!-- While the term metadata is genrally used to refer to data about data, in the remaining of this document we will refer any other information about the content metadata as ancillary or system information to avoid further confusing the reader. -->
             More specifically a piece of Content Metadata is being represented with the "Content" object type throughout the scope of this document (see <xref target="content-type" />).
           </t>
           <t hangText="Entry Metadata:">
@@ -116,7 +116,7 @@ ISSUES:
             -->
           </t>          
           <t hangText="Canonical Value:">
-            Specified string values for string-valued Entry fields that represent common values in a canonical form. For example <spanx style="verb">alternativeTitle</spanx> field MAY have a <spanx style="verb">type</spanx> of "Original Title", "Main Title", "Working Title" etc.
+            Specified string values for string-valued Entry fields that represent common values in a canonical form. For example <spanx style="verb">alternativeTitle</spanx> field MAY have a <spanx style="verb">type</spanx> of "original", "working" etc.
             Service Providers SHOULD conform to Canonical Values if appropriate, but MAY deviate if they need to represent additional values (see <xref target="reference-data" />).
           </t>
           <t hangText="Primary Sub-Value:">
@@ -1046,8 +1046,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t hangText="PERIOD:">
                     The special value type PERIOD is used to describe a string which represents a time interval as defined in <xref target="DCMI-PERIOD"/>.
                 </t>
-                <t hangText="COUNTRY:">
-                    The special value type COUNTRY is used to describe a string which represents a country or territory as defined in ISO 3166 <xref target="ISO3166-country"/>.
+                <t hangText="TERRITORY:">
+                    The special value type TERRITORY is used to describe a string which represents a country or territory as defined in ISO 3166 <xref target="ISO3166"/>.
                 </t>
                 <t hangText="PLACE:">
                     The special value type PLACE is used to describe a string which represents a geographical Point as defined in GeoJSON <xref target="GEO-JSON"/>.
@@ -1074,7 +1074,12 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="value: (SIMPLE)">
                             The primary value of this field, e.g. an alternative title, URL or e-mail address.
                             When specifying a <spanx style="verb">sortBy</spanx> field in the Query Parameters for a Plural Field, the default meaning is to sort based on this <spanx style="verb">value</spanx> sub-field.
-                            Each non-empty Plural Field value MUST contain at least the value sub-field, but all other sub-fields are optional.
+                            Each non-empty Plural Field value MUST contain at least the <spanx style="verb">value</spanx> sub-field, but all other sub-fields are optional.
+                        </t>
+                        <t hangText="primary: (BOOLEAN)">
+                            A Boolean value indicating whether this instance of the Plural Field is the primary or preferred value of for this field, e.g. the preferred mailing address or primary e-mail address.
+                            Service Providers MUST NOT mark more than one instance of the same Plural Field as primary="true", and MAY choose not to mark any fields as primary, if this information is not available.
+                            For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
                         </t>
                         <t hangText="type: (ENUM)">
                             The type of field for this instance, usually used to identify the preferred function of the given listings information.
@@ -1082,21 +1087,16 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             For example in an <spanx style="verb">alternativeTitle</spanx> the <spanx style="verb">type</spanx> sub-field string value could be <spanx style="verb">original</spanx> or <spanx style="verb">working</spanx> (see <xref target="reference-data"/>).
                         </t>
                         <t hangText="label: (STRING)">
-                            A human readable label or name associated to the <spanx style="verb">value</spanx> sub-field.
+                            A human-readable label or name associated to the <spanx style="verb">value</spanx> sub-field.
                         </t>
-                        <t hangText="primary: (BOOLEAN)">
-                            A Boolean value indicating whether this instance of the Plural Field is the primary or preferred value of for this field, e.g. the preferred mailing address or primary e-mail address.
-                            Service Providers MUST NOT mark more than one instance of the same Plural Field as primary="true", and MAY choose not to mark any fields as primary, if this information is not available.
-                            For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
+                        <t hangText="lang: (LANGUAGE)">
+                            The language of the attribute value. The value MUST be a valid LANGUAGE Canonical Value.
                         </t>
                         <t hangText="attributionDate: (TIMESTAMP)">
                          The date at which the specific attribute vaue was attributed.
                         </t>
                         <t hangText="note: (STRING or HTML)">
                          A note on the attribute value to provide additional contextual information.
-                        </t>
-                        <t hangText="lang: (LANGUAGE)">
-                            The language of the attribute value. The value MUST be a valid LANGUAGE Canonical Value.
                         </t>
                     </list>
                     <!--
@@ -1110,6 +1110,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
         </t>
         <t>
             In the rest of this document, a required field (or sub-field) is marked with the REQUIRED keyword.
+        </t>
+        <t>
             A Simple Field is marked with the SIMPLE keyword or the uppercase identifier of its datatype (e.g. STRING, DATE).
             A Complex Field is marked with the COMPLEX keyword or the uppercase identifier of its complex datatype (e.g. LINK, SOURCE).
             Some fields MAY be defined as accepting multiple datatypes using the "or" combinator. For example, the type "STRING or NUMBER" indicates that a Simple Field may accept either a string or a numeric value.
@@ -1127,6 +1129,108 @@ WWW-Authenticate: Basic realm="sample.site.org"
         </t>
     </section>
     
+    <section title="Predefined Complex Fields" anchor="predefined-structures">
+              
+        <section title="Link" anchor="link-structure">
+                  <t>
+                      The components of a Complex Field to represent a standard LINK as defined by section 3 of <xref target="RFC5988" />.
+                      This enables Providers to create generic standard links between an Entry and other resources, including other Entries (see <xref target="relationships"/>), using the registry of links relations defined by the Web Linking specification and HTML5 Link types <xref target="HTML5"/>.
+                      The Context of the LINK is the Entry which has a field using the LINK construct as value.
+                      <!-- see requirements atom link-inline stuff -->
+                      <!--
+                       Providers SHOULD NOT use this construct to link or refer to other Entries, but use instead the Entry relationship mechanisms defined in this specification.
+                       -->
+                  </t>
+                  <t>
+                      <list style="hanging">
+                          <t hangText="href: (IRI)">
+                              REQUIRED. The IRI of the link. This IRI MAY be relative or absolute. If the URI is relative it is resolved against the Service Provider root API endpoint URL.
+                              Unless otherwise specified, this is the Primary Sub-Field for the field having this construct as value, for the purposes of sorting and filtering.
+                              The <spanx style="verb">value</spanx> and <spanx style="verb">lang</spanx> sub-fields SHALL not be specified.
+                          </t>
+                          <t hangText="rel: (ENUM or IRI)">
+                              The link relation type. Unless otherwise specified, the rel value MUST be a valid Canonical Value as defined in <xref target="IANA-RELREG" /> or in <xref target="additional-link-relation-types"/>.
+                              If this property is omitted or null it MUST BE processed as if the value was the string "alternate".
+                          </t>
+                          <t hangText="type: (ENUM)">
+                              The media type of the representation identified by the IRI of the link. The value is a hint about the type of the representation that is expected to be returned when the value of the href field is dereferenced.
+                              Note that the type field does not override the actual media type returned with the representation. A link construct MAY have a type sub-field, whose value MUST conform to the syntax of a MIME media type defined in <xref target="MIMEREG"/>. Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <xref target="IANA-MIMEREG"/>.
+                          </t>
+                          <t hangText="hreflang: (LANGUAGE)">
+                              The content language of the representation identified by the IRI of the link. When used together with the rel sub-field with value "alternate", it implies a translated version of the Context of the link. A link construct MAY have an hreflang sub-field, whose value MUST be a valid LANGUAGE Canonical Value.
+                          </t>
+                          <t hangText="label: (STRING)">
+                              A human-readable label about the link.
+                          </t>
+                          <t hangText="length: (NUMBER)">
+                              The content length in octets of the representation identified by the IRI of the link. The value is a hint about the content length of the representation returned when the IRI in the href sub-field is mapped to a URI and dereferenced. Note that the length sub-field does not override the actual content length of the representation as reported by the underlying protocol.
+                          </t>
+                          <t hangText="width: (NUMBER)">
+                              When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal width in pixels.
+                          </t>
+                          <t hangText="height: (NUMBER)">
+                              When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal height in pixels.
+                          </t>
+                          <t hangText="duration: (NUMBER)">
+                              When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration in seconds.
+                          </t>
+                      </list>
+                      
+                      Unless otherwise specified, when the link construct is used in a Plural Field, Providers MAY return the link construct with the same href and rel values combination more than once with different type, hreflang, label, length, width, height or duration, but MUST NOT return more than once the same type and hreflang combination for a given href with rel field of value "alternate".
+                  </t>
+        </section>
+              
+        <!--
+        <section title="Date Group" anchor="data-group-structure">
+               <t>
+               The components of a Complex Field to represent a DATEGROUP expressing a date, time, time period, or interval.
+               Any of the <spanx style="verb">start_year</spanx>, <spanx style="verb">start_date</spanx>, <spanx style="verb">start_time</spanx>, <spanx style="verb">end_year</spanx>,
+               <spanx style="verb">end_date</spanx>, <spanx style="verb">end_time</spanx> MUST BE non-empty or null, unless the <spanx style="verb">period</spanx> is non-empty or null.
+               And viceversa.
+               </t>
+               <t>
+               <list style="hanging">
+               <t hangText="start_year: (YEAR)">
+               A start year.
+               </t>
+               <t hangText="start_date: (TIMESTAMP)">
+               A start timestamp.
+               </t>
+               <t hangText="start_time: (TIME)">
+               A start instant of time.
+               </t>
+               <t hangText="end_year: (YEAR)">
+               An end year.
+               </t>
+               <t hangText="end_date: (TIMESTAMP)">
+               An end timestamp.
+               </t>
+               <t hangText="end_time: (TIME)">
+               An end instant of time.
+               </t>
+               <t hangText="period: (PERIOD)">
+               A time interval.
+               </t>
+               <t hangText="primary: (BOOLEAN)">
+               If the link construct is used in a Plural Field, this is a boolean value indicating whether this instance of the link is the primary or preferred value of for the field, e.g. the preferred link. Service Providers MUST NOT mark more than one instance of the same link as primary="true", and MAY choose not to mark any fields as primary, if this information is not available. For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
+               </t>
+               </list>
+               
+               This first version of the specification excludes any range filtering or search.
+               A Provider SHOULD try its best to match and filter Entry results upon the DATEGROUP structure.
+               For the purposes of sorting and filtering the following set rules SHOULD BE tried in order:
+               <list style="numbers">
+               <t>If the <spanx style="verb">period</spanx> field is non-empty or null, the <spanx style="verb">period</spanx> field is used as the Primary Sub-Field.</t>
+               <t>Otherwise, if either the <spanx style="verb">start_date</spanx> or the <spanx style="verb">end_date</spanx> fields (or both) are non-empty or null, either of the fields is used as the Primary Sub-Field.
+               The <spanx style="verb">start_date</spanx> is always matched before.</t>
+               <t>Otherwise, in similar way the <spanx style="verb">start_time</spanx> combined with the <spanx style="verb">start_year</spanx> and the <spanx style="verb">end_time</spanx> combined with the <spanx style="verb">end_year</spanx> pairs are matched.</t>
+               </list>
+               </t>
+        </section>
+        -->
+              
+    </section>
+          
     <section title="Relationships" anchor="relationships">
         <t>
           A relationship expresses a directed labeled and typed connection from a Source Entry (or relationship Context Entry) to a Target Entry.
@@ -1196,9 +1300,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     This represent the default profiles for the included Entry if not specified otherwise (see also <xref target="referencing-profiles"/>).
                   </t>
                   -->
-                  <t hangText="primary: (BOOLEAN)">
-                    If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the link is the primary or preferred value of for the field, e.g. the preferred link. Service Providers MUST NOT mark more than one instance of the same link as primary="true", and MAY choose not to mark any fields as primary, if this information is not available. For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
-                  </t>
                 </list>
                 A Provider MAY define additional fields if necessary.
               </t>
@@ -1317,110 +1418,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 
                 'href' is special and for non-relationships and MUST not start with a '#'
         -->
-        </section>
-        
-        <section title="Predefined Complex Fields" anchor="predefined-structures">
-
-            <section title="Link" anchor="link-structure">
-            <t>
-                The components of a Complex Field to represent a standard LINK as defined by section 3 of <xref target="RFC5988" />.
-                This enables Providers to create generic standard links between an Entry and other resources, including other Entries (see <xref target="relationships"/>), using the registry of links relations defined by the Web Linking specification and HTML5 Link types <xref target="HTML5"/>.
-                The Context of the LINK is the Entry which has a field using the LINK construct as value. 
-                <!-- see requirements atom link-inline stuff -->
-                <!--
-                Providers SHOULD NOT use this construct to link or refer to other Entries, but use instead the Entry relationship mechanisms defined in this specification.
-                -->
-            </t>
-            <t>
-                <list style="hanging">
-                  <t hangText="href: (IRI)">
-                    REQUIRED. The IRI of the link. This IRI MAY be relative or absolute. If the URI is relative it is resolved against the Service Provider root API endpoint URL.
-                    Unless otherwise specified, this is the Primary Sub-Field for the field having this construct as value, for the purposes of sorting and filtering.
-                  </t>
-                  <t hangText="rel: (ENUM or IRI)">
-                    The link relation type. Unless otherwise specified, the rel value MUST be a valid Canonical Value as defined in <xref target="IANA-RELREG" /> or in <xref target="additional-link-relation-types"/>.
-                    If this property is omitted or null it MUST BE processed as if the value was the string "alternate".
-                  </t>
-                  <t hangText="type: (ENUM)">
-                     The media type of the representation identified by the IRI of the link. The value is a hint about the type of the representation that is expected to be returned when the value of the href field is dereferenced.
-                     Note that the type field does not override the actual media type returned with the representation. A link construct MAY have a type sub-field, whose value MUST conform to the syntax of a MIME media type defined in <xref target="MIMEREG"/>. Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <xref target="IANA-MIMEREG"/>.
-                  </t>
-                  <t hangText="hreflang: (LANGUAGE)">
-                     The content language of the representation identified by the IRI of the link. When used together with the rel sub-field with value "alternate", it implies a translated version of the Context of the link. A link construct MAY have an hreflang sub-field, whose value MUST be a valid LANGUAGE Canonical Value.
-                  </t>
-                  <t hangText="label: (STRING)">
-                     A human readable label about the link.
-                  </t>
-                  <t hangText="length: (NUMBER)">
-                     The content length in octets of the representation identified by the IRI of the link. The value is a hint about the content length of the representation returned when the IRI in the href sub-field is mapped to a URI and dereferenced. Note that the length sub-field does not override the actual content length of the representation as reported by the underlying protocol.
-                  </t>
-                  <t hangText="width: (NUMBER)">
-                    When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal width in pixels.
-                  </t>
-                  <t hangText="height: (NUMBER)">
-                    When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal height in pixels.
-                  </t>
-                  <t hangText="duration: (NUMBER)">
-                    When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration in seconds.
-                  </t>
-                  <t hangText="primary: (BOOLEAN)">
-                    If the link construct is used in a Plural Field, this is a boolean value indicating whether this instance of the link is the primary or preferred value of for the field, e.g. the preferred link. Service Providers MUST NOT mark more than one instance of the same link as primary="true", and MAY choose not to mark any fields as primary, if this information is not available. For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
-                  </t>
-                </list>
-
-                Unless otherwise specified, when the link construct is used in a Plural Field, Providers MAY return the link construct with the same href and rel values combination more than once with different type, hreflang, label, length, width, height or duration, but MUST NOT return more than once the same type and hreflang combination for a given href with rel field of value "alternate".
-            </t>
-            </section>
-        
-            <!-- 
-            <section title="Date Group" anchor="data-group-structure">
-            <t>
-                The components of a Complex Field to represent a DATEGROUP expressing a date, time, time period, or interval.
-                Any of the <spanx style="verb">start_year</spanx>, <spanx style="verb">start_date</spanx>, <spanx style="verb">start_time</spanx>, <spanx style="verb">end_year</spanx>,
-                <spanx style="verb">end_date</spanx>, <spanx style="verb">end_time</spanx> MUST BE non-empty or null, unless the <spanx style="verb">period</spanx> is non-empty or null.
-                And viceversa.
-            </t>
-            <t>
-                <list style="hanging">
-                  <t hangText="start_year: (YEAR)">
-                    A start year.
-                  </t>
-                  <t hangText="start_date: (TIMESTAMP)">
-                    A start timestamp.
-                  </t>
-                  <t hangText="start_time: (TIME)">
-                    A start instant of time.
-                  </t>
-                  <t hangText="end_year: (YEAR)">
-                    An end year.
-                  </t>
-                  <t hangText="end_date: (TIMESTAMP)">
-                    An end timestamp.
-                  </t>
-                  <t hangText="end_time: (TIME)">
-                    An end instant of time.
-                  </t>
-                  <t hangText="period: (PERIOD)">
-                    A time interval.
-                  </t>
-                  <t hangText="primary: (BOOLEAN)">
-                    If the link construct is used in a Plural Field, this is a boolean value indicating whether this instance of the link is the primary or preferred value of for the field, e.g. the preferred link. Service Providers MUST NOT mark more than one instance of the same link as primary="true", and MAY choose not to mark any fields as primary, if this information is not available. For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
-                  </t>
-                </list>
-                                
-                This first version of the specification excludes any range filtering or search.
-                A Provider SHOULD try its best to match and filter Entry results upon the DATEGROUP structure.
-                For the purposes of sorting and filtering the following set rules SHOULD BE tried in order:
-                <list style="numbers">
-                    <t>If the <spanx style="verb">period</spanx> field is non-empty or null, the <spanx style="verb">period</spanx> field is used as the Primary Sub-Field.</t>
-                    <t>Otherwise, if either the <spanx style="verb">start_date</spanx> or the <spanx style="verb">end_date</spanx> fields (or both) are non-empty or null, either of the fields is used as the Primary Sub-Field.
-                       The <spanx style="verb">start_date</spanx> is always matched before.</t>
-                    <t>Otherwise, in similar way the <spanx style="verb">start_time</spanx> combined with the <spanx style="verb">start_year</spanx> and the <spanx style="verb">end_time</spanx> combined with the <spanx style="verb">end_year</spanx> pairs are matched.</t>
-                </list>
-            </t>
-            </section>
-            -->
-            
         </section>
         
       </section>
@@ -1556,7 +1553,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
             For readability, usability and simplicity of the Portable Listings format, in specific field definitions (e.g. <spanx style="verb">alternativeTitle</spanx> or <spanx style="verb">description</spanx>) the controlled lists of Term IDs have been provided with Canonical Values <spanx style="verb">term shortnames</spanx> to be used in the <spanx style="verb">type</spanx> sub-field in place of EBU numeric Term IDs.
             For example in <spanx style="verb">alternativeTitle</spanx> the <spanx style="verb">working_title</spanx> SHOULD BE used in place of numeric Term ID <spanx style="verb">6</spanx>.
             **
-            Particularly, in order to express relationships between pieces of content and people, organisations or groups in a more natural and human readable way, a few named relationships has been defined 
+            Particularly, in order to express relationships between pieces of content and people, organisations or groups in a more natural and human-readable way, a few named relationships has been defined 
             picking a selection from the European Broadcasting Union Role Codes <xref target="EBU-ROLE-CODES"/> of common role names (e.g. director, actor, producer and so on).
             **
             Even with the term shortnames and spelling updates, the Term ID mappings remain equivalent, which it means that it SHOULD BE easy to convert the values to and from original vocabularies.
@@ -1721,6 +1718,28 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             </t>
                             <t><xref target="version-type">Version</xref>
                             </t>
+                            <t><xref target="service-type">Service</xref>
+                            </t>
+                            <t><xref target="programmelocation-type">Programme Location</xref>
+                                <list style="empty">
+                                    <t><xref target="broadcast-type">Broadcast</xref>
+                                    </t>
+                                    <t><xref target="ondemand-type">Ondemand</xref>
+                                    </t>
+                                </list>
+                            </t>
+                            <t><xref target="schedule-type">Schedule</xref>
+                            </t>
+                            <t><xref target="catalogue-type">Catalogue</xref>
+                            </t>
+                            <t><xref target="application-type">Application</xref>
+                            </t>
+                            <t><xref target="application-build-type">Application Build</xref>
+                            </t>
+                            <t><xref target="application-publication-type">Application Publication</xref>
+                            </t>
+                            <t><xref target="application-gallery-type">Application Gallery</xref>
+                            </t>
                             <t><xref target="mediaresource-type">Media Resource</xref>
                                 <list style="empty">
                                     <t><xref target="mediagroup-type">Media Group</xref>
@@ -1732,26 +1751,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                     <t><xref target="segmentgroup-type">Segment Group</xref>
                                     </t>
                                 </list>
-                            </t>
-                            <t><xref target="service-type">Service</xref>
-                                <list style="empty">
-                                    <t><xref target="outlet-type">Outlet</xref>
-                                    </t>
-                                </list>
-                            </t>
-                            <t><xref target="channel-type">Channel</xref>
-                            </t>
-                            <t><xref target="programmelocation-type">Programme Location</xref>
-                                <list style="empty">
-                                    <t><xref target="broadcast-type">Broadcast</xref>
-                                    </t>
-                                    <t><xref target="title-type">Title</xref>
-                                    </t>
-                                </list>
-                            </t>
-                            <t><xref target="schedule-type">Schedule</xref>
-                            </t>
-                            <t><xref target="catalog-type">Catalog</xref>
                             </t>
                             <t><xref target="rights-type">Rights</xref>
                             </t>
@@ -1873,33 +1872,30 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     An alternative name of the piece of content other than the information provided with the <spanx style="verb">displayName</spanx>, <spanx style="verb">title</spanx> and <spanx style="verb">subtitle</spanx> fields.
                     <list style="hanging">
                         <t hangText="type: (ENUM)">
-                            The type of field for this instance.
-                            The value SHOULD BE selected from the following list: <spanx style="verb">secondary</spanx>, <spanx style="verb">alternativeSecondary</spanx>, <spanx style="verb">original</spanx>, <spanx style="verb">artWorkOriginal</spanx>, <spanx style="verb">pledged</spanx>, <spanx style="verb">version</spanx>, <spanx style="verb">working</spanx>, <spanx style="verb">alternativeWorking</spanx>, <spanx style="verb">long</spanx>, <spanx style="verb">full</spanx>, <spanx style="verb">abridged</spanx>, <spanx style="verb">transmission</spanx>, <spanx style="verb">published</spanx>, <spanx style="verb">international</spanx>, <spanx style="verb">translation</spanx>, <spanx style="verb">pseudo</spanx>, <spanx style="verb">ingest</spanx>.
+                            The type of field SHOULD BE selected from the following list: <spanx style="verb">secondary</spanx>, <spanx style="verb">alternativeSecondary</spanx>, <spanx style="verb">original</spanx>, <spanx style="verb">artWorkOriginal</spanx>, <spanx style="verb">pledged</spanx>, <spanx style="verb">version</spanx>, <spanx style="verb">working</spanx>, <spanx style="verb">alternativeWorking</spanx>, <spanx style="verb">long</spanx>, <spanx style="verb">full</spanx>, <spanx style="verb">abridged</spanx>, <spanx style="verb">transmission</spanx>, <spanx style="verb">published</spanx>, <spanx style="verb">international</spanx>, <spanx style="verb">translation</spanx>, <spanx style="verb">pseudo</spanx>, <spanx style="verb">ingest</spanx>.
                             The <spanx style="verb">short</spanx>, <spanx style="verb">main</spanx> and <spanx style="verb">subtitle</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
-                            When the <spanx style="verb">international</spanx> and <spanx style="verb">translation</spanx> values are used the <spanx style="verb">lang</spanx> sub-field MAY used to specify the language of the alternative name text.
                         </t>
                         <t hangText="value: (STRING or HTML)">
-                            REQUIRED. The alternative name text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                            The alternative name text.
                         </t>
                     </list>
               </t>
-              <t hangText="synopsis: (STRING or HTML)">
-                A brief or condensed statement giving a general view about the piece of content e.g. a brief summary of the plot of a novel, motion picture, play, etc.
-              </t>
               <t hangText="summary: (STRING or HTML)">
                 A comprehensive and usually brief abstract, recapitulation, or compendium of of actions and events in the piece of content.
+              </t>
+              <t hangText="synopsis: (STRING or HTML)">
+                A brief or condensed statement giving a general view about the piece of content e.g. a brief summary of the plot of a novel, motion picture, play, etc.
               </t>
               <t hangText="description: [COMPLEX]">
                     An extended textual description of the piece of content other than the information provided with the <spanx style="verb">synopsis</spanx> and <spanx style="verb">summary</spanx> fields.
                     The extended description MAY also consist of outlines, lists, bullet points, edit decision lists, indexes and have references to external media and graphical material.
                     <list style="hanging">
                         <t hangText="type: (ENUM)">
-                            The type of field for this instance.
-                            The value SHOULD BE selected from the following list: <spanx style="verb">annotation</spanx>, <spanx style="verb">annotationSynopsis</spanx>, <spanx style="verb">abstract</spanx>, <spanx style="verb">anecdotalCommentsAndReflections</spanx>, <spanx style="verb">theme</spanx>, <spanx style="verb">purpose</spanx>, <spanx style="verb">outline</spanx>, <spanx style="verb">cueWords</spanx>, <spanx style="verb">cueInWords</spanx>, <spanx style="verb">cueOutWords</spanx>, <spanx style="verb">process</spanx>, <spanx style="verb">assessment</spanx>, <spanx style="verb">editoralComments</spanx>, <spanx style="verb">keyPoints</spanx>, <spanx style="verb">shotDescription</spanx>, <spanx style="verb">creditLine</spanx>, <spanx style="verb">instructions</spanx>, <spanx style="verb">modelInformation</spanx>, <spanx style="verb">artwork</spanx>, <spanx style="verb">event</spanx>, <spanx style="verb">releaseInformation</spanx>, <spanx style="verb">intention</spanx>, <spanx style="verb">shotComment</spanx>, <spanx style="verb">citation</spanx>.
+                            The type of field SHOULD BE selected from the following list: <spanx style="verb">annotation</spanx>, <spanx style="verb">annotationSynopsis</spanx>, <spanx style="verb">abstract</spanx>, <spanx style="verb">anecdotalCommentsAndReflections</spanx>, <spanx style="verb">theme</spanx>, <spanx style="verb">purpose</spanx>, <spanx style="verb">outline</spanx>, <spanx style="verb">cueWords</spanx>, <spanx style="verb">cueInWords</spanx>, <spanx style="verb">cueOutWords</spanx>, <spanx style="verb">process</spanx>, <spanx style="verb">assessment</spanx>, <spanx style="verb">editoralComments</spanx>, <spanx style="verb">keyPoints</spanx>, <spanx style="verb">shotDescription</spanx>, <spanx style="verb">creditLine</spanx>, <spanx style="verb">instructions</spanx>, <spanx style="verb">modelInformation</spanx>, <spanx style="verb">artwork</spanx>, <spanx style="verb">event</spanx>, <spanx style="verb">releaseInformation</spanx>, <spanx style="verb">intention</spanx>, <spanx style="verb">shotComment</spanx>, <spanx style="verb">citation</spanx>.
                             The <spanx style="verb">synopsis</spanx> and <spanx style="verb">summary</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
                         </t>
                         <t hangText="value: (STRING or HTML)">
-                            REQUIRED. The extended description text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                            The extended description text.
                         </t>
                     </list>
               </t>
@@ -1923,10 +1919,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         This is the Primary Sub-Field for the purposes of sorting and filtering.
                     </t>
                     <t hangText="roleLabel: (STRING)">
-                        A human readable label or name associated to the <spanx style="verb">role</spanx> sub-field.
+                        A human-readable label or name associated to the <spanx style="verb">role</spanx> sub-field.
                     </t>
                     <t hangText="stageName: (STRING or HTML)">
-                        A human readable label or name attributed to the contact on stage (e.g. 'character name' or 'interviewer').
+                        A human-readable label or name attributed to the contact on stage (e.g. 'character name' or 'interviewer').
                     </t>
                 </list>
               </t>
@@ -1952,11 +1948,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 An alternative date of the piece of content.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The type of field for this instance  (e.g. 'productionDate', 'dateAccepted', 'dateSubmitted').
-                        The value SHOULD BE selected from a standard list of values.
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'productionDate', 'dateAccepted', 'dateSubmitted').
                     </t>  
                     <t hangText="value: (TIMESTAMP or PERIOD)">
-                        REQUIRED. The alternative date. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        The alternative date.
                     </t>
                </list>
               </t>
@@ -1967,9 +1962,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     A category from a taxonomy or controlled vocabulary scheme associated to the piece of content.
                     <list style="hanging">
                         <t hangText="value: (ENUM OR IRI)">
-                            REQUIRED. A link or code to or within a classification scheme.
+                            A link or code to or within a classification scheme.
                             The value SHOULD BE selected from a standard list of values.
-                            This is the Primary Sub-Field for the purposes of sorting and filtering.
                         </t>
                     </list>
               </t>
@@ -1987,46 +1981,49 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The genre categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
                 <list style="hanging"> 
                     <t hangText="value: (ENUM or IRI)">
-                        REQUIRED. The value of field for this instance.
                         The value SHOULD BE selected from a standard list of values such as the EBU Content Genre, Intention or the TV-Anytime Content Commercial or Content Alert types.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
                     </t>
                </list>
               </t>
               <t hangText="targetAudience: [COMPLEX]">
-                The target audience (demographic, geographic or guidance) categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
+                The target audience (demographic or guidance) categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
                 <list style="hanging"> 
                     <t hangText="value: (ENUM or IRI)">
-                        REQUIRED. The value of field for this instance (e.g. parental controls such as PG, 14A, R or geographic audience like regional, multinational).
                         The value SHOULD BE selected from a standard list of values such as the EBU Intended Audience or Parent Guidance types.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
                     </t>
-                    <t hangText="reason: (STRING or HTML)">
-                        The reason, if any, why a particular audience has been identified.
+                    <t hangText="guidanceText: (STRING or HTML)">
+                        A short human-readable editorial guidance message.
                     </t>
-                    <t hangText="linkToLogo: (LINK)">
-                        A URI to point to the location of a pictogram representative of the targeted audience.
-                    </t>
-                    <t hangText="notRated: (BOOLEAN)">
-                        A flag to indicate that the media resource has not been rated (if set to true).
-                    </t>
-                    <t hangText="adultContent: (BOOLEAN)">
-                        A flag to indicate is the media resource contains adult content (if set to true).
-                    </t>
-                    <!-- TODO - add country region -->
-                    <t hangText="targetRegion: (COUNTRY or STRING)">
-                        The target country and region for the rating.
+                    <t hangText="longGuidanceText: (STRING or HTML)">
+                        A long human-readable editorial guidance message.
                     </t>
                </list>
               </t>
+              <t hangText="notRated: (BOOLEAN)">
+                    A flag to indicate that the piece of content has not been rated (if set to true).
+              </t>
+              <t hangText="adultContent: (BOOLEAN)">
+                    A flag to indicate is the piece of content contains adult content (if set to true).
+              </t>
               <!-- target country - to add later with content packaing and publishing policies i.e. releases / packages -->
+              <t hangText="targetRegion: [COMPLEX]">
+                The geographic target audience categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
+                If no geographical targeting is provided, the piece of content is assumed to be applicable to all places, i.e. worldwide.
+                <list style="hanging">
+                    <t hangText="value: (TERRITORY)">
+                        The target country and region for the rating.
+                    </t>
+                    <t hangText="exclusive: (BOOLEAN)">
+                        A flag to indicate that the piece of content is available only in the target place specified in the value sub-field.
+                        If the exclusive attribute is omitted or has the value false then the piece of content is editorially targeted at the target place specified in the value sub-field.
+                    </t>
+                </list>
+              </t>
               <t hangText="format: (COMPLEX)">
                 The editorial format categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
                 <list style="hanging"> 
                     <t hangText="value: (ENUM or IRI)">
-                        REQUIRED. The value of field for this instance (e.g. 'fiction', 'presentation', 'cartoon').
                         The value SHOULD BE selected from a standard list of values such as the EBU Editorial Format types.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
                      </t>
                </list>
               </t>
@@ -2035,7 +2032,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
               <t hangText="thumbnails: [LINK]">
                 A list of thumbnail images or screen shots depicting the piece of content.
-                If more than one image is provided, the <spanx style="verb">primary</spanx> boolean subfield MAY be used to flag the preferred or principal image for display.
               </t>
 
               <!-- possible additions: available_clips (LINKs) -->
@@ -2044,14 +2040,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Reference to the resources from which the piece of content is derived in whole or in part.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The type of field for this instance (e.g. 'sketches', 'book', 'novel').
-                        The value SHOULD BE selected from a standard list of values.
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'sketches', 'book', 'novel').
                     </t>  
                     <t hangText="value: (STRING or HTML)">
-                        REQUIRED. The source textual description. This is the Primary Sub-Field for the purposes of sorting and filtering.
-                    </t>
-                    <t hangText="media: [LINK]">
-                        Additional reference material associated with the source description. 
+                        The source textual description.
                     </t>
                </list>
               </t>
@@ -2063,8 +2055,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         The value SHOULD BE selected from the following list: <spanx style="verb">audio</spanx>, <spanx style="verb">mainOriginalLanguage</spanx>, <spanx style="verb">mainDubbedLanguage</spanx>, <spanx style="verb">additionalOriginalLanguage</spanx>, <spanx style="verb">additionalDubbedLanguage</spanx>, <spanx style="verb">descriptiveVideoInformation</spanx>, <spanx style="verb">supplementalCommentary</spanx>, <spanx style="verb">directorCommentary</spanx>, <spanx style="verb">audioDescription</spanx>, <spanx style="verb">supplementaryAudioProgramme</spanx>, <spanx style="verb">educationalNotes</spanx>, <spanx style="verb">voiceOver</spanx>, <spanx style="verb">originalCommentary</spanx>, <spanx style="verb">dubbedCommentary</spanx>, <spanx style="verb">originalNarration</spanx>, <spanx style="verb">dubbedDialogue</spanx>, <spanx style="verb">dubbedNarration</spanx>, <spanx style="verb">interviewerLanguage</spanx>, <spanx style="verb">intervieweeLanguage</spanx>, <spanx style="verb">text</spanx>, <spanx style="verb">textDescription</spanx>, <spanx style="verb">transcript</spanx>, <spanx style="verb">caption</spanx>, <spanx style="verb">openCaption</spanx>, <spanx style="verb">closedCaption</spanx>, <spanx style="verb">supplemental</spanx>, <spanx style="verb">titles</spanx>, <spanx style="verb">subtitles</spanx>, <spanx style="verb">openSubtitles</spanx>, <spanx style="verb">closedSubtitles</spanx>, <spanx style="verb">songLyrics</spanx>, <spanx style="verb">signLanguage</spanx>, <spanx style="verb">dubbedSignLanguage</spanx>.                        
                     </t>  
                     <t hangText="value: (LANGUAGE)">
-                        REQUIRED. The language value.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        The language value.
                     </t>
                 </list>
               </t>
@@ -2073,16 +2064,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Location information associated with the piece of content.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The type of field for this instance (e.g. 'filmingLocation', 'depictedLocation', 'creationLocation').
-                        The value SHOULD BE selected from a standard list of values.
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'filmingLocation', 'depictedLocation', 'creationLocation').
                     </t>  
-                    <t hangText="value: (PLACE)">
-                        REQUIRED. The actual geographical place.
-                    </t>
-                    <t hangText="label: (STRING)">
-                        A human readable label or name associated to the <spanx style="verb">value</spanx> sub-field.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
-                        If the label field is not specified, and supported by the Provider, the Primary Sub-Field is defined to be the coordinates sub-field of the PLACE structure of the value field.
+                    <t hangText="value: (PLACE or TERRITORY)">
+                        The actual geographical place or territory.
                     </t>
                     <t hangText="fictional: (BOOLEAN)">
                         A Boolean value indicating whether the place is purely fictional.
@@ -2094,16 +2079,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Temporal coverage information associated with the piece of content.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The type of field for this instance (e.g. 'filmingPeriod', 'depictedPeriod').
-                        The value SHOULD BE selected from a standard list of values.
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'filmingPeriod', 'depictedPeriod').
                     </t>  
-                    <t hangText="value: (PERIOD)">
-                        REQUIRED. The actual temporal coverage period.
-                    </t>
-                    <t hangText="label: (STRING)">
-                        A human readable label or name associated to the <spanx style="verb">value</spanx> sub-field.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
-                        If the label field is not specified, and supported by the Provider, the Primary Sub-Field is defined to be the value field.
+                    <t hangText="value: (PERIOD or YEAR)">
+                        The actual temporal coverage period or gregorian calendar year.
                     </t>
                     <t hangText="fictional: (BOOLEAN)">
                         A Boolean value indicating whether the temporal period is purely fictional (e.g. 'year 2030').
@@ -2191,16 +2170,16 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t hangText="awards: [AWARD]">
                     A list of awards or awards nominations for a programme.
                 </t>
-                <t hangText="country: (COUNTRY)">
-                    The country where the programme has been released.
+                <t hangText="country: [TERRITORY]">
+                    The countries and regions where the programme has been released.
                 </t>
                 <t hangText="firstTransmissionDate: (TIMESTAMP)">
                     The first transmission or publication date and time.
                 </t>
-                <t hangText="firstTransmissionChannel: (CHANNEL)">
-                    The first transmission or publication channel.
+                <t hangText="firstTransmissionChannel: (SERVICE)">
+                    The first transmission or publication service.
                 </t>
-                <t hangText="repeats: [CHANNEL]">
+                <t hangText="repeats: [SERVICE]">
                     Information about the publication history of the programme.
                     A repeated transmission or publication.
                     The following fields are additionally defined for the repeats relationship:
@@ -2250,7 +2229,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <list style="hanging">
                 <t hangText="versions: [VERSION]">
                     Different versions of a same episode or clip can exist.
-                    The relationship primary boolean flag SHOULD be used to flag the so called 'canonical' or preferred version.
+                    The relationship <spanx style="verb">primary</spanx> boolean flag SHOULD be used to flag the so called "canonical" or preferred version.
+                    No more than one version should be labelled as "canonical" because of the ambiguity this creates and this complicates processing by the Consumer.
+                    
                 </t>
             </list>
         </t>
@@ -2271,25 +2252,13 @@ WWW-Authenticate: Basic realm="sample.site.org"
         </t>
       </section>
       
-      <!--
-      <section title="Movie" anchor="movie-type">
-        <t>
-            The Movie object type extends the EPISODE object type and represents a movie or film.
-        </t>
-      </section>
-      -->
-      
       <section title="Version" anchor="version-type">
         <t>
             The Version object type extends the CONTENT object type and represents a specific edit or version of a programme item.
-            There are different version types and only one is marked as original.
-            
+            While there could be different version types (e.g. different run length, different parental guidance, alternative viewing angles etc.) only one is marked as original.
+            Note that the inclusion of accessibility services (e.g. hearing impaired, signed and dubbed audio described) does not constitute a different editorial version.
+            Such differences are represented by multiple publications of the same basic editorial version since the underlying editorial content is identical at scene level.
             <list style="hanging">
-                <t hangText="type: [ENUM]">
-                    The type of version (e.g shortened version, version designed for the hearing impaired, signed and dubbed audio described, alternative viewing angles etc.).
-                    The value SHOULD BE selected from a standard list of values.
-                    Please note this is a Plural Field, and there might be multiple types associated to a version.
-                </t>
                 <t hangText="original: (BOOLEAN)">
                     A Boolean value indicating whether or not the Version is the original.
                     Service Providers MUST NOT mark more than one Version as original="true", and MAY choose not to mark any Version as original, if this information is not available.
@@ -2302,264 +2271,58 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t hangText="broadcasts: [BROADCAST]">
                     The broadcast events associated with a particular version.
                 </t>
-                <t hangText="availabilities: [TITLE]">
+                <t hangText="availabilities: [ONDEMAND]">
                     The availabilities associated with a particular version when it is made available on-demand. <!-- or push to download -->
                 </t>
             </list>            
         </t>
       </section>
-      
-      <section title="Media Resource" anchor="mediaresource-type">
-        <t>
-            The Media Resource type extends the CONTENT object type and represents a digital or physical manifestation of a version.
-            For an organisation or producer acting as caretaker for a media resource, it MAY contain a string formatted piece of information about a specific e.g. tape name, shelf location for an asset, including an organisation's name, departmental name, shelf id. and contact information.
-            Differently for a data file or web video it MAY contain a IRI reference to the media resource and an optional type (e.g. for an HTML5 audio or video it would refer to the URL of the source and its type).
-            The Media Resource type is identified with the string MEDIA_RESOURCE.
-            <list style="hanging">
-                <t hangText="locator: (IRI or STRING)">
-                    REQUIRED. An identifier of the digital media resource or a string description where to find a physical source (e.g. dvb://scifi@2009-10-20T03:39:00Z/PT51M or a URI reference to a CDN streaming service, or a string like 'Archives building A, Row J, Shelf 2').
-                    <!--
-                    Please note this is a Plural Field, and there MAY be multiple source files associated to a media object (e.g. when alternative source files using different encodings/codecs are available to a web browser).
-                                        The primary sub-field SHOULD BE used to flag a particular instance as the primary piece of content.
-                    -->
-                </t>
-                <t hangText="type: (ENUM)">
-                    The media type of the media resource. The value is a hint about the type of the representation that is expected to be returned when the value field is dereferenced.
-                    Note that the type field does not override the actual media type returned with the representation.
-                    When specified the value MUST conform to the syntax of a MIME media type defined in <xref target="MIMEREG"/>.
-                    Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <xref target="IANA-MIMEREG"/> includind any media type paramters, such as the "codecs" parameter <xref target="RFC4281"/>.
-                    Note that the same Media Resource MAY be used to represent different versions when the media type is a container file or format.
-                </t>
-                <t hangText="medium: (COMPLEX)">
-                    The material or physical carrier of the resource. If a file, it should be the carrier format.
-                    <list style="hanging"> 
-                        <t hangText="type: (ENUM)">
-                            The type of media resource (e.g. '1BM', 'BMX', 'video', 'audio'). 
-                            The value SHOULD BE selected from a standard list of values such as the EBU Storage Media types.
-                        </t>  
-                        <t hangText="value: (STRING)">
-                            REQUIRED. A label associated with the type value. This is the Primary Sub-Field for the purposes of sorting and filtering.
-                        </t>
-                    </list>
-                </t>
-                <t hangText="length: (NUMBER)">
-                    The media resource size or length in octets.
-                    The value is a hint about the content length of the media resource representing the media resource and it does not override the actual content length of the representation as reported by the underlying protocol.
-                </t>
-                <t hangText="start: (TIMECODE or TIME or NUMBER)">
-                    The beginning point for playback of the media resource (e.g. 'seeking position').
-                </t>
-                <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
-                    The time based duration of the media resource.
-                </t>
-                <t hangText="audio: (COMPLEX)">
-                    Information on the audio format.
-                    <list style="hanging"> 
-                        <t hangText="encoding: (ENUM)">
-                            The audio encoding parameters.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Audio Compression Codes.
-                        </t>
-                        <t hangText="configuration: (ENUM)">
-                            The audio configuration parameters (e.g. 'stereo', '2+1', 'surround', 'surround (7+1)').
-                            The value SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes.
-                        </t>
-                        <t hangText="bitrate: (NUMBER)">
-                            The audio bit rate.
-                        </t>
-                        <t hangText="samplingRate: (NUMBER)">
-                            The audio sampling rate.
-                        </t>
-                        <t hangText="loudnessLevel: (ENUM)">
-                            The media resource loudness level in dB.
-                        </t>
-                    </list>
-                </t>
-                <t hangText="video: (COMPLEX)">
-                    Information on the video format.
-                    <list style="hanging">
-                        <t hangText="width: (NUMBER)">
-                            This value is a hint about the video's intrinsic or ideal width in pixels.
-                        </t>
-                        <t hangText="height: (NUMBER)">
-                            This value is a hint about the video's intrinsic or ideal height in pixels.
-                        </t>
-                        <t hangText="frameSize: (STRING)">
-                            The video frames size.
-                        </t>
-                        <t hangText="frameRate: (ENUM)">
-                            The video frames per second rate.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Video Frame Rate types.
-                        </t>
-                        <t hangText="aspectRatio: (ENUM)">
-                            The video aspect ratio.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Visual Aspect Ratio types.
-                        </t>
-                        <t hangText="colourMode: (ENUM)">
-                            The video colour mode.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Colour Codes.
-                        </t>
-                        <t hangText="videoEncoding: (ENUM)">
-                            The video encoding parameters.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Video Compression Codes.
-                        </t>
-                        <t hangText="hd: (BOOLEAN)">
-                            A Boolean value indicating whether the video is high definition.
-                        </t>
-                        <t hangText="bitrate: (NUMBER)">
-                            The audio bit rate.
-                        </t>
-                        <t hangText="samplingRate: (NUMBER)">
-                            The audio sampling rate.
-                        </t>
-                    </list>
-                </t>
-                <t hangText="embedCode: (HTML)">
-                    An HTML fragment that, when embedded in an HTML page, will provide an interactive player UI for the media resource.
-                </t>
-            </list>            
-        </t>
-      </section>
-      
-      <section title="Media Group" anchor="mediagroup-type">
-        <t>
-            The Media Group object type extends the MEDIA_RESOURCE object type and represents a group of related media resources containing one or more versions.
-            For example, a Media Group MAY BE used to express alternative representations for the same media resource or it MAY BE used to represent multiple external tracks (audio, video, text etc) associated and syncronized to the main audio and video tracks.
-            The Media Group object type is identified with the string MEDIA_GROUP.
-        </t>
-        <t>
-            Note that a MEDIA_GROUP locator field MAY BE empty and instead one or more alternative media sources MAY specified.
-            A Consumer MUST BE able to select the main alternative media source by stepping through each of the specified sources in the given order.
-            <list style="hanging">
-                <t hangText="sources: [MEDIA_RESOURCE]">
-                    A list of alternative representations for the same media resource (e.g. alternative source files using different encodings/codecs made available to a web browser to play the same content).
-                </t>
-                <t hangText="tracks: [MEDIA_GROUP]">
-                    Used to describe alternative audio, video or text tracks syncronized with the main the media resource.
-                    <list style="hanging"> 
-                        <t hangText="kind: (ENUM)">
-                            The type of track (e.g. 'subtitles', 'captions', 'descriptions', 'signings', 'dubbing'). 
-                            The value SHOULD BE selected from a standard list of values such as the HTML5 video track kind attribute, the EBU Audio Channel Purpose  or Language Purpose codes.
-                        </t>  
-                        <t hangText="lang: (LANGUAGE)">
-                            The language of the track.
-                        </t>
-                        <t hangText="label: (STRING)">
-                            A human readable label or name associated to the type sub-field.
-                            This is the Primary Sub-Field for the purposes of sorting and filtering.
-                        </t>
-                    </list>
-                </t>
-            </list>      
-        </t>
-      </section>
-      
-      <section title="Segment" anchor="segment-type">
-        <t>
-            The Segment object type extends the CONTENT object type and represents a continuous portion of a piece of a programme version, for example a single topic in a news programme or the highlights of a soccer match.
-            A particular segment can belong to a single programme only, but it can be a member of multiple segment groups.
-            A programme can contain multiple segments.
-            Segments are reusable, editorially distinct items.
-            
-            <list style="hanging">
-                <t hangText="programme: (VERSION)">
-                    A reference to the programme version this segment belongs to.
-                    If the segment is part of a segment group, this field MAY be left empty and the segment is assumed to belong to the programme as referenced by the parent segment group.
-                </t>
-                <t hangText="type: (ENUM)">
-                    The type of segment (e.g. 'highlights', 'bookmarks', 'preview', 'insertion points', 'shots', 'speech').
-                    The value SHOULD BE selected from a standard list of values.
-                </t>
-                <t hangText="start: (TIMECODE or TIME or NUMBER)">
-                    The beginning point for playback of the programme segment.
-                </t>
-                <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
-                    The time based duration of the programme segment.
-                </t>
-                <t hangText="chapter: (BOOLEAN)">
-                    A Boolean value indicating whether the programme segment is a chapter.
-                </t>
-                <t hangText="media: (LINK)">
-                    A link to the media resource representing the segment.
-                    The href sub-field MAY match the corresponding media resource locator field or contain a URI Media Fragment with a Normal Play Time (NPT) or SMPTE time code as defined in section 4.2.1 of <xref target="MEDIA-FRAGMENTS-URI"/>.
-                </t>
-            </list>            
-        </t>
-      </section>
-      
-      <section title="Segment Group" anchor="segmentgroup-type">
-        <t>
-            The Segment Group object type extends the SEGMENT object type and represents collection of segments that are grouped together.
-            A segment group can contain segments or segment groups.
-            The Segment Group object type is identified with the string SEGMENT_GROUP.
-            
-            <list style="hanging">
-                <t hangText="segments: [SEGMENT]">
-                    The list of segments that are contained within the segment group.
-                    The order of the references to segments determines the temporal playback order of segments in this group.
-                </t>
-                <!--
-                <t hangText="ordered: (BOOLEAN)">
-                    A Boolean value indicating whether the programme segment group is ordered.
-                </t>
-                -->
-                <!-- eventually add top-level boolean to flag if the group is root or not -->
-            </list>            
-        </t>
-      </section>
-      
+
       <section title="Service" anchor="service-type">
         <t>
             The Service object type extends the CONTENT object type and represents a publication outlet (e.g. a broadcasting service).
             A service is a collection of outlets which contain common material, but with some variations (e.g. by region).
             Hierarchies of services MAY be defined (e.g. radio, tv, online, mobile).
-            A media outlet is a broadcast program that transmits feature stories and news to the public through various 'distribution channels'.
             <list style="hanging">
                 <!-- possible additions: geo coverage -->
-                <!--
-                <t hangText="programmes: [PROGRAMME]">
-                    The list of Programmes from the Service outlet (e.g. brands, episodes).
+                <t hangText="serviceType: (ENUM)">
+                    The service type SHOULD BE selected from the following list: <spanx style="verb">broadcast</spanx>, <spanx style="verb">virtual</spanx>, <spanx style="verb">iptv</spanx>, <spanx style="verb">ondemand</spanx>, <spanx style="verb">owning</spanx>.
                 </t>
-                -->
-                <t hangText="type: (ENUM)">
-                    The service type such as 'tv', 'radio', 'online' etc.
-                    The value SHOULD BE selected from a standard list of values.
-                </t>
-                <t hangText="subType: (ENUM)">
-                    The service subtype such as 'national', 'regional', 'local' etc.
-                    The value SHOULD BE selected from a standard list of values.
-                </t>
-                <t hangText="outlets: [OUTLET]">
+                <t hangText="outlets: [SERVICE]">
                     Relates a Service to the Outlets that are contained within the Service.
-                </t>
-                <t hangText="channel: [CHANNEL]">
-                    Relates a Service to a Channel. A single outlet or service can be associated with multiple channels (e.g. the same news programme can be broadcasted over IPTV or DVB).
+                    An outlet represents a service which does not have variations.
+                    For example, in the movie industry some movie publication or distribution ondemand outlets may be: on-air, online (payed, subscription, advertised), physical media (dvd, blu-ray, VHS), theatre (cinema), mobile.
                 </t>
                 <t hangText="organisation: (ORGANISATION)">
                     Relates a Service to an Organisation providing the service.
                 </t>
-            </list>            
-        </t>
-      </section>
-
-      <section title="Outlet" anchor="outlet-type">
-        <t>
-            The Outlet object type extends the SERVICE object type and represents a service which does not have variations.
-            For example, in the movie industry some movie publication or distribution outlets may be: on-air, online (payed, subscription, advertised), physical media (dvd, blu-ray, VHS), theatre (cinema), mobile.        
-        </t>
-      </section>
-
-      <section title="Channel" anchor="channel-type">
-        <t>
-            The Channel object type extends the CONTENT object type and represents a physical or virtual channel over which content is distributed (e.g. DVB, DAB, IPTV).
-            <list style="hanging">
-                <t hangText="type: (ENUM)">
-                    The service type such as 'dvb', 'dab', 'iptv' etc.
-                    The value SHOULD BE selected from a standard list of values.
+                <t hangText="locator: (IRI)">
+                    A service locator per <xref target="DVB-URI"/> (e.g. dvb://233a.1041.10bf).
+                </t>
+                <t hangText="application: (APPLICATION)">
+                    A reference to a media player or helper Application. A media player will be invoked to present all publications associated with an ondemand service.
+                    An on-screen helper application MAY be used instead to help users to provision IPTV services and resolve issues.
+                </t>
+                <t hangText="lcn: (NUMBER)">
+                    The service Logical Channel Number (LCN).
                 </t>
                 <t hangText="logo: (LINK)">
-                    A logo or icon associated to the channel.
+                    A logo or icon associated to the service.
+                    <list style="hanging">
+                        <t hangText="rel: (ENUM)">
+                            REQUIRED. The rel value MUST BE the "icon" relation type as defined in <xref target="RFC5988" />.
+                        </t>
+                    </list>
                 </t>
-            </list>          
+                <t hangText="dog: (LINK)">
+                    A Digital On screen Graphic (DOG) associated to the service.
+                    <list style="hanging">
+                        <t hangText="rel: (ENUM)">
+                            REQUIRED. The rel value MUST BE the "icon" relation type as defined in <xref target="RFC5988" />.
+                        </t>
+                    </list>
+                </t>
+            </list>
         </t>
       </section>
 
@@ -2580,7 +2343,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 </t>
                 <t hangText="media: (LINK)">
                     A link to the programme version location.
-                    The href sub-field SHOULD refer to a valid media resource locator field (see <xref target="mediaresource-type"/>).
+                    The <spanx style="verb">href</spanx> sub-field SHOULD match a valid Media Resource <spanx style="verb">locator</spanx> field (see <xref target="mediaresource-type"/>).
                 </t>
             </list>            
         </t>
@@ -2588,7 +2351,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
       
       <section title="Broadcast" anchor="broadcast-type">
         <t>
-            The Broadcast object type extends the PROGRAMME_LOCATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific channel).
+            The Broadcast object type extends the PROGRAMME_LOCATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific service).
             Multiple broadcast events can be grouped into a Schedule.
             <list style="hanging">
                 <t hangText="start: (TIMESTAMP)">
@@ -2597,10 +2360,17 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t hangText="end: (TIMESTAMP)">
                     The published date and time at which the programme version broadcast will be ending.
                 </t>
+                <t hangText="firstShowing: (BOOLEAN)">
+                    A Boolean value indicating whether the programme version being broadcasted is a first showing.
+                </t>
+                <t hangText="lastShowing: (BOOLEAN)">
+                    A Boolean value indicating whether the programme version being broadcasted is a last showing.
+                </t>
                 <t hangText="duration: (NUMBER)">
                     The published duration of the Programme version in seconds.
                     When all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
                 </t>
+                <!-- TODO - add 'signed' 'audioDescribed' etc. -->
                 <t hangText="repeat: (BOOLEAN)">
                     A Boolean value indicating whether the programme version being broadcasted is a repeat.
                 </t>
@@ -2610,19 +2380,13 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t hangText="free: (BOOLEAN)">
                     A Boolean value indicating whether the access to the programme version being broadcasted is free.
                 </t>
-                <t hangText="firstShowing: (BOOLEAN)">
-                    A Boolean value indicating whether the programme version being broadcasted is a first showing.
-                </t>
-                <t hangText="lastShowing: (BOOLEAN)">
-                    A Boolean value indicating whether the programme version being broadcasted is a last showing.
-                </t>
             </list>          
         </t>
       </section>
       
-      <section title="Title" anchor="title-type">
+      <section title="Ondemand" anchor="ondemand-type">
         <t>
-            The Title object type extends the PROGRAMME_LOCATION object type and represents an on demand publication event designating a window of availability of a single Programme version on a particular service between two dates (e.g. catch-up on yesterday night 20:00pm soap opera episode).
+            The Ondemand object type extends the PROGRAMME_LOCATION object type and represents an on-demand publication event designating a window of availability of a single Programme version on a particular service between two dates (e.g. catch-up on yesterday night 20:00pm soap opera).
             <list style="hanging">
                 <t hangText="startAvailability: (TIMESTAMP)">
                     The published date and time that the programme version will be available.
@@ -2648,7 +2412,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     A Boolean value indicating whether the programme version is for instant viewing.
                 </t>
                 <t hangText="deliveryMode: (ENUM)">
-                    The Title delivery mode such as 'streaming', 'download', 'progressive-download' etc.
+                    The on-demand pblication delivery mode such as 'streaming', 'download', 'progressive-download' etc.
                     This string generally is specified to contain a valid Canonical Value from a reference data vocabulary.
                     A Provider SHOULD use any additional deliveryMode values as necessary.
                 </t>
@@ -2658,7 +2422,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
       
       <section title="Schedule" anchor="schedule-type">
         <t>
-            The Schedule object type extends the CONTENT object type and represents a group of broadcast events from the same service (e.g. ZDF channel schedule).
+            The Schedule object type extends the CONTENT object type and represents a group of broadcast events from the same service (e.g. ZDF service schedule).
             <list style="hanging">
                 <t hangText="service: (SERVICE)">
                     A reference to the Service on which the programmes will be broadcasted.
@@ -2676,32 +2440,313 @@ WWW-Authenticate: Basic realm="sample.site.org"
         </t>
       </section>
       
-      <section title="Catalog" anchor="catalog-type">
+      <section title="Catalogue" anchor="catalogue-type">
         <t>
-            The Catalog object type extends the CONTENT object type and represents an on demand service (e.g. ZDF Mediathek).
-            <list style="hanging">
+          The Catalogue object type extends the CONTENT object type and represents a group of on-demand publications from the same service (e.g. YouTube catalogue).
+          <list style="hanging">
+                <t hangText="catalogueType: (ENUM)">
+                  The catalogue type SHOULD BE selected from a standard list of values (e.g. 'catchup tv', 'VOD', 'SVOD' etc.).
+                </t>
                 <t hangText="service: (SERVICE)">
-                    A reference to the Service on which the programmes will be made available on demand.
+                    A reference to the Service on which the programmes will be made available on-demand.
                 </t>
-                <t hangText="titles: [TITLE]">
-                    The list of titles inside the catalog.
+                <t hangText="titles: [ONDEMAND]">
+                    The list of titles inside the catalogue.
                 </t>
-                <t hangText="type: (ENUM)">
-                    The catalog type such as 'catchup tv', 'VOD', 'SVOD' etc.
-                    The value SHOULD BE selected from a standard list of values.
-                </t>
-            </list>          
+            </list>
         </t>
       </section>
-      
+            
+      <!-- TODO - add OpenSocial application model parts -->
+      <section title="Application" anchor="application-type">
+        <t>
+          The Application object type extends the CONTENT object type and represents an abstract application (e.g. BBC iPlayer).
+          The Application object type is identified with the string APPLICATION.
+            <list style="hanging">
+                  <t hangText="ownership: (SERVICE)">
+                      Associate an Application to the owner Service (e.g. BBC Applications).
+                  </t>
+                  <t hangText="country: [TERRITORY]">
+                      The countries and regions where the application has been released.
+                  </t>
+                  <t hangText="builds: [APPLICATION_BUILD]">
+                    Different builds of the same application can exist.
+                    The relationship <spanx style="verb">primary</spanx> boolean flag SHOULD be used to flag the so called "canonical" or preferred build.
+                    No more than one build should be labelled as "canonical" because of the ambiguity this creates and this complicates processing by the Consumer.
+                  </t>
+              </list>
+          </t>
+      </section>
+      <section title="Application Build" anchor="application-build-type">
+          <t>
+              The Application Build object type extends the CONTENT object type and represents a specific build of an application (e.g. BBC iPlayer for iPad ver  2.0.4).
+              For example a non-backwards-compatible change to the application would require modelling a different application build (e.g. BBC iPlayer for iPad with Retina).
+              The Application object type is identified with the string APPLICATION_BUILD.
+              <list style="hanging">
+                  <t hangText="original: (BOOLEAN)">
+                      A Boolean value indicating whether or not the application build is the original.
+                      Service Providers MUST NOT mark more than one application build as original="true", and MAY choose not to mark any application build as original, if this information is not available.
+                      For efficiency, Service Providers SHOULD NOT mark all non-original application builds with original="false", but should instead omit this sub-field for all non-original instances.
+                  </t>
+                  <t hangText="availabilities: [APPLICATION_PUBLICATION]">
+                      The availabilities associated with a particular Application Build when it is made available for download and installation.
+                  </t>
+              </list>
+          </t>
+      </section>
+      <section title="Application Publication" anchor="application-publication-type">
+            <t>
+                The Application object type extends the CONTENT object type and represents an instance or publication event of an Application.
+                The application object type is identified with the string APPLICATION_PUBLICATION.
+                An application is associated with a service, and with a particular application build.
+                <list style="hanging">
+                    <t hangText="service: (SERVICE)">
+                        A reference to the Service on which the application instance will be made available to download and installation (e.g. Apple iTunes Store).
+                    </t>
+                    <t hangText="build: (APPLICATION_BUILD)">
+                        A reference to the application build.
+                    </t>
+                    <t hangText="media: (LINK)">
+                        A link to the application package location.
+                        <!--
+                        The <spanx style="verb">href</spanx> sub-field SHOULD match a valid Media Resource <spanx style="verb">locator</spanx> field (see <xref target="mediaresource-type"/>).
+                        -->
+                    </t>
+                    <t hangText="startAvailability: (TIMESTAMP)">
+                        The published date and time that the application build will be available.
+                        If not specified the application build is assumed to be available.
+                    </t>
+                    <t hangText="endAvailability: (TIMESTAMP)">
+                        The published date and time that the application build will no longer be available.
+                        If not specified the application build is meant to be made available indefinitely.
+                    </t>
+                    <t hangText="free: (BOOLEAN)">
+                        A Boolean value indicating whether the access to the application build is free or requires a payment.
+                    </t>
+                </list>
+            </t>
+      </section>
+      <section title="Application Gallery" anchor="application-gallery-type">
+        <t>
+            The Application Gallery object type extends the CONTENT object type and represents a group of application publications from the same service (e.g. iTunes AppStore).
+            <list style="hanging">
+                <t hangText="service: (SERVICE)">
+                    A reference to the Service on which the applications will be made available to download and install.
+                </t>
+                <t hangText="applications: [APPLICATION_BUILD]">
+                    The list of applications inside the application gallery.
+                </t>
+            </list>
+        </t>
+      </section>
+
+      <section title="Media Resource" anchor="mediaresource-type">
+                <t>
+                    The Media Resource type extends the CONTENT object type and represents a digital or physical manifestation of a version.
+                    For an organisation or producer acting as caretaker for a media resource, it MAY contain a string formatted piece of information about a specific e.g. tape name, shelf location for an asset, including an organisation's name, departmental name, shelf id. and contact information.
+                    Differently for a data file or web video it MAY contain a IRI reference to the media resource and an optional type (e.g. for an HTML5 audio or video it would refer to the URL of the source and its type).
+                    The Media Resource type is identified with the string MEDIA_RESOURCE.
+                    <list style="hanging">
+                        <t hangText="locator: (IRI or STRING)">
+                            REQUIRED. An identifier of the digital media resource or a string description where to find a physical source (e.g. dvb://scifi@2009-10-20T03:39:00Z/PT51M per <xref target="DVB-URI"/> or a URI reference to a CDN streaming service, or a string like 'Archives building A, Row J, Shelf 2').
+                            <!--
+                             Please note this is a Plural Field, and there MAY be multiple source files associated to a media object (e.g. when alternative source files using different encodings/codecs are available to a web browser).
+                             The primary sub-field SHOULD BE used to flag a particular instance as the primary piece of content.
+                             -->
+                        </t>
+                        <t hangText="mediaType: (ENUM)">
+                            The media type of the media resource. The value is a hint about the type of the representation that is expected to be returned when the value field is dereferenced.
+                            Note that the type field does not override the actual media type returned with the representation.
+                            When specified the value MUST conform to the syntax of a MIME media type defined in <xref target="MIMEREG"/>.
+                            Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <xref target="IANA-MIMEREG"/> includind any media type paramters, such as the "codecs" parameter <xref target="RFC4281"/>.
+                            Note that the same Media Resource MAY be used to represent different versions when the media type is a container file or format.
+                        </t>
+                        <t hangText="medium: (COMPLEX)">
+                            The material or physical carrier of the resource. If a file, it should be the carrier format.
+                            <list style="hanging">
+                                <t hangText="value: (ENUM)">
+                                    The type of media resource SHOULD BE selected from a standard list of values such as the EBU Storage Media types (e.g. '1BM', 'BMX', 'video', 'audio').
+                                </t>
+                            </list>
+                        </t>
+                        <t hangText="length: (NUMBER)">
+                            The media resource size or length in octets.
+                            The value is a hint about the content length of the media resource representing the media resource and it does not override the actual content length of the representation as reported by the underlying protocol.
+                        </t>
+                        <t hangText="start: (TIMECODE or TIME or NUMBER)">
+                            The beginning point for playback of the media resource (e.g. 'seeking position').
+                        </t>
+                        <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
+                            The time based duration of the media resource.
+                        </t>
+                        
+                        <!-- audio format -->
+                        <t hangText="audioEncoding: (ENUM)">
+                            The audio encoding parameters SHOULD BE selected from a standard list of values such as the EBU Audio Compression Codes.
+                        </t>
+                        <t hangText="audioConfiguration: (ENUM)">
+                            The audio configuration parameters SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes (e.g. 'stereo', '2+1', 'surround', 'surround (7+1)').
+                        </t>
+                        <t hangText="audioBitrate: (NUMBER)">
+                            The audio bit rate.
+                        </t>
+                        <t hangText="minAudioBitrate: (NUMBER)">
+                            The minimal audio bit rate.
+                        </t>
+                        <t hangText="maxAudioBitrate: (NUMBER)">
+                            The maximum audio bit rate.
+                        </t>
+                        <t hangText="audioSamplingRate: (NUMBER)">
+                            The audio sampling rate.
+                        </t>
+                        <t hangText="audioLoudnessLevel: (ENUM)">
+                            The media resource loudness level in dB.
+                        </t>
+                        
+                        <!-- video format -->
+                        <t hangText="width: (NUMBER)">
+                            This value is a hint about the video's intrinsic or ideal width in pixels.
+                        </t>
+                        <t hangText="height: (NUMBER)">
+                            This value is a hint about the video's intrinsic or ideal height in pixels.
+                        </t>
+                        <t hangText="frameSize: (STRING)">
+                            The video frames size.
+                        </t>
+                        <t hangText="frameRate: (ENUM)">
+                            The video frames per second rate SHOULD BE selected from a standard list of values such as the EBU Video Frame Rate types.
+                        </t>
+                        <t hangText="aspectRatio: (ENUM)">
+                            The video aspect ratio SHOULD BE selected from a standard list of values such as the EBU Visual Aspect Ratio types.
+                        </t>
+                        <t hangText="colourMode: (ENUM)">
+                            The video colour mode SHOULD BE selected from a standard list of values such as the EBU Colour Codes.
+                        </t>
+                        <t hangText="videoEncoding: (ENUM)">
+                            The video encoding parameters.
+                            The value SHOULD BE selected from a standard list of values such as the EBU Video Compression Codes.
+                        </t>
+                        <t hangText="hd: (BOOLEAN)">
+                            A Boolean value indicating whether the video is high definition.
+                        </t>
+                        <t hangText="3d: (BOOLEAN)">
+                            A Boolean value indicating whether the video is 3D.
+                        </t>
+                        <t hangText="uhd: (BOOLEAN)">
+                            A Boolean value indicating whether the video is ultra high definition.
+                        </t>
+                        <t hangText="videoBitrate: (NUMBER)">
+                            The video bit rate.
+                        </t>
+                        <t hangText="minVideoBitrate: (NUMBER)">
+                            The minimal video bit rate.
+                        </t>
+                        <t hangText="maxVideoBitrate: (NUMBER)">
+                            The maximum video bit rate.
+                        </t>
+                        <t hangText="videoSamplingRate: (NUMBER)">
+                            The video sampling rate.
+                        </t>
+                        
+                        <t hangText="embedCode: (HTML)">
+                            An HTML fragment that, when embedded in an HTML page, will provide an interactive player UI for the media resource.
+                        </t>
+                    </list>
+                </t>
+      </section>
+            
+      <section title="Media Group" anchor="mediagroup-type">
+                <t>
+                    The Media Group object type extends the MEDIA_RESOURCE object type and represents a group of related media resources containing one or more versions.
+                    For example, a Media Group MAY BE used to express alternative representations for the same media resource or it MAY BE used to represent multiple external tracks (audio, video, text etc) associated and syncronized to the main audio and video tracks.
+                    The Media Group object type is identified with the string MEDIA_GROUP.
+                </t>
+                <t>
+                    Note that a MEDIA_GROUP locator field MAY BE empty and instead one or more alternative media sources MAY specified.
+                    A Consumer MUST BE able to select the main alternative media source by stepping through each of the specified sources in the given order.
+                    <list style="hanging">
+                        <t hangText="sources: [MEDIA_RESOURCE]">
+                            A list of alternative representations for the same media resource (e.g. alternative source files using different encodings/codecs made available to a web browser to play the same content).
+                        </t>
+                        <t hangText="tracks: [MEDIA_GROUP]">
+                            Used to describe alternative audio, video or text tracks syncronized with the main the media resource.
+                            <list style="hanging">
+                                <t hangText="kind: (ENUM)">
+                                    The type of track SHOULD BE selected from a standard list of values such as the HTML5 video track kind attribute, the EBU Audio Channel Purpose  or Language Purpose codes (e.g. 'subtitles', 'captions', 'descriptions', 'signing', 'dubbing').
+                                </t>
+                                <t hangText="lang: (LANGUAGE)">
+                                    The language of the track.
+                                </t>
+                                <t hangText="label: (STRING)">
+                                    A human-readable label or name associated to the type sub-field.
+                                    This is the Primary Sub-Field for the purposes of sorting and filtering.
+                                </t>
+                            </list>
+                        </t>
+                    </list>
+                </t>
+      </section>
+            
+      <section title="Segment" anchor="segment-type">
+                <t>
+                    The Segment object type extends the CONTENT object type and represents a continuous portion of a piece of a programme version, for example a single topic in a news programme or the highlights of a soccer match.
+                    A particular segment can belong to a single programme only, but it can be a member of multiple segment groups.
+                    A programme can contain multiple segments.
+                    Segments are reusable, editorially distinct items.
+                    
+                    <list style="hanging">
+                        <t hangText="programme: (VERSION)">
+                            A reference to the programme version this segment belongs to.
+                            If the segment is part of a segment group, this field MAY be left empty and the segment is assumed to belong to the programme as referenced by the parent segment group.
+                        </t>
+                        <t hangText="segmentType: (ENUM)">
+                            The type of segment SHOULD BE selected from a standard list of values (e.g. 'highlights', 'bookmarks', 'preview', 'insertion points', 'shots', 'speech').
+                        </t>
+                        <t hangText="start: (TIMECODE or TIME or NUMBER)">
+                            The beginning point for playback of the programme segment.
+                        </t>
+                        <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
+                            The time based duration of the programme segment.
+                        </t>
+                        <t hangText="chapter: (BOOLEAN)">
+                            A Boolean value indicating whether the programme segment is a chapter.
+                        </t>
+                        <t hangText="media: (LINK)">
+                            A link to the media resource representing the segment.
+                            The href sub-field MAY match the corresponding media resource locator field or contain a URI Media Fragment with a Normal Play Time (NPT) or SMPTE time code as defined in section 4.2.1 of <xref target="MEDIA-FRAGMENTS-URI"/>.
+                        </t>
+                    </list>            
+                </t>
+      </section>
+            
+      <section title="Segment Group" anchor="segmentgroup-type">
+                <t>
+                    The Segment Group object type extends the SEGMENT object type and represents collection of segments that are grouped together.
+                    A segment group can contain segments or segment groups.
+                    The Segment Group object type is identified with the string SEGMENT_GROUP.
+                    
+                    <list style="hanging">
+                        <t hangText="segments: [SEGMENT]">
+                            The list of segments that are contained within the segment group.
+                            The order of the references to segments determines the temporal playback order of segments in this group.
+                        </t>
+                        <!--
+                         <t hangText="ordered: (BOOLEAN)">
+                         A Boolean value indicating whether the programme segment group is ordered.
+                         </t>
+                         -->
+                        <!-- eventually add top-level boolean to flag if the group is root or not -->
+                    </list>            
+                </t>
+      </section>
+
       <section title="Rights" anchor="rights-type">
         <t>
             The Rights object type extends the basic object type CONTENT and represents information (rights management statement or reference to a service providing such information e.g. via a URL) about copyright, intellectual property rights or other property rights held in and over a piece of content, stating whether access is open or restricted in some way.
             <list style="hanging">
-                <t hangText="type: (ENUM)">
+                <t hangText="rightsType: (ENUM)">
                     The type of rights expressed (e.g. 'merchandising', 'derivation', 'publication').
                     The value SHOULD BE selected from a standard list of values such as the EBU Rights Type codes.
-                    This is the Primary Sub-Field for the purposes of sorting and filtering.
                 </t>  
                 <t hangText="rightsHolder: (CONTACT)">
                     The person or organisation holding or managing the rights related to the piece of content.
@@ -2712,21 +2757,17 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t hangText="temporal: (PERIOD)">
                     The temporal coverage.
                 </t>
-                <t hangText="inclusionCountries: [COUNTRY or STRING]">
+                <t hangText="inclusionCountries: [TERRITORY or STRING]">
                     An inclusion list of countries for whom the content is intended or useful.
                     The special value 'all' is reserved to indicate all or any country.
                 </t>
-                <t hangText="exclusionCountries: [COUNTRY or STRING]">
+                <t hangText="exclusionCountries: [TERRITORY or STRING]">
                     An exclusion list of countries for whom the content is intended or useful.
                     The special value 'all' is reserved to indicate all or any country.
                 </t>
                 <t hangText="coverageType: (ENUM)">
                     The coverage type (e.g. broadcast locally, regionally, nationally or internationally).
                     The value SHOULD BE selected from a standard list of values such as the EBU Rights Type codes.
-                </t>
-                <t hangText="link: (LINK)">
-                    A copy of the copyright license terms under which the content is made available.
-                    If the field is set, the <spanx style="verb">rel</spanx> sub-field MUST have the <spanx style="verb">license</spanx> value.
                 </t>
             </list>            
         </t>
@@ -2993,10 +3034,32 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Updated "contributor" sub-filed "role" as ENUM or IRI.</t>
                 <t>Added "label" sub-field to default Complex Type definition."</t>
                 <t>Updated "genre", "targetAudience" and "format" definitions so that "value" is primary sub-field as ENUM or IRI.</t>
+                <t>Added "targetRegion", "notRated" and "adultContent" to Content.</t>
                 <t>Added "released" and "copyrighted" dates.</t>
                 <t>Added "reason", "linkToLogo", "notRated", "adultContent" and "targetRegion" to "targetAudience".</t>
                 <t>Moved "firstTransmissionDate", "firstTransmissionChannel" and "repeats" to Programme level.</t>
                 <t>Removed "episodes" and "series" from Programme.</t>
+                <t>Renamed simple type COUNTRY to TERRITORY.</t>
+                <t>Updated Media Resource "locator" field definition.</t>
+                <t>Corrected Media Resource "medium" field and renamed "type" to "mediaType".</t>
+                <t>Flattened audo and video paraementers in Media Resource.</t>
+                <t>Simplified Service hierarchy removing Channel and Outlet types.</t>
+                <t>Renamed Title to Ondemand and Catalog to Catalogue.</t>
+                <t>Renamed Catalogue "type" to "catalogueType".</t>
+                <t>Added "logo", "dog", "lcn", "application" and "locator" to Service.</t>
+                <t>Removed "subType" from Service and renamed "type" to "serviceType".</t>
+                <t>Renamed Rights "type" to "rightsType".</t>
+                <t>Removed Rights "link". The links HTML5 "license" Lynk Type can be used instead.</t>
+                <t>Added Application type.</t>
+                <t>Renamed Segment "type" to "segmentType".</t>
+                <t>Removed "media" sub-field from "source" in Content.</t>
+                <t>Removed "type" from Version.</t>
+                <t>Added Application types hierarchy and referred from "application" in Service.</t>
+                <t>Made Programme "country" plural.</t>
+                <t>Added TERRITORY type to "location" possible list of value types."</t>
+                <t>Added YEAR type to "temporal" possible list of value types.</t>
+                <t>Added "minAudioBitrate", "maxAudioBitrate", "minVideoBitrate" and "maxVideoBitrate" to Media Resource.</t>
+                <t>Added "guidanceText" and "longGuidanceText" to "targetAudience" on Content.</t>
             </list>
         </t>
     </section>
@@ -3392,7 +3455,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
               <format type="HTML" target="http://en.wikipedia.org/wiki/SMPTE_time_code" />
           </reference>
           
-          <reference anchor="ISO3166-country">
+          <reference anchor="ISO3166">
               <front>
                   <title>ISO 3166</title>
                   <author>
@@ -3436,7 +3499,20 @@ WWW-Authenticate: Basic realm="sample.site.org"
               </front>
               <format type="HTML" target="http://www.w3.org/2008/WebVideo/Fragments/WD-media-fragments-spec/" />
           </reference>
-          
+          <reference anchor="DVB-URI">
+              <front>
+                  <title>Uniform Resource Identifier (URI) Scheme for Digital Video Broadcasting (DVB) Programme Resources</title>
+                  <author fullname='M. McRoberts, Ed.'>
+                      <organization>British Broadcasting Corportation</organization>
+                  </author>
+                  <author fullname='A. Adolf'>
+                      <organization>Condition-ALPHA</organization>
+                  </author>
+                  <date month='March' day ='23' year='2013' />
+              </front>
+              <format type="HTML" target="http://tools.ietf.org/html/draft-mcroberts-uri-dvb"/>
+          </reference>
+              
       </references>
       
     <!-- add proper and more examples based, episodes, series, brands, collections, movies, subtitles/accessibility etc. -->

@@ -206,12 +206,12 @@ Listings Format<br />
 Basic Structure<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#fields">7.1.1.</a>&nbsp;
 Fields<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#relationships">7.1.2.</a>&nbsp;
-Relationships<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#predefined-structures">7.1.3.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#predefined-structures">7.1.2.</a>&nbsp;
 Predefined Complex Fields<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#link-structure">7.1.3.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#link-structure">7.1.2.1.</a>&nbsp;
 Link<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#relationships">7.1.3.</a>&nbsp;
+Relationships<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#multilingual-fields">7.2.</a>&nbsp;
 Multilingual Fields<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#interoperability-considerations">7.3.</a>&nbsp;
@@ -268,39 +268,43 @@ Episode<br />
 Clip<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#version-type">8.4.11.</a>&nbsp;
 Version<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#mediaresource-type">8.4.12.</a>&nbsp;
-Media Resource<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#mediagroup-type">8.4.13.</a>&nbsp;
-Media Group<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#segment-type">8.4.14.</a>&nbsp;
-Segment<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#segmentgroup-type">8.4.15.</a>&nbsp;
-Segment Group<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#service-type">8.4.16.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#service-type">8.4.12.</a>&nbsp;
 Service<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#outlet-type">8.4.17.</a>&nbsp;
-Outlet<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#channel-type">8.4.18.</a>&nbsp;
-Channel<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programmelocation-type">8.4.19.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programmelocation-type">8.4.13.</a>&nbsp;
 Programme Location<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#broadcast-type">8.4.20.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#broadcast-type">8.4.14.</a>&nbsp;
 Broadcast<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#title-type">8.4.21.</a>&nbsp;
-Title<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#schedule-type">8.4.22.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ondemand-type">8.4.15.</a>&nbsp;
+Ondemand<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#schedule-type">8.4.16.</a>&nbsp;
 Schedule<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#catalog-type">8.4.23.</a>&nbsp;
-Catalog<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rights-type">8.4.24.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#catalogue-type">8.4.17.</a>&nbsp;
+Catalogue<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#application-type">8.4.18.</a>&nbsp;
+Application<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#application-build-type">8.4.19.</a>&nbsp;
+Application Build<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#application-publication-type">8.4.20.</a>&nbsp;
+Application Publication<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#application-gallery-type">8.4.21.</a>&nbsp;
+Application Gallery<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#mediaresource-type">8.4.22.</a>&nbsp;
+Media Resource<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#mediagroup-type">8.4.23.</a>&nbsp;
+Media Group<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#segment-type">8.4.24.</a>&nbsp;
+Segment<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#segmentgroup-type">8.4.25.</a>&nbsp;
+Segment Group<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rights-type">8.4.26.</a>&nbsp;
 Rights<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#award-type">8.4.25.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#award-type">8.4.27.</a>&nbsp;
 Award<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#contact-type">8.4.26.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#contact-type">8.4.28.</a>&nbsp;
 Contact<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#organisation-type">8.4.27.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#organisation-type">8.4.29.</a>&nbsp;
 Organisation<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#group-type">8.4.28.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#group-type">8.4.30.</a>&nbsp;
 Group<br />
 <a href="#IANA">9.</a>&nbsp;
 IANA Considerations<br />
@@ -353,7 +357,7 @@ Definitions</h3>
 <dd>
             
             It is structured information that describes, explains, locates, or makes it easier to retrieve, use, or manage a piece of audiovisual content.
-            Examples of metadata records include detailed information about a television show episode (title, synopsis, series, brand, creator, contributor, release date, etc.), a film (title, synopsis, genre, year, duration, etc.), an advert on television (title, advert brand, advert product, advert code, product code etc.), a broadcast event on a television schedule (broadcast channel name, start/end time, country, language, etc.) and so on. 
+            Examples of metadata records include detailed information about a television show episode (title, synopsis, series, brand, creator, contributor, release date, etc.), a film (title, synopsis, genre, year, duration, etc.), an advert on television (title, advert brand, advert product, advert code, product code etc.), a broadcast event on a television schedule (broadcast service name, start/end time, country, language, etc.) and so on. 
             More specifically a piece of Content Metadata is being represented with the "Content" object type throughout the scope of this document (see <a class='info' href='#content-type'>Section&nbsp;8.4.2<span> (</span><span class='info'>Content</span><span>)</span></a>).
           
 </dd>
@@ -422,7 +426,7 @@ Definitions</h3>
 </dd>
 <dt>Canonical Value:</dt>
 <dd>
-            Specified string values for string-valued Entry fields that represent common values in a canonical form. For example <tt>alternativeTitle</tt> field MAY have a <tt>type</tt> of "Original Title", "Main Title", "Working Title" etc.
+            Specified string values for string-valued Entry fields that represent common values in a canonical form. For example <tt>alternativeTitle</tt> field MAY have a <tt>type</tt> of "original", "working" etc.
             Service Providers SHOULD conform to Canonical Values if appropriate, but MAY deviate if they need to represent additional values (see <a class='info' href='#reference-data'>Section&nbsp;8.1<span> (</span><span class='info'>Reference Data</span><span>)</span></a>).
           
 </dd>
@@ -846,7 +850,7 @@ Filtering</h3>
                 If a Complex Field is specified, its Primary Sub-Field must match.
                 If the specified field is not a direct child of the <tt>entry</tt> element, the full path MUST be specified using the '.' character as separator.
                 For example, to filter by genre the parameter value is <tt>genre</tt> and to filter by awards <tt>title</tt>, the parameter value is <tt>awards.title</tt>.
-                The parameter MUST be used only to filter Entry fields and sub-fields, or relationships fields and sub-fields (i.e. an attribute of a relationship MAY be filtered, for example <tt>contributor.role</tt>, see <a class='info' href='#relationships'>Section&nbsp;7.1.2<span> (</span><span class='info'>Relationships</span><span>)</span></a>).
+                The parameter MUST be used only to filter Entry fields and sub-fields, or relationships fields and sub-fields (i.e. an attribute of a relationship MAY be filtered, for example <tt>contributor.role</tt>, see <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>).
                 The parameter MUST NOT be used to indirectly filter Sub-Entries fields and sub-fields (i.e. an attribute of a Sub-Entry connected to the Entry being filtered via a named relationship, for example it MUST NOT be possible to filter by the middleName field of a contributor from a programme Entry).
                 Instead specific sub-entries can be selected and accessed using additional path information (see <a class='info' href='#path-information'>Section&nbsp;6.1<span> (</span><span class='info'>Requesting Specific Information</span><span>)</span></a>) and Sub-Entries fields and sub-fields MAY be filtered accordingly.
               
@@ -997,14 +1001,14 @@ Presentation</h3>
 <dd>
                 If non-empty, each Entry returned SHALL contain only the fields or relationships explicitly requested.
                 A Service Provider MAY return a subset of the requested fields or relationships if they are not supported.
-                A Provider SHOULD return at least the <tt>id</tt> and <tt>displayName</tt> fields for an Entry, and the <tt>href</tt> and <tt>entry</tt> fields for relationships included <tt>by-reference</tt> and <tt>by-value</tt> respectively (see <a class='info' href='#relationships'>Section&nbsp;7.1.2<span> (</span><span class='info'>Relationships</span><span>)</span></a>).
+                A Provider SHOULD return at least the <tt>id</tt> and <tt>displayName</tt> fields for an Entry, and the <tt>href</tt> and <tt>entry</tt> fields for relationships included <tt>by-reference</tt> and <tt>by-value</tt> respectively (see <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>).
                 This parameter is used for efficiency when a Consumer wishes to access only a subset of the fields or relationships.
                 Value is a comma separated list of top level field or relationship names, and it defaults to an empty list which means it's up to the Provider which fields or relationships to return.
                 If the specified fields are not a direct child of the <tt>entry</tt> element, the full path MUST be specified using the '.' character as separator (e.g. <tt>id,title,alternative_title.type, contributor.role</tt>).
                 Consumers MAY request all available fields or relationships to be returned by using the special value <tt>@all</tt> (i.e. any field or relationship).
                 Consumers MAY request only all available fields by using the special value <tt>@all_fields</tt> (i.e. any field).
                 Consumers MAY request only all available relationships by using the special value <tt>@all_relationships</tt> (i.e. any relationship).
-                Providers MUST return the requested relationships information using a LINK structure as explained in <a class='info' href='#relationships'>Section&nbsp;7.1.2<span> (</span><span class='info'>Relationships</span><span>)</span></a>.
+                Providers MUST return the requested relationships information using a LINK structure as explained in <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>.
                 Alternatively a Provider MAY support the <tt>includeRelationships</tt> parameter (see below).
                 
                 Providers MUST decline to present results if the specified fields format is not recognized (as per <a class='info' href='#declining'>Section&nbsp;6.2.5<span> (</span><span class='info'>Declining to honor query parameters</span><span>)</span></a>).
@@ -1014,7 +1018,7 @@ Presentation</h3>
 <dd>
                 This is an optional parameter and it MUST be used in combination with the <tt>fields</tt> parameter.
                 If non-empty, it MUST specifies a valid boolean value of 'true' or 'false'.
-                If the value is 'true' a Provider SHOULD include relationships information using an inline <tt>entry</tt> structure as explained in <a class='info' href='#relationships'>Section&nbsp;7.1.2<span> (</span><span class='info'>Relationships</span><span>)</span></a> and <a class='info' href='#response-format'>Section&nbsp;6.3<span> (</span><span class='info'>Response Format</span><span>)</span></a>.
+                If the value is 'true' a Provider SHOULD include relationships information using an inline <tt>entry</tt> structure as explained in <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a> and <a class='info' href='#response-format'>Section&nbsp;6.3<span> (</span><span class='info'>Response Format</span><span>)</span></a>.
                 A Provider SHOULD expand only the immediate Sub-Entries, one level only.
                 Providers MAY support the expansion of an arbitrary number of levels of Sub-Entries.
                 A Provider SHOULD NOT expand the same Sub-Entry multiple times in the scope of the same Entry (e.g. a Programme Entry which is connected to a Contact Entry multiple times via the contributor relationship as 'director' or 'writer').
@@ -1132,7 +1136,7 @@ Response Format</h3>
               <tt>entry</tt>: an array of Entry objects, one for each Entry matching the request, as defined in <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a>.
               For consistency of parsing, if the request could possibly return multiple Entries (as is normally the case), this value MUST always be an array of results, even if there happens to be 0 or 1 matching results.
               If the request is specifically for a single Entry (e.g. because the request contains Additional Path Information like <tt>/id</tt>), then <tt>entry</tt> MUST be an object containing the single Entry returned (i.e. <tt>"entry": [ { /* first Entry */ }, ... ]</tt> and <tt>"entry": { /* only Entry */ }</tt> respectively).
-              When Sub-Entries are requested <tt>by-value</tt> to be included inline (see <a class='info' href='#relationships'>Section&nbsp;7.1.2<span> (</span><span class='info'>Relationships</span><span>)</span></a>), then the same <tt>entry</tt> construct MUST be used to express any Sub-Entries as value of the RELATIONSHIP Complex Field its sub-field <tt>entry</tt> (i.e. <tt>"entry": [ { /* Entry fields */ ... , "pluralRelationship_label": [ { "entry": { /* first Sub-Entry */ }, "rel": "first" }, ... ] } ]</tt> for Plural Relationships, and <tt>"entry": [ { /* Entry fields */ ... , "singularRelationship_label": { "entry": { /* only Sub-Entry */ }, "rel": "next" } } ]</tt> for Singular Relationships respectively).
+              When Sub-Entries are requested <tt>by-value</tt> to be included inline (see <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>), then the same <tt>entry</tt> construct MUST be used to express any Sub-Entries as value of the RELATIONSHIP Complex Field its sub-field <tt>entry</tt> (i.e. <tt>"entry": [ { /* Entry fields */ ... , "pluralRelationship_label": [ { "entry": { /* first Sub-Entry */ }, "rel": "first" }, ... ] } ]</tt> for Plural Relationships, and <tt>"entry": [ { /* Entry fields */ ... , "singularRelationship_label": { "entry": { /* only Sub-Entry */ }, "rel": "next" } } ]</tt> for Singular Relationships respectively).
             
 </li>
 </ul><p>
@@ -1409,9 +1413,9 @@ Fields</h3>
                     The special value type PERIOD is used to describe a string which represents a time interval as defined in <a class='info' href='#DCMI-PERIOD'>[DCMI&#8209;PERIOD]<span> (</span><span class='info'>, &ldquo;DCMI Period Encoding Scheme,&rdquo; .</span><span>)</span></a>.
                 
 </dd>
-<dt>COUNTRY:</dt>
+<dt>TERRITORY:</dt>
 <dd>
-                    The special value type COUNTRY is used to describe a string which represents a country or territory as defined in ISO 3166 <a class='info' href='#ISO3166-country'>[ISO3166&#8209;country]<span> (</span><span class='info'>ISO, &ldquo;ISO 3166,&rdquo; .</span><span>)</span></a>.
+                    The special value type TERRITORY is used to describe a string which represents a country or territory as defined in ISO 3166 <a class='info' href='#ISO3166'>[ISO3166]<span> (</span><span class='info'>ISO, &ldquo;ISO 3166,&rdquo; .</span><span>)</span></a>.
                 
 </dd>
 <dt>PLACE:</dt>
@@ -1440,14 +1444,21 @@ Fields</h3>
                 <br />
 <br />
 
-                Unless specified otherwise, and except for the structures defined in <a class='info' href='#link-structure'>Section&nbsp;7.1.3.1<span> (</span><span class='info'>Link</span><span>)</span></a> and <a class='info' href='#relationships'>Section&nbsp;7.1.2<span> (</span><span class='info'>Relationships</span><span>)</span></a>, all Plural Complex Fields (i.e. plural fields which instances are not a simple value) have the same four standard sub-fields:
+                Unless specified otherwise, and except for the structures defined in <a class='info' href='#link-structure'>Section&nbsp;7.1.2.1<span> (</span><span class='info'>Link</span><span>)</span></a> and <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>, all Plural Complex Fields (i.e. plural fields which instances are not a simple value) have the same four standard sub-fields:
                     
 <blockquote class="text"><dl>
 <dt>value: (SIMPLE)</dt>
 <dd>
                             The primary value of this field, e.g. an alternative title, URL or e-mail address.
                             When specifying a <tt>sortBy</tt> field in the Query Parameters for a Plural Field, the default meaning is to sort based on this <tt>value</tt> sub-field.
-                            Each non-empty Plural Field value MUST contain at least the value sub-field, but all other sub-fields are optional.
+                            Each non-empty Plural Field value MUST contain at least the <tt>value</tt> sub-field, but all other sub-fields are optional.
+                        
+</dd>
+<dt>primary: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether this instance of the Plural Field is the primary or preferred value of for this field, e.g. the preferred mailing address or primary e-mail address.
+                            Service Providers MUST NOT mark more than one instance of the same Plural Field as primary="true", and MAY choose not to mark any fields as primary, if this information is not available.
+                            For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
                         
 </dd>
 <dt>type: (ENUM)</dt>
@@ -1459,14 +1470,12 @@ Fields</h3>
 </dd>
 <dt>label: (STRING)</dt>
 <dd>
-                            A human readable label or name associated to the <tt>value</tt> sub-field.
+                            A human-readable label or name associated to the <tt>value</tt> sub-field.
                         
 </dd>
-<dt>primary: (BOOLEAN)</dt>
+<dt>lang: (LANGUAGE)</dt>
 <dd>
-                            A Boolean value indicating whether this instance of the Plural Field is the primary or preferred value of for this field, e.g. the preferred mailing address or primary e-mail address.
-                            Service Providers MUST NOT mark more than one instance of the same Plural Field as primary="true", and MAY choose not to mark any fields as primary, if this information is not available.
-                            For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
+                            The language of the attribute value. The value MUST be a valid LANGUAGE Canonical Value.
                         
 </dd>
 <dt>attributionDate: (TIMESTAMP)</dt>
@@ -1477,11 +1486,6 @@ Fields</h3>
 <dt>note: (STRING or HTML)</dt>
 <dd>
                          A note on the attribute value to provide additional contextual information.
-                        
-</dd>
-<dt>lang: (LANGUAGE)</dt>
-<dd>
-                            The language of the attribute value. The value MUST be a valid LANGUAGE Canonical Value.
                         
 </dd>
 </dl></blockquote>
@@ -1495,6 +1499,9 @@ Fields</h3>
 </p>
 <p>
             In the rest of this document, a required field (or sub-field) is marked with the REQUIRED keyword.
+        
+</p>
+<p>
             A Simple Field is marked with the SIMPLE keyword or the uppercase identifier of its datatype (e.g. STRING, DATE).
             A Complex Field is marked with the COMPLEX keyword or the uppercase identifier of its complex datatype (e.g. LINK, SOURCE).
             Some fields MAY be defined as accepting multiple datatypes using the "or" combinator. For example, the type "STRING or NUMBER" indicates that a Simple Field may accept either a string or a numeric value.
@@ -1517,9 +1524,84 @@ Fields</h3>
 </dl></blockquote><p>
         
 </p>
-<a name="relationships"></a><br /><hr />
+<a name="predefined-structures"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.7.1.2"></a><h3>7.1.2.&nbsp;
+Predefined Complex Fields</h3>
+
+<a name="link-structure"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.1.2.1"></a><h3>7.1.2.1.&nbsp;
+Link</h3>
+
+<p>
+                      The components of a Complex Field to represent a standard LINK as defined by section 3 of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
+                      This enables Providers to create generic standard links between an Entry and other resources, including other Entries (see <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>), using the registry of links relations defined by the Web Linking specification and HTML5 Link types <a class='info' href='#HTML5'>[HTML5]<span> (</span><span class='info'>W3C, &ldquo;HTML5 - A vocabulary and associated APIs for HTML and XHTML,&rdquo; .</span><span>)</span></a>.
+                      The Context of the LINK is the Entry which has a field using the LINK construct as value.
+                      
+                      
+                  
+</p>
+<p>
+                      </p>
+<blockquote class="text"><dl>
+<dt>href: (IRI)</dt>
+<dd>
+                              REQUIRED. The IRI of the link. This IRI MAY be relative or absolute. If the URI is relative it is resolved against the Service Provider root API endpoint URL.
+                              Unless otherwise specified, this is the Primary Sub-Field for the field having this construct as value, for the purposes of sorting and filtering.
+                              The <tt>value</tt> and <tt>lang</tt> sub-fields SHALL not be specified.
+                          
+</dd>
+<dt>rel: (ENUM or IRI)</dt>
+<dd>
+                              The link relation type. Unless otherwise specified, the rel value MUST be a valid Canonical Value as defined in <a class='info' href='#IANA-RELREG'>[IANA&#8209;RELREG]<span> (</span><span class='info'>IANA, &ldquo;Link Relation Types,&rdquo; .</span><span>)</span></a> or in <a class='info' href='#additional-link-relation-types'>Section&nbsp;8.3<span> (</span><span class='info'>Additional Link Relation Types</span><span>)</span></a>.
+                              If this property is omitted or null it MUST BE processed as if the value was the string "alternate".
+                          
+</dd>
+<dt>type: (ENUM)</dt>
+<dd>
+                              The media type of the representation identified by the IRI of the link. The value is a hint about the type of the representation that is expected to be returned when the value of the href field is dereferenced.
+                              Note that the type field does not override the actual media type returned with the representation. A link construct MAY have a type sub-field, whose value MUST conform to the syntax of a MIME media type defined in <a class='info' href='#MIMEREG'>[MIMEREG]<span> (</span><span class='info'>Freed, N. and J. Klensin, &ldquo;Media Type Specifications and Registration Procedures,&rdquo; December&nbsp;2005.</span><span>)</span></a>. Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <a class='info' href='#IANA-MIMEREG'>[IANA&#8209;MIMEREG]<span> (</span><span class='info'>IANA, &ldquo;MIME Media Types,&rdquo; .</span><span>)</span></a>.
+                          
+</dd>
+<dt>hreflang: (LANGUAGE)</dt>
+<dd>
+                              The content language of the representation identified by the IRI of the link. When used together with the rel sub-field with value "alternate", it implies a translated version of the Context of the link. A link construct MAY have an hreflang sub-field, whose value MUST be a valid LANGUAGE Canonical Value.
+                          
+</dd>
+<dt>label: (STRING)</dt>
+<dd>
+                              A human-readable label about the link.
+                          
+</dd>
+<dt>length: (NUMBER)</dt>
+<dd>
+                              The content length in octets of the representation identified by the IRI of the link. The value is a hint about the content length of the representation returned when the IRI in the href sub-field is mapped to a URI and dereferenced. Note that the length sub-field does not override the actual content length of the representation as reported by the underlying protocol.
+                          
+</dd>
+<dt>width: (NUMBER)</dt>
+<dd>
+                              When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal width in pixels.
+                          
+</dd>
+<dt>height: (NUMBER)</dt>
+<dd>
+                              When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal height in pixels.
+                          
+</dd>
+<dt>duration: (NUMBER)</dt>
+<dd>
+                              When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration in seconds.
+                          
+</dd>
+</dl></blockquote><p>
+                      
+                      Unless otherwise specified, when the link construct is used in a Plural Field, Providers MAY return the link construct with the same href and rel values combination more than once with different type, hreflang, label, length, width, height or duration, but MUST NOT return more than once the same type and hreflang combination for a given href with rel field of value "alternate".
+                  
+</p>
+<a name="relationships"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.7.1.3"></a><h3>7.1.3.&nbsp;
 Relationships</h3>
 
 <p>
@@ -1545,7 +1627,7 @@ Relationships</h3>
 <blockquote class="text"><dl>
 <dt>by-reference</dt>
 <dd>
-                The relationship is formatted using a LINK structure as defined in <a class='info' href='#link-structure'>Section&nbsp;7.1.3.1<span> (</span><span class='info'>Link</span><span>)</span></a> with the following differences:
+                The relationship is formatted using a LINK structure as defined in <a class='info' href='#link-structure'>Section&nbsp;7.1.2.1<span> (</span><span class='info'>Link</span><span>)</span></a> with the following differences:
                 
 <blockquote class="text"><dl>
 <dt>href: (IRI)</dt>
@@ -1610,11 +1692,6 @@ Relationships</h3>
                     The label SHOULD match the <tt>displayName</tt> field of the Sub-Entry.
                   
 </dd>
-<dt>primary: (BOOLEAN)</dt>
-<dd>
-                    If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the link is the primary or preferred value of for the field, e.g. the preferred link. Service Providers MUST NOT mark more than one instance of the same link as primary="true", and MAY choose not to mark any fields as primary, if this information is not available. For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
-                  
-</dd>
 </dl></blockquote>
                 A Provider MAY define additional fields if necessary.
               
@@ -1657,85 +1734,6 @@ Relationships</h3>
 </dd>
 </dl></blockquote><p>
         
-</p>
-<a name="predefined-structures"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.7.1.3"></a><h3>7.1.3.&nbsp;
-Predefined Complex Fields</h3>
-
-<a name="link-structure"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.7.1.3.1"></a><h3>7.1.3.1.&nbsp;
-Link</h3>
-
-<p>
-                The components of a Complex Field to represent a standard LINK as defined by section 3 of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
-                This enables Providers to create generic standard links between an Entry and other resources, including other Entries (see <a class='info' href='#relationships'>Section&nbsp;7.1.2<span> (</span><span class='info'>Relationships</span><span>)</span></a>), using the registry of links relations defined by the Web Linking specification and HTML5 Link types <a class='info' href='#HTML5'>[HTML5]<span> (</span><span class='info'>W3C, &ldquo;HTML5 - A vocabulary and associated APIs for HTML and XHTML,&rdquo; .</span><span>)</span></a>.
-                The Context of the LINK is the Entry which has a field using the LINK construct as value. 
-                
-                
-            
-</p>
-<p>
-                </p>
-<blockquote class="text"><dl>
-<dt>href: (IRI)</dt>
-<dd>
-                    REQUIRED. The IRI of the link. This IRI MAY be relative or absolute. If the URI is relative it is resolved against the Service Provider root API endpoint URL.
-                    Unless otherwise specified, this is the Primary Sub-Field for the field having this construct as value, for the purposes of sorting and filtering.
-                  
-</dd>
-<dt>rel: (ENUM or IRI)</dt>
-<dd>
-                    The link relation type. Unless otherwise specified, the rel value MUST be a valid Canonical Value as defined in <a class='info' href='#IANA-RELREG'>[IANA&#8209;RELREG]<span> (</span><span class='info'>IANA, &ldquo;Link Relation Types,&rdquo; .</span><span>)</span></a> or in <a class='info' href='#additional-link-relation-types'>Section&nbsp;8.3<span> (</span><span class='info'>Additional Link Relation Types</span><span>)</span></a>.
-                    If this property is omitted or null it MUST BE processed as if the value was the string "alternate".
-                  
-</dd>
-<dt>type: (ENUM)</dt>
-<dd>
-                     The media type of the representation identified by the IRI of the link. The value is a hint about the type of the representation that is expected to be returned when the value of the href field is dereferenced.
-                     Note that the type field does not override the actual media type returned with the representation. A link construct MAY have a type sub-field, whose value MUST conform to the syntax of a MIME media type defined in <a class='info' href='#MIMEREG'>[MIMEREG]<span> (</span><span class='info'>Freed, N. and J. Klensin, &ldquo;Media Type Specifications and Registration Procedures,&rdquo; December&nbsp;2005.</span><span>)</span></a>. Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <a class='info' href='#IANA-MIMEREG'>[IANA&#8209;MIMEREG]<span> (</span><span class='info'>IANA, &ldquo;MIME Media Types,&rdquo; .</span><span>)</span></a>.
-                  
-</dd>
-<dt>hreflang: (LANGUAGE)</dt>
-<dd>
-                     The content language of the representation identified by the IRI of the link. When used together with the rel sub-field with value "alternate", it implies a translated version of the Context of the link. A link construct MAY have an hreflang sub-field, whose value MUST be a valid LANGUAGE Canonical Value.
-                  
-</dd>
-<dt>label: (STRING)</dt>
-<dd>
-                     A human readable label about the link.
-                  
-</dd>
-<dt>length: (NUMBER)</dt>
-<dd>
-                     The content length in octets of the representation identified by the IRI of the link. The value is a hint about the content length of the representation returned when the IRI in the href sub-field is mapped to a URI and dereferenced. Note that the length sub-field does not override the actual content length of the representation as reported by the underlying protocol.
-                  
-</dd>
-<dt>width: (NUMBER)</dt>
-<dd>
-                    When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal width in pixels.
-                  
-</dd>
-<dt>height: (NUMBER)</dt>
-<dd>
-                    When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal height in pixels.
-                  
-</dd>
-<dt>duration: (NUMBER)</dt>
-<dd>
-                    When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration in seconds.
-                  
-</dd>
-<dt>primary: (BOOLEAN)</dt>
-<dd>
-                    If the link construct is used in a Plural Field, this is a boolean value indicating whether this instance of the link is the primary or preferred value of for the field, e.g. the preferred link. Service Providers MUST NOT mark more than one instance of the same link as primary="true", and MAY choose not to mark any fields as primary, if this information is not available. For efficiency, Service Providers SHOULD NOT mark all non-primary fields with primary="false", but should instead omit this sub-field for all non-primary instances.
-                  
-</dd>
-</dl></blockquote><p>
-
-                Unless otherwise specified, when the link construct is used in a Plural Field, Providers MAY return the link construct with the same href and rel values combination more than once with different type, hreflang, label, length, width, height or duration, but MUST NOT return more than once the same type and hreflang combination for a given href with rel field of value "alternate".
-            
 </p>
 <a name="multilingual-fields"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
@@ -2037,6 +2035,39 @@ Object Types</h3>
 <p><a class='info' href='#version-type'>Version<span> (</span><span class='info'>Version</span><span>)</span></a>
                             
 </p>
+<p><a class='info' href='#service-type'>Service<span> (</span><span class='info'>Service</span><span>)</span></a>
+                            
+</p>
+<p><a class='info' href='#programmelocation-type'>Programme Location<span> (</span><span class='info'>Programme Location</span><span>)</span></a>
+                                </p>
+<blockquote class="text">
+<p><a class='info' href='#broadcast-type'>Broadcast<span> (</span><span class='info'>Broadcast</span><span>)</span></a>
+                                    
+</p>
+<p><a class='info' href='#ondemand-type'>Ondemand<span> (</span><span class='info'>Ondemand</span><span>)</span></a>
+                                    
+</p>
+</blockquote>
+                            
+
+<p><a class='info' href='#schedule-type'>Schedule<span> (</span><span class='info'>Schedule</span><span>)</span></a>
+                            
+</p>
+<p><a class='info' href='#catalogue-type'>Catalogue<span> (</span><span class='info'>Catalogue</span><span>)</span></a>
+                            
+</p>
+<p><a class='info' href='#application-type'>Application<span> (</span><span class='info'>Application</span><span>)</span></a>
+                            
+</p>
+<p><a class='info' href='#application-build-type'>Application Build<span> (</span><span class='info'>Application Build</span><span>)</span></a>
+                            
+</p>
+<p><a class='info' href='#application-publication-type'>Application Publication<span> (</span><span class='info'>Application Publication</span><span>)</span></a>
+                            
+</p>
+<p><a class='info' href='#application-gallery-type'>Application Gallery<span> (</span><span class='info'>Application Gallery</span><span>)</span></a>
+                            
+</p>
 <p><a class='info' href='#mediaresource-type'>Media Resource<span> (</span><span class='info'>Media Resource</span><span>)</span></a>
                                 </p>
 <blockquote class="text">
@@ -2055,36 +2086,6 @@ Object Types</h3>
 </blockquote>
                             
 
-<p><a class='info' href='#service-type'>Service<span> (</span><span class='info'>Service</span><span>)</span></a>
-                                </p>
-<blockquote class="text">
-<p><a class='info' href='#outlet-type'>Outlet<span> (</span><span class='info'>Outlet</span><span>)</span></a>
-                                    
-</p>
-</blockquote>
-                            
-
-<p><a class='info' href='#channel-type'>Channel<span> (</span><span class='info'>Channel</span><span>)</span></a>
-                            
-</p>
-<p><a class='info' href='#programmelocation-type'>Programme Location<span> (</span><span class='info'>Programme Location</span><span>)</span></a>
-                                </p>
-<blockquote class="text">
-<p><a class='info' href='#broadcast-type'>Broadcast<span> (</span><span class='info'>Broadcast</span><span>)</span></a>
-                                    
-</p>
-<p><a class='info' href='#title-type'>Title<span> (</span><span class='info'>Title</span><span>)</span></a>
-                                    
-</p>
-</blockquote>
-                            
-
-<p><a class='info' href='#schedule-type'>Schedule<span> (</span><span class='info'>Schedule</span><span>)</span></a>
-                            
-</p>
-<p><a class='info' href='#catalog-type'>Catalog<span> (</span><span class='info'>Catalog</span><span>)</span></a>
-                            
-</p>
 <p><a class='info' href='#rights-type'>Rights<span> (</span><span class='info'>Rights</span><span>)</span></a>
                             
 </p>
@@ -2222,28 +2223,26 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
-                            The type of field for this instance.
-                            The value SHOULD BE selected from the following list: <tt>secondary</tt>, <tt>alternativeSecondary</tt>, <tt>original</tt>, <tt>artWorkOriginal</tt>, <tt>pledged</tt>, <tt>version</tt>, <tt>working</tt>, <tt>alternativeWorking</tt>, <tt>long</tt>, <tt>full</tt>, <tt>abridged</tt>, <tt>transmission</tt>, <tt>published</tt>, <tt>international</tt>, <tt>translation</tt>, <tt>pseudo</tt>, <tt>ingest</tt>.
+                            The type of field SHOULD BE selected from the following list: <tt>secondary</tt>, <tt>alternativeSecondary</tt>, <tt>original</tt>, <tt>artWorkOriginal</tt>, <tt>pledged</tt>, <tt>version</tt>, <tt>working</tt>, <tt>alternativeWorking</tt>, <tt>long</tt>, <tt>full</tt>, <tt>abridged</tt>, <tt>transmission</tt>, <tt>published</tt>, <tt>international</tt>, <tt>translation</tt>, <tt>pseudo</tt>, <tt>ingest</tt>.
                             The <tt>short</tt>, <tt>main</tt> and <tt>subtitle</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
-                            When the <tt>international</tt> and <tt>translation</tt> values are used the <tt>lang</tt> sub-field MAY used to specify the language of the alternative name text.
                         
 </dd>
 <dt>value: (STRING or HTML)</dt>
 <dd>
-                            REQUIRED. The alternative name text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                            The alternative name text.
                         
 </dd>
 </dl></blockquote>
               
 </dd>
-<dt>synopsis: (STRING or HTML)</dt>
-<dd>
-                A brief or condensed statement giving a general view about the piece of content e.g. a brief summary of the plot of a novel, motion picture, play, etc.
-              
-</dd>
 <dt>summary: (STRING or HTML)</dt>
 <dd>
                 A comprehensive and usually brief abstract, recapitulation, or compendium of of actions and events in the piece of content.
+              
+</dd>
+<dt>synopsis: (STRING or HTML)</dt>
+<dd>
+                A brief or condensed statement giving a general view about the piece of content e.g. a brief summary of the plot of a novel, motion picture, play, etc.
               
 </dd>
 <dt>description: [COMPLEX]</dt>
@@ -2254,14 +2253,13 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
-                            The type of field for this instance.
-                            The value SHOULD BE selected from the following list: <tt>annotation</tt>, <tt>annotationSynopsis</tt>, <tt>abstract</tt>, <tt>anecdotalCommentsAndReflections</tt>, <tt>theme</tt>, <tt>purpose</tt>, <tt>outline</tt>, <tt>cueWords</tt>, <tt>cueInWords</tt>, <tt>cueOutWords</tt>, <tt>process</tt>, <tt>assessment</tt>, <tt>editoralComments</tt>, <tt>keyPoints</tt>, <tt>shotDescription</tt>, <tt>creditLine</tt>, <tt>instructions</tt>, <tt>modelInformation</tt>, <tt>artwork</tt>, <tt>event</tt>, <tt>releaseInformation</tt>, <tt>intention</tt>, <tt>shotComment</tt>, <tt>citation</tt>.
+                            The type of field SHOULD BE selected from the following list: <tt>annotation</tt>, <tt>annotationSynopsis</tt>, <tt>abstract</tt>, <tt>anecdotalCommentsAndReflections</tt>, <tt>theme</tt>, <tt>purpose</tt>, <tt>outline</tt>, <tt>cueWords</tt>, <tt>cueInWords</tt>, <tt>cueOutWords</tt>, <tt>process</tt>, <tt>assessment</tt>, <tt>editoralComments</tt>, <tt>keyPoints</tt>, <tt>shotDescription</tt>, <tt>creditLine</tt>, <tt>instructions</tt>, <tt>modelInformation</tt>, <tt>artwork</tt>, <tt>event</tt>, <tt>releaseInformation</tt>, <tt>intention</tt>, <tt>shotComment</tt>, <tt>citation</tt>.
                             The <tt>synopsis</tt> and <tt>summary</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
                         
 </dd>
 <dt>value: (STRING or HTML)</dt>
 <dd>
-                            REQUIRED. The extended description text. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                            The extended description text.
                         
 </dd>
 </dl></blockquote>
@@ -2292,12 +2290,12 @@ Content</h3>
 </dd>
 <dt>roleLabel: (STRING)</dt>
 <dd>
-                        A human readable label or name associated to the <tt>role</tt> sub-field.
+                        A human-readable label or name associated to the <tt>role</tt> sub-field.
                     
 </dd>
 <dt>stageName: (STRING or HTML)</dt>
 <dd>
-                        A human readable label or name attributed to the contact on stage (e.g. 'character name' or 'interviewer').
+                        A human-readable label or name attributed to the contact on stage (e.g. 'character name' or 'interviewer').
                     
 </dd>
 </dl></blockquote>
@@ -2340,13 +2338,12 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
-                        The type of field for this instance  (e.g. 'productionDate', 'dateAccepted', 'dateSubmitted').
-                        The value SHOULD BE selected from a standard list of values.
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'productionDate', 'dateAccepted', 'dateSubmitted').
                     
 </dd>
 <dt>value: (TIMESTAMP or PERIOD)</dt>
 <dd>
-                        REQUIRED. The alternative date. This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        The alternative date.
                     
 </dd>
 </dl></blockquote>
@@ -2364,9 +2361,8 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>value: (ENUM OR IRI)</dt>
 <dd>
-                            REQUIRED. A link or code to or within a classification scheme.
+                            A link or code to or within a classification scheme.
                             The value SHOULD BE selected from a standard list of values.
-                            This is the Primary Sub-Field for the purposes of sorting and filtering.
                         
 </dd>
 </dl></blockquote>
@@ -2393,9 +2389,7 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>value: (ENUM or IRI)</dt>
 <dd>
-                        REQUIRED. The value of field for this instance.
                         The value SHOULD BE selected from a standard list of values such as the EBU Content Genre, Intention or the TV-Anytime Content Commercial or Content Alert types.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
                     
 </dd>
 </dl></blockquote>
@@ -2403,39 +2397,52 @@ Content</h3>
 </dd>
 <dt>targetAudience: [COMPLEX]</dt>
 <dd>
-                The target audience (demographic, geographic or guidance) categorising the piece of content other than <tt>category</tt> and <tt>keywords</tt>.
+                The target audience (demographic or guidance) categorising the piece of content other than <tt>category</tt> and <tt>keywords</tt>.
                 
 <blockquote class="text"><dl>
 <dt>value: (ENUM or IRI)</dt>
 <dd>
-                        REQUIRED. The value of field for this instance (e.g. parental controls such as PG, 14A, R or geographic audience like regional, multinational).
                         The value SHOULD BE selected from a standard list of values such as the EBU Intended Audience or Parent Guidance types.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
                     
 </dd>
-<dt>reason: (STRING or HTML)</dt>
+<dt>guidanceText: (STRING or HTML)</dt>
 <dd>
-                        The reason, if any, why a particular audience has been identified.
+                        A short human-readable editorial guidance message.
                     
 </dd>
-<dt>linkToLogo: (LINK)</dt>
+<dt>longGuidanceText: (STRING or HTML)</dt>
 <dd>
-                        A URI to point to the location of a pictogram representative of the targeted audience.
+                        A long human-readable editorial guidance message.
                     
+</dd>
+</dl></blockquote>
+              
 </dd>
 <dt>notRated: (BOOLEAN)</dt>
 <dd>
-                        A flag to indicate that the media resource has not been rated (if set to true).
-                    
+                    A flag to indicate that the piece of content has not been rated (if set to true).
+              
 </dd>
 <dt>adultContent: (BOOLEAN)</dt>
 <dd>
-                        A flag to indicate is the media resource contains adult content (if set to true).
-                    
+                    A flag to indicate is the piece of content contains adult content (if set to true).
+              
 </dd>
-<dt>targetRegion: (COUNTRY or STRING)</dt>
+<dt>targetRegion: [COMPLEX]</dt>
+<dd>
+                The geographic target audience categorising the piece of content other than <tt>category</tt> and <tt>keywords</tt>.
+                If no geographical targeting is provided, the piece of content is assumed to be applicable to all places, i.e. worldwide.
+                
+<blockquote class="text"><dl>
+<dt>value: (TERRITORY)</dt>
 <dd>
                         The target country and region for the rating.
+                    
+</dd>
+<dt>exclusive: (BOOLEAN)</dt>
+<dd>
+                        A flag to indicate that the piece of content is available only in the target place specified in the value sub-field.
+                        If the exclusive attribute is omitted or has the value false then the piece of content is editorially targeted at the target place specified in the value sub-field.
                     
 </dd>
 </dl></blockquote>
@@ -2448,9 +2455,7 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>value: (ENUM or IRI)</dt>
 <dd>
-                        REQUIRED. The value of field for this instance (e.g. 'fiction', 'presentation', 'cartoon').
                         The value SHOULD BE selected from a standard list of values such as the EBU Editorial Format types.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
                      
 </dd>
 </dl></blockquote>
@@ -2459,7 +2464,6 @@ Content</h3>
 <dt>thumbnails: [LINK]</dt>
 <dd>
                 A list of thumbnail images or screen shots depicting the piece of content.
-                If more than one image is provided, the <tt>primary</tt> boolean subfield MAY be used to flag the preferred or principal image for display.
               
 </dd>
 <dt>source: [COMPLEX]</dt>
@@ -2469,18 +2473,12 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
-                        The type of field for this instance (e.g. 'sketches', 'book', 'novel').
-                        The value SHOULD BE selected from a standard list of values.
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'sketches', 'book', 'novel').
                     
 </dd>
 <dt>value: (STRING or HTML)</dt>
 <dd>
-                        REQUIRED. The source textual description. This is the Primary Sub-Field for the purposes of sorting and filtering.
-                    
-</dd>
-<dt>media: [LINK]</dt>
-<dd>
-                        Additional reference material associated with the source description. 
+                        The source textual description.
                     
 </dd>
 </dl></blockquote>
@@ -2499,8 +2497,7 @@ Content</h3>
 </dd>
 <dt>value: (LANGUAGE)</dt>
 <dd>
-                        REQUIRED. The language value.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
+                        The language value.
                     
 </dd>
 </dl></blockquote>
@@ -2513,20 +2510,12 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
-                        The type of field for this instance (e.g. 'filmingLocation', 'depictedLocation', 'creationLocation').
-                        The value SHOULD BE selected from a standard list of values.
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'filmingLocation', 'depictedLocation', 'creationLocation').
                     
 </dd>
-<dt>value: (PLACE)</dt>
+<dt>value: (PLACE or TERRITORY)</dt>
 <dd>
-                        REQUIRED. The actual geographical place.
-                    
-</dd>
-<dt>label: (STRING)</dt>
-<dd>
-                        A human readable label or name associated to the <tt>value</tt> sub-field.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
-                        If the label field is not specified, and supported by the Provider, the Primary Sub-Field is defined to be the coordinates sub-field of the PLACE structure of the value field.
+                        The actual geographical place or territory.
                     
 </dd>
 <dt>fictional: (BOOLEAN)</dt>
@@ -2544,20 +2533,12 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
-                        The type of field for this instance (e.g. 'filmingPeriod', 'depictedPeriod').
-                        The value SHOULD BE selected from a standard list of values.
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'filmingPeriod', 'depictedPeriod').
                     
 </dd>
-<dt>value: (PERIOD)</dt>
+<dt>value: (PERIOD or YEAR)</dt>
 <dd>
-                        REQUIRED. The actual temporal coverage period.
-                    
-</dd>
-<dt>label: (STRING)</dt>
-<dd>
-                        A human readable label or name associated to the <tt>value</tt> sub-field.
-                        This is the Primary Sub-Field for the purposes of sorting and filtering.
-                        If the label field is not specified, and supported by the Provider, the Primary Sub-Field is defined to be the value field.
+                        The actual temporal coverage period or gregorian calendar year.
                     
 </dd>
 <dt>fictional: (BOOLEAN)</dt>
@@ -2679,9 +2660,9 @@ Programme</h3>
                     A list of awards or awards nominations for a programme.
                 
 </dd>
-<dt>country: (COUNTRY)</dt>
+<dt>country: [TERRITORY]</dt>
 <dd>
-                    The country where the programme has been released.
+                    The countries and regions where the programme has been released.
                 
 </dd>
 <dt>firstTransmissionDate: (TIMESTAMP)</dt>
@@ -2689,12 +2670,12 @@ Programme</h3>
                     The first transmission or publication date and time.
                 
 </dd>
-<dt>firstTransmissionChannel: (CHANNEL)</dt>
+<dt>firstTransmissionChannel: (SERVICE)</dt>
 <dd>
-                    The first transmission or publication channel.
+                    The first transmission or publication service.
                 
 </dd>
-<dt>repeats: [CHANNEL]</dt>
+<dt>repeats: [SERVICE]</dt>
 <dd>
                     Information about the publication history of the programme.
                     A repeated transmission or publication.
@@ -2766,7 +2747,9 @@ Programme Item</h3>
 <dt>versions: [VERSION]</dt>
 <dd>
                     Different versions of a same episode or clip can exist.
-                    The relationship primary boolean flag SHOULD be used to flag the so called 'canonical' or preferred version.
+                    The relationship <tt>primary</tt> boolean flag SHOULD be used to flag the so called "canonical" or preferred version.
+                    No more than one version should be labelled as "canonical" because of the ambiguity this creates and this complicates processing by the Consumer.
+                    
                 
 </dd>
 </dl></blockquote><p>
@@ -2800,17 +2783,11 @@ Version</h3>
 
 <p>
             The Version object type extends the CONTENT object type and represents a specific edit or version of a programme item.
-            There are different version types and only one is marked as original.
-            
+            While there could be different version types (e.g. different run length, different parental guidance, alternative viewing angles etc.) only one is marked as original.
+            Note that the inclusion of accessibility services (e.g. hearing impaired, signed and dubbed audio described) does not constitute a different editorial version.
+            Such differences are represented by multiple publications of the same basic editorial version since the underlying editorial content is identical at scene level.
             </p>
 <blockquote class="text"><dl>
-<dt>type: [ENUM]</dt>
-<dd>
-                    The type of version (e.g shortened version, version designed for the hearing impaired, signed and dubbed audio described, alternative viewing angles etc.).
-                    The value SHOULD BE selected from a standard list of values.
-                    Please note this is a Plural Field, and there might be multiple types associated to a version.
-                
-</dd>
 <dt>original: (BOOLEAN)</dt>
 <dd>
                     A Boolean value indicating whether or not the Version is the original.
@@ -2820,7 +2797,7 @@ Version</h3>
 </dd>
 <dt>duration: (NUMBER)</dt>
 <dd>
-                    The duration of a version in seconds. Please note that the published duration may be different (see <a class='info' href='#programmelocation-type'>Section&nbsp;8.4.19<span> (</span><span class='info'>Programme Location</span><span>)</span></a>).
+                    The duration of a version in seconds. Please note that the published duration may be different (see <a class='info' href='#programmelocation-type'>Section&nbsp;8.4.13<span> (</span><span class='info'>Programme Location</span><span>)</span></a>).
                 
 </dd>
 <dt>broadcasts: [BROADCAST]</dt>
@@ -2828,7 +2805,7 @@ Version</h3>
                     The broadcast events associated with a particular version.
                 
 </dd>
-<dt>availabilities: [TITLE]</dt>
+<dt>availabilities: [ONDEMAND]</dt>
 <dd>
                     The availabilities associated with a particular version when it is made available on-demand. 
                 
@@ -2836,324 +2813,27 @@ Version</h3>
 </dl></blockquote><p>            
         
 </p>
-<a name="mediaresource-type"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.12"></a><h3>8.4.12.&nbsp;
-Media Resource</h3>
-
-<p>
-            The Media Resource type extends the CONTENT object type and represents a digital or physical manifestation of a version.
-            For an organisation or producer acting as caretaker for a media resource, it MAY contain a string formatted piece of information about a specific e.g. tape name, shelf location for an asset, including an organisation's name, departmental name, shelf id. and contact information.
-            Differently for a data file or web video it MAY contain a IRI reference to the media resource and an optional type (e.g. for an HTML5 audio or video it would refer to the URL of the source and its type).
-            The Media Resource type is identified with the string MEDIA_RESOURCE.
-            </p>
-<blockquote class="text"><dl>
-<dt>locator: (IRI or STRING)</dt>
-<dd>
-                    REQUIRED. An identifier of the digital media resource or a string description where to find a physical source (e.g. dvb://scifi@2009-10-20T03:39:00Z/PT51M or a URI reference to a CDN streaming service, or a string like 'Archives building A, Row J, Shelf 2').
-                    
-                
-</dd>
-<dt>type: (ENUM)</dt>
-<dd>
-                    The media type of the media resource. The value is a hint about the type of the representation that is expected to be returned when the value field is dereferenced.
-                    Note that the type field does not override the actual media type returned with the representation.
-                    When specified the value MUST conform to the syntax of a MIME media type defined in <a class='info' href='#MIMEREG'>[MIMEREG]<span> (</span><span class='info'>Freed, N. and J. Klensin, &ldquo;Media Type Specifications and Registration Procedures,&rdquo; December&nbsp;2005.</span><span>)</span></a>.
-                    Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <a class='info' href='#IANA-MIMEREG'>[IANA&#8209;MIMEREG]<span> (</span><span class='info'>IANA, &ldquo;MIME Media Types,&rdquo; .</span><span>)</span></a> includind any media type paramters, such as the "codecs" parameter <a class='info' href='#RFC4281'>[RFC4281]<span> (</span><span class='info'>Gellens, R., Singer, D., and P. Frojdh, &ldquo;The Codecs Parameter for &quot;Bucket&quot; Media Types,&rdquo; November&nbsp;2005.</span><span>)</span></a>.
-                    Note that the same Media Resource MAY be used to represent different versions when the media type is a container file or format.
-                
-</dd>
-<dt>medium: (COMPLEX)</dt>
-<dd>
-                    The material or physical carrier of the resource. If a file, it should be the carrier format.
-                    
-<blockquote class="text"><dl>
-<dt>type: (ENUM)</dt>
-<dd>
-                            The type of media resource (e.g. '1BM', 'BMX', 'video', 'audio'). 
-                            The value SHOULD BE selected from a standard list of values such as the EBU Storage Media types.
-                        
-</dd>
-<dt>value: (STRING)</dt>
-<dd>
-                            REQUIRED. A label associated with the type value. This is the Primary Sub-Field for the purposes of sorting and filtering.
-                        
-</dd>
-</dl></blockquote>
-                
-</dd>
-<dt>length: (NUMBER)</dt>
-<dd>
-                    The media resource size or length in octets.
-                    The value is a hint about the content length of the media resource representing the media resource and it does not override the actual content length of the representation as reported by the underlying protocol.
-                
-</dd>
-<dt>start: (TIMECODE or TIME or NUMBER)</dt>
-<dd>
-                    The beginning point for playback of the media resource (e.g. 'seeking position').
-                
-</dd>
-<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
-<dd>
-                    The time based duration of the media resource.
-                
-</dd>
-<dt>audio: (COMPLEX)</dt>
-<dd>
-                    Information on the audio format.
-                    
-<blockquote class="text"><dl>
-<dt>encoding: (ENUM)</dt>
-<dd>
-                            The audio encoding parameters.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Audio Compression Codes.
-                        
-</dd>
-<dt>configuration: (ENUM)</dt>
-<dd>
-                            The audio configuration parameters (e.g. 'stereo', '2+1', 'surround', 'surround (7+1)').
-                            The value SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes.
-                        
-</dd>
-<dt>bitrate: (NUMBER)</dt>
-<dd>
-                            The audio bit rate.
-                        
-</dd>
-<dt>samplingRate: (NUMBER)</dt>
-<dd>
-                            The audio sampling rate.
-                        
-</dd>
-<dt>loudnessLevel: (ENUM)</dt>
-<dd>
-                            The media resource loudness level in dB.
-                        
-</dd>
-</dl></blockquote>
-                
-</dd>
-<dt>video: (COMPLEX)</dt>
-<dd>
-                    Information on the video format.
-                    
-<blockquote class="text"><dl>
-<dt>width: (NUMBER)</dt>
-<dd>
-                            This value is a hint about the video's intrinsic or ideal width in pixels.
-                        
-</dd>
-<dt>height: (NUMBER)</dt>
-<dd>
-                            This value is a hint about the video's intrinsic or ideal height in pixels.
-                        
-</dd>
-<dt>frameSize: (STRING)</dt>
-<dd>
-                            The video frames size.
-                        
-</dd>
-<dt>frameRate: (ENUM)</dt>
-<dd>
-                            The video frames per second rate.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Video Frame Rate types.
-                        
-</dd>
-<dt>aspectRatio: (ENUM)</dt>
-<dd>
-                            The video aspect ratio.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Visual Aspect Ratio types.
-                        
-</dd>
-<dt>colourMode: (ENUM)</dt>
-<dd>
-                            The video colour mode.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Colour Codes.
-                        
-</dd>
-<dt>videoEncoding: (ENUM)</dt>
-<dd>
-                            The video encoding parameters.
-                            The value SHOULD BE selected from a standard list of values such as the EBU Video Compression Codes.
-                        
-</dd>
-<dt>hd: (BOOLEAN)</dt>
-<dd>
-                            A Boolean value indicating whether the video is high definition.
-                        
-</dd>
-<dt>bitrate: (NUMBER)</dt>
-<dd>
-                            The audio bit rate.
-                        
-</dd>
-<dt>samplingRate: (NUMBER)</dt>
-<dd>
-                            The audio sampling rate.
-                        
-</dd>
-</dl></blockquote>
-                
-</dd>
-<dt>embedCode: (HTML)</dt>
-<dd>
-                    An HTML fragment that, when embedded in an HTML page, will provide an interactive player UI for the media resource.
-                
-</dd>
-</dl></blockquote><p>            
-        
-</p>
-<a name="mediagroup-type"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.13"></a><h3>8.4.13.&nbsp;
-Media Group</h3>
-
-<p>
-            The Media Group object type extends the MEDIA_RESOURCE object type and represents a group of related media resources containing one or more versions.
-            For example, a Media Group MAY BE used to express alternative representations for the same media resource or it MAY BE used to represent multiple external tracks (audio, video, text etc) associated and syncronized to the main audio and video tracks.
-            The Media Group object type is identified with the string MEDIA_GROUP.
-        
-</p>
-<p>
-            Note that a MEDIA_GROUP locator field MAY BE empty and instead one or more alternative media sources MAY specified.
-            A Consumer MUST BE able to select the main alternative media source by stepping through each of the specified sources in the given order.
-            </p>
-<blockquote class="text"><dl>
-<dt>sources: [MEDIA_RESOURCE]</dt>
-<dd>
-                    A list of alternative representations for the same media resource (e.g. alternative source files using different encodings/codecs made available to a web browser to play the same content).
-                
-</dd>
-<dt>tracks: [MEDIA_GROUP]</dt>
-<dd>
-                    Used to describe alternative audio, video or text tracks syncronized with the main the media resource.
-                    
-<blockquote class="text"><dl>
-<dt>kind: (ENUM)</dt>
-<dd>
-                            The type of track (e.g. 'subtitles', 'captions', 'descriptions', 'signings', 'dubbing'). 
-                            The value SHOULD BE selected from a standard list of values such as the HTML5 video track kind attribute, the EBU Audio Channel Purpose  or Language Purpose codes.
-                        
-</dd>
-<dt>lang: (LANGUAGE)</dt>
-<dd>
-                            The language of the track.
-                        
-</dd>
-<dt>label: (STRING)</dt>
-<dd>
-                            A human readable label or name associated to the type sub-field.
-                            This is the Primary Sub-Field for the purposes of sorting and filtering.
-                        
-</dd>
-</dl></blockquote>
-                
-</dd>
-</dl></blockquote><p>      
-        
-</p>
-<a name="segment-type"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.14"></a><h3>8.4.14.&nbsp;
-Segment</h3>
-
-<p>
-            The Segment object type extends the CONTENT object type and represents a continuous portion of a piece of a programme version, for example a single topic in a news programme or the highlights of a soccer match.
-            A particular segment can belong to a single programme only, but it can be a member of multiple segment groups.
-            A programme can contain multiple segments.
-            Segments are reusable, editorially distinct items.
-            
-            </p>
-<blockquote class="text"><dl>
-<dt>programme: (VERSION)</dt>
-<dd>
-                    A reference to the programme version this segment belongs to.
-                    If the segment is part of a segment group, this field MAY be left empty and the segment is assumed to belong to the programme as referenced by the parent segment group.
-                
-</dd>
-<dt>type: (ENUM)</dt>
-<dd>
-                    The type of segment (e.g. 'highlights', 'bookmarks', 'preview', 'insertion points', 'shots', 'speech').
-                    The value SHOULD BE selected from a standard list of values.
-                
-</dd>
-<dt>start: (TIMECODE or TIME or NUMBER)</dt>
-<dd>
-                    The beginning point for playback of the programme segment.
-                
-</dd>
-<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
-<dd>
-                    The time based duration of the programme segment.
-                
-</dd>
-<dt>chapter: (BOOLEAN)</dt>
-<dd>
-                    A Boolean value indicating whether the programme segment is a chapter.
-                
-</dd>
-<dt>media: (LINK)</dt>
-<dd>
-                    A link to the media resource representing the segment.
-                    The href sub-field MAY match the corresponding media resource locator field or contain a URI Media Fragment with a Normal Play Time (NPT) or SMPTE time code as defined in section 4.2.1 of <a class='info' href='#MEDIA-FRAGMENTS-URI'>[MEDIA&#8209;FRAGMENTS&#8209;URI]<span> (</span><span class='info'>W3C, &ldquo;Media Fragments URI 1.0,&rdquo; .</span><span>)</span></a>.
-                
-</dd>
-</dl></blockquote><p>            
-        
-</p>
-<a name="segmentgroup-type"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.15"></a><h3>8.4.15.&nbsp;
-Segment Group</h3>
-
-<p>
-            The Segment Group object type extends the SEGMENT object type and represents collection of segments that are grouped together.
-            A segment group can contain segments or segment groups.
-            The Segment Group object type is identified with the string SEGMENT_GROUP.
-            
-            </p>
-<blockquote class="text"><dl>
-<dt>segments: [SEGMENT]</dt>
-<dd>
-                    The list of segments that are contained within the segment group.
-                    The order of the references to segments determines the temporal playback order of segments in this group.
-                
-</dd>
-</dl></blockquote><p>            
-        
-</p>
 <a name="service-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.16"></a><h3>8.4.16.&nbsp;
+<a name="rfc.section.8.4.12"></a><h3>8.4.12.&nbsp;
 Service</h3>
 
 <p>
             The Service object type extends the CONTENT object type and represents a publication outlet (e.g. a broadcasting service).
             A service is a collection of outlets which contain common material, but with some variations (e.g. by region).
             Hierarchies of services MAY be defined (e.g. radio, tv, online, mobile).
-            A media outlet is a broadcast program that transmits feature stories and news to the public through various 'distribution channels'.
             </p>
 <blockquote class="text"><dl>
-<dt>type: (ENUM)</dt>
+<dt>serviceType: (ENUM)</dt>
 <dd>
-                    The service type such as 'tv', 'radio', 'online' etc.
-                    The value SHOULD BE selected from a standard list of values.
+                    The service type SHOULD BE selected from the following list: <tt>broadcast</tt>, <tt>virtual</tt>, <tt>iptv</tt>, <tt>ondemand</tt>, <tt>owning</tt>.
                 
 </dd>
-<dt>subType: (ENUM)</dt>
-<dd>
-                    The service subtype such as 'national', 'regional', 'local' etc.
-                    The value SHOULD BE selected from a standard list of values.
-                
-</dd>
-<dt>outlets: [OUTLET]</dt>
+<dt>outlets: [SERVICE]</dt>
 <dd>
                     Relates a Service to the Outlets that are contained within the Service.
-                
-</dd>
-<dt>channel: [CHANNEL]</dt>
-<dd>
-                    Relates a Service to a Channel. A single outlet or service can be associated with multiple channels (e.g. the same news programme can be broadcasted over IPTV or DVB).
+                    An outlet represents a service which does not have variations.
+                    For example, in the movie industry some movie publication or distribution ondemand outlets may be: on-air, online (payed, subscription, advertised), physical media (dvd, blu-ray, VHS), theatre (cinema), mobile.
                 
 </dd>
 <dt>organisation: (ORGANISATION)</dt>
@@ -3161,45 +2841,54 @@ Service</h3>
                     Relates a Service to an Organisation providing the service.
                 
 </dd>
-</dl></blockquote><p>            
-        
-</p>
-<a name="outlet-type"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.17"></a><h3>8.4.17.&nbsp;
-Outlet</h3>
-
-<p>
-            The Outlet object type extends the SERVICE object type and represents a service which does not have variations.
-            For example, in the movie industry some movie publication or distribution outlets may be: on-air, online (payed, subscription, advertised), physical media (dvd, blu-ray, VHS), theatre (cinema), mobile.        
-        
-</p>
-<a name="channel-type"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.18"></a><h3>8.4.18.&nbsp;
-Channel</h3>
-
-<p>
-            The Channel object type extends the CONTENT object type and represents a physical or virtual channel over which content is distributed (e.g. DVB, DAB, IPTV).
-            </p>
-<blockquote class="text"><dl>
-<dt>type: (ENUM)</dt>
+<dt>locator: (IRI)</dt>
 <dd>
-                    The service type such as 'dvb', 'dab', 'iptv' etc.
-                    The value SHOULD BE selected from a standard list of values.
+                    A service locator per <a class='info' href='#DVB-URI'>[DVB&#8209;URI]<span> (</span><span class='info'>British Broadcasting Corportation and Condition-ALPHA, &ldquo;Uniform Resource Identifier (URI) Scheme for Digital Video Broadcasting (DVB) Programme Resources,&rdquo; March&nbsp;2013.</span><span>)</span></a> (e.g. dvb://233a.1041.10bf).
+                
+</dd>
+<dt>application: (APPLICATION)</dt>
+<dd>
+                    A reference to a media player or helper Application. A media player will be invoked to present all publications associated with an ondemand service.
+                    An on-screen helper application MAY be used instead to help users to provision IPTV services and resolve issues.
+                
+</dd>
+<dt>lcn: (NUMBER)</dt>
+<dd>
+                    The service Logical Channel Number (LCN).
                 
 </dd>
 <dt>logo: (LINK)</dt>
 <dd>
-                    A logo or icon associated to the channel.
+                    A logo or icon associated to the service.
+                    
+<blockquote class="text"><dl>
+<dt>rel: (ENUM)</dt>
+<dd>
+                            REQUIRED. The rel value MUST BE the "icon" relation type as defined in <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
+                        
+</dd>
+</dl></blockquote>
                 
 </dd>
-</dl></blockquote><p>          
+<dt>dog: (LINK)</dt>
+<dd>
+                    A Digital On screen Graphic (DOG) associated to the service.
+                    
+<blockquote class="text"><dl>
+<dt>rel: (ENUM)</dt>
+<dd>
+                            REQUIRED. The rel value MUST BE the "icon" relation type as defined in <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
+                        
+</dd>
+</dl></blockquote>
+                
+</dd>
+</dl></blockquote><p>
         
 </p>
 <a name="programmelocation-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.19"></a><h3>8.4.19.&nbsp;
+<a name="rfc.section.8.4.13"></a><h3>8.4.13.&nbsp;
 Programme Location</h3>
 
 <p>
@@ -3223,7 +2912,7 @@ Programme Location</h3>
 <dt>media: (LINK)</dt>
 <dd>
                     A link to the programme version location.
-                    The href sub-field SHOULD refer to a valid media resource locator field (see <a class='info' href='#mediaresource-type'>Section&nbsp;8.4.12<span> (</span><span class='info'>Media Resource</span><span>)</span></a>).
+                    The <tt>href</tt> sub-field SHOULD match a valid Media Resource <tt>locator</tt> field (see <a class='info' href='#mediaresource-type'>Section&nbsp;8.4.22<span> (</span><span class='info'>Media Resource</span><span>)</span></a>).
                 
 </dd>
 </dl></blockquote><p>            
@@ -3231,11 +2920,11 @@ Programme Location</h3>
 </p>
 <a name="broadcast-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.20"></a><h3>8.4.20.&nbsp;
+<a name="rfc.section.8.4.14"></a><h3>8.4.14.&nbsp;
 Broadcast</h3>
 
 <p>
-            The Broadcast object type extends the PROGRAMME_LOCATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific channel).
+            The Broadcast object type extends the PROGRAMME_LOCATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific service).
             Multiple broadcast events can be grouped into a Schedule.
             </p>
 <blockquote class="text"><dl>
@@ -3247,6 +2936,16 @@ Broadcast</h3>
 <dt>end: (TIMESTAMP)</dt>
 <dd>
                     The published date and time at which the programme version broadcast will be ending.
+                
+</dd>
+<dt>firstShowing: (BOOLEAN)</dt>
+<dd>
+                    A Boolean value indicating whether the programme version being broadcasted is a first showing.
+                
+</dd>
+<dt>lastShowing: (BOOLEAN)</dt>
+<dd>
+                    A Boolean value indicating whether the programme version being broadcasted is a last showing.
                 
 </dd>
 <dt>duration: (NUMBER)</dt>
@@ -3270,26 +2969,16 @@ Broadcast</h3>
                     A Boolean value indicating whether the access to the programme version being broadcasted is free.
                 
 </dd>
-<dt>firstShowing: (BOOLEAN)</dt>
-<dd>
-                    A Boolean value indicating whether the programme version being broadcasted is a first showing.
-                
-</dd>
-<dt>lastShowing: (BOOLEAN)</dt>
-<dd>
-                    A Boolean value indicating whether the programme version being broadcasted is a last showing.
-                
-</dd>
 </dl></blockquote><p>          
         
 </p>
-<a name="title-type"></a><br /><hr />
+<a name="ondemand-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.21"></a><h3>8.4.21.&nbsp;
-Title</h3>
+<a name="rfc.section.8.4.15"></a><h3>8.4.15.&nbsp;
+Ondemand</h3>
 
 <p>
-            The Title object type extends the PROGRAMME_LOCATION object type and represents an on demand publication event designating a window of availability of a single Programme version on a particular service between two dates (e.g. catch-up on yesterday night 20:00pm soap opera episode).
+            The Ondemand object type extends the PROGRAMME_LOCATION object type and represents an on-demand publication event designating a window of availability of a single Programme version on a particular service between two dates (e.g. catch-up on yesterday night 20:00pm soap opera).
             </p>
 <blockquote class="text"><dl>
 <dt>startAvailability: (TIMESTAMP)</dt>
@@ -3331,7 +3020,7 @@ Title</h3>
 </dd>
 <dt>deliveryMode: (ENUM)</dt>
 <dd>
-                    The Title delivery mode such as 'streaming', 'download', 'progressive-download' etc.
+                    The on-demand pblication delivery mode such as 'streaming', 'download', 'progressive-download' etc.
                     This string generally is specified to contain a valid Canonical Value from a reference data vocabulary.
                     A Provider SHOULD use any additional deliveryMode values as necessary.
                 
@@ -3341,11 +3030,11 @@ Title</h3>
 </p>
 <a name="schedule-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.22"></a><h3>8.4.22.&nbsp;
+<a name="rfc.section.8.4.16"></a><h3>8.4.16.&nbsp;
 Schedule</h3>
 
 <p>
-            The Schedule object type extends the CONTENT object type and represents a group of broadcast events from the same service (e.g. ZDF channel schedule).
+            The Schedule object type extends the CONTENT object type and represents a group of broadcast events from the same service (e.g. ZDF service schedule).
             </p>
 <blockquote class="text"><dl>
 <dt>service: (SERVICE)</dt>
@@ -3371,48 +3060,458 @@ Schedule</h3>
 </dl></blockquote><p>          
         
 </p>
-<a name="catalog-type"></a><br /><hr />
+<a name="catalogue-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.23"></a><h3>8.4.23.&nbsp;
-Catalog</h3>
+<a name="rfc.section.8.4.17"></a><h3>8.4.17.&nbsp;
+Catalogue</h3>
 
 <p>
-            The Catalog object type extends the CONTENT object type and represents an on demand service (e.g. ZDF Mediathek).
+          The Catalogue object type extends the CONTENT object type and represents a group of on-demand publications from the same service (e.g. YouTube catalogue).
+          </p>
+<blockquote class="text"><dl>
+<dt>catalogueType: (ENUM)</dt>
+<dd>
+                  The catalogue type SHOULD BE selected from a standard list of values (e.g. 'catchup tv', 'VOD', 'SVOD' etc.).
+                
+</dd>
+<dt>service: (SERVICE)</dt>
+<dd>
+                    A reference to the Service on which the programmes will be made available on-demand.
+                
+</dd>
+<dt>titles: [ONDEMAND]</dt>
+<dd>
+                    The list of titles inside the catalogue.
+                
+</dd>
+</dl></blockquote><p>
+        
+</p>
+<a name="application-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.18"></a><h3>8.4.18.&nbsp;
+Application</h3>
+
+<p>
+          The Application object type extends the CONTENT object type and represents an abstract application (e.g. BBC iPlayer).
+          The Application object type is identified with the string APPLICATION.
+            </p>
+<blockquote class="text"><dl>
+<dt>ownership: (SERVICE)</dt>
+<dd>
+                      Associate an Application to the owner Service (e.g. BBC Applications).
+                  
+</dd>
+<dt>country: [TERRITORY]</dt>
+<dd>
+                      The countries and regions where the application has been released.
+                  
+</dd>
+<dt>builds: [APPLICATION_BUILD]</dt>
+<dd>
+                    Different builds of the same application can exist.
+                    The relationship <tt>primary</tt> boolean flag SHOULD be used to flag the so called "canonical" or preferred build.
+                    No more than one build should be labelled as "canonical" because of the ambiguity this creates and this complicates processing by the Consumer.
+                  
+</dd>
+</dl></blockquote><p>
+          
+</p>
+<a name="application-build-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.19"></a><h3>8.4.19.&nbsp;
+Application Build</h3>
+
+<p>
+              The Application Build object type extends the CONTENT object type and represents a specific build of an application (e.g. BBC iPlayer for iPad ver  2.0.4).
+              For example a non-backwards-compatible change to the application would require modelling a different application build (e.g. BBC iPlayer for iPad with Retina).
+              The Application object type is identified with the string APPLICATION_BUILD.
+              </p>
+<blockquote class="text"><dl>
+<dt>original: (BOOLEAN)</dt>
+<dd>
+                      A Boolean value indicating whether or not the application build is the original.
+                      Service Providers MUST NOT mark more than one application build as original="true", and MAY choose not to mark any application build as original, if this information is not available.
+                      For efficiency, Service Providers SHOULD NOT mark all non-original application builds with original="false", but should instead omit this sub-field for all non-original instances.
+                  
+</dd>
+<dt>availabilities: [APPLICATION_PUBLICATION]</dt>
+<dd>
+                      The availabilities associated with a particular Application Build when it is made available for download and installation.
+                  
+</dd>
+</dl></blockquote><p>
+          
+</p>
+<a name="application-publication-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.20"></a><h3>8.4.20.&nbsp;
+Application Publication</h3>
+
+<p>
+                The Application object type extends the CONTENT object type and represents an instance or publication event of an Application.
+                The application object type is identified with the string APPLICATION_PUBLICATION.
+                An application is associated with a service, and with a particular application build.
+                </p>
+<blockquote class="text"><dl>
+<dt>service: (SERVICE)</dt>
+<dd>
+                        A reference to the Service on which the application instance will be made available to download and installation (e.g. Apple iTunes Store).
+                    
+</dd>
+<dt>build: (APPLICATION_BUILD)</dt>
+<dd>
+                        A reference to the application build.
+                    
+</dd>
+<dt>media: (LINK)</dt>
+<dd>
+                        A link to the application package location.
+                        
+                    
+</dd>
+<dt>startAvailability: (TIMESTAMP)</dt>
+<dd>
+                        The published date and time that the application build will be available.
+                        If not specified the application build is assumed to be available.
+                    
+</dd>
+<dt>endAvailability: (TIMESTAMP)</dt>
+<dd>
+                        The published date and time that the application build will no longer be available.
+                        If not specified the application build is meant to be made available indefinitely.
+                    
+</dd>
+<dt>free: (BOOLEAN)</dt>
+<dd>
+                        A Boolean value indicating whether the access to the application build is free or requires a payment.
+                    
+</dd>
+</dl></blockquote><p>
+            
+</p>
+<a name="application-gallery-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.21"></a><h3>8.4.21.&nbsp;
+Application Gallery</h3>
+
+<p>
+            The Application Gallery object type extends the CONTENT object type and represents a group of application publications from the same service (e.g. iTunes AppStore).
             </p>
 <blockquote class="text"><dl>
 <dt>service: (SERVICE)</dt>
 <dd>
-                    A reference to the Service on which the programmes will be made available on demand.
+                    A reference to the Service on which the applications will be made available to download and install.
                 
 </dd>
-<dt>titles: [TITLE]</dt>
+<dt>applications: [APPLICATION_BUILD]</dt>
 <dd>
-                    The list of titles inside the catalog.
+                    The list of applications inside the application gallery.
                 
 </dd>
-<dt>type: (ENUM)</dt>
-<dd>
-                    The catalog type such as 'catchup tv', 'VOD', 'SVOD' etc.
-                    The value SHOULD BE selected from a standard list of values.
-                
-</dd>
-</dl></blockquote><p>          
+</dl></blockquote><p>
         
+</p>
+<a name="mediaresource-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.22"></a><h3>8.4.22.&nbsp;
+Media Resource</h3>
+
+<p>
+                    The Media Resource type extends the CONTENT object type and represents a digital or physical manifestation of a version.
+                    For an organisation or producer acting as caretaker for a media resource, it MAY contain a string formatted piece of information about a specific e.g. tape name, shelf location for an asset, including an organisation's name, departmental name, shelf id. and contact information.
+                    Differently for a data file or web video it MAY contain a IRI reference to the media resource and an optional type (e.g. for an HTML5 audio or video it would refer to the URL of the source and its type).
+                    The Media Resource type is identified with the string MEDIA_RESOURCE.
+                    </p>
+<blockquote class="text"><dl>
+<dt>locator: (IRI or STRING)</dt>
+<dd>
+                            REQUIRED. An identifier of the digital media resource or a string description where to find a physical source (e.g. dvb://scifi@2009-10-20T03:39:00Z/PT51M per <a class='info' href='#DVB-URI'>[DVB&#8209;URI]<span> (</span><span class='info'>British Broadcasting Corportation and Condition-ALPHA, &ldquo;Uniform Resource Identifier (URI) Scheme for Digital Video Broadcasting (DVB) Programme Resources,&rdquo; March&nbsp;2013.</span><span>)</span></a> or a URI reference to a CDN streaming service, or a string like 'Archives building A, Row J, Shelf 2').
+                            
+                        
+</dd>
+<dt>mediaType: (ENUM)</dt>
+<dd>
+                            The media type of the media resource. The value is a hint about the type of the representation that is expected to be returned when the value field is dereferenced.
+                            Note that the type field does not override the actual media type returned with the representation.
+                            When specified the value MUST conform to the syntax of a MIME media type defined in <a class='info' href='#MIMEREG'>[MIMEREG]<span> (</span><span class='info'>Freed, N. and J. Klensin, &ldquo;Media Type Specifications and Registration Procedures,&rdquo; December&nbsp;2005.</span><span>)</span></a>.
+                            Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <a class='info' href='#IANA-MIMEREG'>[IANA&#8209;MIMEREG]<span> (</span><span class='info'>IANA, &ldquo;MIME Media Types,&rdquo; .</span><span>)</span></a> includind any media type paramters, such as the "codecs" parameter <a class='info' href='#RFC4281'>[RFC4281]<span> (</span><span class='info'>Gellens, R., Singer, D., and P. Frojdh, &ldquo;The Codecs Parameter for &quot;Bucket&quot; Media Types,&rdquo; November&nbsp;2005.</span><span>)</span></a>.
+                            Note that the same Media Resource MAY be used to represent different versions when the media type is a container file or format.
+                        
+</dd>
+<dt>medium: (COMPLEX)</dt>
+<dd>
+                            The material or physical carrier of the resource. If a file, it should be the carrier format.
+                            
+<blockquote class="text"><dl>
+<dt>value: (ENUM)</dt>
+<dd>
+                                    The type of media resource SHOULD BE selected from a standard list of values such as the EBU Storage Media types (e.g. '1BM', 'BMX', 'video', 'audio').
+                                
+</dd>
+</dl></blockquote>
+                        
+</dd>
+<dt>length: (NUMBER)</dt>
+<dd>
+                            The media resource size or length in octets.
+                            The value is a hint about the content length of the media resource representing the media resource and it does not override the actual content length of the representation as reported by the underlying protocol.
+                        
+</dd>
+<dt>start: (TIMECODE or TIME or NUMBER)</dt>
+<dd>
+                            The beginning point for playback of the media resource (e.g. 'seeking position').
+                        
+</dd>
+<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
+<dd>
+                            The time based duration of the media resource.
+                        
+</dd>
+<dt>audioEncoding: (ENUM)</dt>
+<dd>
+                            The audio encoding parameters SHOULD BE selected from a standard list of values such as the EBU Audio Compression Codes.
+                        
+</dd>
+<dt>audioConfiguration: (ENUM)</dt>
+<dd>
+                            The audio configuration parameters SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes (e.g. 'stereo', '2+1', 'surround', 'surround (7+1)').
+                        
+</dd>
+<dt>audioBitrate: (NUMBER)</dt>
+<dd>
+                            The audio bit rate.
+                        
+</dd>
+<dt>minAudioBitrate: (NUMBER)</dt>
+<dd>
+                            The minimal audio bit rate.
+                        
+</dd>
+<dt>maxAudioBitrate: (NUMBER)</dt>
+<dd>
+                            The maximum audio bit rate.
+                        
+</dd>
+<dt>audioSamplingRate: (NUMBER)</dt>
+<dd>
+                            The audio sampling rate.
+                        
+</dd>
+<dt>audioLoudnessLevel: (ENUM)</dt>
+<dd>
+                            The media resource loudness level in dB.
+                        
+</dd>
+<dt>width: (NUMBER)</dt>
+<dd>
+                            This value is a hint about the video's intrinsic or ideal width in pixels.
+                        
+</dd>
+<dt>height: (NUMBER)</dt>
+<dd>
+                            This value is a hint about the video's intrinsic or ideal height in pixels.
+                        
+</dd>
+<dt>frameSize: (STRING)</dt>
+<dd>
+                            The video frames size.
+                        
+</dd>
+<dt>frameRate: (ENUM)</dt>
+<dd>
+                            The video frames per second rate SHOULD BE selected from a standard list of values such as the EBU Video Frame Rate types.
+                        
+</dd>
+<dt>aspectRatio: (ENUM)</dt>
+<dd>
+                            The video aspect ratio SHOULD BE selected from a standard list of values such as the EBU Visual Aspect Ratio types.
+                        
+</dd>
+<dt>colourMode: (ENUM)</dt>
+<dd>
+                            The video colour mode SHOULD BE selected from a standard list of values such as the EBU Colour Codes.
+                        
+</dd>
+<dt>videoEncoding: (ENUM)</dt>
+<dd>
+                            The video encoding parameters.
+                            The value SHOULD BE selected from a standard list of values such as the EBU Video Compression Codes.
+                        
+</dd>
+<dt>hd: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the video is high definition.
+                        
+</dd>
+<dt>3d: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the video is 3D.
+                        
+</dd>
+<dt>uhd: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the video is ultra high definition.
+                        
+</dd>
+<dt>videoBitrate: (NUMBER)</dt>
+<dd>
+                            The video bit rate.
+                        
+</dd>
+<dt>minVideoBitrate: (NUMBER)</dt>
+<dd>
+                            The minimal video bit rate.
+                        
+</dd>
+<dt>maxVideoBitrate: (NUMBER)</dt>
+<dd>
+                            The maximum video bit rate.
+                        
+</dd>
+<dt>videoSamplingRate: (NUMBER)</dt>
+<dd>
+                            The video sampling rate.
+                        
+</dd>
+<dt>embedCode: (HTML)</dt>
+<dd>
+                            An HTML fragment that, when embedded in an HTML page, will provide an interactive player UI for the media resource.
+                        
+</dd>
+</dl></blockquote><p>
+                
+</p>
+<a name="mediagroup-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.23"></a><h3>8.4.23.&nbsp;
+Media Group</h3>
+
+<p>
+                    The Media Group object type extends the MEDIA_RESOURCE object type and represents a group of related media resources containing one or more versions.
+                    For example, a Media Group MAY BE used to express alternative representations for the same media resource or it MAY BE used to represent multiple external tracks (audio, video, text etc) associated and syncronized to the main audio and video tracks.
+                    The Media Group object type is identified with the string MEDIA_GROUP.
+                
+</p>
+<p>
+                    Note that a MEDIA_GROUP locator field MAY BE empty and instead one or more alternative media sources MAY specified.
+                    A Consumer MUST BE able to select the main alternative media source by stepping through each of the specified sources in the given order.
+                    </p>
+<blockquote class="text"><dl>
+<dt>sources: [MEDIA_RESOURCE]</dt>
+<dd>
+                            A list of alternative representations for the same media resource (e.g. alternative source files using different encodings/codecs made available to a web browser to play the same content).
+                        
+</dd>
+<dt>tracks: [MEDIA_GROUP]</dt>
+<dd>
+                            Used to describe alternative audio, video or text tracks syncronized with the main the media resource.
+                            
+<blockquote class="text"><dl>
+<dt>kind: (ENUM)</dt>
+<dd>
+                                    The type of track SHOULD BE selected from a standard list of values such as the HTML5 video track kind attribute, the EBU Audio Channel Purpose  or Language Purpose codes (e.g. 'subtitles', 'captions', 'descriptions', 'signing', 'dubbing').
+                                
+</dd>
+<dt>lang: (LANGUAGE)</dt>
+<dd>
+                                    The language of the track.
+                                
+</dd>
+<dt>label: (STRING)</dt>
+<dd>
+                                    A human-readable label or name associated to the type sub-field.
+                                    This is the Primary Sub-Field for the purposes of sorting and filtering.
+                                
+</dd>
+</dl></blockquote>
+                        
+</dd>
+</dl></blockquote><p>
+                
+</p>
+<a name="segment-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.24"></a><h3>8.4.24.&nbsp;
+Segment</h3>
+
+<p>
+                    The Segment object type extends the CONTENT object type and represents a continuous portion of a piece of a programme version, for example a single topic in a news programme or the highlights of a soccer match.
+                    A particular segment can belong to a single programme only, but it can be a member of multiple segment groups.
+                    A programme can contain multiple segments.
+                    Segments are reusable, editorially distinct items.
+                    
+                    </p>
+<blockquote class="text"><dl>
+<dt>programme: (VERSION)</dt>
+<dd>
+                            A reference to the programme version this segment belongs to.
+                            If the segment is part of a segment group, this field MAY be left empty and the segment is assumed to belong to the programme as referenced by the parent segment group.
+                        
+</dd>
+<dt>segmentType: (ENUM)</dt>
+<dd>
+                            The type of segment SHOULD BE selected from a standard list of values (e.g. 'highlights', 'bookmarks', 'preview', 'insertion points', 'shots', 'speech').
+                        
+</dd>
+<dt>start: (TIMECODE or TIME or NUMBER)</dt>
+<dd>
+                            The beginning point for playback of the programme segment.
+                        
+</dd>
+<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
+<dd>
+                            The time based duration of the programme segment.
+                        
+</dd>
+<dt>chapter: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the programme segment is a chapter.
+                        
+</dd>
+<dt>media: (LINK)</dt>
+<dd>
+                            A link to the media resource representing the segment.
+                            The href sub-field MAY match the corresponding media resource locator field or contain a URI Media Fragment with a Normal Play Time (NPT) or SMPTE time code as defined in section 4.2.1 of <a class='info' href='#MEDIA-FRAGMENTS-URI'>[MEDIA&#8209;FRAGMENTS&#8209;URI]<span> (</span><span class='info'>W3C, &ldquo;Media Fragments URI 1.0,&rdquo; .</span><span>)</span></a>.
+                        
+</dd>
+</dl></blockquote><p>            
+                
+</p>
+<a name="segmentgroup-type"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.25"></a><h3>8.4.25.&nbsp;
+Segment Group</h3>
+
+<p>
+                    The Segment Group object type extends the SEGMENT object type and represents collection of segments that are grouped together.
+                    A segment group can contain segments or segment groups.
+                    The Segment Group object type is identified with the string SEGMENT_GROUP.
+                    
+                    </p>
+<blockquote class="text"><dl>
+<dt>segments: [SEGMENT]</dt>
+<dd>
+                            The list of segments that are contained within the segment group.
+                            The order of the references to segments determines the temporal playback order of segments in this group.
+                        
+</dd>
+</dl></blockquote><p>            
+                
 </p>
 <a name="rights-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.24"></a><h3>8.4.24.&nbsp;
+<a name="rfc.section.8.4.26"></a><h3>8.4.26.&nbsp;
 Rights</h3>
 
 <p>
             The Rights object type extends the basic object type CONTENT and represents information (rights management statement or reference to a service providing such information e.g. via a URL) about copyright, intellectual property rights or other property rights held in and over a piece of content, stating whether access is open or restricted in some way.
             </p>
 <blockquote class="text"><dl>
-<dt>type: (ENUM)</dt>
+<dt>rightsType: (ENUM)</dt>
 <dd>
                     The type of rights expressed (e.g. 'merchandising', 'derivation', 'publication').
                     The value SHOULD BE selected from a standard list of values such as the EBU Rights Type codes.
-                    This is the Primary Sub-Field for the purposes of sorting and filtering.
                 
 </dd>
 <dt>rightsHolder: (CONTACT)</dt>
@@ -3430,13 +3529,13 @@ Rights</h3>
                     The temporal coverage.
                 
 </dd>
-<dt>inclusionCountries: [COUNTRY or STRING]</dt>
+<dt>inclusionCountries: [TERRITORY or STRING]</dt>
 <dd>
                     An inclusion list of countries for whom the content is intended or useful.
                     The special value 'all' is reserved to indicate all or any country.
                 
 </dd>
-<dt>exclusionCountries: [COUNTRY or STRING]</dt>
+<dt>exclusionCountries: [TERRITORY or STRING]</dt>
 <dd>
                     An exclusion list of countries for whom the content is intended or useful.
                     The special value 'all' is reserved to indicate all or any country.
@@ -3448,18 +3547,12 @@ Rights</h3>
                     The value SHOULD BE selected from a standard list of values such as the EBU Rights Type codes.
                 
 </dd>
-<dt>link: (LINK)</dt>
-<dd>
-                    A copy of the copyright license terms under which the content is made available.
-                    If the field is set, the <tt>rel</tt> sub-field MUST have the <tt>license</tt> value.
-                
-</dd>
 </dl></blockquote><p>            
         
 </p>
 <a name="award-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.25"></a><h3>8.4.25.&nbsp;
+<a name="rfc.section.8.4.27"></a><h3>8.4.27.&nbsp;
 Award</h3>
 
 <p>
@@ -3492,7 +3585,7 @@ Award</h3>
 </p>
 <a name="contact-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.26"></a><h3>8.4.26.&nbsp;
+<a name="rfc.section.8.4.28"></a><h3>8.4.28.&nbsp;
 Contact</h3>
 
 <p>
@@ -3502,7 +3595,7 @@ Contact</h3>
 </p>
 <a name="organisation-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.27"></a><h3>8.4.27.&nbsp;
+<a name="rfc.section.8.4.29"></a><h3>8.4.29.&nbsp;
 Organisation</h3>
 
 <p>
@@ -3520,7 +3613,7 @@ Organisation</h3>
 </p>
 <a name="group-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.28"></a><h3>8.4.28.&nbsp;
+<a name="rfc.section.8.4.30"></a><h3>8.4.30.&nbsp;
 Group</h3>
 
 <p>
@@ -3806,6 +3899,8 @@ Change Log</h3>
 </li>
 <li>Updated "genre", "targetAudience" and "format" definitions so that "value" is primary sub-field as ENUM or IRI.
 </li>
+<li>Added "targetRegion", "notRated" and "adultContent" to Content.
+</li>
 <li>Added "released" and "copyrighted" dates.
 </li>
 <li>Added "reason", "linkToLogo", "notRated", "adultContent" and "targetRegion" to "targetAudience".
@@ -3813,6 +3908,48 @@ Change Log</h3>
 <li>Moved "firstTransmissionDate", "firstTransmissionChannel" and "repeats" to Programme level.
 </li>
 <li>Removed "episodes" and "series" from Programme.
+</li>
+<li>Renamed simple type COUNTRY to TERRITORY.
+</li>
+<li>Updated Media Resource "locator" field definition.
+</li>
+<li>Corrected Media Resource "medium" field and renamed "type" to "mediaType".
+</li>
+<li>Flattened audo and video paraementers in Media Resource.
+</li>
+<li>Simplified Service hierarchy removing Channel and Outlet types.
+</li>
+<li>Renamed Title to Ondemand and Catalog to Catalogue.
+</li>
+<li>Renamed Catalogue "type" to "catalogueType".
+</li>
+<li>Added "logo", "dog", "lcn", "application" and "locator" to Service.
+</li>
+<li>Removed "subType" from Service and renamed "type" to "serviceType".
+</li>
+<li>Renamed Rights "type" to "rightsType".
+</li>
+<li>Removed Rights "link". The links HTML5 "license" Lynk Type can be used instead.
+</li>
+<li>Added Application type.
+</li>
+<li>Renamed Segment "type" to "segmentType".
+</li>
+<li>Removed "media" sub-field from "source" in Content.
+</li>
+<li>Removed "type" from Version.
+</li>
+<li>Added Application types hierarchy and referred from "application" in Service.
+</li>
+<li>Made Programme "country" plural.
+</li>
+<li>Added TERRITORY type to "location" possible list of value types."
+</li>
+<li>Added YEAR type to "temporal" possible list of value types.
+</li>
+<li>Added "minAudioBitrate", "maxAudioBitrate", "minVideoBitrate" and "maxVideoBitrate" to Media Resource.
+</li>
+<li>Added "guidanceText" and "longGuidanceText" to "targetAudience" on Content.
 </li>
 </ul><p>
         
@@ -3862,6 +3999,8 @@ References</h3>
 <td class="author-text">BBC, &ldquo;<a href="http://purl.org/ontology/po/">Programmes ontology</a>.&rdquo;</td></tr>
 <tr><td class="author-text" valign="top"><a name="DCMI-PERIOD">[DCMI-PERIOD]</a></td>
 <td class="author-text">&ldquo;<a href="http://dublincore.org/documents/dcmi-period/">DCMI Period Encoding Scheme</a>.&rdquo;</td></tr>
+<tr><td class="author-text" valign="top"><a name="DVB-URI">[DVB-URI]</a></td>
+<td class="author-text">British Broadcasting Corportation and Condition-ALPHA, &ldquo;<a href="http://tools.ietf.org/html/draft-mcroberts-uri-dvb">Uniform Resource Identifier (URI) Scheme for Digital Video Broadcasting (DVB) Programme Resources</a>,&rdquo; March&nbsp;2013.</td></tr>
 <tr><td class="author-text" valign="top"><a name="EBU-OBJECTMODEL">[EBU-OBJECTMODEL]</a></td>
 <td class="author-text">EBU, &ldquo;<a href="http://www.slideshare.net/EUscreen/evain-ebu-metadata-euscreen-mykonos">EBU Object Model</a>.&rdquo;</td></tr>
 <tr><td class="author-text" valign="top"><a name="EBU-REFERENCEDATA">[EBU-REFERENCEDATA]</a></td>
@@ -3882,7 +4021,7 @@ References</h3>
 <td class="author-text">IANA, &ldquo;<a href="http://www.iana.org/assignments/media-types/">MIME Media Types</a>.&rdquo;</td></tr>
 <tr><td class="author-text" valign="top"><a name="IANA-RELREG">[IANA-RELREG]</a></td>
 <td class="author-text">IANA, &ldquo;<a href="http://www.iana.org/assignments/link-relations/link-relations.xml">Link Relation Types</a>.&rdquo;</td></tr>
-<tr><td class="author-text" valign="top"><a name="ISO3166-country">[ISO3166-country]</a></td>
+<tr><td class="author-text" valign="top"><a name="ISO3166">[ISO3166]</a></td>
 <td class="author-text">ISO, &ldquo;<a href="http://en.wikipedia.org/wiki/ISO_3166">ISO 3166</a>.&rdquo;</td></tr>
 <tr><td class="author-text" valign="top"><a name="ISO8601-duration">[ISO8601-duration]</a></td>
 <td class="author-text">ISO, &ldquo;<a href="http://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601</a>.&rdquo;</td></tr>
