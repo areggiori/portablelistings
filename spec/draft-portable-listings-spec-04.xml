@@ -74,8 +74,8 @@ ISSUES:
           </t>
           <t hangText="Entry Metadata:">
             Or meta-metadata, it is system information which is used to support the storage and retrieval of actual Content Metadata itself.
-            For example, the "Entry" object type fields id, updated, published and metadataRights are examples of information about the metadata record itself.
-            Throughout this document we will clearly distinguish the "Entry" and "Content" object types and we will provide additional text to clarify the context of a specific piece of metadata, where and if necessary.
+            The information about the metadata record itself is stored in the Entry fields prefixed with "entry" (e.g. entryUpdated).
+            Throughout this document we will clearly distinguish the "Entry Metadata" and "Content Metadata" and we will provide additional text to clarify the context of a specific piece of metadata, where and if necessary.
           </t>
           <t hangText="Listings:">
             Or listings information, it is a term used in this document as a more colloquial and less technical synonym for the information being stored and search by a Provider.
@@ -112,7 +112,7 @@ ISSUES:
           <t hangText="Complex Field">
             A Singular Field or Plural Field whose value is an object containing multiple sub-field attributes (see <xref target="structure" />).
             <!--
-             A complex field is distinguishged from a sub-Entry due the complex field does not have any of the core properties (sub-fields) an Entry has e.g. <spanx style="verb">id</spanx> or <spanx style="verb">updated</spanx>.
+             A complex field is distinguishged from a sub-Entry due the complex field does not have any of the core properties (sub-fields) an Entry has e.g. <spanx style="verb">id</spanx> or <spanx style="verb">entryUpdated</spanx>.
             -->
           </t>          
           <t hangText="Canonical Value:">
@@ -264,7 +264,7 @@ ISSUES:
         <section title="Metadata Freshness" anchor="metadata-freshness">
             <t>
                 Content metadata MAY become "stale" when the content changes. A Service Provider MUST make sure that any content metadata returned to a Consumer is kept in sync with the corresponding content, or if it is not possible a Provider MAY decide to define a policy to guarantee the freshness of metadata.
-                 Also note that, while it is true that when a Provider changes a content metadata field value also some of the system fields MAY be changed (see <xref target="system-information"/> - e.g. a movie title spelling mistake correction generally triggers a change to the updated field), the viceversa it is not always true (e.g. a metadata record publication date might be changed by a Provider without the content metadata fields being touched).
+                 Also note that, while it is true that when a Provider changes a content metadata field value also some of the system fields MAY be changed (see <xref target="system-information"/> - e.g. a movie title spelling mistake correction generally triggers a change to the entryUpdated field), the viceversa it is not always true (e.g. a metadata record publication date might be changed by a Provider without the content metadata fields being touched).
              </t>
         </section>
     -->
@@ -347,13 +347,13 @@ Content-Type: application/listings+json
   "entry": [ 
     {
       "id": "5E5EEBED3173",
+      "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
               "type": "original",
               "value": "Northwest Passage"
               },
-      "objectType": "episode",
       "summary": "The small northwest town of
                   Twin Peaks, Washington
                   is shaken when the body of
@@ -379,9 +379,9 @@ Content-Type: application/listings+json
     },
     {
       "id": "8881860D6F31",
+      "objectType": "episode",
       "displayName": "Episode 2",
       "title": "Traces to Nowhere",
-      "objectType": "episode",
       "summary": "Cooper's investigation into the
                   murder of Laura Palmer continues,
                   as her secret boyfriend James Hurley
@@ -441,13 +441,13 @@ Content-Type: application/listings+json
 {
     "entry": {
       "id": "5E5EEBED3173",
+      "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
               "type": "original",
               "value": "Northwest Passage"
               },
-      "objectType": "episode",
       "summary": "The small northwest town of Twin Peaks,
                   Washington is shaken when the body of
                   Laura Palmer, is discovered...",
@@ -496,6 +496,7 @@ Content-Type: application/listings+json
     "entry": [
       {
         "id": "C675EDD23A2D",
+        "objectType": "contact",
         "displayName": "David Lynch",
         "name": {
           "middleName": "Keith"
@@ -504,6 +505,7 @@ Content-Type: application/listings+json
       },
       {
         "id": "2F050A9AF481",
+        "objectType": "contact",
         "displayName": "Mark Frost"
       }
     ]
@@ -615,13 +617,13 @@ Content-Type: application/listings+json
               <t hangText="updatedSince:">
               <!-- MAKE clear that updatedSince is about Entry metadata and not the content - so to know if a piece of content has been actually updated normally the Consumer need to use the filterBy=modified (or similar) request/filter - it is very important -->
                 Returns only Entries that have been modified on or after the given time, specified as an TIMESTAMP (see <xref target="RFC3339"/>).
-                The filter is based on the value of the <spanx style="verb">updated</spanx> field, and can be used independently of other filters or combined.
+                The filter is based on the value of the <spanx style="verb">entryUpdated</spanx> field, and can be used independently of other filters or combined.
                 It enables a basic syndication pattern when accessing the same metadata over time. The first API call returns all metadata, which can be stored locally.
                 Subsequent API calls can specify <spanx style="verb">updatedSince</spanx> with the time of the last API call, so that only Entries that have been added or modified since the last API call will be returned.
               </t>
               <t hangText="updatedUntil:">
                 Returns only Entries that have been modified on or before the given time, specified as an TIMESTAMP (see <xref target="RFC3339"/>).
-                Like for <spanx style="verb">updatedSince</spanx> the filter is based on the value of the <spanx style="verb">updated</spanx> field, and can be used independently of other filters or combined.
+                Like for <spanx style="verb">updatedSince</spanx> the filter is based on the value of the <spanx style="verb">entryUpdated</spanx> field, and can be used independently of other filters or combined.
               </t>
               <!-- add filter by SOURCE or named graph -->
             </list>
@@ -710,6 +712,16 @@ Content-Type: application/listings+json
                 <!--Providers MAY support additional fields parameter formats if they choose.-->
                 Providers MUST decline to present results if the specified fields format is not recognized (as per <xref target="declining" />).
               </t>
+              <t hangText="format:">
+                <!--
+                     -> Check/add how sub-entries and relationships are expanded; especially 1-to-1 and 1-to-N
+                -->
+                Specifies the format in which the response content metadata is returned.
+                Service Providers MUST support the values <spanx style="verb">json</spanx> for JSON (http://json.org) and MAY support additional formats if desired.
+                The format defaults to <spanx style="verb">json</spanx> if no format is specified. Singular Fields are encoded as string key/value pairs in JSON, e.g. <spanx style="verb">"field": "value"</spanx>.
+                Plural Fields and Plural Bundles are encoded as arrays in JSON, e.g. <spanx style="verb">"fields": [ "value1", "value2" ]</spanx>.
+                Nodes with multiple sub-nodes are represented as objects in JSON, e.g. <spanx style="verb">"field": { "subfield1": "value1", "subfield2": "value2" }</spanx>.
+              </t>
               <t hangText="includeRelationships:">
                 This is an optional parameter and it MUST be used in combination with the <spanx style="verb">fields</spanx> parameter.
                 If non-empty, it MUST specifies a valid boolean value of 'true' or 'false'.
@@ -721,15 +733,23 @@ Content-Type: application/listings+json
                 A Consumer SHOULD BE able to process at least one level of inclusion of Sub-Entries, and MAY ignore any sub-levels of inclusion if not supported or understood.
                 A Provider SHOULD NOT filter an inline <spanx style="verb">entry</spanx> structure using the <spanx style="verb">fields</spanx> parameter as it complicates the processing of the request.
               </t>
-              <t hangText="format:">
-                <!--
-                    -> Check/add how sub-entries and relationships are expanded; especially 1-to-1 and 1-to-N 
-                -->
-                Specifies the format in which the response content metadata is returned.
-                Service Providers MUST support the values <spanx style="verb">json</spanx> for JSON (http://json.org) and MAY support additional formats if desired.
-                The format defaults to <spanx style="verb">json</spanx> if no format is specified. Singular Fields are encoded as string key/value pairs in JSON, e.g. <spanx style="verb">"field": "value"</spanx>.
-                Plural Fields and Plural Bundles are encoded as arrays in JSON, e.g. <spanx style="verb">"fields": [ "value1", "value2" ]</spanx>.
-                Nodes with multiple sub-nodes are represented as objects in JSON, e.g. <spanx style="verb">"field": { "subfield1": "value1", "subfield2": "value2" }</spanx>.
+              <t hangText="listFields:">
+                This is an optional parameter.
+                If non-empty, it MUST specifies a valid boolean value of 'true' or 'false'.
+                If the value is 'true' a Provider SHOULD list the existing simple and complex field names (<xref target="fields"/>) in the <spanx style="verb">entryFields</spanx> Entry field as Entry Metadata. Otherwise no extra field SHALL be included.
+                When used in combination with the <spanx style="verb">fields</spanx> parameter only field names not listed in the fields parameter SHALL be returned.
+              </t>
+              <t hangText="listWeblinks:">
+                This is an optional parameter.
+                If non-empty, it MUST specifies a valid boolean value of 'true' or 'false'.
+                If the value is 'true' a Provider SHOULD list the existing Web link field names (<xref target="link-structure"/>) in the <spanx style="verb">entryWeblinks</spanx> Entry field as Entry Metadata. Otherwise no extra field SHALL be included.
+                When used in combination with the <spanx style="verb">fields</spanx> parameter only Web link field names not listed in the fields paramters SHALL be returned.
+              </t>
+              <t hangText="listRelationships:">
+                This is an optional parameter.
+                If non-empty, it MUST specifies a valid boolean value of 'true' or 'false'.
+                If the value is 'true' a Provider SHOULD list the existing relationship field names (<xref target="relationships"/>) in the <spanx style="verb">entryRelationships</spanx> Entry field as Entry Metadata. Otherwise no extra field SHALL be included.
+                When used in combination with the <spanx style="verb">fields</spanx> parameter only relationship field names not listed in the fields paramters SHALL be returned.
               </t>
             </list>
           </t>
@@ -739,8 +759,8 @@ Content-Type: application/listings+json
         </t>
         <figure>
           <artwork>
-GET /api/listings/5E5EEBED3173?fields=title,alternativeTitle.value,
-                contributor.role&amp;includeRelationships=true HTTP/1.1
+GET /api/listings/5E5EEBED3173?fields=title,alternativeTitle,
+                contributor&amp;includeRelationships=true HTTP/1.1
 Host: api.example.org
           </artwork>
         </figure>
@@ -757,16 +777,18 @@ Content-Type: application/listings+json
 {
     "entry": {
       "id": "5E5EEBED3173",
+      "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
-              "type": "original",
-              "value": "Northwest Passage"
-              },
+        "type": "original",
+        "value": "Northwest Passage"
+      },
       "contributor": [
         {
           "entry": {
             "id": "C675EDD23A2D",
+            "objectType": "contact",
             "displayName": "David Lynch",
             "name": {
               "middleName": "Keith"
@@ -776,13 +798,17 @@ Content-Type: application/listings+json
           "role": "director"
         },
         {
-          "href": "C675EDD23A2D",
-          "role": "writer",
-          "label": "David Lynch"
+          "entry": {
+            "id": "2F050A9AF481",
+            "objectType": "contact",
+            "displayName": "David Lynch"
+          }
+          "role": "writer"
         },
         {
           "entry": {
             "id": "2F050A9AF481",
+            "objectType": "contact",
             "displayName": "Mark Frost"
           }
           "role": "writer"
@@ -792,7 +818,74 @@ Content-Type: application/listings+json
 }
           </artwork>
         </figure>
-        
+          <t>
+            While instead by issuing this request:
+          </t>
+            <figure>
+                <artwork>
+GET /api/listings/5E5EEBED3173?fields=title,alternativeTitle,
+                contributor&amp;listRelationships=true
+                &amp;listFields=true&amp;listWeblinks=true HTTP/1.1
+Host: api.example.org
+                </artwork>
+            </figure>
+            <t>
+                The following Entry would be returned:
+            </t>
+            <figure>
+                <artwork>
+HTTP/1.1 200 OK
+Content-Length: ...
+Content-Language: en
+Content-Type: application/listings+json
+                    
+{
+    "entry": {
+      "id": "5E5EEBED3173",
+      "objectType": "episode",
+      "displayName": "Episode 1",
+      "title": "Pilot",
+      "alternativeTitle": {
+        "type": "original",
+        "value": "Northwest Passage"
+      },
+      "contributor": [
+        {
+          "href": "C675EDD23A2D",
+          "role": "director",
+          "label": "David Lynch",
+          "primary": true
+        },
+        {
+          "href": "C675EDD23A2D",
+          "role": "writer",
+          "label": "David Lynch"
+        },
+        {
+          "href": "2F050A9AF481",
+          "role": "writer",
+          "label": "Mark Frost"
+        }
+      ],
+      "entryFields": [
+        "summary",
+        "position"
+      ],
+      "entryWeblinks": [
+        "links",
+        "thumbnails",
+        "versions"
+      ],
+      "entryRelationships": [
+        "parent",
+        "peers","
+        "service",
+        "versions"
+      ],
+    }
+}
+                </artwork>
+            </figure>
         </section>
         
     
@@ -1525,7 +1618,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
           The majorority of the fields defined in the <spanx style="verb">core profile</spanx> are meant to be used to represent descriptive, administrative or technical properties of an actual audiovisual piece of content or any other related resource (e.g. a television show episode title, synopsys, release date, a film genre, duration, a video file format, width, height, the language of a related Web resource, a thumbnail image size and so on). Some fields instead are purely defined to help a Service Provider to manage and store metadata records; or support a Consumer to retrieve and filter results. We refer to such fields as "system information" due the information they carry it is not generally considered part of the properties of a piece of content (or any other related resource) but rather associated to the "status" or properties of a metadata record itself.
         </t>
         <t>
-           For example, an Entry <spanx style="verb">updated</spanx> field describes the most recent date the metadata record was modified, rather than the actual modification date of the piece of content. Likewise a <spanx style="verb">published</spanx> field describes the date when the metadata record was added to a database, or a <spanx style="verb">license</spanx> field describes the rights and usage terms of the metadata record rather than the actual content copyright or intellectual property rights. Or even an Entry <spanx style="verb">id</spanx> field itself MAY or MAY not contain a unique identifier specific to the metadata record (e.g. a database record identifier) rather than an unambiguous identifier for a piece of content used inside an agency, station or production company.
+           For example, an Entry <spanx style="verb">entryUpdated</spanx> field describes the most recent date the metadata record was modified, rather than the actual modification date of the piece of content. Likewise a <spanx style="verb">published</spanx> field describes the date when the metadata record was added to a database, or a <spanx style="verb">license</spanx> field describes the rights and usage terms of the metadata record rather than the actual content copyright or intellectual property rights. Or even an Entry <spanx style="verb">id</spanx> field itself MAY or MAY not contain a unique identifier specific to the metadata record (e.g. a database record identifier) rather than an unambiguous identifier for a piece of content used inside an agency, station or production company.
         </t>
         <t>
           Unless specified otherwise, all fields defined in the <spanx style="verb">core profile</spanx> refer to content specific properties, and where necessary the field naming has been choosen to make clear and disambiguate their definition (e.g. <spanx style="verb">contentXXXXXX</spanx> rather than <spanx style="verb">XXXX</spanx>). For easy reference to the reader system information fields are marked with the SYSTEM keyword.  Also unless specified otherwise, the results returned to a Consumer MUST contain all the system information fields.
@@ -1807,7 +1900,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Usually, an internal database ID will be the right choice here, e.g. <spanx style="verb">"12345"</spanx>.
               </t>
               <t hangText="displayName: (STRING)">
-                REQUIRED. The short name of this Entry, suitable for display to end-users.
+                REQUIRED. The short name of this Entry, suitable for display to end-users (e.g. short title).
                 Each Entry returned MUST include a non-empty <spanx style="verb">displayName</spanx> value.
                 The value provided SHOULD be the primary textual field by which the Entry is normally displayed by the Service Provider when presenting it to end-users.
                 Unless otherwise specified, the displayName value is used for the purposes of sorting and filtering.
@@ -1816,21 +1909,43 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The object type of the Entry record. A profile defines the possible allowed Canonical Values for the <spanx style="verb">objectType</spanx> field (see <xref target="listings-format" />).
                 Different Entries requested by a Consumer can have a different object type. This specification reserves the <spanx style="verb">entry</spanx> value for referring to object types of Entry, and by definition an Entry without a <spanx style="verb">objectType</spanx> field or with a <spanx style="verb">objectType</spanx> value equal to <spanx style="verb">null</spanx> it is assumed to be of object type Entry.                
                 The list of valid Canonical Values for this field consists of the list of lowercased object type names defined in <xref target="object-types"/>.
-              </t>                            
-              <t hangText="published: (TIMESTAMP)">
+              </t>
+              <t hangText="entryPublished: (TIMESTAMP)">
                 The date the metadata Entry record was first added to the user's metadata set or database (i.e. the creation date of the Entry). This field MAY also be associated with the first availability of the Entry.
                 The value MUST be a valid TIMESTAMP (e.g. <spanx style="verb">2008-01-23T04:56:22Z</spanx>).
               </t>
-              <t hangText="updated: (TIMESTAMP)">
+              <t hangText="entryUpdated: (TIMESTAMP)">
                 The most recent date the details of the Entry record were updated (i.e. the modified date of the Entry).
                 The value MUST be a valid TIMESTAMP (e.g. <spanx style="verb">2008-01-23T04:56:22Z</spanx>).
-                If the Entry has never been modified since its initial creation, the value MUST be the same as the value of <spanx style="verb">published</spanx>.
+                If the Entry has never been modified since its initial creation, the value MUST be the same as the value of <spanx style="verb">entryUpdated</spanx>.
                 Note the <spanx style="verb">updatedSince</spanx> and the <spanx style="verb">updatedUntil</spanx> Query Parameters described in <xref target="query-params" /> can be used to select only Entries whose <spanx style="verb">updated</spanx> value is equal to or more recent than a given TIMESTAMP or equal to or older than a given TIMESTAMP respectively. This enables Consumers to repeatedly access a metadata Entry and only request newly added or updated Entries since the last access time.
               </t>
               <t hangText="links: [LINK]">
                 A metadata Entry MAY have associated one ore more links to external Web resources.
                 <!--Say that any other relationship defined (e.g. metadataRights) will override the value of any corresponding link in this Plural Field...-->
                 A Provider SHOULD NOT use the links element to express relationships by-reference as this complicates processing by the Consumer.
+              </t>
+              <t hangText="parent: (ENTRY)">
+                    Relates a piece of content to another piece of content constituting it.
+                    This relationship SHOULD BE used to access the parent Entries in Collections, Programme Groups, Series and so on.
+                    The following fields are refined for the parent relationship:
+                    <list style="hanging">
+                        <t hangText="rel: (ENUM)">
+                            The rel value MUST BE the "up" relation type as defined in section 6.2.2. of <xref target="RFC5988" />.
+                            If this property is omitted or null it MUST BE processed as if the value was the string "up".
+                        </t>
+                    </list>
+              </t>
+              <t hangText="peers: [ENTRY]">
+                Relates a piece of content to other pieces of content which are peers within collection (predecessor/successor).
+                This relationship SHOULD BE used to access the previous and next Entries in Collections, Programme Groups, Series, Episodes (e.g. previous episode, next episode).
+                The following fields are refined for the parent relationship:
+                <list style="hanging">
+                  <t hangText="rel: (ENUM)">
+                    REQUIRED. The rel value MUST BE the "prev" relation type as defined in section 6.2.2. of <xref target="RFC5988" /> when referring to a previous Entry in a list or collection.
+                    The rel value MUST BE the "next" relation type as defined in section 6.2.2. of <xref target="RFC5988" /> when referring to a next Entry in a list or collection.
+                  </t>
+                </list>
               </t>
             </list>
           </t>
@@ -1880,18 +1995,19 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         </t>
                     </list>
               </t>
-              <t hangText="summary: (STRING or HTML)">
-                A comprehensive and usually brief abstract, recapitulation, or compendium of of actions and events in the piece of content.
-              </t>
               <t hangText="synopsis: (STRING or HTML)">
                 A brief or condensed statement giving a general view about the piece of content e.g. a brief summary of the plot of a novel, motion picture, play, etc.
+                This is being referred as short synopsis.
+              </t>
+              <t hangText="summary: (STRING or HTML)">
+                A comprehensive and usually brief abstract, recapitulation, or compendium of of actions and events in the piece of content.
               </t>
               <t hangText="description: [COMPLEX]">
                     An extended textual description of the piece of content other than the information provided with the <spanx style="verb">synopsis</spanx> and <spanx style="verb">summary</spanx> fields.
                     The extended description MAY also consist of outlines, lists, bullet points, edit decision lists, indexes and have references to external media and graphical material.
                     <list style="hanging">
                         <t hangText="type: (ENUM)">
-                            The type of field SHOULD BE selected from the following list: <spanx style="verb">annotation</spanx>, <spanx style="verb">annotationSynopsis</spanx>, <spanx style="verb">abstract</spanx>, <spanx style="verb">anecdotalCommentsAndReflections</spanx>, <spanx style="verb">theme</spanx>, <spanx style="verb">purpose</spanx>, <spanx style="verb">outline</spanx>, <spanx style="verb">cueWords</spanx>, <spanx style="verb">cueInWords</spanx>, <spanx style="verb">cueOutWords</spanx>, <spanx style="verb">process</spanx>, <spanx style="verb">assessment</spanx>, <spanx style="verb">editoralComments</spanx>, <spanx style="verb">keyPoints</spanx>, <spanx style="verb">shotDescription</spanx>, <spanx style="verb">creditLine</spanx>, <spanx style="verb">instructions</spanx>, <spanx style="verb">modelInformation</spanx>, <spanx style="verb">artwork</spanx>, <spanx style="verb">event</spanx>, <spanx style="verb">releaseInformation</spanx>, <spanx style="verb">intention</spanx>, <spanx style="verb">shotComment</spanx>, <spanx style="verb">citation</spanx>.
+                            The type of field SHOULD BE selected from the following list: <spanx style="verb">mediumSynopsis</spanx>, <spanx style="verb">longSynopsis</spanx>, <spanx style="verb">annotation</spanx>, <spanx style="verb">annotationSynopsis</spanx>, <spanx style="verb">abstract</spanx>, <spanx style="verb">anecdotalCommentsAndReflections</spanx>, <spanx style="verb">theme</spanx>, <spanx style="verb">purpose</spanx>, <spanx style="verb">outline</spanx>, <spanx style="verb">cueWords</spanx>, <spanx style="verb">cueInWords</spanx>, <spanx style="verb">cueOutWords</spanx>, <spanx style="verb">process</spanx>, <spanx style="verb">assessment</spanx>, <spanx style="verb">editoralComments</spanx>, <spanx style="verb">keyPoints</spanx>, <spanx style="verb">shotDescription</spanx>, <spanx style="verb">creditLine</spanx>, <spanx style="verb">instructions</spanx>, <spanx style="verb">modelInformation</spanx>, <spanx style="verb">artwork</spanx>, <spanx style="verb">event</spanx>, <spanx style="verb">releaseInformation</spanx>, <spanx style="verb">intention</spanx>, <spanx style="verb">shotComment</spanx>, <spanx style="verb">citation</spanx>.
                             The <spanx style="verb">synopsis</spanx> and <spanx style="verb">summary</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
                         </t>
                         <t hangText="value: (STRING or HTML)">
@@ -1939,24 +2055,37 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The date when the piece of content was digitised.
               </t>
               <t hangText="released: (TIMESTAMP or PERIOD)">
-                    The date when the piece of content was released.
+                The date when the piece of content was released.
               </t>
               <t hangText="copyrighted: (TIMESTAMP or PERIOD)">
-                    The date when the piece of content was copyrighted.
+                The date when the piece of content was copyrighted.
+              </t>
+              <t hangText="productionDate: (YEAR or TIME)">
+                  The date when the piece of content was produced. The year SHALL be specified; month and day number MAY optionally be provided additionally.
+                  A time point SHALL NOT be specified.
               </t>
               <t hangText="alternativeDate: [COMPLEX]">
                 An alternative date of the piece of content.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The type of field SHOULD BE selected from a standard list of values (e.g. 'productionDate', 'dateAccepted', 'dateSubmitted').
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'accepted', 'submitted').
+                        The <spanx style="verb">created</spanx>, <spanx style="verb">issued</spanx>,  <spanx style="verb">modified</spanx>, <spanx style="verb">digitised</spanx>,  <spanx style="verb">released</spanx>,  <spanx style="verb">copyrighted</spanx> and <spanx style="verb">production</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
                     </t>  
                     <t hangText="value: (TIMESTAMP or PERIOD)">
                         The alternative date.
                     </t>
                </list>
               </t>
-              <t hangText="aliases: [IRI or STRING]">
+              <t hangText="aliases: [COMPLEX]">
                 Additional or alternative identifiers for the piece of content.
+                <list>
+                    <t hangText="value: (IRI or STRING)">
+                        The alternative identifier.
+                    </t>
+                    <t hangText="authority: [IRI]">
+                        An optional issuing authority fully qualified IRI.
+                    </t>
+                </list>
               </t>
               <t hangText="category: [COMPLEX]">
                     A category from a taxonomy or controlled vocabulary scheme associated to the piece of content.
@@ -2000,10 +2129,16 @@ WWW-Authenticate: Basic realm="sample.site.org"
                </list>
               </t>
               <t hangText="notRated: (BOOLEAN)">
-                    A flag to indicate that the piece of content has not been rated (if set to true).
+                A flag to indicate that the piece of content has not been rated (if set to true).
               </t>
               <t hangText="adultContent: (BOOLEAN)">
-                    A flag to indicate is the piece of content contains adult content (if set to true).
+                A flag to indicate this the piece of content contains adult content (if set to true).
+              </t>
+              <t hangText="childrensContent: (BOOLEAN)">
+                A flag to indicate this the piece of content is suitable for viewing by children (if set to true).
+              </t>
+              <t hangText="educationalContent: (BOOLEAN)">
+                A flag to indicate this the piece of content is primarly intended for educational purposes (if set to true).
               </t>
               <!-- target country - to add later with content packaing and publishing policies i.e. releases / packages -->
               <t hangText="targetRegion: [COMPLEX]">
@@ -2047,24 +2182,33 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     </t>
                </list>
               </t>
-              <t hangText="language: [COMPLEX]">
-                Identifies languages of the content and their use.
+              <t hangText="language: (LANGUAGE)">
+                The main production language of the piece of content. This may also be referrred as original language.
+              </t>
+              <t hangText="alternativeLanguage: [COMPLEX]">
+                Alternative languages of the content and their use.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
                         The language purpose.
-                        The value SHOULD BE selected from the following list: <spanx style="verb">audio</spanx>, <spanx style="verb">mainOriginalLanguage</spanx>, <spanx style="verb">mainDubbedLanguage</spanx>, <spanx style="verb">additionalOriginalLanguage</spanx>, <spanx style="verb">additionalDubbedLanguage</spanx>, <spanx style="verb">descriptiveVideoInformation</spanx>, <spanx style="verb">supplementalCommentary</spanx>, <spanx style="verb">directorCommentary</spanx>, <spanx style="verb">audioDescription</spanx>, <spanx style="verb">supplementaryAudioProgramme</spanx>, <spanx style="verb">educationalNotes</spanx>, <spanx style="verb">voiceOver</spanx>, <spanx style="verb">originalCommentary</spanx>, <spanx style="verb">dubbedCommentary</spanx>, <spanx style="verb">originalNarration</spanx>, <spanx style="verb">dubbedDialogue</spanx>, <spanx style="verb">dubbedNarration</spanx>, <spanx style="verb">interviewerLanguage</spanx>, <spanx style="verb">intervieweeLanguage</spanx>, <spanx style="verb">text</spanx>, <spanx style="verb">textDescription</spanx>, <spanx style="verb">transcript</spanx>, <spanx style="verb">caption</spanx>, <spanx style="verb">openCaption</spanx>, <spanx style="verb">closedCaption</spanx>, <spanx style="verb">supplemental</spanx>, <spanx style="verb">titles</spanx>, <spanx style="verb">subtitles</spanx>, <spanx style="verb">openSubtitles</spanx>, <spanx style="verb">closedSubtitles</spanx>, <spanx style="verb">songLyrics</spanx>, <spanx style="verb">signLanguage</spanx>, <spanx style="verb">dubbedSignLanguage</spanx>.                        
+                        The value SHOULD BE selected from the following list: <spanx style="verb">audio</spanx>, <spanx style="verb">mainOriginalLanguage</spanx>, <spanx style="verb">mainDubbedLanguage</spanx>, <spanx style="verb">additionalOriginalLanguage</spanx>, <spanx style="verb">additionalDubbedLanguage</spanx>, <spanx style="verb">descriptiveVideoInformation</spanx>, <spanx style="verb">supplementalCommentary</spanx>, <spanx style="verb">directorCommentary</spanx>, <spanx style="verb">audioDescription</spanx>, <spanx style="verb">supplementaryAudioProgramme</spanx>, <spanx style="verb">educationalNotes</spanx>, <spanx style="verb">voiceOver</spanx>, <spanx style="verb">originalCommentary</spanx>, <spanx style="verb">dubbedCommentary</spanx>, <spanx style="verb">originalNarration</spanx>, <spanx style="verb">dubbedDialogue</spanx>, <spanx style="verb">dubbedNarration</spanx>, <spanx style="verb">interviewerLanguage</spanx>, <spanx style="verb">intervieweeLanguage</spanx>, <spanx style="verb">text</spanx>, <spanx style="verb">textDescription</spanx>, <spanx style="verb">transcript</spanx>, <spanx style="verb">caption</spanx>, <spanx style="verb">openCaption</spanx>, <spanx style="verb">closedCaption</spanx>, <spanx style="verb">supplemental</spanx>, <spanx style="verb">titles</spanx>, <spanx style="verb">subtitles</spanx>, <spanx style="verb">openSubtitles</spanx>, <spanx style="verb">closedSubtitles</spanx>, <spanx style="verb">songLyrics</spanx>, <spanx style="verb">signLanguage</spanx>, <spanx style="verb">dubbedSignLanguage</spanx>.
+                      The <spanx style="verb">main</spanx>, <spanx style="verb">production</spanx> and <spanx style="verb">original</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
                     </t>  
                     <t hangText="value: (LANGUAGE)">
-                        The language value.
+                        The alternative language value.
                     </t>
                 </list>
               </t>
               
+              <t hangText="productionCountry: [TERRITORY]">
+                The original country (or countries) where the piece of content was produced.
+                The values SHALL BE an <xref target="ISO3166"/> "alpha 2" country code.
+              </t>
               <t hangText="location: [COMPLEX]">
                 Location information associated with the piece of content.
                 <list style="hanging"> 
                     <t hangText="type: (ENUM)">
-                        The type of field SHOULD BE selected from a standard list of values (e.g. 'filmingLocation', 'depictedLocation', 'creationLocation').
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'filming', 'depicted').
+                        The <spanx style="verb">main</spanx> and <spanx style="verb">production</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
                     </t>  
                     <t hangText="value: (PLACE or TERRITORY)">
                         The actual geographical place or territory.
@@ -2104,32 +2248,20 @@ WWW-Authenticate: Basic realm="sample.site.org"
               <t hangText="position: (NUMBER)">
                 The position of a particular piece of content within a container or collection (e.g. Collection, Programme, Programme Group, Series).
               </t>
-              <t hangText="parent: (ENTRY)">
-                Relates a piece of content to another piece of content constituting it.
-                This relationship SHOULD BE used to access the parent Entries in Collections, Programme Groups, Series and so on.
-                The following fields are refined for the parent relationship:
+                
+              <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
+                The duration of a the pieces of content in seconds. Please note that the published duration may be different (see <xref target="programmelocation-type"/>).
+                For Media Resources and Segments the value MAY be expressed as TIMECODE or DURATION.
+              </t>
+
+              <t hangText="crossPromotions: [CONTENT]">
+                Relates a piece of content to other pieces of content which are cross-promotions (e.g. "if you liked this piece of content you may also like these other content items").
                 <list style="hanging">
                     <t hangText="rel: (ENUM)">
-                        The rel value MUST BE the "up" relation type as defined in section 6.2.2. of <xref target="RFC5988" />.
-                        If this property is omitted or null it MUST BE processed as if the value was the string "up".
+                      REQUIRED. The rel value MUST BE the "related" relation type as defined in <xref target="RFC5988" />.
                     </t>
                 </list>
               </t>
-              <t hangText="peers: [ENTRY]">
-                Relates a piece of content to other pieces of content which are peers within collection (predecessor/successor).
-                This relationship SHOULD BE used to access the previous and next Entries in Collections, Programme Groups, Series, Episodes (e.g. previous episode, next episode).
-                The following fields are refined for the parent relationship:
-                <list style="hanging">
-                    <t hangText="rel: (ENUM)">
-                        REQUIRED. The rel value MUST BE the "prev" relation type as defined in section 6.2.2. of <xref target="RFC5988" /> when referring to a previous Entry in a list or collection.
-                        The rel value MUST BE the "next" relation type as defined in section 6.2.2. of <xref target="RFC5988" /> when referring to a next Entry in a list or collection.
-                    </t>
-                </list>
-              </t>
-              <t hangText="related: [ENTRY]">
-                Relates a piece of content to other pieces of content which are related in some way (e.g. 'related clips', 'recommendations', 'related listings').
-              </t>
-              
             </list>
           </t>
       </section>
@@ -2157,9 +2289,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
             <list style="hanging">
                 <!-- possible additions: PID, clip -->
+                <!--
                 <t hangText="service: (SERVICE)">
                     Associate a Programme to a brand Service (e.g. regional service).
                 </t>
+                -->
                 <t hangText="ownership: (SERVICE)">
                     Associate a Programme to the owner Service (e.g. the commissioner, national broadcaster service, content owner).
                     In case there is not hierarchy of services defined, the service and ownership MAY refer to the same Service.
@@ -2264,9 +2398,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     Service Providers MUST NOT mark more than one Version as original="true", and MAY choose not to mark any Version as original, if this information is not available.
                     For efficiency, Service Providers SHOULD NOT mark all non-original Versions with original="false", but should instead omit this sub-field for all non-original instances.
                 </t>
-                <t hangText="duration: (NUMBER)">
-                    The duration of a version in seconds. Please note that the published duration may be different (see <xref target="programmelocation-type"/>).
-                </t>
                 <!-- add other EBU core format fields - see also TVA - aspect ratio, sound format etc. -->
                 <t hangText="broadcasts: [BROADCAST]">
                     The broadcast events associated with a particular version.
@@ -2341,6 +2472,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t hangText="programme: (VERSION)">
                     A reference to the Programme version.
                 </t>
+                <t hangText="publishedDuration: (NUMBER)">
+                  The published duration of the Programme version in seconds.
+                  For broadcast publication events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
+                </t>
                 <t hangText="media: (LINK)">
                     A link to the programme version location.
                     The <spanx style="verb">href</spanx> sub-field SHOULD match a valid Media Resource <spanx style="verb">locator</spanx> field (see <xref target="mediaresource-type"/>).
@@ -2365,10 +2500,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 </t>
                 <t hangText="lastShowing: (BOOLEAN)">
                     A Boolean value indicating whether the programme version being broadcasted is a last showing.
-                </t>
-                <t hangText="duration: (NUMBER)">
-                    The published duration of the Programme version in seconds.
-                    When all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
                 </t>
                 <!-- TODO - add 'signed' 'audioDescribed' etc. -->
                 <t hangText="repeat: (BOOLEAN)">
@@ -2401,9 +2532,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 </t>
                 <t hangText="lastAvailability: (BOOLEAN)">
                     A Boolean value indicating whether the programme version is made available for the last time.
-                </t>
-                <t hangText="duration: (NUMBER)">
-                    The published duration of the Programme version in seconds.
                 </t>
                 <t hangText="expiryDate: (TIMESTAMP)">
                     The published date and time when the programme version expires or it is no longer available for viewing.
@@ -2576,9 +2704,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="start: (TIMECODE or TIME or NUMBER)">
                             The beginning point for playback of the media resource (e.g. 'seeking position').
                         </t>
-                        <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
-                            The time based duration of the media resource.
-                        </t>
                         
                         <!-- audio format -->
                         <t hangText="audioEncoding: (ENUM)">
@@ -2704,9 +2829,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         </t>
                         <t hangText="start: (TIMECODE or TIME or NUMBER)">
                             The beginning point for playback of the programme segment.
-                        </t>
-                        <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
-                            The time based duration of the programme segment.
                         </t>
                         <t hangText="chapter: (BOOLEAN)">
                             A Boolean value indicating whether the programme segment is a chapter.
@@ -3030,7 +3152,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Simplified "alternativeTitle" definition.</t>
                 <t>Added "Additional Link Relation Types" section.</t>
                 <t>Renamed "categories" to "category", removed "type" sub-field and defined "value" sub-filed as ENUM or IRI.</t>
-                <t>Updated "language" primary sub-filed to "value", removed "label" and simplified "type" definition.</t>
                 <t>Updated "contributor" sub-filed "role" as ENUM or IRI.</t>
                 <t>Added "label" sub-field to default Complex Type definition."</t>
                 <t>Updated "genre", "targetAudience" and "format" definitions so that "value" is primary sub-field as ENUM or IRI.</t>
@@ -3060,6 +3181,19 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added YEAR type to "temporal" possible list of value types.</t>
                 <t>Added "minAudioBitrate", "maxAudioBitrate", "minVideoBitrate" and "maxVideoBitrate" to Media Resource.</t>
                 <t>Added "guidanceText" and "longGuidanceText" to "targetAudience" on Content.</t>
+                <t>Added "mediumSynopsis" and "mediumSynopsis" to "description" on Content.</t>
+                <t>Added "childrensContent" and "educationalContent" to Content.</t>
+                <t>Updated "language" to be main production language.</t>
+                <t>Added "alternativeLanguage".</t>
+                <t>Moved "parent" and "peers" to Entry.</t>
+                <t>Dropped "related" from Content.</t>
+                <t>Added "crossPromotions" to Content.</t>
+                <t>Added "productionDate" and "productionCountry" to Content.</t>
+                <t>Renamed Entry "updated" to "entryUpdated" and "published" to "entryPublished".</t>
+                <t>Updated "aliases" structure and added "authority" sub-field.</t>
+                <t>Defined "duration" at Content level.</t>
+                <t>Added "listFields", "listWeblinks" and "listRelationships" presentation fileters.</t>
+                <t>Removed "service" field from Programme.</t>
             </list>
         </t>
     </section>
@@ -3547,18 +3681,18 @@ Content-Type: application/listings+json;
   "entry": [
     {
       "id": "5E5EEBED3173",
+      "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
         "type": "original",
         "value": "Northwest Passage"
       },
-      "objectType": "episode",
-      "summary": "The small northwest town of Twin Peaks, Washington is
-                  shaken when the body of Laura Palmer, is
-                  discovered...",
+      "summary": "The small northwest town of Twin Peaks,
+                  Washington is shaken when the body of Laura Palmer,
+                  is discovered...",
       "alternativeDate": {
-        "type": "original_air_date",
+        "type": "originalAirDate",
         "value": "1990-04-08T00:00:00Z"
       },
       "tags": [
@@ -3566,27 +3700,22 @@ Content-Type: application/listings+json;
       ],
       "genre": [
         {
-          "type": "3.4.6.4",
-          "value": "Crime"
+          "value": "3.4.6.4",
+          "label": "Crime"
         },
         {
-          "type": "3.4",
-          "value": "Drama"
+          "value": "3.4",
+          "label": "Drama"
         },
         {
-          "type": "3.4.6.10",
-          "value": "Thriller"
+          "value": "3.4.6.10",
+          "label": "Thriller"
         }
       ],
-      "language": [
+      "language": "en",
+      "alternativeLanguage": [
         {
-          "type": "main",
-          "value": "en",
-          "label": "English",
-          "primary": true
-        },
-        {
-          "type": "some_dialogue",
+          "type": "additionalOriginalLanguage",
           "value": "no",
           "label": "Norwegian"
         }
@@ -3630,12 +3759,12 @@ Content-Type: application/listings+json;
     },
     {
       "id": "8881860D6F31",
+      "objectType": "episode",
       "displayName": "Episode 2",
       "title": "Traces to Nowhere",
-      "objectType": "episode",
-      "summary": "Cooper's investigation into the murder of Laura Palmer
-                  continues, as her secret boyfriend James Hurley is
-                  interrogated...",
+      "summary": "Cooper's investigation into the murder of
+                  Laura Palmer continues, as her secret
+                  boyfriend James Hurley is interrogated...",
       "contributor": [
         {
           "href": "3C67E1038205",

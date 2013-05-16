@@ -364,8 +364,8 @@ Definitions</h3>
 <dt>Entry Metadata:</dt>
 <dd>
             Or meta-metadata, it is system information which is used to support the storage and retrieval of actual Content Metadata itself.
-            For example, the "Entry" object type fields id, updated, published and metadataRights are examples of information about the metadata record itself.
-            Throughout this document we will clearly distinguish the "Entry" and "Content" object types and we will provide additional text to clarify the context of a specific piece of metadata, where and if necessary.
+            The information about the metadata record itself is stored in the Entry fields prefixed with "entry" (e.g. entryUpdated).
+            Throughout this document we will clearly distinguish the "Entry Metadata" and "Content Metadata" and we will provide additional text to clarify the context of a specific piece of metadata, where and if necessary.
           
 </dd>
 <dt>Listings:</dt>
@@ -668,13 +668,13 @@ Content-Type: application/listings+json
   "entry": [
     {
       "id": "5E5EEBED3173",
+      "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
               "type": "original",
               "value": "Northwest Passage"
               },
-      "objectType": "episode",
       "summary": "The small northwest town of
                   Twin Peaks, Washington
                   is shaken when the body of
@@ -700,9 +700,9 @@ Content-Type: application/listings+json
     },
     {
       "id": "8881860D6F31",
+      "objectType": "episode",
       "displayName": "Episode 2",
       "title": "Traces to Nowhere",
-      "objectType": "episode",
       "summary": "Cooper's investigation into the
                   murder of Laura Palmer continues,
                   as her secret boyfriend James Hurley
@@ -759,13 +759,13 @@ Content-Type: application/listings+json
 {
     "entry": {
       "id": "5E5EEBED3173",
+      "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
               "type": "original",
               "value": "Northwest Passage"
               },
-      "objectType": "episode",
       "summary": "The small northwest town of Twin Peaks,
                   Washington is shaken when the body of
                   Laura Palmer, is discovered...",
@@ -810,6 +810,7 @@ Content-Type: application/listings+json
     "entry": [
       {
         "id": "C675EDD23A2D",
+        "objectType": "contact",
         "displayName": "David Lynch",
         "name": {
           "middleName": "Keith"
@@ -818,6 +819,7 @@ Content-Type: application/listings+json
       },
       {
         "id": "2F050A9AF481",
+        "objectType": "contact",
         "displayName": "Mark Frost"
       }
     ]
@@ -907,7 +909,7 @@ Filtering</h3>
 <dd>
               
                 Returns only Entries that have been modified on or after the given time, specified as an TIMESTAMP (see <a class='info' href='#RFC3339'>[RFC3339]<span> (</span><span class='info'>Klyne, G., Ed. and C. Newman, &ldquo;Date and Time on the Internet: Timestamps,&rdquo; July&nbsp;2002.</span><span>)</span></a>).
-                The filter is based on the value of the <tt>updated</tt> field, and can be used independently of other filters or combined.
+                The filter is based on the value of the <tt>entryUpdated</tt> field, and can be used independently of other filters or combined.
                 It enables a basic syndication pattern when accessing the same metadata over time. The first API call returns all metadata, which can be stored locally.
                 Subsequent API calls can specify <tt>updatedSince</tt> with the time of the last API call, so that only Entries that have been added or modified since the last API call will be returned.
               
@@ -915,7 +917,7 @@ Filtering</h3>
 <dt>updatedUntil:</dt>
 <dd>
                 Returns only Entries that have been modified on or before the given time, specified as an TIMESTAMP (see <a class='info' href='#RFC3339'>[RFC3339]<span> (</span><span class='info'>Klyne, G., Ed. and C. Newman, &ldquo;Date and Time on the Internet: Timestamps,&rdquo; July&nbsp;2002.</span><span>)</span></a>).
-                Like for <tt>updatedSince</tt> the filter is based on the value of the <tt>updated</tt> field, and can be used independently of other filters or combined.
+                Like for <tt>updatedSince</tt> the filter is based on the value of the <tt>entryUpdated</tt> field, and can be used independently of other filters or combined.
               
 </dd>
 </dl></blockquote><p>
@@ -1014,6 +1016,16 @@ Presentation</h3>
                 Providers MUST decline to present results if the specified fields format is not recognized (as per <a class='info' href='#declining'>Section&nbsp;6.2.5<span> (</span><span class='info'>Declining to honor query parameters</span><span>)</span></a>).
               
 </dd>
+<dt>format:</dt>
+<dd>
+                
+                Specifies the format in which the response content metadata is returned.
+                Service Providers MUST support the values <tt>json</tt> for JSON (http://json.org) and MAY support additional formats if desired.
+                The format defaults to <tt>json</tt> if no format is specified. Singular Fields are encoded as string key/value pairs in JSON, e.g. <tt>"field": "value"</tt>.
+                Plural Fields and Plural Bundles are encoded as arrays in JSON, e.g. <tt>"fields": [ "value1", "value2" ]</tt>.
+                Nodes with multiple sub-nodes are represented as objects in JSON, e.g. <tt>"field": { "subfield1": "value1", "subfield2": "value2" }</tt>.
+              
+</dd>
 <dt>includeRelationships:</dt>
 <dd>
                 This is an optional parameter and it MUST be used in combination with the <tt>fields</tt> parameter.
@@ -1027,14 +1039,28 @@ Presentation</h3>
                 A Provider SHOULD NOT filter an inline <tt>entry</tt> structure using the <tt>fields</tt> parameter as it complicates the processing of the request.
               
 </dd>
-<dt>format:</dt>
+<dt>listFields:</dt>
 <dd>
-                
-                Specifies the format in which the response content metadata is returned.
-                Service Providers MUST support the values <tt>json</tt> for JSON (http://json.org) and MAY support additional formats if desired.
-                The format defaults to <tt>json</tt> if no format is specified. Singular Fields are encoded as string key/value pairs in JSON, e.g. <tt>"field": "value"</tt>.
-                Plural Fields and Plural Bundles are encoded as arrays in JSON, e.g. <tt>"fields": [ "value1", "value2" ]</tt>.
-                Nodes with multiple sub-nodes are represented as objects in JSON, e.g. <tt>"field": { "subfield1": "value1", "subfield2": "value2" }</tt>.
+                This is an optional parameter.
+                If non-empty, it MUST specifies a valid boolean value of 'true' or 'false'.
+                If the value is 'true' a Provider SHOULD list the existing simple and complex field names (<a class='info' href='#fields'>Section&nbsp;7.1.1<span> (</span><span class='info'>Fields</span><span>)</span></a>) in the <tt>entryFields</tt> Entry field as Entry Metadata. Otherwise no extra field SHALL be included.
+                When used in combination with the <tt>fields</tt> parameter only field names not listed in the fields parameter SHALL be returned.
+              
+</dd>
+<dt>listWeblinks:</dt>
+<dd>
+                This is an optional parameter.
+                If non-empty, it MUST specifies a valid boolean value of 'true' or 'false'.
+                If the value is 'true' a Provider SHOULD list the existing Web link field names (<a class='info' href='#link-structure'>Section&nbsp;7.1.2.1<span> (</span><span class='info'>Link</span><span>)</span></a>) in the <tt>entryWeblinks</tt> Entry field as Entry Metadata. Otherwise no extra field SHALL be included.
+                When used in combination with the <tt>fields</tt> parameter only Web link field names not listed in the fields paramters SHALL be returned.
+              
+</dd>
+<dt>listRelationships:</dt>
+<dd>
+                This is an optional parameter.
+                If non-empty, it MUST specifies a valid boolean value of 'true' or 'false'.
+                If the value is 'true' a Provider SHOULD list the existing relationship field names (<a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>) in the <tt>entryRelationships</tt> Entry field as Entry Metadata. Otherwise no extra field SHALL be included.
+                When used in combination with the <tt>fields</tt> parameter only relationship field names not listed in the fields paramters SHALL be returned.
               
 </dd>
 </dl></blockquote><p>
@@ -1044,8 +1070,8 @@ Presentation</h3>
           For example, assuming the Service Provider has the information as listed in the previous example by issuing this request:
         
 </p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
-GET /api/listings/5E5EEBED3173?fields=title,alternativeTitle.value,
-                contributor.role&amp;includeRelationships=true HTTP/1.1
+GET /api/listings/5E5EEBED3173?fields=title,alternativeTitle,
+                contributor&amp;includeRelationships=true HTTP/1.1
 Host: api.example.org
 </pre></div>
 <p>
@@ -1060,16 +1086,18 @@ Content-Type: application/listings+json
 {
     "entry": {
       "id": "5E5EEBED3173",
+      "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
-              "type": "original",
-              "value": "Northwest Passage"
-              },
+        "type": "original",
+        "value": "Northwest Passage"
+      },
       "contributor": [
         {
           "entry": {
             "id": "C675EDD23A2D",
+            "objectType": "contact",
             "displayName": "David Lynch",
             "name": {
               "middleName": "Keith"
@@ -1079,18 +1107,86 @@ Content-Type: application/listings+json
           "role": "director"
         },
         {
-          "href": "C675EDD23A2D",
-          "role": "writer",
-          "label": "David Lynch"
+          "entry": {
+            "id": "2F050A9AF481",
+            "objectType": "contact",
+            "displayName": "David Lynch"
+          }
+          "role": "writer"
         },
         {
           "entry": {
             "id": "2F050A9AF481",
+            "objectType": "contact",
             "displayName": "Mark Frost"
           }
           "role": "writer"
         }
       ]
+    }
+}
+</pre></div>
+<p>
+            While instead by issuing this request:
+          
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+GET /api/listings/5E5EEBED3173?fields=title,alternativeTitle,
+                contributor&amp;listRelationships=true
+                &amp;listFields=true&amp;listWeblinks=true HTTP/1.1
+Host: api.example.org
+</pre></div>
+<p>
+                The following Entry would be returned:
+            
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+HTTP/1.1 200 OK
+Content-Length: ...
+Content-Language: en
+Content-Type: application/listings+json
+
+{
+    "entry": {
+      "id": "5E5EEBED3173",
+      "objectType": "episode",
+      "displayName": "Episode 1",
+      "title": "Pilot",
+      "alternativeTitle": {
+        "type": "original",
+        "value": "Northwest Passage"
+      },
+      "contributor": [
+        {
+          "href": "C675EDD23A2D",
+          "role": "director",
+          "label": "David Lynch",
+          "primary": true
+        },
+        {
+          "href": "C675EDD23A2D",
+          "role": "writer",
+          "label": "David Lynch"
+        },
+        {
+          "href": "2F050A9AF481",
+          "role": "writer",
+          "label": "Mark Frost"
+        }
+      ],
+      "entryFields": [
+        "summary",
+        "position"
+      ],
+      "entryWeblinks": [
+        "links",
+        "thumbnails",
+        "versions"
+      ],
+      "entryRelationships": [
+        "parent",
+        "peers","
+        "service",
+        "versions"
+      ],
     }
 }
 </pre></div>
@@ -2144,7 +2240,7 @@ Entry</h3>
 </dd>
 <dt>displayName: (STRING)</dt>
 <dd>
-                REQUIRED. The short name of this Entry, suitable for display to end-users.
+                REQUIRED. The short name of this Entry, suitable for display to end-users (e.g. short title).
                 Each Entry returned MUST include a non-empty <tt>displayName</tt> value.
                 The value provided SHOULD be the primary textual field by which the Entry is normally displayed by the Service Provider when presenting it to end-users.
                 Unless otherwise specified, the displayName value is used for the purposes of sorting and filtering.
@@ -2157,17 +2253,17 @@ Entry</h3>
                 The list of valid Canonical Values for this field consists of the list of lowercased object type names defined in <a class='info' href='#object-types'>Section&nbsp;8.4<span> (</span><span class='info'>Object Types</span><span>)</span></a>.
               
 </dd>
-<dt>published: (TIMESTAMP)</dt>
+<dt>entryPublished: (TIMESTAMP)</dt>
 <dd>
                 The date the metadata Entry record was first added to the user's metadata set or database (i.e. the creation date of the Entry). This field MAY also be associated with the first availability of the Entry.
                 The value MUST be a valid TIMESTAMP (e.g. <tt>2008-01-23T04:56:22Z</tt>).
               
 </dd>
-<dt>updated: (TIMESTAMP)</dt>
+<dt>entryUpdated: (TIMESTAMP)</dt>
 <dd>
                 The most recent date the details of the Entry record were updated (i.e. the modified date of the Entry).
                 The value MUST be a valid TIMESTAMP (e.g. <tt>2008-01-23T04:56:22Z</tt>).
-                If the Entry has never been modified since its initial creation, the value MUST be the same as the value of <tt>published</tt>.
+                If the Entry has never been modified since its initial creation, the value MUST be the same as the value of <tt>entryUpdated</tt>.
                 Note the <tt>updatedSince</tt> and the <tt>updatedUntil</tt> Query Parameters described in <a class='info' href='#query-params'>Section&nbsp;6.2<span> (</span><span class='info'>Query Parameters</span><span>)</span></a> can be used to select only Entries whose <tt>updated</tt> value is equal to or more recent than a given TIMESTAMP or equal to or older than a given TIMESTAMP respectively. This enables Consumers to repeatedly access a metadata Entry and only request newly added or updated Entries since the last access time.
               
 </dd>
@@ -2176,6 +2272,38 @@ Entry</h3>
                 A metadata Entry MAY have associated one ore more links to external Web resources.
                 
                 A Provider SHOULD NOT use the links element to express relationships by-reference as this complicates processing by the Consumer.
+              
+</dd>
+<dt>parent: (ENTRY)</dt>
+<dd>
+                    Relates a piece of content to another piece of content constituting it.
+                    This relationship SHOULD BE used to access the parent Entries in Collections, Programme Groups, Series and so on.
+                    The following fields are refined for the parent relationship:
+                    
+<blockquote class="text"><dl>
+<dt>rel: (ENUM)</dt>
+<dd>
+                            The rel value MUST BE the "up" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
+                            If this property is omitted or null it MUST BE processed as if the value was the string "up".
+                        
+</dd>
+</dl></blockquote>
+              
+</dd>
+<dt>peers: [ENTRY]</dt>
+<dd>
+                Relates a piece of content to other pieces of content which are peers within collection (predecessor/successor).
+                This relationship SHOULD BE used to access the previous and next Entries in Collections, Programme Groups, Series, Episodes (e.g. previous episode, next episode).
+                The following fields are refined for the parent relationship:
+                
+<blockquote class="text"><dl>
+<dt>rel: (ENUM)</dt>
+<dd>
+                    REQUIRED. The rel value MUST BE the "prev" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a> when referring to a previous Entry in a list or collection.
+                    The rel value MUST BE the "next" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a> when referring to a next Entry in a list or collection.
+                  
+</dd>
+</dl></blockquote>
               
 </dd>
 </dl></blockquote><p>
@@ -2235,14 +2363,15 @@ Content</h3>
 </dl></blockquote>
               
 </dd>
-<dt>summary: (STRING or HTML)</dt>
-<dd>
-                A comprehensive and usually brief abstract, recapitulation, or compendium of of actions and events in the piece of content.
-              
-</dd>
 <dt>synopsis: (STRING or HTML)</dt>
 <dd>
                 A brief or condensed statement giving a general view about the piece of content e.g. a brief summary of the plot of a novel, motion picture, play, etc.
+                This is being referred as short synopsis.
+              
+</dd>
+<dt>summary: (STRING or HTML)</dt>
+<dd>
+                A comprehensive and usually brief abstract, recapitulation, or compendium of of actions and events in the piece of content.
               
 </dd>
 <dt>description: [COMPLEX]</dt>
@@ -2253,7 +2382,7 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
-                            The type of field SHOULD BE selected from the following list: <tt>annotation</tt>, <tt>annotationSynopsis</tt>, <tt>abstract</tt>, <tt>anecdotalCommentsAndReflections</tt>, <tt>theme</tt>, <tt>purpose</tt>, <tt>outline</tt>, <tt>cueWords</tt>, <tt>cueInWords</tt>, <tt>cueOutWords</tt>, <tt>process</tt>, <tt>assessment</tt>, <tt>editoralComments</tt>, <tt>keyPoints</tt>, <tt>shotDescription</tt>, <tt>creditLine</tt>, <tt>instructions</tt>, <tt>modelInformation</tt>, <tt>artwork</tt>, <tt>event</tt>, <tt>releaseInformation</tt>, <tt>intention</tt>, <tt>shotComment</tt>, <tt>citation</tt>.
+                            The type of field SHOULD BE selected from the following list: <tt>mediumSynopsis</tt>, <tt>longSynopsis</tt>, <tt>annotation</tt>, <tt>annotationSynopsis</tt>, <tt>abstract</tt>, <tt>anecdotalCommentsAndReflections</tt>, <tt>theme</tt>, <tt>purpose</tt>, <tt>outline</tt>, <tt>cueWords</tt>, <tt>cueInWords</tt>, <tt>cueOutWords</tt>, <tt>process</tt>, <tt>assessment</tt>, <tt>editoralComments</tt>, <tt>keyPoints</tt>, <tt>shotDescription</tt>, <tt>creditLine</tt>, <tt>instructions</tt>, <tt>modelInformation</tt>, <tt>artwork</tt>, <tt>event</tt>, <tt>releaseInformation</tt>, <tt>intention</tt>, <tt>shotComment</tt>, <tt>citation</tt>.
                             The <tt>synopsis</tt> and <tt>summary</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
                         
 </dd>
@@ -2323,12 +2452,18 @@ Content</h3>
 </dd>
 <dt>released: (TIMESTAMP or PERIOD)</dt>
 <dd>
-                    The date when the piece of content was released.
+                The date when the piece of content was released.
               
 </dd>
 <dt>copyrighted: (TIMESTAMP or PERIOD)</dt>
 <dd>
-                    The date when the piece of content was copyrighted.
+                The date when the piece of content was copyrighted.
+              
+</dd>
+<dt>productionDate: (YEAR or TIME)</dt>
+<dd>
+                  The date when the piece of content was produced. The year SHALL be specified; month and day number MAY optionally be provided additionally.
+                  A time point SHALL NOT be specified.
               
 </dd>
 <dt>alternativeDate: [COMPLEX]</dt>
@@ -2338,7 +2473,8 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
-                        The type of field SHOULD BE selected from a standard list of values (e.g. 'productionDate', 'dateAccepted', 'dateSubmitted').
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'accepted', 'submitted').
+                        The <tt>created</tt>, <tt>issued</tt>,  <tt>modified</tt>, <tt>digitised</tt>,  <tt>released</tt>,  <tt>copyrighted</tt> and <tt>production</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
                     
 </dd>
 <dt>value: (TIMESTAMP or PERIOD)</dt>
@@ -2349,9 +2485,22 @@ Content</h3>
 </dl></blockquote>
               
 </dd>
-<dt>aliases: [IRI or STRING]</dt>
+<dt>aliases: [COMPLEX]</dt>
 <dd>
                 Additional or alternative identifiers for the piece of content.
+                
+<blockquote class="text"><dl>
+<dt>value: (IRI or STRING)</dt>
+<dd>
+                        The alternative identifier.
+                    
+</dd>
+<dt>authority: [IRI]</dt>
+<dd>
+                        An optional issuing authority fully qualified IRI.
+                    
+</dd>
+</dl></blockquote>
               
 </dd>
 <dt>category: [COMPLEX]</dt>
@@ -2420,12 +2569,22 @@ Content</h3>
 </dd>
 <dt>notRated: (BOOLEAN)</dt>
 <dd>
-                    A flag to indicate that the piece of content has not been rated (if set to true).
+                A flag to indicate that the piece of content has not been rated (if set to true).
               
 </dd>
 <dt>adultContent: (BOOLEAN)</dt>
 <dd>
-                    A flag to indicate is the piece of content contains adult content (if set to true).
+                A flag to indicate this the piece of content contains adult content (if set to true).
+              
+</dd>
+<dt>childrensContent: (BOOLEAN)</dt>
+<dd>
+                A flag to indicate this the piece of content is suitable for viewing by children (if set to true).
+              
+</dd>
+<dt>educationalContent: (BOOLEAN)</dt>
+<dd>
+                A flag to indicate this the piece of content is primarly intended for educational purposes (if set to true).
               
 </dd>
 <dt>targetRegion: [COMPLEX]</dt>
@@ -2484,23 +2643,35 @@ Content</h3>
 </dl></blockquote>
               
 </dd>
-<dt>language: [COMPLEX]</dt>
+<dt>language: (LANGUAGE)</dt>
 <dd>
-                Identifies languages of the content and their use.
+                The main production language of the piece of content. This may also be referrred as original language.
+              
+</dd>
+<dt>alternativeLanguage: [COMPLEX]</dt>
+<dd>
+                Alternative languages of the content and their use.
                 
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
                         The language purpose.
-                        The value SHOULD BE selected from the following list: <tt>audio</tt>, <tt>mainOriginalLanguage</tt>, <tt>mainDubbedLanguage</tt>, <tt>additionalOriginalLanguage</tt>, <tt>additionalDubbedLanguage</tt>, <tt>descriptiveVideoInformation</tt>, <tt>supplementalCommentary</tt>, <tt>directorCommentary</tt>, <tt>audioDescription</tt>, <tt>supplementaryAudioProgramme</tt>, <tt>educationalNotes</tt>, <tt>voiceOver</tt>, <tt>originalCommentary</tt>, <tt>dubbedCommentary</tt>, <tt>originalNarration</tt>, <tt>dubbedDialogue</tt>, <tt>dubbedNarration</tt>, <tt>interviewerLanguage</tt>, <tt>intervieweeLanguage</tt>, <tt>text</tt>, <tt>textDescription</tt>, <tt>transcript</tt>, <tt>caption</tt>, <tt>openCaption</tt>, <tt>closedCaption</tt>, <tt>supplemental</tt>, <tt>titles</tt>, <tt>subtitles</tt>, <tt>openSubtitles</tt>, <tt>closedSubtitles</tt>, <tt>songLyrics</tt>, <tt>signLanguage</tt>, <tt>dubbedSignLanguage</tt>.                        
+                        The value SHOULD BE selected from the following list: <tt>audio</tt>, <tt>mainOriginalLanguage</tt>, <tt>mainDubbedLanguage</tt>, <tt>additionalOriginalLanguage</tt>, <tt>additionalDubbedLanguage</tt>, <tt>descriptiveVideoInformation</tt>, <tt>supplementalCommentary</tt>, <tt>directorCommentary</tt>, <tt>audioDescription</tt>, <tt>supplementaryAudioProgramme</tt>, <tt>educationalNotes</tt>, <tt>voiceOver</tt>, <tt>originalCommentary</tt>, <tt>dubbedCommentary</tt>, <tt>originalNarration</tt>, <tt>dubbedDialogue</tt>, <tt>dubbedNarration</tt>, <tt>interviewerLanguage</tt>, <tt>intervieweeLanguage</tt>, <tt>text</tt>, <tt>textDescription</tt>, <tt>transcript</tt>, <tt>caption</tt>, <tt>openCaption</tt>, <tt>closedCaption</tt>, <tt>supplemental</tt>, <tt>titles</tt>, <tt>subtitles</tt>, <tt>openSubtitles</tt>, <tt>closedSubtitles</tt>, <tt>songLyrics</tt>, <tt>signLanguage</tt>, <tt>dubbedSignLanguage</tt>.
+                      The <tt>main</tt>, <tt>production</tt> and <tt>original</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
                     
 </dd>
 <dt>value: (LANGUAGE)</dt>
 <dd>
-                        The language value.
+                        The alternative language value.
                     
 </dd>
 </dl></blockquote>
+              
+</dd>
+<dt>productionCountry: [TERRITORY]</dt>
+<dd>
+                The original country (or countries) where the piece of content was produced.
+                The values SHALL BE an <a class='info' href='#ISO3166'>[ISO3166]<span> (</span><span class='info'>ISO, &ldquo;ISO 3166,&rdquo; .</span><span>)</span></a> "alpha 2" country code.
               
 </dd>
 <dt>location: [COMPLEX]</dt>
@@ -2510,7 +2681,8 @@ Content</h3>
 <blockquote class="text"><dl>
 <dt>type: (ENUM)</dt>
 <dd>
-                        The type of field SHOULD BE selected from a standard list of values (e.g. 'filmingLocation', 'depictedLocation', 'creationLocation').
+                        The type of field SHOULD BE selected from a standard list of values (e.g. 'filming', 'depicted').
+                        The <tt>main</tt> and <tt>production</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
                     
 </dd>
 <dt>value: (PLACE or TERRITORY)</dt>
@@ -2565,41 +2737,23 @@ Content</h3>
                 The position of a particular piece of content within a container or collection (e.g. Collection, Programme, Programme Group, Series).
               
 </dd>
-<dt>parent: (ENTRY)</dt>
+<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
 <dd>
-                Relates a piece of content to another piece of content constituting it.
-                This relationship SHOULD BE used to access the parent Entries in Collections, Programme Groups, Series and so on.
-                The following fields are refined for the parent relationship:
+                The duration of a the pieces of content in seconds. Please note that the published duration may be different (see <a class='info' href='#programmelocation-type'>Section&nbsp;8.4.13<span> (</span><span class='info'>Programme Location</span><span>)</span></a>).
+                For Media Resources and Segments the value MAY be expressed as TIMECODE or DURATION.
+              
+</dd>
+<dt>crossPromotions: [CONTENT]</dt>
+<dd>
+                Relates a piece of content to other pieces of content which are cross-promotions (e.g. "if you liked this piece of content you may also like these other content items").
                 
 <blockquote class="text"><dl>
 <dt>rel: (ENUM)</dt>
 <dd>
-                        The rel value MUST BE the "up" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
-                        If this property is omitted or null it MUST BE processed as if the value was the string "up".
+                      REQUIRED. The rel value MUST BE the "related" relation type as defined in <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
                     
 </dd>
 </dl></blockquote>
-              
-</dd>
-<dt>peers: [ENTRY]</dt>
-<dd>
-                Relates a piece of content to other pieces of content which are peers within collection (predecessor/successor).
-                This relationship SHOULD BE used to access the previous and next Entries in Collections, Programme Groups, Series, Episodes (e.g. previous episode, next episode).
-                The following fields are refined for the parent relationship:
-                
-<blockquote class="text"><dl>
-<dt>rel: (ENUM)</dt>
-<dd>
-                        REQUIRED. The rel value MUST BE the "prev" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a> when referring to a previous Entry in a list or collection.
-                        The rel value MUST BE the "next" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a> when referring to a next Entry in a list or collection.
-                    
-</dd>
-</dl></blockquote>
-              
-</dd>
-<dt>related: [ENTRY]</dt>
-<dd>
-                Relates a piece of content to other pieces of content which are related in some way (e.g. 'related clips', 'recommendations', 'related listings').
               
 </dd>
 </dl></blockquote><p>
@@ -2639,11 +2793,6 @@ Programme</h3>
 
             </p>
 <blockquote class="text"><dl>
-<dt>service: (SERVICE)</dt>
-<dd>
-                    Associate a Programme to a brand Service (e.g. regional service).
-                
-</dd>
 <dt>ownership: (SERVICE)</dt>
 <dd>
                     Associate a Programme to the owner Service (e.g. the commissioner, national broadcaster service, content owner).
@@ -2795,11 +2944,6 @@ Version</h3>
                     For efficiency, Service Providers SHOULD NOT mark all non-original Versions with original="false", but should instead omit this sub-field for all non-original instances.
                 
 </dd>
-<dt>duration: (NUMBER)</dt>
-<dd>
-                    The duration of a version in seconds. Please note that the published duration may be different (see <a class='info' href='#programmelocation-type'>Section&nbsp;8.4.13<span> (</span><span class='info'>Programme Location</span><span>)</span></a>).
-                
-</dd>
 <dt>broadcasts: [BROADCAST]</dt>
 <dd>
                     The broadcast events associated with a particular version.
@@ -2909,6 +3053,12 @@ Programme Location</h3>
                     A reference to the Programme version.
                 
 </dd>
+<dt>publishedDuration: (NUMBER)</dt>
+<dd>
+                  The published duration of the Programme version in seconds.
+                  For broadcast publication events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
+                
+</dd>
 <dt>media: (LINK)</dt>
 <dd>
                     A link to the programme version location.
@@ -2946,12 +3096,6 @@ Broadcast</h3>
 <dt>lastShowing: (BOOLEAN)</dt>
 <dd>
                     A Boolean value indicating whether the programme version being broadcasted is a last showing.
-                
-</dd>
-<dt>duration: (NUMBER)</dt>
-<dd>
-                    The published duration of the Programme version in seconds.
-                    When all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
                 
 </dd>
 <dt>repeat: (BOOLEAN)</dt>
@@ -3001,11 +3145,6 @@ Ondemand</h3>
 <dt>lastAvailability: (BOOLEAN)</dt>
 <dd>
                     A Boolean value indicating whether the programme version is made available for the last time.
-                
-</dd>
-<dt>duration: (NUMBER)</dt>
-<dd>
-                    The published duration of the Programme version in seconds.
                 
 </dd>
 <dt>expiryDate: (TIMESTAMP)</dt>
@@ -3263,11 +3402,6 @@ Media Resource</h3>
                             The beginning point for playback of the media resource (e.g. 'seeking position').
                         
 </dd>
-<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
-<dd>
-                            The time based duration of the media resource.
-                        
-</dd>
 <dt>audioEncoding: (ENUM)</dt>
 <dd>
                             The audio encoding parameters SHOULD BE selected from a standard list of values such as the EBU Audio Compression Codes.
@@ -3457,11 +3591,6 @@ Segment</h3>
 <dt>start: (TIMECODE or TIME or NUMBER)</dt>
 <dd>
                             The beginning point for playback of the programme segment.
-                        
-</dd>
-<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
-<dd>
-                            The time based duration of the programme segment.
                         
 </dd>
 <dt>chapter: (BOOLEAN)</dt>
@@ -3891,8 +4020,6 @@ Change Log</h3>
 </li>
 <li>Renamed "categories" to "category", removed "type" sub-field and defined "value" sub-filed as ENUM or IRI.
 </li>
-<li>Updated "language" primary sub-filed to "value", removed "label" and simplified "type" definition.
-</li>
 <li>Updated "contributor" sub-filed "role" as ENUM or IRI.
 </li>
 <li>Added "label" sub-field to default Complex Type definition."
@@ -3950,6 +4077,32 @@ Change Log</h3>
 <li>Added "minAudioBitrate", "maxAudioBitrate", "minVideoBitrate" and "maxVideoBitrate" to Media Resource.
 </li>
 <li>Added "guidanceText" and "longGuidanceText" to "targetAudience" on Content.
+</li>
+<li>Added "mediumSynopsis" and "mediumSynopsis" to "description" on Content.
+</li>
+<li>Added "childrensContent" and "educationalContent" to Content.
+</li>
+<li>Updated "language" to be main production language.
+</li>
+<li>Added "alternativeLanguage".
+</li>
+<li>Moved "parent" and "peers" to Entry.
+</li>
+<li>Dropped "related" from Content.
+</li>
+<li>Added "crossPromotions" to Content.
+</li>
+<li>Added "productionDate" and "productionCountry" to Content.
+</li>
+<li>Renamed Entry "updated" to "entryUpdated" and "published" to "entryPublished".
+</li>
+<li>Updated "aliases" structure and added "authority" sub-field.
+</li>
+<li>Defined "duration" at Content level.
+</li>
+<li>Added "listFields", "listWeblinks" and "listRelationships" presentation fileters.
+</li>
+<li>Removed "service" field from Programme.
 </li>
 </ul><p>
         
@@ -4090,18 +4243,18 @@ Content-Type: application/listings+json;
   "entry": [
     {
       "id": "5E5EEBED3173",
+      "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": {
         "type": "original",
         "value": "Northwest Passage"
       },
-      "objectType": "episode",
-      "summary": "The small northwest town of Twin Peaks, Washington is
-                  shaken when the body of Laura Palmer, is
-                  discovered...",
+      "summary": "The small northwest town of Twin Peaks,
+                  Washington is shaken when the body of Laura Palmer,
+                  is discovered...",
       "alternativeDate": {
-        "type": "original_air_date",
+        "type": "originalAirDate",
         "value": "1990-04-08T00:00:00Z"
       },
       "tags": [
@@ -4109,27 +4262,22 @@ Content-Type: application/listings+json;
       ],
       "genre": [
         {
-          "type": "3.4.6.4",
-          "value": "Crime"
+          "value": "3.4.6.4",
+          "label": "Crime"
         },
         {
-          "type": "3.4",
-          "value": "Drama"
+          "value": "3.4",
+          "label": "Drama"
         },
         {
-          "type": "3.4.6.10",
-          "value": "Thriller"
+          "value": "3.4.6.10",
+          "label": "Thriller"
         }
       ],
-      "language": [
+      "language": "en",
+      "alternativeLanguage": [
         {
-          "type": "main",
-          "value": "en",
-          "label": "English",
-          "primary": true
-        },
-        {
-          "type": "some_dialogue",
+          "type": "additionalOriginalLanguage",
           "value": "no",
           "label": "Norwegian"
         }
@@ -4173,12 +4321,12 @@ Content-Type: application/listings+json;
     },
     {
       "id": "8881860D6F31",
+      "objectType": "episode",
       "displayName": "Episode 2",
       "title": "Traces to Nowhere",
-      "objectType": "episode",
-      "summary": "Cooper's investigation into the murder of Laura Palmer
-                  continues, as her secret boyfriend James Hurley is
-                  interrogated...",
+      "summary": "Cooper's investigation into the murder of
+                  Laura Palmer continues, as her secret
+                  boyfriend James Hurley is interrogated...",
       "contributor": [
         {
           "href": "3C67E1038205",
