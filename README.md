@@ -30,6 +30,6 @@ Our design is focused around ease of adoption, which means a few things:
 * Fourth, we designed the specification to be extensible and pluggable where additional information and functionality can be easily added by Service Providers as needed.
 * And lastly, we're designing something that should be easy for current service providers to adopt. We started with a review of all the major existing television, broadcast, Web and Social media standards and APIs and targeted common capabilities that they all share and provide. We believe this pragmatic balance is the best and quickest way to achieve our intended goal of widespread adoption.
 
-Here is the current [draft spec](http://www.portablelistings.net/spec/portable-listings-spec.html) and the [mailing list](http://groups.google.com/group/portablelistings).
+Here is the current [draft spec](http://www.portablelistings.net/spec/draft-portable-listings-spec-04.html) and the [mailing list](http://groups.google.com/group/portablelistings).
 
 This project is currently being undertaken by [Derrick Media](http://www.derrickmedia.com). We need your help, join the [discussion](http://groups.google.com/group/portablelistings)!.
