@@ -3804,7 +3804,21 @@ Fields</h3>
 <dt>audioDescribed: (BOOLEAN)</dt>
 <dd>
                             A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has audio description accessibility features.
-                            .
+                        
+</dd>
+<dt>hd: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the programme version being broadcasted or made available on-demand is high definition.
+                        
+</dd>
+<dt>3d: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the programme version being broadcasted or made available on-demand is 3D.
+                        
+</dd>
+<dt>uhd: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the programme version being broadcasted or made available on-demand is ultra high definition.
                         
 </dd>
 </dl></blockquote><p>
@@ -4445,21 +4459,6 @@ Fields</h3>
 <dd>
                             The video encoding parameters.
                             The value SHOULD BE selected from a standard list of values such as the EBU Video Compression Codes.
-                        
-</dd>
-<dt>hd: (BOOLEAN)</dt>
-<dd>
-                            A Boolean value indicating whether the video is high definition.
-                        
-</dd>
-<dt>3d: (BOOLEAN)</dt>
-<dd>
-                            A Boolean value indicating whether the video is 3D.
-                        
-</dd>
-<dt>uhd: (BOOLEAN)</dt>
-<dd>
-                            A Boolean value indicating whether the video is ultra high definition.
                         
 </dd>
 <dt>videoBitrate: (NUMBER)</dt>
@@ -5567,6 +5566,8 @@ Change Log</h3>
 <li>Moved "free" from Broadcast to Programme Publication.
 </li>
 <li>Added "signed", "hasSubtitles" and "audioDescribed" to Programme Publication.
+</li>
+<li>Moved "hd", "3d" and "uhd" to Programme Publication.
 </li>
 </ul><p>
         

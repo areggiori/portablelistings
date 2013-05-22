@@ -572,7 +572,7 @@ Content-Type: application/listings+json
                         searchable = filterBy
                         browseable = filterLinksBy/filterRelationshipBy
                         displayable = fields, links and relationships -->
-        <!-- TODO - Add note about allowing multiple URL query parameters for ANDs and use comma-separated values for ORs -->
+        <!-- TODO - Add note about allowing multiple URL query parameters on filterLinksBy and filterRelationshipsBy for ANDs and use comma-separated values for ORs - or come up with alternative syntax for subgraph -->
 
         <section title="Filtering" anchor="filtering">
           <t>
@@ -2903,7 +2903,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         </t>
                         <t hangText="audioDescribed: (BOOLEAN)">
                             A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has audio description accessibility features.
-                            .
+                        </t>
+                        <t hangText="hd: (BOOLEAN)">
+                            A Boolean value indicating whether the programme version being broadcasted or made available on-demand is high definition.
+                        </t>
+                        <t hangText="3d: (BOOLEAN)">
+                            A Boolean value indicating whether the programme version being broadcasted or made available on-demand is 3D.
+                        </t>
+                        <t hangText="uhd: (BOOLEAN)">
+                            A Boolean value indicating whether the programme version being broadcasted or made available on-demand is ultra high definition.
                         </t>
                     </list>
                 </t>
@@ -3305,15 +3313,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="videoEncoding: (ENUM)">
                             The video encoding parameters.
                             The value SHOULD BE selected from a standard list of values such as the EBU Video Compression Codes.
-                        </t>
-                        <t hangText="hd: (BOOLEAN)">
-                            A Boolean value indicating whether the video is high definition.
-                        </t>
-                        <t hangText="3d: (BOOLEAN)">
-                            A Boolean value indicating whether the video is 3D.
-                        </t>
-                        <t hangText="uhd: (BOOLEAN)">
-                            A Boolean value indicating whether the video is ultra high definition.
                         </t>
                         <t hangText="videoBitrate: (NUMBER)">
                             The video bit rate.
@@ -4063,6 +4062,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Moved "duration" from Content to Programme Item and Segment.</t>
                 <t>Moved "free" from Broadcast to Programme Publication.</t>
                 <t>Added "signed", "hasSubtitles" and "audioDescribed" to Programme Publication.</t>
+                <t>Moved "hd", "3d" and "uhd" to Programme Publication.</t>
             </list>
         </t>
     </section>
