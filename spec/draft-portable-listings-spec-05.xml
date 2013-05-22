@@ -168,8 +168,8 @@ ISSUES:
       </t>
       <t>
         This specification also defines and adds the following additional link relation types to the "Link Relations" registry established by <xref target="RFC5988"/>:
-        "promotional-information", "review", "highlights", "screenplay", "transcript", "shot-list", "edit-decision-list", "rundown", "dopesheet",
-        "trailer", ""simulcast", "ondemand", "catchup", "recommendation", "advert", "telescoped-advert", "speedbump", "product-purchase", "recap",
+        "promotional-information", "review", "highlights", "screenplay", "transcript", "shot", "shot-list", "edit-decision-list", "rundown", "dopesheet",
+        "trailer", ""simulcast", "ondemand", "catchup", "recommendation", "insertion-points", "advert", "telescoped-advert", "speedbump", "product-purchase", "recap",
         "making-of", "content-package", "supplemental-information", "best-of" and "extract".
       </t>
     
@@ -1851,9 +1851,19 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     Multiple transcripts can be indicated through the use of multiple "transcript" link relations.
                 </t>
             </section>
+            <section anchor="shot" title="&quot;shot&quot;">
+                <t>
+                    The "shot" link relation can be used to refer to a resource that represents a shot, for example indexed against time or frame count.
+                    A shot MAY also be expressed using a Segment (see <xref target="segment-type"/>) and referenced from a Version or Segment Group with the <spanx style="verb">segments</spanx> relationship.
+                </t>
+                <t>
+                    Multiple shots can be indicated through the use of multiple "shot" link relations.
+                </t>
+            </section>
             <section anchor="shot-list" title="&quot;shot-list&quot;">
                 <t>
                     The "shot-list" link relation can be used to refer to a resource that represents freeform textual listing of shots, for example indexed against time or frame count.
+                    A shot list MAY also be expressed using a Segment Group (see <xref target="segment-group-type"/>) and referenced from a Version with the <spanx style="verb">segments</spanx> relationship.
                 </t>
                 <t>
                     Multiple shot lists can be indicated through the use of multiple "shot-list" link relations.
@@ -1934,6 +1944,14 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 </t>
                 <t>
                     Multiple recommendations can be indicated through the use of multiple "recommendation" link relations.
+                </t>
+            </section>
+            <section anchor="insertion-points" title="&quot;insertion-points&quot;">
+                <t>
+                    The "insertion-points" link relation can be used to refer to a list of advert insertion points related to the link's context.
+                </t>
+                <t>
+                    Multiple list of insertion-points can be indicated through the use of multiple "insertion-points" link relations.
                 </t>
             </section>
             <section anchor="advert" title="&quot;advert&quot;">
@@ -2059,12 +2077,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                     <t><xref target="programme-item-type">Programme Item</xref>
                                         <list style="empty">
                                             <t><xref target="episode-type">Episode</xref>
-                                            <!--
-                                            <list style="empty">
-                                                <t><xref target="movie-type">Movie</xref>
-                                                </t>
-                                            </list>
-                                            -->
                                             </t>
                                             <t><xref target="clip-type">Clip</xref>
                                             </t>
@@ -3355,6 +3367,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="start: (TIMECODE or TIME or NUMBER)">
                             The beginning point for playback of the programme segment.
                         </t>
+                        <t hangText="end: (TIMECODE or TIME or NUMBER)">
+                            An optional ending point for playback of the programme segment.
+                        </t>
                         <t hangText="chapter: (BOOLEAN)">
                             A Boolean value indicating whether the programme segment is a chapter.
                         </t>
@@ -3677,9 +3692,21 @@ WWW-Authenticate: Basic realm="sample.site.org"
           </t>
           <t>
               <list style="symbols">
+                  <t>Relation Name: shot</t>
+                  <t>
+                      Description: Refers to a resource that represents a shot.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="shot"/>.
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
                   <t>Relation Name: shot-list</t>
                   <t>
-                      Description: Refers to a resource that represents freeform textual listing of shots, for example indexed against time or frame count.
+                      Description: Refers to a resource that represents a list of shots.
                   </t>
                   <t>
                       Reference: This specification,
@@ -3780,6 +3807,18 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   <t>
                       Reference: This specification,
                       <xref target="recommendation"/>.
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
+                  <t>Relation Name: insertion-points</t>
+                  <t>
+                      Description: Refers to a resource containing a list of insertion-points related to the link's context.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="insertion-points"/>.
                   </t>
               </list>
           </t>
@@ -3993,6 +4032,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Updated "segmentType" definition.</t>
                 <t>Redefined "aliases" as links and moved to Entry.</t>
                 <t>Added "id" query paramter to request specific information via "aliases".</t>
+                <t>Added "end" to Segment.</t>
+                <t>Added "insertion-points" and "shot" link relation types.</t>
             </list>
         </t>
     </section>
