@@ -3,7 +3,7 @@
 
 Working Draft                                                A. Reggiori
                                                            Derrick Media
-                                                            May 21, 2013
+                                                            May 22, 2013
 
 
                            Portable Listings
@@ -25,10 +25,10 @@ Table of Contents
    4.  Workflow Overview  . . . . . . . . . . . . . . . . . . . . . .  9
    5.  Discovery  . . . . . . . . . . . . . . . . . . . . . . . . . .  9
    6.  Listings API . . . . . . . . . . . . . . . . . . . . . . . . . 10
-     6.1.  Requesting Specific Information  . . . . . . . . . . . . . 11
+     6.1.  Requesting Specific Information  . . . . . . . . . . . . . 12
      6.2.  Query Parameters . . . . . . . . . . . . . . . . . . . . . 14
        6.2.1.  Filtering  . . . . . . . . . . . . . . . . . . . . . . 14
-       6.2.2.  Sorting  . . . . . . . . . . . . . . . . . . . . . . . 17
+       6.2.2.  Sorting  . . . . . . . . . . . . . . . . . . . . . . . 18
        6.2.3.  Pagination . . . . . . . . . . . . . . . . . . . . . . 18
        6.2.4.  Presentation . . . . . . . . . . . . . . . . . . . . . 19
        6.2.5.  Declining to honor query parameters  . . . . . . . . . 24
@@ -59,52 +59,52 @@ Reggiori                                                        [Page 1]
 
      8.3.  Additional Link Relation Types . . . . . . . . . . . . . . 38
        8.3.1.  "promotional-information"  . . . . . . . . . . . . . . 38
-       8.3.2.  "review" . . . . . . . . . . . . . . . . . . . . . . . 38
-       8.3.3.  "highlights" . . . . . . . . . . . . . . . . . . . . . 39
-       8.3.4.  "screenplay" . . . . . . . . . . . . . . . . . . . . . 39
-       8.3.5.  "transcript" . . . . . . . . . . . . . . . . . . . . . 39
-       8.3.6.  "shot-list"  . . . . . . . . . . . . . . . . . . . . . 39
-       8.3.7.  "edit-decision-list" . . . . . . . . . . . . . . . . . 39
-       8.3.8.  "rundown"  . . . . . . . . . . . . . . . . . . . . . . 40
-       8.3.9.  "dopesheet"  . . . . . . . . . . . . . . . . . . . . . 40
-       8.3.10. "trailer"  . . . . . . . . . . . . . . . . . . . . . . 40
-       8.3.11. "simulcast"  . . . . . . . . . . . . . . . . . . . . . 40
-       8.3.12. "ondemand" . . . . . . . . . . . . . . . . . . . . . . 40
-       8.3.13. "catchup"  . . . . . . . . . . . . . . . . . . . . . . 41
-       8.3.14. "recommendation" . . . . . . . . . . . . . . . . . . . 41
-       8.3.15. "advert" . . . . . . . . . . . . . . . . . . . . . . . 41
-       8.3.16. "telescoped-advert"  . . . . . . . . . . . . . . . . . 41
-       8.3.17. "speedbump"  . . . . . . . . . . . . . . . . . . . . . 42
-       8.3.18. "product-purchase" . . . . . . . . . . . . . . . . . . 42
-       8.3.19. "recap"  . . . . . . . . . . . . . . . . . . . . . . . 42
-       8.3.20. "making-of"  . . . . . . . . . . . . . . . . . . . . . 42
-       8.3.21. "static-segmentation"  . . . . . . . . . . . . . . . . 43
-       8.3.22. "live-segmentation"  . . . . . . . . . . . . . . . . . 43
-       8.3.23. "live-post-segmentation" . . . . . . . . . . . . . . . 43
-       8.3.24. "post-segmentation"  . . . . . . . . . . . . . . . . . 43
-       8.3.25. "content-package"  . . . . . . . . . . . . . . . . . . 43
-       8.3.26. "supplemental-information" . . . . . . . . . . . . . . 44
-       8.3.27. "best-of"  . . . . . . . . . . . . . . . . . . . . . . 44
-       8.3.28. "extract"  . . . . . . . . . . . . . . . . . . . . . . 44
-     8.4.  Object Types . . . . . . . . . . . . . . . . . . . . . . . 44
-       8.4.1.  Entry  . . . . . . . . . . . . . . . . . . . . . . . . 45
+       8.3.2.  "supplemental-information" . . . . . . . . . . . . . . 38
+       8.3.3.  "review" . . . . . . . . . . . . . . . . . . . . . . . 39
+       8.3.4.  "highlights" . . . . . . . . . . . . . . . . . . . . . 39
+       8.3.5.  "screenplay" . . . . . . . . . . . . . . . . . . . . . 39
+       8.3.6.  "transcript" . . . . . . . . . . . . . . . . . . . . . 39
+       8.3.7.  "shot-list"  . . . . . . . . . . . . . . . . . . . . . 39
+       8.3.8.  "edit-decision-list" . . . . . . . . . . . . . . . . . 40
+       8.3.9.  "rundown"  . . . . . . . . . . . . . . . . . . . . . . 40
+       8.3.10. "dopesheet"  . . . . . . . . . . . . . . . . . . . . . 40
+       8.3.11. "trailer"  . . . . . . . . . . . . . . . . . . . . . . 40
+       8.3.12. "simulcast"  . . . . . . . . . . . . . . . . . . . . . 41
+       8.3.13. "ondemand" . . . . . . . . . . . . . . . . . . . . . . 41
+       8.3.14. "catchup"  . . . . . . . . . . . . . . . . . . . . . . 41
+       8.3.15. "recommendation" . . . . . . . . . . . . . . . . . . . 41
+       8.3.16. "advert" . . . . . . . . . . . . . . . . . . . . . . . 42
+       8.3.17. "telescoped-advert"  . . . . . . . . . . . . . . . . . 42
+       8.3.18. "speedbump"  . . . . . . . . . . . . . . . . . . . . . 42
+       8.3.19. "product-purchase" . . . . . . . . . . . . . . . . . . 42
+       8.3.20. "recap"  . . . . . . . . . . . . . . . . . . . . . . . 42
+       8.3.21. "making-of"  . . . . . . . . . . . . . . . . . . . . . 43
+       8.3.22. "content-package"  . . . . . . . . . . . . . . . . . . 43
+       8.3.23. "best-of"  . . . . . . . . . . . . . . . . . . . . . . 43
+       8.3.24. "extract"  . . . . . . . . . . . . . . . . . . . . . . 43
+     8.4.  Object Types . . . . . . . . . . . . . . . . . . . . . . . 43
+       8.4.1.  Entry  . . . . . . . . . . . . . . . . . . . . . . . . 44
          8.4.1.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 45
          8.4.1.2.  Links  . . . . . . . . . . . . . . . . . . . . . . 46
-         8.4.1.3.  Relationships  . . . . . . . . . . . . . . . . . . 47
-       8.4.2.  Category . . . . . . . . . . . . . . . . . . . . . . . 48
-         8.4.2.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 48
-         8.4.2.2.  Relationships  . . . . . . . . . . . . . . . . . . 48
-       8.4.3.  Content  . . . . . . . . . . . . . . . . . . . . . . . 48
+         8.4.1.3.  Relationships  . . . . . . . . . . . . . . . . . . 46
+       8.4.2.  Category . . . . . . . . . . . . . . . . . . . . . . . 47
+         8.4.2.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 47
+         8.4.2.2.  Relationships  . . . . . . . . . . . . . . . . . . 47
+       8.4.3.  Content  . . . . . . . . . . . . . . . . . . . . . . . 47
          8.4.3.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 48
-         8.4.3.2.  Links  . . . . . . . . . . . . . . . . . . . . . . 52
-         8.4.3.3.  Relationships  . . . . . . . . . . . . . . . . . . 53
-       8.4.4.  Programme  . . . . . . . . . . . . . . . . . . . . . . 53
-         8.4.4.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 53
-         8.4.4.2.  Relationships  . . . . . . . . . . . . . . . . . . 53
-       8.4.5.  Programme Group  . . . . . . . . . . . . . . . . . . . 54
-         8.4.5.1.  Relationships  . . . . . . . . . . . . . . . . . . 54
-       8.4.6.  Brand  . . . . . . . . . . . . . . . . . . . . . . . . 54
-       8.4.7.  Series . . . . . . . . . . . . . . . . . . . . . . . . 54
+         8.4.3.2.  Links  . . . . . . . . . . . . . . . . . . . . . . 51
+         8.4.3.3.  Relationships  . . . . . . . . . . . . . . . . . . 52
+       8.4.4.  Programme  . . . . . . . . . . . . . . . . . . . . . . 52
+         8.4.4.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 52
+         8.4.4.2.  Relationships  . . . . . . . . . . . . . . . . . . 52
+       8.4.5.  Programme Group  . . . . . . . . . . . . . . . . . . . 53
+         8.4.5.1.  Relationships  . . . . . . . . . . . . . . . . . . 53
+       8.4.6.  Brand  . . . . . . . . . . . . . . . . . . . . . . . . 53
+       8.4.7.  Series . . . . . . . . . . . . . . . . . . . . . . . . 53
+       8.4.8.  Programme Item . . . . . . . . . . . . . . . . . . . . 54
+         8.4.8.1.  Relationships  . . . . . . . . . . . . . . . . . . 54
+       8.4.9.  Episode  . . . . . . . . . . . . . . . . . . . . . . . 54
+       8.4.10. Clip . . . . . . . . . . . . . . . . . . . . . . . . . 54
 
 
 
@@ -113,54 +113,54 @@ Reggiori                                                        [Page 2]
                             Portable Listings                   May 2013
 
 
-       8.4.8.  Programme Item . . . . . . . . . . . . . . . . . . . . 55
-         8.4.8.1.  Relationships  . . . . . . . . . . . . . . . . . . 55
-       8.4.9.  Episode  . . . . . . . . . . . . . . . . . . . . . . . 55
-       8.4.10. Clip . . . . . . . . . . . . . . . . . . . . . . . . . 55
-       8.4.11. Version  . . . . . . . . . . . . . . . . . . . . . . . 55
-         8.4.11.1. Fields . . . . . . . . . . . . . . . . . . . . . . 56
-         8.4.11.2. Relationships  . . . . . . . . . . . . . . . . . . 56
-       8.4.12. Service  . . . . . . . . . . . . . . . . . . . . . . . 56
-         8.4.12.1. Fields . . . . . . . . . . . . . . . . . . . . . . 56
-         8.4.12.2. Links  . . . . . . . . . . . . . . . . . . . . . . 56
-         8.4.12.3. Relationships  . . . . . . . . . . . . . . . . . . 57
-       8.4.13. Programme Publication  . . . . . . . . . . . . . . . . 57
-         8.4.13.1. Fields . . . . . . . . . . . . . . . . . . . . . . 57
+       8.4.11. Version  . . . . . . . . . . . . . . . . . . . . . . . 54
+         8.4.11.1. Fields . . . . . . . . . . . . . . . . . . . . . . 55
+         8.4.11.2. Relationships  . . . . . . . . . . . . . . . . . . 55
+       8.4.12. Service  . . . . . . . . . . . . . . . . . . . . . . . 55
+         8.4.12.1. Fields . . . . . . . . . . . . . . . . . . . . . . 55
+         8.4.12.2. Links  . . . . . . . . . . . . . . . . . . . . . . 55
+         8.4.12.3. Relationships  . . . . . . . . . . . . . . . . . . 56
+       8.4.13. Programme Publication  . . . . . . . . . . . . . . . . 56
+         8.4.13.1. Fields . . . . . . . . . . . . . . . . . . . . . . 56
          8.4.13.2. Relationships  . . . . . . . . . . . . . . . . . . 57
-       8.4.14. Broadcast  . . . . . . . . . . . . . . . . . . . . . . 58
-         8.4.14.1. Fields . . . . . . . . . . . . . . . . . . . . . . 58
-       8.4.15. Ondemand . . . . . . . . . . . . . . . . . . . . . . . 58
+       8.4.14. Broadcast  . . . . . . . . . . . . . . . . . . . . . . 57
+         8.4.14.1. Fields . . . . . . . . . . . . . . . . . . . . . . 57
+       8.4.15. Ondemand . . . . . . . . . . . . . . . . . . . . . . . 57
          8.4.15.1. Fields . . . . . . . . . . . . . . . . . . . . . . 58
-       8.4.16. Schedule . . . . . . . . . . . . . . . . . . . . . . . 59
-         8.4.16.1. Fields . . . . . . . . . . . . . . . . . . . . . . 59
-         8.4.16.2. Relationships  . . . . . . . . . . . . . . . . . . 59
+       8.4.16. Schedule . . . . . . . . . . . . . . . . . . . . . . . 58
+         8.4.16.1. Fields . . . . . . . . . . . . . . . . . . . . . . 58
+         8.4.16.2. Relationships  . . . . . . . . . . . . . . . . . . 58
        8.4.17. Catalogue  . . . . . . . . . . . . . . . . . . . . . . 59
          8.4.17.1. Fields . . . . . . . . . . . . . . . . . . . . . . 59
-         8.4.17.2. Relationships  . . . . . . . . . . . . . . . . . . 60
-       8.4.18. Application  . . . . . . . . . . . . . . . . . . . . . 60
-         8.4.18.1. Fields . . . . . . . . . . . . . . . . . . . . . . 60
-         8.4.18.2. Relationships  . . . . . . . . . . . . . . . . . . 60
+         8.4.17.2. Relationships  . . . . . . . . . . . . . . . . . . 59
+       8.4.18. Application  . . . . . . . . . . . . . . . . . . . . . 59
+         8.4.18.1. Fields . . . . . . . . . . . . . . . . . . . . . . 59
+         8.4.18.2. Relationships  . . . . . . . . . . . . . . . . . . 59
        8.4.19. Application Build  . . . . . . . . . . . . . . . . . . 60
          8.4.19.1. Fields . . . . . . . . . . . . . . . . . . . . . . 60
-         8.4.19.2. Relationships  . . . . . . . . . . . . . . . . . . 61
-       8.4.20. Application Publication  . . . . . . . . . . . . . . . 61
-         8.4.20.1. Fields . . . . . . . . . . . . . . . . . . . . . . 61
+         8.4.19.2. Relationships  . . . . . . . . . . . . . . . . . . 60
+       8.4.20. Application Publication  . . . . . . . . . . . . . . . 60
+         8.4.20.1. Fields . . . . . . . . . . . . . . . . . . . . . . 60
          8.4.20.2. Relationships  . . . . . . . . . . . . . . . . . . 61
        8.4.21. Application Gallery  . . . . . . . . . . . . . . . . . 61
-         8.4.21.1. Relationships  . . . . . . . . . . . . . . . . . . 62
-       8.4.22. Media Resource . . . . . . . . . . . . . . . . . . . . 62
+         8.4.21.1. Relationships  . . . . . . . . . . . . . . . . . . 61
+       8.4.22. Media Resource . . . . . . . . . . . . . . . . . . . . 61
          8.4.22.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
-       8.4.23. Media Group  . . . . . . . . . . . . . . . . . . . . . 64
+       8.4.23. Media Group  . . . . . . . . . . . . . . . . . . . . . 63
          8.4.23.1. Relationships  . . . . . . . . . . . . . . . . . . 64
        8.4.24. Segment  . . . . . . . . . . . . . . . . . . . . . . . 64
          8.4.24.1. Fields . . . . . . . . . . . . . . . . . . . . . . 64
-         8.4.24.2. Relationships  . . . . . . . . . . . . . . . . . . 65
+         8.4.24.2. Relationships  . . . . . . . . . . . . . . . . . . 64
        8.4.25. Segment Group  . . . . . . . . . . . . . . . . . . . . 65
          8.4.25.1. Relationships  . . . . . . . . . . . . . . . . . . 65
        8.4.26. Content Collection . . . . . . . . . . . . . . . . . . 65
          8.4.26.1. Relationships  . . . . . . . . . . . . . . . . . . 65
-       8.4.27. Rights . . . . . . . . . . . . . . . . . . . . . . . . 66
+       8.4.27. Rights . . . . . . . . . . . . . . . . . . . . . . . . 65
          8.4.27.1. Fields . . . . . . . . . . . . . . . . . . . . . . 66
+         8.4.27.2. Relationships  . . . . . . . . . . . . . . . . . . 66
+       8.4.28. Award  . . . . . . . . . . . . . . . . . . . . . . . . 66
+         8.4.28.1. Fields . . . . . . . . . . . . . . . . . . . . . . 66
+         8.4.28.2. Relationships  . . . . . . . . . . . . . . . . . . 66
 
 
 
@@ -169,26 +169,26 @@ Reggiori                                                        [Page 3]
                             Portable Listings                   May 2013
 
 
-         8.4.27.2. Relationships  . . . . . . . . . . . . . . . . . . 66
-       8.4.28. Award  . . . . . . . . . . . . . . . . . . . . . . . . 66
-         8.4.28.1. Fields . . . . . . . . . . . . . . . . . . . . . . 67
-         8.4.28.2. Relationships  . . . . . . . . . . . . . . . . . . 67
        8.4.29. Agent  . . . . . . . . . . . . . . . . . . . . . . . . 67
        8.4.30. Person . . . . . . . . . . . . . . . . . . . . . . . . 67
        8.4.31. Organisation . . . . . . . . . . . . . . . . . . . . . 67
          8.4.31.1. Relationships  . . . . . . . . . . . . . . . . . . 67
        8.4.32. Group  . . . . . . . . . . . . . . . . . . . . . . . . 67
          8.4.32.1. Relationships  . . . . . . . . . . . . . . . . . . 67
-   9.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 68
+   9.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 67
    10. Security Considerations  . . . . . . . . . . . . . . . . . . . 71
    11. Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . 71
-   12. Change Log . . . . . . . . . . . . . . . . . . . . . . . . . . 72
-   13. References . . . . . . . . . . . . . . . . . . . . . . . . . . 74
-     13.1. Normative References . . . . . . . . . . . . . . . . . . . 74
-     13.2. Informative References . . . . . . . . . . . . . . . . . . 75
-   Appendix A.  Examples  . . . . . . . . . . . . . . . . . . . . . . 77
+   12. Change Log . . . . . . . . . . . . . . . . . . . . . . . . . . 71
+   13. References . . . . . . . . . . . . . . . . . . . . . . . . . . 73
+     13.1. Normative References . . . . . . . . . . . . . . . . . . . 73
+     13.2. Informative References . . . . . . . . . . . . . . . . . . 74
+   Appendix A.  Examples  . . . . . . . . . . . . . . . . . . . . . . 76
    Appendix B.  Compatibility with EBUCore and other standards  . . . 80
    Author's Address . . . . . . . . . . . . . . . . . . . . . . . . . 80
+
+
+
+
 
 
 
@@ -371,10 +371,8 @@ Reggiori                                                        [Page 6]
    "screenplay", "transcript", "shot-list", "edit-decision-list",
    "rundown", "dopesheet", "trailer", ""simulcast", "ondemand",
    "catchup", "recommendation", "advert", "telescoped-advert",
-   "speedbump", "product-purchase", "recap", "making-of", "static-
-   segmentation", "live-segmentation", "live-post-segmentation", "post-
-   segmentation", "content-package", "supplemental-information",
-   "best-of" and "extract".
+   "speedbump", "product-purchase", "recap", "making-of", "content-
+   package", "supplemental-information", "best-of" and "extract".
 
 3.1.  Goals
 
@@ -384,6 +382,8 @@ Reggiori                                                        [Page 6]
    create:
    o  A common access pattern and listings schema that any Service
       Provider can implement.
+   o  Well-specified authorization and access rules.
+
 
 
 
@@ -393,7 +393,6 @@ Reggiori                                                        [Page 7]
                             Portable Listings                   May 2013
 
 
-   o  Well-specified authorization and access rules.
    o  Free and open source libraries in many languages for most popular
       platforms.
    o  Community-sourced support, documentation, and collaborative tools.
@@ -439,6 +438,7 @@ Reggiori                                                        [Page 7]
    please contact the author.  If you refer or discuss any further about
    Portable Listings on Twitter or Facebook the hash tag "#poli" or
    "#portablelistings" MAY be used.
+
 
 
 
@@ -577,6 +577,14 @@ Reggiori                                                       [Page 10]
              "role": "writer",
              "label": "Mark Frost"
            }
+         ],
+         "aliases": [
+           {
+             "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+           },
+           {
+             "href": "http://www.imdb.com/title/tt0278784/"
+           }
          ]
        },
        {
@@ -600,14 +608,6 @@ Reggiori                                                       [Page 10]
      ]
    }
 
-6.1.  Requesting Specific Information
-
-   In addition to simple requests, Service Providers MUST recognize the
-   following additional path information when appended to the Base URL:
-   o  "/{id}" -- Only return content metadata for the Entry whose "id"
-      field value is equal to the provided "{id}", if such an Entry
-      exists.  In this case any Entry not matching the requested ID MUST
-      be filtered out of the result list by the Service Provider.
 
 
 
@@ -617,6 +617,19 @@ Reggiori                                                       [Page 11]
                             Portable Listings                   May 2013
 
 
+6.1.  Requesting Specific Information
+
+   In addition to simple requests, Service Providers MUST recognize the
+   following additional path information when appended to the Base URL:
+   o  "/{id}" -- Only return content metadata for the Entry whose "id"
+      field value is equal to the provided "{id}", if such an Entry
+      exists.  In this case any Entry not matching the requested ID MUST
+      be filtered out of the result list by the Service Provider.
+   o  "/?id={IRI}" -- Only return content metadata for the Entries whose
+      "aliases" link is equal to the provided "{IRI}", if such Entries
+      exist.  In this case any Entry not matching the requested alias
+      MUST be filtered out of the result list by the Service Provider.
+      Note that mutliple Entries MAY be matching the id parameter.
    o  "/{id}/{relationship}" -- Return content metadata of any sub-
       entries related to the Entry whose "id" field value is equal to
       the provided "{id}" (if such an Entry exists) via a "named
@@ -633,19 +646,6 @@ Reggiori                                                       [Page 11]
    Host: api.example.org
 
    The following Entry would be returned:
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -708,19 +708,19 @@ Reggiori                                                       [Page 12]
              "role": "writer",
              "label": "Mark Frost"
            }
+         ],
+         "aliases": [
+           {
+             "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+           },
+           {
+             "href": "http://www.imdb.com/title/tt0278784/"
+           }
          ]
        }
    }
 
-   While instead by issuing this request:
-
-   GET /api/listings/5E5EEBED3173/contributor HTTP/1.1
-   Host: api.example.org
-
-   The following Entries would be returned:
-
-
-
+   The same Entry would be returned using the following query:
 
 
 
@@ -728,6 +728,16 @@ Reggiori                                                       [Page 13]
 
                             Portable Listings                   May 2013
 
+
+   GET /api/listings/?id=http://www.imdb.com/title/tt0278784/ HTTP/1.1
+   Host: api.example.org
+
+   While instead by issuing this request:
+
+   GET /api/listings/5E5EEBED3173/contributor HTTP/1.1
+   Host: api.example.org
+
+   The following Entries would be returned:
 
    HTTP/1.1 200 OK
    Content-Length: ...
@@ -767,6 +777,14 @@ Reggiori                                                       [Page 13]
    Filtering is used to limit the request results to Entries that match
    given criteria.  Results filtering is accomplished by combining the
    following request parameters:
+
+
+
+Reggiori                                                       [Page 14]
+
+                            Portable Listings                   May 2013
+
+
    filterBy:  Specifies the field name to filter by.  If the specified
       field is a Plural Field, the Entry SHALL match if any of the
       instances of the given field match the specified criterion (e.g.
@@ -777,14 +795,6 @@ Reggiori                                                       [Page 13]
       specified, its Primary Sub-Field must match.  If the specified
       field is not a direct child of the "entry" element, the full path
       MUST be specified using the '.' character as separator.  For
-
-
-
-Reggiori                                                       [Page 14]
-
-                            Portable Listings                   May 2013
-
-
       example, to filter by gender the parameter value is "gender" and
       to filter by first name, the parameter value is "name.givenName".
       Links SHALL be filtered using the "filterLinksBy" filter while
@@ -823,16 +833,6 @@ Reggiori                                                       [Page 14]
       instances of the given field match the specified criterion (e.g.
       if an Entry has multiple "alternativeDate" values, only one has to
       match for the entire Entry to match).  If Simple Fields are
-      specified, their value must match the specified "filterDateValue"
-      according to the specified "filterDateOp".  If Complex Fields are
-      specified, their Primary Sub-Field must match.  The "updated"
-      field SHALL be filtered using the "updatedSince" and
-      "updatedUntil" filters.
-   filterDateOp:  Specifies the comparison method used to evaluate the
-      date field values with the values of the date filter criterion.
-      Providers SHOULD support the following values:
-
-
 
 
 
@@ -841,6 +841,14 @@ Reggiori                                                       [Page 15]
                             Portable Listings                   May 2013
 
 
+      specified, their value must match the specified "filterDateValue"
+      according to the specified "filterDateOp".  If Complex Fields are
+      specified, their Primary Sub-Field must match.  The "updated"
+      field SHALL be filtered using the "updatedSince" and
+      "updatedUntil" filters.
+   filterDateOp:  Specifies the comparison method used to evaluate the
+      date field values with the values of the date filter criterion.
+      Providers SHOULD support the following values:
       *  "onThisDate": the date field value MUST be identical with the
          date filter criterion value.
       *  "before": the date field value MUST be less than the date
@@ -861,7 +869,8 @@ Reggiori                                                       [Page 15]
       be specified separated by comma (e.g. 2011-05-20,2011-05-21).
    filterLinksBy:  Specifies a link name to filter Entries by (e.g.
       'thumbnails').  A Service Provider SHALL match only Entries which
-      have the given link name.
+      have the given link name.  The "aliases" links SHALL be filtered
+      using the "id" selector (see Section 6.1).
    filterLinksType:  Specifies a link type to filter Entries by (e.g.
       'review').  A Service Provider SHALL match only Entries which have
       a link type as specified in the "rel" sub-field matching the
@@ -877,15 +886,6 @@ Reggiori                                                       [Page 15]
       all metadata Entries MUST be returned irrespectively of the
       metadata publisher.  This is also equivalent to providing no
       additional path info or query parameters on the Base URL.
-   filterRelationshipsBy:  Specifies a relationship label to filter
-      Entries by (e.g. 'service').  A Service Provider SHALL match only
-      Entries which have the provided relationship label.  The
-      "metadataPublisher" relationship SHALL be filtered using the
-      "filterPublisher" filter.
-   filterRelationshipsType:  Specifies a relationship type to filter
-      Entries by (e.g. 'related').  A Service Provider SHALL match only
-      Entries which have a relationship type as specified in the "rel"
-      sub-field matching the specified relationship type.
 
 
 
@@ -897,6 +897,15 @@ Reggiori                                                       [Page 16]
                             Portable Listings                   May 2013
 
 
+   filterRelationshipsBy:  Specifies a relationship label to filter
+      Entries by (e.g. 'service').  A Service Provider SHALL match only
+      Entries which have the provided relationship label.  The
+      "metadataPublisher" relationship SHALL be filtered using the
+      "filterPublisher" filter.
+   filterRelationshipsType:  Specifies a relationship type to filter
+      Entries by (e.g. 'related').  A Service Provider SHALL match only
+      Entries which have a relationship type as specified in the "rel"
+      sub-field matching the specified relationship type.
    filterRelationshipsValue:  Specifies a relationship target identifier
       to filter Entries by.  A Service Provider SHALL match only Entries
       which have a relationship target as specified in the "href" sub-
@@ -937,6 +946,13 @@ Reggiori                                                       [Page 16]
    custom, Provider-specific query syntax for "filterValue" in this
    case; or they MAY choose to reject requests of this type.
 
+
+
+Reggiori                                                       [Page 17]
+
+                            Portable Listings                   May 2013
+
+
    In general, if Consumers want to request specific behavior from
    Service Providers, they should do so by being explicit in their use
    of query parameters.
@@ -945,14 +961,6 @@ Reggiori                                                       [Page 16]
 
    Sorting allows requests to specify the order in which Entries are
    returned.
-
-
-
-Reggiori                                                       [Page 17]
-
-                            Portable Listings                   May 2013
-
-
    sortBy  Specifies the field name whose value SHALL be used to order
       the returned Entries.  The sort order is determine by the
       "sortOrder" parameter.  If "sortBy" is a Singular Field, Entries
@@ -993,14 +1001,6 @@ Reggiori                                                       [Page 17]
       when presented with a "count" request that is larger than the
       number of Entries the user has, but Providers MAY choose to never
       return more than a Provider-determined maximum number of Entries
-      per request, if returning all Entries is too burdensome.  In all
-      cases, at most "count" Entries SHALL be returned, starting at
-      "startIndex" and counting up from there.  In each of these cases,
-      Providers MUST indicate the total number of Entries they chose to
-      return in the response using the "itemsPerPage" response element
-      (see Section 6.3).
-   For instance, on an initial query, specifying "startIndex=0&count=10"
-   will return only the first 10 results.  The total number of possible
 
 
 
@@ -1009,6 +1009,14 @@ Reggiori                                                       [Page 18]
                             Portable Listings                   May 2013
 
 
+      per request, if returning all Entries is too burdensome.  In all
+      cases, at most "count" Entries SHALL be returned, starting at
+      "startIndex" and counting up from there.  In each of these cases,
+      Providers MUST indicate the total number of Entries they chose to
+      return in the response using the "itemsPerPage" response element
+      (see Section 6.3).
+   For instance, on an initial query, specifying "startIndex=0&count=10"
+   will return only the first 10 results.  The total number of possible
    results is indicated by the "totalResults" field of results, so the
    client knows how many "pages" of results exist.  A subsequent query
    of "startIndex=10&count=10" will return the next 10 results, and so
@@ -1049,14 +1057,6 @@ Reggiori                                                       [Page 18]
       supported.  A Provider SHOULD return at least the "href" and
       "entry" fields for relationships included "by-reference" and
       "by-value" respectively (see Section 7.1.3).  This parameter is
-      used for efficiency when a Consumer wishes to access only a subset
-      of the relationships.  Value is a comma separated list of top
-      level relationship names (e.g.
-      contributor,creator,crossPromotions), and it defaults to an empty
-      list which means it's up to the Provider which relationships to
-      return.  Consumers MAY request all available relationships by
-      using the special value "@all_relationships" (i.e. any
-      relationship).  Providers MUST return the requested relationships
 
 
 
@@ -1065,6 +1065,14 @@ Reggiori                                                       [Page 19]
                             Portable Listings                   May 2013
 
 
+      used for efficiency when a Consumer wishes to access only a subset
+      of the relationships.  Value is a comma separated list of top
+      level relationship names (e.g.
+      contributor,creator,crossPromotions), and it defaults to an empty
+      list which means it's up to the Provider which relationships to
+      return.  Consumers MAY request all available relationships by
+      using the special value "@all_relationships" (i.e. any
+      relationship).  Providers MUST return the requested relationships
       information using a Complex Field structure as explained in
       Section 7.1.3.  Additionall a Provider MAY use the
       "includeRelationships" parameter (see below).  Providers MUST
@@ -1105,14 +1113,6 @@ Reggiori                                                       [Page 19]
       complex field names (Section 7.1.1) in the "metadataFields" Entry
       structured field as Entry Metadata.  Otherwise no extra field
       SHALL be included.  When used in combination with the "fields"
-      parameter only field names not listed in the fields parameter
-      SHALL be returned.
-   listLinks:  This is an optional parameter.  If non-empty, it MUST
-      specifies a valid boolean value of 'true' or 'false'.  If the
-      value is 'true' a Provider SHOULD list the existing Web link field
-      names (Section 7.1.2) in the "metadataLinks" Entry structured
-      field as Entry Metadata.  Otherwise no extra field SHALL be
-      included.  When used in combination with the "fields" parameter
 
 
 
@@ -1121,6 +1121,14 @@ Reggiori                                                       [Page 20]
                             Portable Listings                   May 2013
 
 
+      parameter only field names not listed in the fields parameter
+      SHALL be returned.
+   listLinks:  This is an optional parameter.  If non-empty, it MUST
+      specifies a valid boolean value of 'true' or 'false'.  If the
+      value is 'true' a Provider SHOULD list the existing Web link field
+      names (Section 7.1.2) in the "metadataLinks" Entry structured
+      field as Entry Metadata.  Otherwise no extra field SHALL be
+      included.  When used in combination with the "fields" parameter
       only Web link field names not listed in the fields paramters SHALL
       be returned.
    listRelationships:  This is an optional parameter.  If non-empty, it
@@ -1141,14 +1149,6 @@ Reggiori                                                       [Page 20]
    Host: api.example.org
 
    The following Entry would be returned:
-
-
-
-
-
-
-
-
 
 
 
@@ -2112,15 +2112,15 @@ Reggiori                                                       [Page 37]
    Multiple products can be indicated through the use of multiple
    "promotional-information" link relations.
 
-8.3.2.  "review"
+8.3.2.  "supplemental-information"
 
-   The "review" link relation can be used to refer to a critical article
-   or report concerning the link's context, e.g. a critique or an
-   evaluation.
-
-   Multiple reviews can be indicated through the use of multiple
-   "review" link relations.
-
+   The "supplemental-information" link relation can be used to refer to
+   a resource containing supplemental information about the link's
+   context.  Supplemental information broadly refers to any type of
+   information, content, or service relating to the link's context.  For
+   example supplemental information for a television programme may
+   include related articles, close-ups, replays, outtakes, galleries,
+   commercial tie-ins, games, sound clips, video clips, product
 
 
 
@@ -2129,7 +2129,21 @@ Reggiori                                                       [Page 38]
                             Portable Listings                   May 2013
 
 
-8.3.3.  "highlights"
+   information.
+
+   Multiple pieces of supplemental information can be indicated through
+   the use of multiple "supplemental-information" link relations.
+
+8.3.3.  "review"
+
+   The "review" link relation can be used to refer to a critical article
+   or report concerning the link's context, e.g. a critique or an
+   evaluation.
+
+   Multiple reviews can be indicated through the use of multiple
+   "review" link relations.
+
+8.3.4.  "highlights"
 
    The "highlights" link relation can be used to refer to a resource
    that represents striking, noticeable aspects of the link's context.
@@ -2137,7 +2151,7 @@ Reggiori                                                       [Page 38]
    Multiple highlights can be indicated through the use of multiple
    "highlights" link relations.
 
-8.3.4.  "screenplay"
+8.3.5.  "screenplay"
 
    The "screenplay" link relation can be used to refer to a resource
    that represents the text specifying content of a production or
@@ -2149,7 +2163,7 @@ Reggiori                                                       [Page 38]
    Multiple screenplays can be indicated through the use of multiple
    "screenplay" link relations.
 
-8.3.5.  "transcript"
+8.3.6.  "transcript"
 
    The "transcript" link relation can be used to refer to an exact copy
    or reproduction (e.g. of a dialog or interview) of the link's
@@ -2158,16 +2172,23 @@ Reggiori                                                       [Page 38]
    Multiple transcripts can be indicated through the use of multiple
    "transcript" link relations.
 
-8.3.6.  "shot-list"
+8.3.7.  "shot-list"
 
    The "shot-list" link relation can be used to refer to a resource that
    represents freeform textual listing of shots, for example indexed
    against time or frame count.
 
+
+
+Reggiori                                                       [Page 39]
+
+                            Portable Listings                   May 2013
+
+
    Multiple shot lists can be indicated through the use of multiple
    "shot-list" link relations.
 
-8.3.7.  "edit-decision-list"
+8.3.8.  "edit-decision-list"
 
    The "edit-decision-list" link relation can be used to refer to a
    resource that represents an Edit Decision List (EDL) expressed as
@@ -2178,14 +2199,7 @@ Reggiori                                                       [Page 38]
    Multiple edit decision lists can be indicated through the use of
    multiple "edit-decision-list" link relations.
 
-
-
-Reggiori                                                       [Page 39]
-
-                            Portable Listings                   May 2013
-
-
-8.3.8.  "rundown"
+8.3.9.  "rundown"
 
    The "rundown" link relation can be used to refer to a resource that
    represents a rundown.  A rundown sheet is a simple review of the
@@ -2201,7 +2215,7 @@ Reggiori                                                       [Page 39]
    Multiple rundown can be indicated through the use of multiple
    "rundown" link relations.
 
-8.3.9.  "dopesheet"
+8.3.10.  "dopesheet"
 
    The "dopesheet" link relation can be used to refer to a resource that
    represents an exposure sheet which allows an animator to organize his
@@ -2211,7 +2225,7 @@ Reggiori                                                       [Page 39]
    Multiple expoure sheets can be indicated through the use of multiple
    "dopesheet" link relations.
 
-8.3.10.  "trailer"
+8.3.11.  "trailer"
 
    The "trailer" link relation can be used to refer to a trailer of the
    link's context.
@@ -2219,20 +2233,6 @@ Reggiori                                                       [Page 39]
    Multiple trailers can be indicated through the use of multiple
    "trailer" link relations.
 
-8.3.11.  "simulcast"
-
-   The "simulcast" link relation can be used to refer to an alternative
-   version of the link's context that is being shown simultaneously with
-   the link's context.
-
-   Multiple simulcasts can be indicated through the use of multiple
-   "simulcast" link relations.
-
-8.3.12.  "ondemand"
-
-   The "ondemand" link relation can be used to refer to an alternative
-   version of the link's context that is available for consumption on
-   demand, e.g. a link to a content download descriptor, or a deep link
 
 
 
@@ -2241,12 +2241,26 @@ Reggiori                                                       [Page 40]
                             Portable Listings                   May 2013
 
 
+8.3.12.  "simulcast"
+
+   The "simulcast" link relation can be used to refer to an alternative
+   version of the link's context that is being shown simultaneously with
+   the link's context.
+
+   Multiple simulcasts can be indicated through the use of multiple
+   "simulcast" link relations.
+
+8.3.13.  "ondemand"
+
+   The "ondemand" link relation can be used to refer to an alternative
+   version of the link's context that is available for consumption on
+   demand, e.g. a link to a content download descriptor, or a deep link
    to a page in a content provider's application.
 
    Multiple ondemands can be indicated through the use of multiple
    "ondemand" link relations.
 
-8.3.13.  "catchup"
+8.3.14.  "catchup"
 
    The "catchup" link relation can be used to refer to an alternative
    version of the link's context that is available for consumption on
@@ -2257,7 +2271,7 @@ Reggiori                                                       [Page 40]
    Multiple catchups can be indicated through the use of multiple
    "catchup" link relations.
 
-8.3.14.  "recommendation"
+8.3.15.  "recommendation"
 
    The "recommendation" link relation can be used to refer to a resource
    recommended by the provider of the link's context.  The service
@@ -2274,20 +2288,6 @@ Reggiori                                                       [Page 40]
    Multiple recommendations can be indicated through the use of multiple
    "recommendation" link relations.
 
-8.3.15.  "advert"
-
-   The "advert" link relation can be used to refer to an advert for a
-   product or service featured in the link's context.
-
-   Multiple adverts can be indicated through the use of multiple
-   "advert" link relations.
-
-8.3.16.  "telescoped-advert"
-
-   The "telescoped-advert" link relation can be used to refer to a
-   telescoped advert for a product or service featured in the link's
-   context, e.g. target TV ads to individual households based on viewing
-   and buying habits.
 
 
 
@@ -2297,10 +2297,25 @@ Reggiori                                                       [Page 41]
                             Portable Listings                   May 2013
 
 
+8.3.16.  "advert"
+
+   The "advert" link relation can be used to refer to an advert for a
+   product or service featured in the link's context.
+
+   Multiple adverts can be indicated through the use of multiple
+   "advert" link relations.
+
+8.3.17.  "telescoped-advert"
+
+   The "telescoped-advert" link relation can be used to refer to a
+   telescoped advert for a product or service featured in the link's
+   context, e.g. target TV ads to individual households based on viewing
+   and buying habits.
+
    Multiple telescoped adverts can be indicated through the use of
    multiple "telescoped-advert" link relations.
 
-8.3.17.  "speedbump"
+8.3.18.  "speedbump"
 
    The "speedbump" link relation can be used to refer to superimposed
    related or unrelated content about a product or service featured in
@@ -2309,7 +2324,7 @@ Reggiori                                                       [Page 41]
    Multiple speedbumps can be indicated through the use of multiple
    "speedbump" link relations.
 
-8.3.18.  "product-purchase"
+8.3.19.  "product-purchase"
 
    The "product-purchase" link relation can be used to refer to a
    product or service directly linked to the link's context, which can
@@ -2323,27 +2338,12 @@ Reggiori                                                       [Page 41]
    Multiple purchaseable products can be indicated through the use of
    multiple "product-purchase" link relations.
 
-8.3.19.  "recap"
+8.3.20.  "recap"
 
    The "recap" link relation can be used to refer to a text or AV recap
    of the link's context.  Example: The user can chose to read/watch a
    recap if they have missed a previous episode or forgotten the thread
    of the series.
-
-   Multiple recaps can be indicated through the use of multiple "recap"
-   link relations.
-
-8.3.20.  "making-of"
-
-   The "making-of" link relation can be used to refer to the making-of
-   of the link's context.  Example: "The user, if interested can view
-   the background to how the programme was made".
-
-   Multiple pieces of background information can be indicated through
-   the use of multiple "making-of" link relations.
-
-
-
 
 
 
@@ -2353,45 +2353,19 @@ Reggiori                                                       [Page 42]
                             Portable Listings                   May 2013
 
 
-8.3.21.  "static-segmentation"
+   Multiple recaps can be indicated through the use of multiple "recap"
+   link relations.
 
-   The "static-segmentation" link relation can be used to refer to
-   "static" segmentation metadata which will not change as the the
-   link's context content progresses.
+8.3.21.  "making-of"
 
-   Multiple pieces of static segmentation metadata can be indicated
-   through the use of multiple "static-segmentation" link relations.
+   The "making-of" link relation can be used to refer to the making-of
+   of the link's context.  Example: "The user, if interested can view
+   the background to how the programme was made".
 
-8.3.22.  "live-segmentation"
+   Multiple pieces of background information can be indicated through
+   the use of multiple "making-of" link relations.
 
-   The "live-segmentation" link relation can be used to refer to "live"
-   segmentation metadata which will change dynamically as the link's
-   context content progresses.  Once the link's context content has
-   completed transmission the segmentation metadata will not be updated.
-
-   Multiple pieces of live segmentation metadata can be indicated
-   through the use of multiple "live-segmentation" link relations.
-
-8.3.23.  "live-post-segmentation"
-
-   The "live-post-segmentation" link relation can be used to refer to
-   "live" segmentation metadata which will change dynamically as the
-   link's context content progresses.  It may also be updated after the
-   link's context content has completed transmission.
-
-   Multiple pieces of live post segmentation metadata can be indicated
-   through the use of multiple "live-post-segmentation" link relations.
-
-8.3.24.  "post-segmentation"
-
-   The "static-segmentation" link relation can be used to refer to
-   segmentation metadata which will only be available after the link's
-   context content has completed transmission.
-
-   Multiple pieces of post segmentation metadata can be indicated
-   through the use of multiple "post-segmentation" link relations.
-
-8.3.25.  "content-package"
+8.3.22.  "content-package"
 
    The "content-package" link relation can be used to refer to a content
    package associated to the link's context.
@@ -2399,31 +2373,7 @@ Reggiori                                                       [Page 42]
    Multiple content packages can be indicated through the use of
    multiple "content-package" link relations.
 
-
-
-
-
-
-Reggiori                                                       [Page 43]
-
-                            Portable Listings                   May 2013
-
-
-8.3.26.  "supplemental-information"
-
-   The "supplemental-information" link relation can be used to refer to
-   a resource containing supplemental information about the link's
-   context.  Supplemental information broadly refers to any type of
-   information, content, or service relating to the link's context.  For
-   example supplemental information for a television programme may
-   include related articles, close-ups, replays, outtakes, galleries,
-   commercial tie-ins, games, sound clips, video clips, product
-   information.
-
-   Multiple pieces of supplemental information can be indicated through
-   the use of multiple "supplemental-information" link relations.
-
-8.3.27.  "best-of"
+8.3.23.  "best-of"
 
    The "best-of" link relation can be used to refer to a resource
    collecting best-of selections from the link's context.
@@ -2431,7 +2381,7 @@ Reggiori                                                       [Page 43]
    Multiple resources collecting best-of selections can be indicated
    through the use of multiple "best-of" link relations.
 
-8.3.28.  "extract"
+8.3.24.  "extract"
 
    The "extract" link relation can be used to refer to a resource
    representing an extract of the link's context.
@@ -2451,20 +2401,19 @@ Reggiori                                                       [Page 43]
    referenced in CAPITAL letters in the next sections (e.g.
    PROGRAMME_GROUP).  While the actual object type specified in the
    "objectType" field MUST BE expressed in lowercase and multiple words
+
+
+
+Reggiori                                                       [Page 43]
+
+                            Portable Listings                   May 2013
+
+
    have been separated by '_' (underscore) (e.g.  ProgrammeGroup became
    programme_group).
 
    The following object types hierarchy has been defined as integral
    part of the core profile:
-
-
-
-
-Reggiori                                                       [Page 44]
-
-                            Portable Listings                   May 2013
-
-
       Entry (Section 8.4.1)
          Category (Section 8.4.2)
          Content (Section 8.4.3)
@@ -2509,26 +2458,33 @@ Reggiori                                                       [Page 44]
    Service Providers will be able to provide information for all
    supported fields.
 
-8.4.1.1.  Fields
 
 
-
-
-
-
-Reggiori                                                       [Page 45]
+Reggiori                                                       [Page 44]
 
                             Portable Listings                   May 2013
 
 
+8.4.1.1.  Fields
+
    id: (STRING)  REQUIRED.  Unique identifier for the Entry record.
-      Each Entry returned MUST include a non-empty "id" value.  This
-      identifier MUST be unique across the user's entire metadata set
-      (see Section 6.5), but MAY not be unique across multiple users'
-      metadata sets.  It MUST be a stable ID that does not change when
-      the same Entry is returned in subsequent requests.  Usually, an
-      internal database ID will be the right choice here, e.g.
-      ""12345"".
+      Each Entry returned MUST include a non-empty "id" value.  If a
+      metadata publishing party is defined as per a non-empty
+      "metadataPublisher" relationship, this identifier MUST be unique
+      across the metadata publishing party's entire metadata set.
+      Otherwise this identifier MUST be unique across the Service
+      Provider entire metadata set (see Section 6.5), but MAY not be
+      unique across multiple Provider metadata sets.  It MUST be a
+      stable ID that does not change when the same Entry is returned in
+      subsequent requests.  Usually, an internal database ID will be the
+      right choice here, e.g. ""12345"".  Care MUST be taken when a
+      Service Provider aggregates metadata from several metadata
+      publishing parties in order to make sure that identifiers from
+      different parties do not clash.  It is RECOMMENDED to use a
+      globally unique identifier formed with a unique string prefix
+      representing the metadata publishing party (e.g. the registered
+      Internet Domain Name of the party) with the suffix of the metadata
+      publishing party database ID.
    displayName: (STRING)  REQUIRED.  The short name of this Entry,
       suitable for display to end-users (e.g. short title).  Each Entry
       returned MUST include a non-empty "displayName" value.  The value
@@ -2557,6 +2513,14 @@ Reggiori                                                       [Page 45]
       the Entry has never been modified since its initial creation, the
       value MUST be the same as the value of "updated".  Note the
       "updatedSince" and the "updatedUntil" Query Parameters described
+
+
+
+Reggiori                                                       [Page 45]
+
+                            Portable Listings                   May 2013
+
+
       in Section 6.2 can be used to select only Entries whose "updated"
       value is equal to or more recent than a given TIMESTAMP or equal
       to or older than a given TIMESTAMP respectively.  This enables
@@ -2565,21 +2529,9 @@ Reggiori                                                       [Page 45]
 
 8.4.1.2.  Links
 
-
-
-
-
-
-
-
-Reggiori                                                       [Page 46]
-
-                            Portable Listings                   May 2013
-
-
    metadataRights: (LINK)  The copyright license terms under which the
       Entry content metadata is provided.  If the field is set, the
-      "rel" sub-field MUST have the "license" value.
+      "rel" sub-field SHALL be "license".
    metadataSource: (LINK)  A standard source from which the Entry
       metadata record was generated from as defined by section 4.2.11 of
       [RFC4287] using the least minimum number of fields.  This enables
@@ -2598,6 +2550,8 @@ Reggiori                                                       [Page 46]
          details of the source was updated (i.e. the modified date of
          the source).  The value MUST be a valid TIMESTAMP (e.g.
          "2010-01-12T07:56:22Z").
+   aliases: [LINK]  Additional or alternative identifiers for an Entry
+      expressed as IRI.
    links: [LINK]  An Entry MAY have associated one ore more links to
       external Web resources.  A Provider SHOULD NOT use the links
       element to express relationships by-reference as this complicates
@@ -2605,14 +2559,24 @@ Reggiori                                                       [Page 46]
 
 8.4.1.3.  Relationships
 
-   metadataPublisher: (AGENT)  The Agent publishing the metadata
-      instances as served by a Service Provider.  If the field is set,
-      the "rel" sub-field MUST have the "author" value.
+   metadataPublisher: (AGENT)  The metadata publishing party responsible
+      for the metadata instances as served by a Service Provider.  If
+      set, the "rel" sub-field SHALL be "author".  If not set, the
+      metadata publishing party is left undefined.
    parent: (ENTRY)  Relates a piece of content to another piece of
       content constituting it.  This relationship SHOULD BE used to
       access the parent Entries in Collections, Programme Groups, Series
       and so on.  The following fields are refined for the parent
       relationship:
+
+
+
+
+Reggiori                                                       [Page 46]
+
+                            Portable Listings                   May 2013
+
+
       rel: (ENUM)  The rel value MUST BE the "up" relation type as
          defined in section 6.2.2. of [RFC5988].  If this property is
          omitted or null it MUST BE processed as if the value was the
@@ -2623,16 +2587,6 @@ Reggiori                                                       [Page 46]
       Entries in Collections, Programme Groups, Series, Episodes (e.g.
       previous episode, next episode).  The following fields are refined
       for the parent relationship:
-
-
-
-
-
-Reggiori                                                       [Page 47]
-
-                            Portable Listings                   May 2013
-
-
       rel: (ENUM)  REQUIRED.  The rel value MUST BE the "prev" relation
          type as defined in section 6.2.2. of [RFC5988] when referring
          to a previous Entry in a list or collection.  The rel value
@@ -2671,23 +2625,20 @@ Reggiori                                                       [Page 47]
    represents an individual piece of audiovisual content metadata
    returned by a Service Provider.  For example, the "content" object
    type MAY be used to describe an abstract programme idea or concept
+
+
+
+Reggiori                                                       [Page 47]
+
+                            Portable Listings                   May 2013
+
+
    created during the planning process, a generic editorial object such
    as a dope sheet, a script, a report etc.  More in general the type
    MAY be used to describe any other object which is not explicitly
    contemplated in the core profile (e.g. lenses, camera etc.).
 
 8.4.3.1.  Fields
-
-
-
-
-
-
-
-Reggiori                                                       [Page 48]
-
-                            Portable Listings                   May 2013
-
 
    title: (STRING or HTML)  The main name of this piece of content.  The
       title value provided SHALL differ from the "displayName".
@@ -2727,24 +2678,23 @@ Reggiori                                                       [Page 48]
    created: (TIMESTAMP or PERIOD)  The creation date for a particular
       version or rendition of the piece of content across its life
       cycle.
+
+
+
+
+
+
+Reggiori                                                       [Page 48]
+
+                            Portable Listings                   May 2013
+
+
    issued: (TIMESTAMP or PERIOD)  The date of formal issuance (e.g.
       publication) of the piece of content.
    modified: (TIMESTAMP or PERIOD)  The date when the piece of content
       was last modified.
    digitised: (TIMESTAMP or PERIOD)  The date when the piece of content
       was digitised.
-
-
-
-
-
-
-
-Reggiori                                                       [Page 49]
-
-                            Portable Listings                   May 2013
-
-
    released: (TIMESTAMP or PERIOD)  The date when the piece of content
       was released.
    copyrighted: (TIMESTAMP or PERIOD)  The date when the piece of
@@ -2764,11 +2714,6 @@ Reggiori                                                       [Page 49]
          actual piece of content rather than the Entry metadata (see
          Section 8.4.1).
       value: (TIMESTAMP or PERIOD)  The alternative date.
-   aliases: [COMPLEX]  Additional or alternative identifiers for the
-      piece of content.
-      value: (IRI or STRING)  The alternative identifier.
-      authority: (IRI)  An optional issuing authority fully qualified
-         IRI.
    tags: [STRING]  A user-defined category or label for the piece of
       content, e.g. "coolshow" or "web20".  These values SHOULD be case-
       insensitive, and there SHOULD NOT be multiple tags provided for a
@@ -2795,8 +2740,7 @@ Reggiori                                                       [Page 49]
 
 
 
-
-Reggiori                                                       [Page 50]
+Reggiori                                                       [Page 49]
 
                             Portable Listings                   May 2013
 
@@ -2852,7 +2796,7 @@ Reggiori                                                       [Page 50]
 
 
 
-Reggiori                                                       [Page 51]
+Reggiori                                                       [Page 50]
 
                             Portable Listings                   May 2013
 
@@ -2908,7 +2852,7 @@ Reggiori                                                       [Page 51]
 
 
 
-Reggiori                                                       [Page 52]
+Reggiori                                                       [Page 51]
 
                             Portable Listings                   May 2013
 
@@ -2964,7 +2908,7 @@ Reggiori                                                       [Page 52]
 
 
 
-Reggiori                                                       [Page 53]
+Reggiori                                                       [Page 52]
 
                             Portable Listings                   May 2013
 
@@ -3020,7 +2964,7 @@ Reggiori                                                       [Page 53]
 
 
 
-Reggiori                                                       [Page 54]
+Reggiori                                                       [Page 53]
 
                             Portable Listings                   May 2013
 
@@ -3076,7 +3020,7 @@ Reggiori                                                       [Page 54]
 
 
 
-Reggiori                                                       [Page 55]
+Reggiori                                                       [Page 54]
 
                             Portable Listings                   May 2013
 
@@ -3103,6 +3047,9 @@ Reggiori                                                       [Page 55]
       particular version.
    availabilities: [ONDEMAND]  The availabilities associated with a
       particular version when it is made available on-demand.
+   segments: [SEGMENT]  The segments or segment groups associated with a
+      particular version (e.g. bookmarks, highlights, preview, insertion
+      points, shots, speech).
 
 8.4.12.  Service
 
@@ -3123,20 +3070,20 @@ Reggiori                                                       [Page 55]
 
 8.4.12.2.  Links
 
-   logo: (LINK)  A logo or icon associated to the service.
-      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "icon" relation
-         type as defined in [RFC5988].
 
 
 
 
 
 
-Reggiori                                                       [Page 56]
+Reggiori                                                       [Page 55]
 
                             Portable Listings                   May 2013
 
 
+   logo: (LINK)  A logo or icon associated to the service.
+      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "icon" relation
+         type as defined in [RFC5988].
    dog: (LINK)  A Digital On screen Graphic (DOG) associated to the
       service.
       rel: (ENUM)  REQUIRED.  The rel value MUST BE the "icon" relation
@@ -3167,12 +3114,28 @@ Reggiori                                                       [Page 56]
    service, and with a particular version of a programme.  For example,
    a programme instance on a broadcast or on-demand service.
 
+   Note that in order to guarantee the creation of a unqiue and
+   disambiguating programme publication "id" field, the following
+   information SHALL be combined:
+   o  The metadata publishing party identifier (if defined).
+   o  The parent service identifier.
+   o  The programme version identifier.
+   o  The published start and end time values.
+
 8.4.13.1.  Fields
 
    publishedDuration: (NUMBER)  The published duration of the Programme
       version in seconds.  For broadcast publication events, when all
       the time parameters are provided, the published duration MUST be
       equal to the difference between end time and start time.
+
+
+
+
+Reggiori                                                       [Page 56]
+
+                            Portable Listings                   May 2013
+
 
 8.4.13.2.  Relationships
 
@@ -3181,18 +3144,6 @@ Reggiori                                                       [Page 56]
    programme: (VERSION)  A reference to the Programme version.
    media: (MEDIA_RESOURCE)  A reference to the programme version
       AudioVisual media resource.
-
-
-
-
-
-
-
-Reggiori                                                       [Page 57]
-
-                            Portable Listings                   May 2013
-
-
       locator: (IRI or STRING)  The locator SHALL match the
          corresponding media resource locator field (see
          Section 8.4.22).  Note that this sub-field is solely provided
@@ -3233,22 +3184,20 @@ Reggiori                                                       [Page 57]
    between two dates (e.g. catch-up on yesterday night 20:00pm soap
    opera).
 
+
+
+
+
+Reggiori                                                       [Page 57]
+
+                            Portable Listings                   May 2013
+
+
 8.4.15.1.  Fields
 
    startAvailability: (TIMESTAMP)  The published date and time that the
       programme version will be available.  If not specified the
       programme version is assumed to be available.
-
-
-
-
-
-
-Reggiori                                                       [Page 58]
-
-                            Portable Listings                   May 2013
-
-
    endAvailability: (TIMESTAMP)  The published date and time that the
       programme version will no longer be available.  If not specified
       the programme version is meant to be made available indefinitely.
@@ -3273,6 +3222,13 @@ Reggiori                                                       [Page 58]
    represents a group of broadcast events from the same service (e.g.
    ZDF service schedule).
 
+   Note that in order to guarantee the creation of a unqiue and
+   disambiguating schedule "id" field, the following information SHALL
+   be combined:
+   o  The metadata publishing party identifier (if defined).
+   o  The parent service identifier.
+   o  The start and end period values.
+
 8.4.16.1.  Fields
 
    start: (TIMESTAMP)  Start of the period covered by the schedule.
@@ -3282,6 +3238,17 @@ Reggiori                                                       [Page 58]
 
    service: (SERVICE)  A reference to the Service on which the
       programmes will be broadcasted.
+
+
+
+
+
+
+Reggiori                                                       [Page 58]
+
+                            Portable Listings                   May 2013
+
+
    broadcasts: [BROADCAST]  The list of broadcasts inside the schedule.
 
 8.4.17.  Catalogue
@@ -3290,20 +3257,17 @@ Reggiori                                                       [Page 58]
    represents a group of on-demand publications from the same service
    (e.g.  YouTube catalogue).
 
+   Note that in order to guarantee the creation of a unqiue and
+   disambiguating catalogue "id" field, the following information SHALL
+   be combined:
+   o  The metadata publishing party identifier (if defined).
+   o  The parent service identifier.
+   o  The catalogue type value.
+
 8.4.17.1.  Fields
 
    catalogueType: (ENUM)  The catalogue type SHOULD BE selected from a
       standard list of values (e.g. 'catchup tv', 'VOD', 'SVOD' etc.).
-
-
-
-
-
-
-Reggiori                                                       [Page 59]
-
-                            Portable Listings                   May 2013
-
 
 8.4.17.2.  Relationships
 
@@ -3333,6 +3297,14 @@ Reggiori                                                       [Page 59]
       ambiguity this creates and this complicates processing by the
       Consumer.
 
+
+
+
+Reggiori                                                       [Page 59]
+
+                            Portable Listings                   May 2013
+
+
 8.4.19.  Application Build
 
    The Application Build object type extends the CONTENT object type and
@@ -3353,14 +3325,6 @@ Reggiori                                                       [Page 59]
       original="false", but should instead omit this sub-field for all
       non-original instances.
 
-
-
-
-Reggiori                                                       [Page 60]
-
-                            Portable Listings                   May 2013
-
-
 8.4.19.2.  Relationships
 
    availabilities: [APPLICATION_PUBLICATION]  The availabilities
@@ -3375,7 +3339,27 @@ Reggiori                                                       [Page 60]
    APPLICATION_PUBLICATION.  An application is associated with a
    service, and with a particular application build.
 
+   Note that in order to guarantee the creation of a unqiue and
+   disambiguating application publication "id" field, the following
+   information SHALL be combined:
+   o  The metadata publishing party identifier (if defined).
+   o  The parent service identifier.
+   o  The application build identifier.
+   o  The published start and end time values.
+
 8.4.20.1.  Fields
+
+
+
+
+
+
+
+
+Reggiori                                                       [Page 60]
+
+                            Portable Listings                   May 2013
+
 
    startAvailability: (TIMESTAMP)  The published date and time that the
       application build will be available.  If not specified the
@@ -3408,14 +3392,11 @@ Reggiori                                                       [Page 60]
    and represents a group of application publications from the same
    service (e.g. iTunes AppStore).
 
-
-
-
-
-Reggiori                                                       [Page 61]
-
-                            Portable Listings                   May 2013
-
+   Note that in order to guarantee the creation of a unqiue and
+   disambiguating application gallery "id" field, the following
+   information SHALL be combined:
+   o  The metadata publishing party identifier (if defined).
+   o  The parent service identifier.
 
 8.4.21.1.  Relationships
 
@@ -3428,6 +3409,14 @@ Reggiori                                                       [Page 61]
 
    The Media Resource type extends the CONTENT object type and
    represents a digital or physical manifestation of a version.  For an
+
+
+
+Reggiori                                                       [Page 61]
+
+                            Portable Listings                   May 2013
+
+
    organisation or producer acting as caretaker for a media resource, it
    MAY contain a string formatted piece of information about a specific
    e.g. tape name, shelf location for an asset, including an
@@ -3462,6 +3451,17 @@ Reggiori                                                       [Page 61]
       value: (ENUM)  The type of media resource SHOULD BE selected from
          a standard list of values such as the EBU Storage Media types
          (e.g. '1BM', 'BMX', 'video', 'audio').
+   length: (NUMBER)  The media resource size or length in octets.  The
+      value is a hint about the content length of the media resource
+      representing the media resource and it does not override the
+      actual content length of the representation as reported by the
+      underlying protocol.
+   start: (TIMECODE or TIME or NUMBER)  The beginning point for playback
+      of the media resource (e.g. 'seeking position').
+   audioEncoding: (ENUM)  The audio encoding parameters SHOULD BE
+      selected from a standard list of values such as the EBU Audio
+      Compression Codes.
+
 
 
 
@@ -3473,16 +3473,6 @@ Reggiori                                                       [Page 62]
                             Portable Listings                   May 2013
 
 
-   length: (NUMBER)  The media resource size or length in octets.  The
-      value is a hint about the content length of the media resource
-      representing the media resource and it does not override the
-      actual content length of the representation as reported by the
-      underlying protocol.
-   start: (TIMECODE or TIME or NUMBER)  The beginning point for playback
-      of the media resource (e.g. 'seeking position').
-   audioEncoding: (ENUM)  The audio encoding parameters SHOULD BE
-      selected from a standard list of values such as the EBU Audio
-      Compression Codes.
    audioConfiguration: (ENUM)  The audio configuration parameters SHOULD
       BE selected from a standard list of values such as the EBU Audio
       Format Codes (e.g. 'stereo', '2+1', 'surround', 'surround (7+1)').
@@ -3519,16 +3509,6 @@ Reggiori                                                       [Page 62]
       page, will provide an interactive player UI for the media
       resource.
 
-
-
-
-
-
-Reggiori                                                       [Page 63]
-
-                            Portable Listings                   May 2013
-
-
 8.4.23.  Media Group
 
    The Media Group object type extends the MEDIA_RESOURCE object type
@@ -3541,6 +3521,14 @@ Reggiori                                                       [Page 63]
 
    Note that a MEDIA_GROUP locator field MAY BE empty and instead one or
    more alternative media sources MAY specified.  A Consumer MUST BE
+
+
+
+Reggiori                                                       [Page 63]
+
+                            Portable Listings                   May 2013
+
+
    able to select the main alternative media source by stepping through
    each of the specified sources in the given order.
 
@@ -3564,16 +3552,28 @@ Reggiori                                                       [Page 63]
 8.4.24.  Segment
 
    The Segment object type extends the CONTENT object type and
-   represents a continuous portion of a piece of a programme version,
-   for example a single topic in a news programme or the highlights of a
-   soccer match.  A particular segment can belong to a single programme
-   only, but it can be a member of multiple segment groups.  A programme
-   can contain multiple segments.  Segments are reusable, editorially
+   represents a continuous portion of a piece of a programme version
+   with a defined start and optional end point, defined relative to the
+   start of the programme.  For example a single topic in a news
+   programme or the highlights of a soccer match.
+
+   A particular segment can belong to a single programme version only,
+   but it can be a member of multiple segment groups.  A programme can
+   contain multiple segments.  Segments are reusable, editorially
    distinct items.
 
 8.4.24.1.  Fields
 
+   segmentType: (ENUM)  The type of segment SHALL be selected from one
+      of the following values: "static-segmentation",
+      "live-segmentation", "live-post-segmentation",
+      "post-segmentation".
+   start: (TIMECODE or TIME or NUMBER)  The beginning point for playback
+      of the programme segment.
+   chapter: (BOOLEAN)  A Boolean value indicating whether the programme
+      segment is a chapter.
 
+8.4.24.2.  Relationships
 
 
 
@@ -3584,16 +3584,6 @@ Reggiori                                                       [Page 64]
 
                             Portable Listings                   May 2013
 
-
-   segmentType: (ENUM)  The type of segment SHOULD BE selected from a
-      standard list of values (e.g. 'highlights', 'bookmarks',
-      'preview', 'insertion points', 'shots', 'speech').
-   start: (TIMECODE or TIME or NUMBER)  The beginning point for playback
-      of the programme segment.
-   chapter: (BOOLEAN)  A Boolean value indicating whether the programme
-      segment is a chapter.
-
-8.4.24.2.  Relationships
 
    programme: (VERSION)  A reference to the programme version this
       segment belongs to.  If the segment is part of a segment group,
@@ -3629,18 +3619,6 @@ Reggiori                                                       [Page 64]
 
 8.4.26.1.  Relationships
 
-
-
-
-
-
-
-
-Reggiori                                                       [Page 65]
-
-                            Portable Listings                   May 2013
-
-
    contents: [CONTENT]  The list of pieces of content that are contained
       within the collection.
       rel: (ENUM)  REQUIRED.  The rel value MUST BE the "item" relation
@@ -3655,6 +3633,14 @@ Reggiori                                                       [Page 65]
    The Rights object type extends the basic object type CONTENT and
    represents information (rights management statement or reference to a
    service providing such information e.g. via a URL) about copyright,
+
+
+
+Reggiori                                                       [Page 65]
+
+                            Portable Listings                   May 2013
+
+
    intellectual property rights or other property rights held in and
    over a piece of content, stating whether access is open or restricted
    in some way.
@@ -3689,14 +3675,6 @@ Reggiori                                                       [Page 65]
    The Award object type extends the basic object type CONTENT and
    represents an award or an award nominations for a programme.
 
-
-
-
-Reggiori                                                       [Page 66]
-
-                            Portable Listings                   May 2013
-
-
 8.4.28.1.  Fields
 
    year: (YEAR)  Specify the year when the programme won or has been
@@ -3706,6 +3684,18 @@ Reggiori                                                       [Page 66]
       from a standard list of values.
 
 8.4.28.2.  Relationships
+
+
+
+
+
+
+
+
+Reggiori                                                       [Page 66]
+
+                            Portable Listings                   May 2013
+
 
    nominee: [AGENT]  A reference to the person or organisation who won
       the nomination.
@@ -3743,6 +3733,16 @@ Reggiori                                                       [Page 66]
    members: [AGENT]  The members of the group.
 
 
+9.  IANA Considerations
+
+   A Entry object, when serialised to a byte stream using the JSON
+   grammar, can be identified with the following media type:
+   MIME Media Type Name  application
+   MIME Subtype Name  listings+json
+   Required Parameters  none
+   Optional parameters:
+
+
 
 
 
@@ -3753,14 +3753,6 @@ Reggiori                                                       [Page 67]
                             Portable Listings                   May 2013
 
 
-9.  IANA Considerations
-
-   A Entry object, when serialised to a byte stream using the JSON
-   grammar, can be identified with the following media type:
-   MIME Media Type Name  application
-   MIME Subtype Name  listings+json
-   Required Parameters  none
-   Optional parameters:
       "profile":  This parameter contains a whitespace-separated list of
          profile URIs used to express the Entries metadata as defined in
          Section 3.1 of [RFC6906].  If this attribute is omitted
@@ -3783,22 +3775,30 @@ Reggiori                                                       [Page 67]
       context.
    o  Reference: This specification, Section 8.3.1.
 
+   o  Relation Name: supplemental-information
+   o  Description: Refers to a resource containing supplemental
+      information about the link's context.
+   o  Reference: This specification, Section 8.3.2.
+
    o  Relation Name: review
    o  Description: Refers to a resource containings a critical article
       or report concerning the link's context.
-   o  Reference: This specification, Section 8.3.2.
+   o  Reference: This specification, Section 8.3.3.
 
    o  Relation Name: highlights
    o  Description: Refers to a resource that represents striking,
       noticeable aspects of the link's context.
-   o  Reference: This specification, Section 8.3.3.
+   o  Reference: This specification, Section 8.3.4.
 
    o  Relation Name: screenplay
    o  Description: Refers to a resource that represents the text
       specifying content of a production or performance, used as a guide
       to the link's context.
-   o  Reference: This specification, Section 8.3.4.
+   o  Reference: This specification, Section 8.3.5.
 
+   o  Relation Name: transcript
+   o  Description: Refers to an exact copy or reproduction of the link's
+      context.
 
 
 
@@ -3809,53 +3809,53 @@ Reggiori                                                       [Page 68]
                             Portable Listings                   May 2013
 
 
-   o  Relation Name: transcript
-   o  Description: Refers to an exact copy or reproduction of the link's
-      context.
-   o  Reference: This specification, Section 8.3.5.
+   o  Reference: This specification, Section 8.3.6.
 
    o  Relation Name: shot-list
    o  Description: Refers to a resource that represents freeform textual
       listing of shots, for example indexed against time or frame count.
-   o  Reference: This specification, Section 8.3.6.
+   o  Reference: This specification, Section 8.3.7.
 
    o  Relation Name: edit-decision-list
    o  Description: Refers to a resource that represents an Edit Decision
       List (EDL) expressed as handwritten or computer-generated
       compilation of all edits (marked by their time code in points and
       out points) to be executed in a video production.
-   o  Reference: This specification, Section 8.3.7.
+   o  Reference: This specification, Section 8.3.8.
 
    o  Relation Name: rundown
    o  Description: Refers to a resource containing a simple review of
       the script for the with directions for the various crew members.
-   o  Reference: This specification, Section 8.3.8.
+   o  Reference: This specification, Section 8.3.9.
 
    o  Relation Name: dopesheet
    o  Description: Refers to a resource that represents an exposure
       sheet which allows an animator to organize his thinking and give
       instructions to the cameraman on how the animation is to be shot.
-   o  Reference: This specification, Section 8.3.9.
+   o  Reference: This specification, Section 8.3.10.
 
    o  Relation Name: trailer
    o  Description: Refers to trailer of the link's context.
-   o  Reference: This specification, Section 8.3.10.
+   o  Reference: This specification, Section 8.3.11.
 
    o  Relation Name: simulcast
    o  Description: Refers to an alternative version of the link's
       context that is being shown simultaneously with the link's
       context.
-   o  Reference: This specification, Section 8.3.11.
+   o  Reference: This specification, Section 8.3.12.
 
    o  Relation Name: ondemand
    o  Description: Refers to an alternative version of link's context
       that is available for consumption on demand.
-   o  Reference: This specification, Section 8.3.12.
+   o  Reference: This specification, Section 8.3.13.
 
    o  Relation Name: catchup
    o  Description: Refers to an alternative version of link's context
       that is available for consumption on demand from a catch-up TV
       service.
+   o  Reference: This specification, Section 8.3.14.
+
+
 
 
 
@@ -3865,53 +3865,53 @@ Reggiori                                                       [Page 69]
                             Portable Listings                   May 2013
 
 
-   o  Reference: This specification, Section 8.3.13.
-
    o  Relation Name: recommendation
    o  Description: Refers to a resource recommended by the provider of
       the link's context.
-   o  Reference: This specification, Section 8.3.14.
+   o  Reference: This specification, Section 8.3.15.
 
    o  Relation Name: advert
    o  Description: Refers to an advert for a product or service featured
       in the link's context.
-   o  Reference: This specification, Section 8.3.15.
+   o  Reference: This specification, Section 8.3.16.
 
    o  Relation Name: telescoped-advert
    o  Description: Refers to a telescoped advert for a product or
       service featured in the link's context.
-   o  Reference: This specification, Section 8.3.16.
+   o  Reference: This specification, Section 8.3.17.
 
    o  Relation Name: speedbump
    o  Description: Refers to superimposed related or unrelated content
       about a product or service featured in the link's context.
-   o  Reference: This specification, Section 8.3.17.
+   o  Reference: This specification, Section 8.3.18.
 
    o  Relation Name: product-purchase
    o  Description: Refers to a product or service directly linked to the
       link's context, which can be purchased directly from this linked
       resource.
-   o  Reference: This specification, Section 8.3.18.
+   o  Reference: This specification, Section 8.3.19.
 
    o  Relation Name: recap
    o  Description: Refers to a text or AV recap of the link's context.
-   o  Reference: This specification, Section 8.3.19.
+   o  Reference: This specification, Section 8.3.20.
 
    o  Relation Name: making-of
    o  Description: Refers to the making-of of the link's context.
-   o  Reference: This specification, Section 8.3.20.
-
-   o  Relation Name: static-segmentation
-   o  Description: Refers to "static" segmentation metadata about the
-      link's context which will not change as the content progresses.
    o  Reference: This specification, Section 8.3.21.
 
-   o  Relation Name: live-segmentation
-   o  Description: Refers to "live" segmentation metadata which will
-      change dynamically as the link's context content progresses.
+   o  Relation Name: content-package
+   o  Description: Refers to a content package associated to the link's
+      context.
    o  Reference: This specification, Section 8.3.22.
 
+   o  Relation Name: best-of
+   o  Description: Refers to a resource collecting best-of selections
+      from the link's context.
+   o  Reference: This specification, Section 8.3.23.
 
+   o  Relation Name: extract
+   o  Description: Refers to a resource representing an extract of the
+      link's context.
 
 
 
@@ -3921,38 +3921,7 @@ Reggiori                                                       [Page 70]
                             Portable Listings                   May 2013
 
 
-   o  Relation Name: live-post-segmentation
-   o  Description: Refers to "live" segmentation metadata which will
-      change dynamically as the link's context content progresses.  Such
-      segmentation metadata may also be updated after the link's context
-      content has completed transmission.
-   o  Reference: This specification, Section 8.3.23.
-
-   o  Relation Name: post-segmentation
-   o  Description: Refers to segmentation metadata which will only be
-      available after the link's context content has completed
-      transmission.
    o  Reference: This specification, Section 8.3.24.
-
-   o  Relation Name: content-package
-   o  Description: Refers to a content package associated to the link's
-      context.
-   o  Reference: This specification, Section 8.3.25.
-
-   o  Relation Name: supplemental-information
-   o  Description: Refers to a resource containing supplemental
-      information about the link's context.
-   o  Reference: This specification, Section 8.3.26.
-
-   o  Relation Name: best-of
-   o  Description: Refers to a resource collecting best-of selections
-      from the link's context.
-   o  Reference: This specification, Section 8.3.27.
-
-   o  Relation Name: extract
-   o  Description: Refers to a resource representing an extract of the
-      link's context.
-   o  Reference: This specification, Section 8.3.28.
 
 
 10.  Security Considerations
@@ -3969,14 +3938,6 @@ Reggiori                                                       [Page 70]
    document structure, design principles, the pragmatism and simplicity
    used to present the Portable Contacts specification has been key
    inspiration for the author to start designing a similar specification
-
-
-
-Reggiori                                                       [Page 71]
-
-                            Portable Listings                   May 2013
-
-
    for a fairly different domain.  Credits go also to the Atom community
    long standing work, especially their inspiring [ATOM-PROFILES] and
    the JSON Syndication Format [JSON-SYN] proposals.  Other credits go
@@ -4006,6 +3967,16 @@ Reggiori                                                       [Page 71]
    o  Added "released" and "copyrighted" dates.
    o  Added "reason", "linkToLogo", "notRated", "adultContent" and
       "targetRegion" to "targetAudience".
+
+
+
+
+
+Reggiori                                                       [Page 71]
+
+                            Portable Listings                   May 2013
+
+
    o  Moved "firstTransmissionDate", "firstTransmissionChannel" and
       "repeats" to Programme level.
    o  Removed "episodes" and "series" from Programme.
@@ -4024,15 +3995,6 @@ Reggiori                                                       [Page 71]
    o  Renamed Rights "type" to "rightsType".
    o  Removed Rights "link".  The links HTML5 "license" Lynk Type can be
       used instead.
-
-
-
-
-Reggiori                                                       [Page 72]
-
-                            Portable Listings                   May 2013
-
-
    o  Added Application type.
    o  Renamed Segment "type" to "segmentType".
    o  Removed "media" sub-field from "source" in Content.
@@ -4062,6 +4024,15 @@ Reggiori                                                       [Page 72]
    o  Removed "service" field from Programme.
    o  Made Media Resource "locator" optional and changed reference from
       link to relationship in Programm Publication and Segment.
+
+
+
+
+Reggiori                                                       [Page 72]
+
+                            Portable Listings                   May 2013
+
+
    o  Added Category type and renamed "categories" to "category" in
       Entry.
    o  Renamed "category" to "awardCategory" in Award.
@@ -4081,24 +4052,20 @@ Reggiori                                                       [Page 72]
    o  Added "links" and "relationships" presentation paramenters.
 
    Changes from -04 version
-
-
-
-Reggiori                                                       [Page 73]
-
-                            Portable Listings                   May 2013
-
-
    o  Added "alternativePublication" to Programme Publication and
       Application Publication.
-   o  Added "trailer", ""simulcast", "ondemand", "catchup",
+   o  Added "trailer", "simulcast", "ondemand", "catchup",
       "recommendation", "advert", "telescoped-advert", "speedbump",
-      "product-purchase", "recap", "making-of", "static-segmentation",
-      "live-segmentation", "live-post-segmentation", "post-
-      segmentation", "content-package", "supplemental-information",
-      "best-of" and "extract" link relation types.
+      "product-purchase", "recap", "making-of", "content-package",
+      "supplemental-information", "best-of" and "extract" link relation
+      types.
    o  Removed "supportingMaterial" from Content and mandate use links of
       type "supplemental-material" instead.
+   o  Added "segments" to Version.
+   o  Updated "segmentType" definition.
+   o  Redefined "aliases" as links and moved to Entry.
+   o  Added "id" query paramter to request specific information via
+      "aliases".
 
 
 13.  References
@@ -4114,6 +4081,14 @@ Reggiori                                                       [Page 73]
 
    [RFC2617]  Franks, J., Hallam-Baker, P., Hostetler, J., Lawrence, S.,
               Leach, P., Luotonen, A., and L. Stewart, "HTTP
+
+
+
+Reggiori                                                       [Page 73]
+
+                            Portable Listings                   May 2013
+
+
               Authentication: Basic and Digest Access Authentication",
               RFC 2617, June 1999.
 
@@ -4137,13 +4112,6 @@ Reggiori                                                       [Page 73]
               Languages", BCP 47, RFC 5646, September 2009.
 
    [RFC5988]  Nottingham, M., "Web Linking", RFC 5988, October 2010.
-
-
-
-Reggiori                                                       [Page 74]
-
-                            Portable Listings                   May 2013
-
 
    [RFC6573]  Amundsen, M., "The Item and Collection Link Relations",
               RFC 6573, April 2012.
@@ -4169,6 +4137,14 @@ Reggiori                                                       [Page 74]
               "DCMI Period Encoding Scheme".
 
    [DVB-URI]  British Broadcasting Corportation and Condition-ALPHA,
+
+
+
+Reggiori                                                       [Page 74]
+
+                            Portable Listings                   May 2013
+
+
               "Uniform Resource Identifier (URI) Scheme for Digital
               Video Broadcasting (DVB) Programme Resources", March 2013.
 
@@ -4194,13 +4170,6 @@ Reggiori                                                       [Page 74]
    [HTML5]    W3C, "HTML5 - A vocabulary and associated APIs for HTML
               and XHTML".
 
-
-
-Reggiori                                                       [Page 75]
-
-                            Portable Listings                   May 2013
-
-
    [HTML5-MM]
               W3C, "Media Multitrack API".
 
@@ -4224,6 +4193,13 @@ Reggiori                                                       [Page 75]
    [MEDIA-RSS]
               Yahoo! Inc. and RSS Advisory Board, "Media RSS
               Specification".
+
+
+
+Reggiori                                                       [Page 75]
+
+                            Portable Listings                   May 2013
+
 
    [MIMEREG]  Freed, N. and J. Klensin, "Media Type Specifications and
               Registration Procedures", BCP 13, RFC 4288, December 2005.
@@ -4249,14 +4225,6 @@ Reggiori                                                       [Page 75]
    [XRD]      "Extensible Resource Descriptor (XRD) Version 1.0 -
               Committee Draft 02".
 
-
-
-
-Reggiori                                                       [Page 76]
-
-                            Portable Listings                   May 2013
-
-
    [XSD-DATATYPES]
               Biron, P. and A. Malhotra, "XML Schema Part 2: Datatypes
               Second Edition", October 2004,
@@ -4281,6 +4249,14 @@ Appendix A.  Examples
    HTTP/1.1 200 OK
    Content-Length: ...
    Content-Language: en
+
+
+
+Reggiori                                                       [Page 76]
+
+                            Portable Listings                   May 2013
+
+
    Content-Type: application/listings+json;
                 profile="http://portablelistings.net/profiles/core/1.0/"
 
@@ -4305,14 +4281,6 @@ Appendix A.  Examples
          "alternativeDate": {
            "type": "originalAirDate",
            "value": "1990-04-08T00:00:00Z"
-
-
-
-Reggiori                                                       [Page 77]
-
-                            Portable Listings                   May 2013
-
-
          },
          "tags": [
            "FBI", "murder", "twinpeaks"
@@ -4337,6 +4305,14 @@ Reggiori                                                       [Page 77]
              "type": "additionalOriginalLanguage",
              "value": "no",
              "label": "Norwegian"
+
+
+
+Reggiori                                                       [Page 77]
+
+                            Portable Listings                   May 2013
+
+
            }
          ],
          "contributor": [
@@ -4361,14 +4337,6 @@ Reggiori                                                       [Page 77]
              "role": "actor",
              "label": "Kyle MacLachlan",
              "stageName": "Special Agent Dale Cooper"
-
-
-
-Reggiori                                                       [Page 78]
-
-                            Portable Listings                   May 2013
-
-
            }
          ],
          "position": 1,
@@ -4382,9 +4350,25 @@ Reggiori                                                       [Page 78]
              "label": "Episode 2",
              "rel": "next"
            }
+         ],
+         "aliases": [
+             {
+               "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+             },
+             {
+               "href": "http://www.imdb.com/title/tt0278784/"
+             }
          ]
        },
        {
+
+
+
+Reggiori                                                       [Page 78]
+
+                            Portable Listings                   May 2013
+
+
          "id": "8881860D6F31",
          "objectType": "episode",
          "displayName": "Episode 2",
@@ -4417,14 +4401,6 @@ Reggiori                                                       [Page 78]
          },
          "peers": [
            {
-
-
-
-Reggiori                                                       [Page 79]
-
-                            Portable Listings                   May 2013
-
-
              "href": "5E5EEBED3173",
              "label": "Episode 1",
              "rel": "prev"
@@ -4438,6 +4414,15 @@ Reggiori                                                       [Page 79]
        }
      ]
    }
+
+
+
+
+
+
+Reggiori                                                       [Page 79]
+
+                            Portable Listings                   May 2013
 
 
 Appendix B.  Compatibility with EBUCore and other standards
@@ -4471,6 +4456,21 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -170,7 +170,7 @@ ISSUES:
         This specification also defines and adds the following additional link relation types to the "Link Relations" registry established by <xref target="RFC5988"/>:
         "promotional-information", "review", "highlights", "screenplay", "transcript", "shot-list", "edit-decision-list", "rundown", "dopesheet",
         "trailer", ""simulcast", "ondemand", "catchup", "recommendation", "advert", "telescoped-advert", "speedbump", "product-purchase", "recap",
-        "making-of", "static-segmentation", "live-segmentation", "live-post-segmentation", "post-segmentation", "content-package", "supplemental-information", "best-of" and "extract".
+        "making-of", "content-package", "supplemental-information", "best-of" and "extract".
       </t>
     
       <section title="Goals">
@@ -376,6 +376,14 @@ Content-Type: application/listings+json
           "role": "writer",
           "label": "Mark Frost"
         }
+      ],
+      "aliases": [
+        {
+          "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+        },
+        {
+          "href": "http://www.imdb.com/title/tt0278784/"
+        }
       ]
     },
     {
@@ -401,12 +409,16 @@ Content-Type: application/listings+json
           </artwork>
         </figure>
         
-      <section title="Requesting Specific Information" anchor="path-information">
+      <section title="Requesting Specific Information" anchor="request-specific-information">
         <t>
           In addition to simple requests, Service Providers MUST recognize the following additional path information when appended to the Base URL:
           <list style="symbols">
             <t>
               <spanx style="verb">/{id}</spanx> -- Only return content metadata for the Entry whose <spanx style="verb">id</spanx> field value is equal to the provided <spanx style="verb">{id}</spanx>, if such an Entry exists. In this case any Entry not matching the requested ID MUST be filtered out of the result list by the Service Provider.
+            </t>
+            <t>
+              <spanx style="verb">/?id={IRI}</spanx> -- Only return content metadata for the Entries whose <spanx style="verb">aliases</spanx> link is equal to the provided <spanx style="verb">{IRI}</spanx>, if such  Entries exist. In this case any Entry not matching the requested alias MUST be filtered out of the result list by the Service Provider.
+              Note that mutliple Entries MAY be matching the id parameter.
             </t>
             <t>
               <spanx style="verb">/{id}/{relationship}</spanx> -- Return content metadata of any sub-entries related to the Entry whose <spanx style="verb">id</spanx> field value is equal to the provided <spanx style="verb">{id}</spanx> (if such an Entry exists) via a <spanx style="verb">named relationship</spanx> as provided in the <spanx style="verb">{relationship}</spanx> value. The provided <spanx style="verb">{relationship}</spanx> MUST be a valid relationship name for the selected Entry type. Also in this case any Entry not matching the requested ID MUST be filtered out of the result list by the Service Provider.
@@ -469,10 +481,27 @@ Content-Type: application/listings+json
           "role": "writer",
           "label": "Mark Frost"
         }
+      ],
+      "aliases": [
+        {
+          "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+        },
+        {
+          "href": "http://www.imdb.com/title/tt0278784/"
+        }
       ]
     }
 }
           </artwork>
+        </figure>
+        <t>
+            The same Entry would be returned using the following query:
+        </t>
+        <figure>
+            <artwork>
+GET /api/listings/?id=http://www.imdb.com/title/tt0278784/ HTTP/1.1
+Host: api.example.org
+            </artwork>
         </figure>
         <t>
             While instead by issuing this request:
@@ -635,6 +664,7 @@ Content-Type: application/listings+json
               <t hangText="filterLinksBy:">
                 Specifies a link name to filter Entries by (e.g. 'thumbnails').
                 A Service Provider SHALL match only Entries which have the given link name.
+                The <spanx style="verb">aliases</spanx> links SHALL be filtered using the <spanx style="verb">id</spanx> selector (see <xref target="request-specific-information"/>).
               </t>
               <t hangText="filterLinksType:">
                 Specifies a link type to filter Entries by (e.g. 'review').
@@ -1430,7 +1460,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The relationship is formatted using a LINK structure as defined in <xref target="link-structure"/> with the following differences:
                 <list style="hanging">
                     <t hangText="href: (IRI)">
-                        REQUIRED. The value MUST BE a valid URL reference to a Service Provider Portable Listings API endpoint including path information and other query parameters which can be used to request a single Target Entry connected with the Source Entry via the named relationship (see <xref target="path-information"/>).                        
+                        REQUIRED. The value MUST BE a valid URL reference to a Service Provider Portable Listings API endpoint including path information and other query parameters which can be used to request a single Target Entry connected with the Source Entry via the named relationship (see <xref target="request-specific-information"/>).
                         Note that this definition also covers the scenario of relationships expressed between Entries across Service Providers.
                         Although a Provider SHOULD NOT reference Entries on another Provider as this complicates processing by the Consumer.
                     </t>
@@ -1495,7 +1525,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
         </t>
         <t>
           Again for efficiency, Service Providers MAY return only a sub-set of all the connected Sub-Entries inside a Source Entry.
-          A Consumer MUST BE able to retrieve the complete list of Sub-Entries wrapped into one single <spanx style="verb">entry</spanx> element (single object or array) using additional path information (e.g. <spanx style="verb">http://api.example.org/api/listings/5E5EEBED3173/contributor</spanx> - see <xref target="path-information"/>).
+          A Consumer MUST BE able to retrieve the complete list of Sub-Entries wrapped into one single <spanx style="verb">entry</spanx> element (single object or array) using additional path information (e.g. <spanx style="verb">http://api.example.org/api/listings/5E5EEBED3173/contributor</spanx> - see <xref target="request-specific-information"/>).
         </t>
         <t>
           
@@ -1778,6 +1808,16 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     Multiple products can be indicated through the use of multiple "promotional-information" link relations.
                 </t>
             </section>
+            <section anchor="supplemental-information" title="&quot;supplemental-information&quot;">
+                <t>
+                    The "supplemental-information" link relation can be used to refer to a resource containing supplemental information about the link's context.
+                    Supplemental information broadly refers to any type of information, content, or service relating to the link's context.
+                    For example supplemental information for a television programme may include related articles, close-ups, replays, outtakes, galleries, commercial tie-ins, games, sound clips, video clips, product information.
+                </t>
+                <t>
+                    Multiple pieces of supplemental information can be indicated through the use of multiple "supplemental-information" link relations.
+                </t>
+            </section>
             <section anchor="review" title="&quot;review&quot;">
                 <t>
                     The "review" link relation can be used to refer to a critical article or report concerning the link's context, e.g. a critique or an evaluation.
@@ -1952,41 +1992,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     Multiple pieces of background information can be indicated through the use of multiple "making-of" link relations.
                 </t>
             </section>
-            <section anchor="static-segmentation" title="&quot;static-segmentation&quot;">
-                <t>
-                    The "static-segmentation" link relation can be used to refer to &quot;static&quot; segmentation metadata which will not change as the
-                    the link's context content progresses.
-                </t>
-                <t>
-                    Multiple pieces of static segmentation metadata can be indicated through the use of multiple "static-segmentation" link relations.
-                </t>
-            </section>
-            <section anchor="live-segmentation" title="&quot;live-segmentation&quot;">
-                <t>
-                    The "live-segmentation" link relation can be used to refer to &quot;live&quot; segmentation metadata which will change dynamically as the link's context content progresses.
-                    Once the link's context content has completed transmission the segmentation metadata will not be updated.
-                </t>
-                <t>
-                    Multiple pieces of live segmentation metadata can be indicated through the use of multiple "live-segmentation" link relations.
-                </t>
-            </section>
-            <section anchor="live-post-segmentation" title="&quot;live-post-segmentation&quot;">
-                <t>
-                    The "live-post-segmentation" link relation can be used to refer to &quot;live&quot; segmentation metadata which will change dynamically as the link's context content progresses.
-                    It may also be updated after the link's context content has completed transmission.
-                </t>
-                <t>
-                    Multiple pieces of live post segmentation metadata can be indicated through the use of multiple "live-post-segmentation" link relations.
-                </t>
-            </section>
-            <section anchor="post-segmentation" title="&quot;post-segmentation&quot;">
-                <t>
-                    The "static-segmentation" link relation can be used to refer to segmentation metadata which will only be available after the link's context content has completed transmission.
-                </t>
-                <t>
-                    Multiple pieces of post segmentation metadata can be indicated through the use of multiple "post-segmentation" link relations.
-                </t>
-            </section>
             <!-- TODO - Add "Package Main Content" and rest of packaging model for wholesale of content -->
             <section anchor="content-package" title="&quot;content-package&quot;">
                 <t>
@@ -1994,16 +1999,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 </t>
                 <t>
                     Multiple content packages can be indicated through the use of multiple "content-package" link relations.
-                </t>
-            </section>
-            <section anchor="supplemental-information" title="&quot;supplemental-information&quot;">
-                <t>
-                    The "supplemental-information" link relation can be used to refer to a resource containing supplemental information about the link's context.
-                    Supplemental information broadly refers to any type of information, content, or service relating to the link's context.
-                    For example supplemental information for a television programme may include related articles, close-ups, replays, outtakes, galleries, commercial tie-ins, games, sound clips, video clips, product information.
-                </t>
-                <t>
-                    Multiple pieces of supplemental information can be indicated through the use of multiple "supplemental-information" link relations.
                 </t>
             </section>
             <section anchor="best-of" title="&quot;best-of&quot;">
@@ -2039,6 +2034,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
         -> Entry vs. Content - EBU Core vocabulary mainly represents the metadata about the content (i.e. metadata about the content) rather than information about the Entry itself (i.e. meta-metadata)
         -> content / atom:content might be several "levels down" in the EBU COre model - that's why we do not put it into entry level bare bone set of properties
         -->
+        <!--
+            TODO - The following are more commissioning/pre-prod/production: Item, Shot, Element, Scene, Project, Framework, Pilot, Trailer
+         --->
         <t>
           The following object types hierarchy has been defined as integral part of the core profile:
           <list style="empty">
@@ -2161,9 +2159,12 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="id: (STRING)">
                             REQUIRED. Unique identifier for the Entry record.
                             Each Entry returned MUST include a non-empty <spanx style="verb">id</spanx> value.
-                            This identifier MUST be unique across the user's entire metadata set (see <xref target="auth"/>), but MAY not be unique across multiple users' metadata sets.
+                            If a metadata publishing party is defined as per a non-empty <spanx style="verb">metadataPublisher</spanx> relationship, this identifier MUST be unique across the metadata publishing party's entire metadata set.
+                            Otherwise this identifier MUST be unique across the Service Provider entire metadata set (see <xref target="auth"/>), but MAY not be unique across multiple Provider metadata sets.
                             It MUST be a stable ID that does not change when the same Entry is returned in subsequent requests.
                             Usually, an internal database ID will be the right choice here, e.g. <spanx style="verb">"12345"</spanx>.
+                            Care MUST be taken when a Service Provider aggregates metadata from several metadata publishing parties in order to make sure that identifiers from different parties do not clash.
+                            It is RECOMMENDED to use a globally unique identifier formed with a unique string prefix representing the metadata publishing party (e.g. the registered Internet Domain Name of the party) with the suffix of the metadata publishing party database ID.
                         </t>
                         <t hangText="displayName: (STRING)">
                             REQUIRED. The short name of this Entry, suitable for display to end-users (e.g. short title).
@@ -2196,7 +2197,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     <list style="hanging">
                         <t hangText="metadataRights: (LINK)">
                             The copyright license terms under which the Entry content metadata is provided.
-                            If the field is set, the <spanx style="verb">rel</spanx> sub-field MUST have the <spanx style="verb">license</spanx> value.
+                            If the field is set, the <spanx style="verb">rel</spanx> sub-field SHALL be <spanx style="verb">license</spanx>.
                         </t>
                         <t hangText="metadataSource: (LINK)">
                             A standard source from which the Entry metadata record was generated from as defined by section 4.2.11 of <xref target="RFC4287" /> using the least minimum number of fields.
@@ -2215,6 +2216,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                 </t>
                             </list>
                         </t>
+                        <t hangText="aliases: [LINK]">
+                            Additional or alternative identifiers for an Entry expressed as IRI.
+                        </t>
                         <t hangText="links: [LINK]">
                             An Entry MAY have associated one ore more links to external Web resources.
                             A Provider SHOULD NOT use the links element to express relationships by-reference as this complicates processing by the Consumer.
@@ -2227,8 +2231,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>
                     <list style="hanging">
                         <t hangText="metadataPublisher: (AGENT)">
-                            The Agent publishing the metadata instances as served by a Service Provider.
-                            If the field is set, the <spanx style="verb">rel</spanx> sub-field MUST have the <spanx style="verb">author</spanx> value.
+                            The metadata publishing party responsible for the metadata instances as served by a Service Provider.
+                            If set, the <spanx style="verb">rel</spanx> sub-field SHALL be <spanx style="verb">author</spanx>.
+                            If not set, the metadata publishing party is left undefined.
                         </t>
                         <t hangText="parent: (ENTRY)">
                             Relates a piece of content to another piece of content constituting it.
@@ -2388,17 +2393,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                 </t>
                                 <t hangText="value: (TIMESTAMP or PERIOD)">
                                     The alternative date.
-                                </t>
-                            </list>
-                        </t>
-                        <t hangText="aliases: [COMPLEX]">
-                            Additional or alternative identifiers for the piece of content.
-                            <list>
-                                <t hangText="value: (IRI or STRING)">
-                                    The alternative identifier.
-                                </t>
-                                <t hangText="authority: (IRI)">
-                                    An optional issuing authority fully qualified IRI.
                                 </t>
                             </list>
                         </t>
@@ -2779,6 +2773,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="availabilities: [ONDEMAND]">
                             The availabilities associated with a particular version when it is made available on-demand. <!-- or push to download -->
                         </t>
+                        <t hangText="segments: [SEGMENT]">
+                            The segments or segment groups associated with a particular version (e.g. bookmarks, highlights, preview, insertion points, shots, speech).
+                        </t>
                     </list>
                 </t>
             </section>
@@ -2855,6 +2852,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The Programme Publication object type is identified with the string PROGRAMME_PUBLICATION.
                 A programme publication is associated with a service, and with a particular version of a programme.
                 For example, a programme instance on a broadcast or on-demand service.
+            </t>
+            <t>
+                Note that in order to guarantee the creation of a unqiue and disambiguating programme publication <spanx style="verb">id</spanx> field, the following information SHALL be combined:
+                <list style="symbols">
+                    <t>The metadata publishing party identifier (if defined).</t>
+                    <t>The parent service identifier.</t>
+                    <t>The programme version identifier.</t>
+                    <t>The published start and end time values.</t>
+                </list>
             </t>
             <section title="Fields" anchor="programme-publication-fields">
                 <t>
@@ -2968,6 +2974,14 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <t>
                 The Schedule object type extends the CONTENT object type and represents a group of broadcast events from the same service (e.g. ZDF service schedule).
             </t>
+            <t>
+                Note that in order to guarantee the creation of a unqiue and disambiguating schedule <spanx style="verb">id</spanx> field, the following information SHALL be combined:
+                <list style="symbols">
+                    <t>The metadata publishing party identifier (if defined).</t>
+                    <t>The parent service identifier.</t>
+                    <t>The start and end period values.</t>
+                </list>                
+            </t>
             <section title="Fields" anchor="schedule-fields">
                 <t>
                     <list style="hanging">
@@ -2997,6 +3011,14 @@ WWW-Authenticate: Basic realm="sample.site.org"
         <section title="Catalogue" anchor="catalogue-type">
             <t>
                 The Catalogue object type extends the CONTENT object type and represents a group of on-demand publications from the same service (e.g. YouTube catalogue).
+            </t>
+            <t>
+                Note that in order to guarantee the creation of a unqiue and disambiguating catalogue <spanx style="verb">id</spanx> field, the following information SHALL be combined:
+                <list style="symbols">
+                    <t>The metadata publishing party identifier (if defined).</t>
+                    <t>The parent service identifier.</t>
+                    <t>The catalogue type value.</t>
+                </list>                
             </t>
             <section title="Fields" anchor="catalogue-fields">
                 <t>
@@ -3086,6 +3108,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The application object type is identified with the string APPLICATION_PUBLICATION.
                 An application is associated with a service, and with a particular application build.
             </t>
+            <t>
+                Note that in order to guarantee the creation of a unqiue and disambiguating application publication <spanx style="verb">id</spanx> field, the following information SHALL be combined:
+                <list style="symbols">
+                    <t>The metadata publishing party identifier (if defined).</t>
+                    <t>The parent service identifier.</t>
+                    <t>The application build identifier.</t>
+                    <t>The published start and end time values.</t>
+                </list>                
+            </t>
             <section title="Fields" anchor="application-publication-fields">
                 <t>
                     <list style="hanging">
@@ -3132,6 +3163,13 @@ WWW-Authenticate: Basic realm="sample.site.org"
         <section title="Application Gallery" anchor="application-gallery-type">
             <t>
                 The Application Gallery object type extends the CONTENT object type and represents a group of application publications from the same service (e.g. iTunes AppStore).
+            </t>
+            <t>
+                Note that in order to guarantee the creation of a unqiue and disambiguating application gallery <spanx style="verb">id</spanx> field, the following information SHALL be combined:
+                <list style="symbols">
+                    <t>The metadata publishing party identifier (if defined).</t>
+                    <t>The parent service identifier.</t>
+                </list>
             </t>
             <section title="Relationships" anchor="application-gallery-relationships">
                 <t>
@@ -3301,8 +3339,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
         <section title="Segment" anchor="segment-type">
             <t>
-                The Segment object type extends the CONTENT object type and represents a continuous portion of a piece of a programme version, for example a single topic in a news programme or the highlights of a soccer match.
-                A particular segment can belong to a single programme only, but it can be a member of multiple segment groups.
+                The Segment object type extends the CONTENT object type and represents a continuous portion of a piece of a programme version with a defined start and optional end point, defined relative to the start of the programme. For example a single topic in a news programme or the highlights of a soccer match.
+            </t>
+            <t>
+                A particular segment can belong to a single programme version only, but it can be a member of multiple segment groups.
                 A programme can contain multiple segments.
                 Segments are reusable, editorially distinct items.
             </t>
@@ -3310,7 +3350,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>
                     <list style="hanging">
                         <t hangText="segmentType: (ENUM)">
-                            The type of segment SHOULD BE selected from a standard list of values (e.g. 'highlights', 'bookmarks', 'preview', 'insertion points', 'shots', 'speech').
+                            The type of segment SHALL be selected from one of the following values: <spanx style="verb">static-segmentation</spanx>, <spanx style="verb">live-segmentation</spanx>, <spanx style="verb">live-post-segmentation</spanx>, <spanx style="verb">post-segmentation</spanx>.
                         </t>
                         <t hangText="start: (TIMECODE or TIME or NUMBER)">
                             The beginning point for playback of the programme segment.
@@ -3577,6 +3617,18 @@ WWW-Authenticate: Basic realm="sample.site.org"
           </t>
           <t>
               <list style="symbols">
+                  <t>Relation Name: supplemental-information</t>
+                  <t>
+                      Description: Refers to a resource containing supplemental information about the link's context.
+                  </t>
+                  <t>
+                      Reference: This specification,
+                      <xref target="supplemental-information"/>.
+                  </t>
+              </list>
+          </t>
+          <t>
+              <list style="symbols">
                   <t>Relation Name: review</t>
                   <t>
                       Description: Refers to a resource containings a critical article or report concerning the link's context.
@@ -3805,55 +3857,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
           </t>
           <t>
               <list style="symbols">
-                  <t>Relation Name: static-segmentation</t>
-                  <t>
-                      Description: Refers to &quot;static&quot; segmentation metadata about the link's context which will not change as the content progresses.
-                  </t>
-                  <t>
-                      Reference: This specification,
-                      <xref target="static-segmentation"/>.
-                  </t>
-              </list>
-          </t>
-          <t>
-              <list style="symbols">
-                  <t>Relation Name: live-segmentation</t>
-                  <t>
-                      Description: Refers to &quot;live&quot; segmentation metadata which will change dynamically as the link's context content progresses.
-                  </t>
-                  <t>
-                      Reference: This specification,
-                      <xref target="live-segmentation"/>.
-                  </t>
-              </list>
-          </t>
-          <t>
-              <list style="symbols">
-                  <t>Relation Name: live-post-segmentation</t>
-                  <t>
-                      Description: Refers to &quot;live&quot; segmentation metadata which will change dynamically as the link's context content progresses.
-                      Such segmentation metadata may also be updated after the link's context content has completed transmission.
-                  </t>
-                  <t>
-                      Reference: This specification,
-                      <xref target="live-post-segmentation"/>.
-                  </t>
-              </list>
-          </t>
-          <t>
-              <list style="symbols">
-                  <t>Relation Name: post-segmentation</t>
-                  <t>
-                      Description: Refers to segmentation metadata which will only be available after the link's context content has completed transmission.
-                  </t>
-                  <t>
-                      Reference: This specification,
-                      <xref target="post-segmentation"/>.
-                  </t>
-              </list>
-          </t>
-          <t>
-              <list style="symbols">
                   <t>Relation Name: content-package</t>
                   <t>
                       Description: Refers to a content package associated to the link's context.
@@ -3861,18 +3864,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   <t>
                       Reference: This specification,
                       <xref target="content-package"/>.
-                  </t>
-              </list>
-          </t>
-          <t>
-              <list style="symbols">
-                  <t>Relation Name: supplemental-information</t>
-                  <t>
-                      Description: Refers to a resource containing supplemental information about the link's context.
-                  </t>
-                  <t>
-                      Reference: This specification,
-                      <xref target="supplemental-information"/>.
                   </t>
               </list>
           </t>
@@ -3996,8 +3987,12 @@ WWW-Authenticate: Basic realm="sample.site.org"
         <t>Changes from -04 version
             <list style="symbols">
                 <t>Added "alternativePublication" to Programme Publication and Application Publication.</t>
-                <t>Added "trailer", ""simulcast", "ondemand", "catchup", "recommendation", "advert", "telescoped-advert", "speedbump", "product-purchase", "recap", "making-of", "static-segmentation", "live-segmentation", "live-post-segmentation", "post-segmentation", "content-package", "supplemental-information", "best-of" and "extract" link relation types.</t>
+                <t>Added "trailer", "simulcast", "ondemand", "catchup", "recommendation", "advert", "telescoped-advert", "speedbump", "product-purchase", "recap", "making-of", "content-package", "supplemental-information", "best-of" and "extract" link relation types.</t>
                 <t>Removed "supportingMaterial" from Content and mandate use links of type "supplemental-material" instead.</t>
+                <t>Added "segments" to Version.</t>
+                <t>Updated "segmentType" definition.</t>
+                <t>Redefined "aliases" as links and moved to Entry.</t>
+                <t>Added "id" query paramter to request specific information via "aliases".</t>
             </list>
         </t>
     </section>
@@ -4560,6 +4555,14 @@ Content-Type: application/listings+json;
           "label": "Episode 2",
           "rel": "next"
         }
+      ],
+      "aliases": [
+          {
+            "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+          },
+          {
+            "href": "http://www.imdb.com/title/tt0278784/"
+          }
       ]
     },
     {

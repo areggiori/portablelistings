@@ -143,7 +143,7 @@
 <table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
 <tr><td class="header">Working Draft</td><td class="header">A. Reggiori</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">Derrick Media</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">May 21, 2013</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">May 22, 2013</td></tr>
 </table></td></tr></table>
 <h1><br />Portable Listings</h1>
 
@@ -174,7 +174,7 @@ Workflow Overview<br />
 Discovery<br />
 <a href="#anchor7">6.</a>&nbsp;
 Listings API<br />
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="#path-information">6.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#request-specific-information">6.1.</a>&nbsp;
 Requesting Specific Information<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#query-params">6.2.</a>&nbsp;
 Query Parameters<br />
@@ -226,59 +226,51 @@ Profile Identifier<br />
 Additional Link Relation Types<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#promotional-information">8.3.1.</a>&nbsp;
 &quot;promotional-information&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#review">8.3.2.</a>&nbsp;
-&quot;review&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#highlights">8.3.3.</a>&nbsp;
-&quot;highlights&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#screenplay">8.3.4.</a>&nbsp;
-&quot;screenplay&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#transcript">8.3.5.</a>&nbsp;
-&quot;transcript&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#shot-list">8.3.6.</a>&nbsp;
-&quot;shot-list&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#edit-decision-list">8.3.7.</a>&nbsp;
-&quot;edit-decision-list&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rundown">8.3.8.</a>&nbsp;
-&quot;rundown&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#dopesheet">8.3.9.</a>&nbsp;
-&quot;dopesheet&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#trailer">8.3.10.</a>&nbsp;
-&quot;trailer&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#simulcast">8.3.11.</a>&nbsp;
-&quot;simulcast&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ondemand">8.3.12.</a>&nbsp;
-&quot;ondemand&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#catchup">8.3.13.</a>&nbsp;
-&quot;catchup&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#recommendation">8.3.14.</a>&nbsp;
-&quot;recommendation&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#advert">8.3.15.</a>&nbsp;
-&quot;advert&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#telescoped-advert">8.3.16.</a>&nbsp;
-&quot;telescoped-advert&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#speedbump">8.3.17.</a>&nbsp;
-&quot;speedbump&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#product-purchase">8.3.18.</a>&nbsp;
-&quot;product-purchase&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#recap">8.3.19.</a>&nbsp;
-&quot;recap&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#making-of">8.3.20.</a>&nbsp;
-&quot;making-of&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#static-segmentation">8.3.21.</a>&nbsp;
-&quot;static-segmentation&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#live-segmentation">8.3.22.</a>&nbsp;
-&quot;live-segmentation&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#live-post-segmentation">8.3.23.</a>&nbsp;
-&quot;live-post-segmentation&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#post-segmentation">8.3.24.</a>&nbsp;
-&quot;post-segmentation&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#content-package">8.3.25.</a>&nbsp;
-&quot;content-package&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#supplemental-information">8.3.26.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#supplemental-information">8.3.2.</a>&nbsp;
 &quot;supplemental-information&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#best-of">8.3.27.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#review">8.3.3.</a>&nbsp;
+&quot;review&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#highlights">8.3.4.</a>&nbsp;
+&quot;highlights&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#screenplay">8.3.5.</a>&nbsp;
+&quot;screenplay&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#transcript">8.3.6.</a>&nbsp;
+&quot;transcript&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#shot-list">8.3.7.</a>&nbsp;
+&quot;shot-list&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#edit-decision-list">8.3.8.</a>&nbsp;
+&quot;edit-decision-list&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#rundown">8.3.9.</a>&nbsp;
+&quot;rundown&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#dopesheet">8.3.10.</a>&nbsp;
+&quot;dopesheet&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#trailer">8.3.11.</a>&nbsp;
+&quot;trailer&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#simulcast">8.3.12.</a>&nbsp;
+&quot;simulcast&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ondemand">8.3.13.</a>&nbsp;
+&quot;ondemand&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#catchup">8.3.14.</a>&nbsp;
+&quot;catchup&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#recommendation">8.3.15.</a>&nbsp;
+&quot;recommendation&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#advert">8.3.16.</a>&nbsp;
+&quot;advert&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#telescoped-advert">8.3.17.</a>&nbsp;
+&quot;telescoped-advert&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#speedbump">8.3.18.</a>&nbsp;
+&quot;speedbump&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#product-purchase">8.3.19.</a>&nbsp;
+&quot;product-purchase&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#recap">8.3.20.</a>&nbsp;
+&quot;recap&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#making-of">8.3.21.</a>&nbsp;
+&quot;making-of&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#content-package">8.3.22.</a>&nbsp;
+&quot;content-package&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#best-of">8.3.23.</a>&nbsp;
 &quot;best-of&quot;<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#extract">8.3.28.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#extract">8.3.24.</a>&nbsp;
 &quot;extract&quot;<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#object-types">8.4.</a>&nbsp;
 Object Types<br />
@@ -625,7 +617,7 @@ Introduction</h3>
         This specification also defines and adds the following additional link relation types to the "Link Relations" registry established by <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>:
         "promotional-information", "review", "highlights", "screenplay", "transcript", "shot-list", "edit-decision-list", "rundown", "dopesheet",
         "trailer", ""simulcast", "ondemand", "catchup", "recommendation", "advert", "telescoped-advert", "speedbump", "product-purchase", "recap",
-        "making-of", "static-segmentation", "live-segmentation", "live-post-segmentation", "post-segmentation", "content-package", "supplemental-information", "best-of" and "extract".
+        "making-of", "content-package", "supplemental-information", "best-of" and "extract".
       
 </p>
 <a name="anchor4"></a><br /><hr />
@@ -825,6 +817,14 @@ Content-Type: application/listings+json
           "role": "writer",
           "label": "Mark Frost"
         }
+      ],
+      "aliases": [
+        {
+          "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+        },
+        {
+          "href": "http://www.imdb.com/title/tt0278784/"
+        }
       ]
     },
     {
@@ -848,7 +848,7 @@ Content-Type: application/listings+json
   ]
 }
 </pre></div>
-<a name="path-information"></a><br /><hr />
+<a name="request-specific-information"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.6.1"></a><h3>6.1.&nbsp;
 Requesting Specific Information</h3>
@@ -859,6 +859,11 @@ Requesting Specific Information</h3>
 <ul class="text">
 <li>
               <tt>/{id}</tt> -- Only return content metadata for the Entry whose <tt>id</tt> field value is equal to the provided <tt>{id}</tt>, if such an Entry exists. In this case any Entry not matching the requested ID MUST be filtered out of the result list by the Service Provider.
+            
+</li>
+<li>
+              <tt>/?id={IRI}</tt> -- Only return content metadata for the Entries whose <tt>aliases</tt> link is equal to the provided <tt>{IRI}</tt>, if such  Entries exist. In this case any Entry not matching the requested alias MUST be filtered out of the result list by the Service Provider.
+              Note that mutliple Entries MAY be matching the id parameter.
             
 </li>
 <li>
@@ -915,9 +920,24 @@ Content-Type: application/listings+json
           "role": "writer",
           "label": "Mark Frost"
         }
+      ],
+      "aliases": [
+        {
+          "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+        },
+        {
+          "href": "http://www.imdb.com/title/tt0278784/"
+        }
       ]
     }
 }
+</pre></div>
+<p>
+            The same Entry would be returned using the following query:
+        
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+GET /api/listings/?id=http://www.imdb.com/title/tt0278784/ HTTP/1.1
+Host: api.example.org
 </pre></div>
 <p>
             While instead by issuing this request:
@@ -1074,6 +1094,7 @@ Filtering</h3>
 <dd>
                 Specifies a link name to filter Entries by (e.g. 'thumbnails').
                 A Service Provider SHALL match only Entries which have the given link name.
+                The <tt>aliases</tt> links SHALL be filtered using the <tt>id</tt> selector (see <a class='info' href='#request-specific-information'>Section&nbsp;6.1<span> (</span><span class='info'>Requesting Specific Information</span><span>)</span></a>).
               
 </dd>
 <dt>filterLinksType:</dt>
@@ -1961,7 +1982,7 @@ Relationships</h3>
 <blockquote class="text"><dl>
 <dt>href: (IRI)</dt>
 <dd>
-                        REQUIRED. The value MUST BE a valid URL reference to a Service Provider Portable Listings API endpoint including path information and other query parameters which can be used to request a single Target Entry connected with the Source Entry via the named relationship (see <a class='info' href='#path-information'>Section&nbsp;6.1<span> (</span><span class='info'>Requesting Specific Information</span><span>)</span></a>).                        
+                        REQUIRED. The value MUST BE a valid URL reference to a Service Provider Portable Listings API endpoint including path information and other query parameters which can be used to request a single Target Entry connected with the Source Entry via the named relationship (see <a class='info' href='#request-specific-information'>Section&nbsp;6.1<span> (</span><span class='info'>Requesting Specific Information</span><span>)</span></a>).
                         Note that this definition also covers the scenario of relationships expressed between Entries across Service Providers.
                         Although a Provider SHOULD NOT reference Entries on another Provider as this complicates processing by the Consumer.
                     
@@ -2038,7 +2059,7 @@ Relationships</h3>
 </p>
 <p>
           Again for efficiency, Service Providers MAY return only a sub-set of all the connected Sub-Entries inside a Source Entry.
-          A Consumer MUST BE able to retrieve the complete list of Sub-Entries wrapped into one single <tt>entry</tt> element (single object or array) using additional path information (e.g. <tt>http://api.example.org/api/listings/5E5EEBED3173/contributor</tt> - see <a class='info' href='#path-information'>Section&nbsp;6.1<span> (</span><span class='info'>Requesting Specific Information</span><span>)</span></a>).
+          A Consumer MUST BE able to retrieve the complete list of Sub-Entries wrapped into one single <tt>entry</tt> element (single object or array) using additional path information (e.g. <tt>http://api.example.org/api/listings/5E5EEBED3173/contributor</tt> - see <a class='info' href='#request-specific-information'>Section&nbsp;6.1<span> (</span><span class='info'>Requesting Specific Information</span><span>)</span></a>).
         
 </p>
 <p>
@@ -2205,9 +2226,24 @@ Additional Link Relation Types</h3>
                     Multiple products can be indicated through the use of multiple "promotional-information" link relations.
                 
 </p>
-<a name="review"></a><br /><hr />
+<a name="supplemental-information"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.3.2"></a><h3>8.3.2.&nbsp;
+&quot;supplemental-information&quot;</h3>
+
+<p>
+                    The "supplemental-information" link relation can be used to refer to a resource containing supplemental information about the link's context.
+                    Supplemental information broadly refers to any type of information, content, or service relating to the link's context.
+                    For example supplemental information for a television programme may include related articles, close-ups, replays, outtakes, galleries, commercial tie-ins, games, sound clips, video clips, product information.
+                
+</p>
+<p>
+                    Multiple pieces of supplemental information can be indicated through the use of multiple "supplemental-information" link relations.
+                
+</p>
+<a name="review"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.3.3"></a><h3>8.3.3.&nbsp;
 &quot;review&quot;</h3>
 
 <p>
@@ -2220,7 +2256,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="highlights"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.3"></a><h3>8.3.3.&nbsp;
+<a name="rfc.section.8.3.4"></a><h3>8.3.4.&nbsp;
 &quot;highlights&quot;</h3>
 
 <p>
@@ -2233,7 +2269,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="screenplay"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.4"></a><h3>8.3.4.&nbsp;
+<a name="rfc.section.8.3.5"></a><h3>8.3.5.&nbsp;
 &quot;screenplay&quot;</h3>
 
 <p>
@@ -2247,7 +2283,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="transcript"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.5"></a><h3>8.3.5.&nbsp;
+<a name="rfc.section.8.3.6"></a><h3>8.3.6.&nbsp;
 &quot;transcript&quot;</h3>
 
 <p>
@@ -2260,7 +2296,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="shot-list"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.6"></a><h3>8.3.6.&nbsp;
+<a name="rfc.section.8.3.7"></a><h3>8.3.7.&nbsp;
 &quot;shot-list&quot;</h3>
 
 <p>
@@ -2273,7 +2309,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="edit-decision-list"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.7"></a><h3>8.3.7.&nbsp;
+<a name="rfc.section.8.3.8"></a><h3>8.3.8.&nbsp;
 &quot;edit-decision-list&quot;</h3>
 
 <p>
@@ -2286,7 +2322,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="rundown"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.8"></a><h3>8.3.8.&nbsp;
+<a name="rfc.section.8.3.9"></a><h3>8.3.9.&nbsp;
 &quot;rundown&quot;</h3>
 
 <p>
@@ -2303,7 +2339,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="dopesheet"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.9"></a><h3>8.3.9.&nbsp;
+<a name="rfc.section.8.3.10"></a><h3>8.3.10.&nbsp;
 &quot;dopesheet&quot;</h3>
 
 <p>
@@ -2316,7 +2352,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="trailer"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.10"></a><h3>8.3.10.&nbsp;
+<a name="rfc.section.8.3.11"></a><h3>8.3.11.&nbsp;
 &quot;trailer&quot;</h3>
 
 <p>
@@ -2329,7 +2365,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="simulcast"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.11"></a><h3>8.3.11.&nbsp;
+<a name="rfc.section.8.3.12"></a><h3>8.3.12.&nbsp;
 &quot;simulcast&quot;</h3>
 
 <p>
@@ -2342,7 +2378,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="ondemand"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.12"></a><h3>8.3.12.&nbsp;
+<a name="rfc.section.8.3.13"></a><h3>8.3.13.&nbsp;
 &quot;ondemand&quot;</h3>
 
 <p>
@@ -2356,7 +2392,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="catchup"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.13"></a><h3>8.3.13.&nbsp;
+<a name="rfc.section.8.3.14"></a><h3>8.3.14.&nbsp;
 &quot;catchup&quot;</h3>
 
 <p>
@@ -2370,7 +2406,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="recommendation"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.14"></a><h3>8.3.14.&nbsp;
+<a name="rfc.section.8.3.15"></a><h3>8.3.15.&nbsp;
 &quot;recommendation&quot;</h3>
 
 <p>
@@ -2390,7 +2426,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="advert"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.15"></a><h3>8.3.15.&nbsp;
+<a name="rfc.section.8.3.16"></a><h3>8.3.16.&nbsp;
 &quot;advert&quot;</h3>
 
 <p>
@@ -2403,7 +2439,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="telescoped-advert"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.16"></a><h3>8.3.16.&nbsp;
+<a name="rfc.section.8.3.17"></a><h3>8.3.17.&nbsp;
 &quot;telescoped-advert&quot;</h3>
 
 <p>
@@ -2416,7 +2452,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="speedbump"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.17"></a><h3>8.3.17.&nbsp;
+<a name="rfc.section.8.3.18"></a><h3>8.3.18.&nbsp;
 &quot;speedbump&quot;</h3>
 
 <p>
@@ -2429,7 +2465,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="product-purchase"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.18"></a><h3>8.3.18.&nbsp;
+<a name="rfc.section.8.3.19"></a><h3>8.3.19.&nbsp;
 &quot;product-purchase&quot;</h3>
 
 <p>
@@ -2446,7 +2482,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="recap"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.19"></a><h3>8.3.19.&nbsp;
+<a name="rfc.section.8.3.20"></a><h3>8.3.20.&nbsp;
 &quot;recap&quot;</h3>
 
 <p>
@@ -2461,7 +2497,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="making-of"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.20"></a><h3>8.3.20.&nbsp;
+<a name="rfc.section.8.3.21"></a><h3>8.3.21.&nbsp;
 &quot;making-of&quot;</h3>
 
 <p>
@@ -2474,64 +2510,9 @@ Additional Link Relation Types</h3>
                     Multiple pieces of background information can be indicated through the use of multiple "making-of" link relations.
                 
 </p>
-<a name="static-segmentation"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.21"></a><h3>8.3.21.&nbsp;
-&quot;static-segmentation&quot;</h3>
-
-<p>
-                    The "static-segmentation" link relation can be used to refer to &quot;static&quot; segmentation metadata which will not change as the
-                    the link's context content progresses.
-                
-</p>
-<p>
-                    Multiple pieces of static segmentation metadata can be indicated through the use of multiple "static-segmentation" link relations.
-                
-</p>
-<a name="live-segmentation"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.22"></a><h3>8.3.22.&nbsp;
-&quot;live-segmentation&quot;</h3>
-
-<p>
-                    The "live-segmentation" link relation can be used to refer to &quot;live&quot; segmentation metadata which will change dynamically as the link's context content progresses.
-                    Once the link's context content has completed transmission the segmentation metadata will not be updated.
-                
-</p>
-<p>
-                    Multiple pieces of live segmentation metadata can be indicated through the use of multiple "live-segmentation" link relations.
-                
-</p>
-<a name="live-post-segmentation"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.23"></a><h3>8.3.23.&nbsp;
-&quot;live-post-segmentation&quot;</h3>
-
-<p>
-                    The "live-post-segmentation" link relation can be used to refer to &quot;live&quot; segmentation metadata which will change dynamically as the link's context content progresses.
-                    It may also be updated after the link's context content has completed transmission.
-                
-</p>
-<p>
-                    Multiple pieces of live post segmentation metadata can be indicated through the use of multiple "live-post-segmentation" link relations.
-                
-</p>
-<a name="post-segmentation"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.24"></a><h3>8.3.24.&nbsp;
-&quot;post-segmentation&quot;</h3>
-
-<p>
-                    The "static-segmentation" link relation can be used to refer to segmentation metadata which will only be available after the link's context content has completed transmission.
-                
-</p>
-<p>
-                    Multiple pieces of post segmentation metadata can be indicated through the use of multiple "post-segmentation" link relations.
-                
-</p>
 <a name="content-package"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.25"></a><h3>8.3.25.&nbsp;
+<a name="rfc.section.8.3.22"></a><h3>8.3.22.&nbsp;
 &quot;content-package&quot;</h3>
 
 <p>
@@ -2542,24 +2523,9 @@ Additional Link Relation Types</h3>
                     Multiple content packages can be indicated through the use of multiple "content-package" link relations.
                 
 </p>
-<a name="supplemental-information"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.26"></a><h3>8.3.26.&nbsp;
-&quot;supplemental-information&quot;</h3>
-
-<p>
-                    The "supplemental-information" link relation can be used to refer to a resource containing supplemental information about the link's context.
-                    Supplemental information broadly refers to any type of information, content, or service relating to the link's context.
-                    For example supplemental information for a television programme may include related articles, close-ups, replays, outtakes, galleries, commercial tie-ins, games, sound clips, video clips, product information.
-                
-</p>
-<p>
-                    Multiple pieces of supplemental information can be indicated through the use of multiple "supplemental-information" link relations.
-                
-</p>
 <a name="best-of"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.27"></a><h3>8.3.27.&nbsp;
+<a name="rfc.section.8.3.23"></a><h3>8.3.23.&nbsp;
 &quot;best-of&quot;</h3>
 
 <p>
@@ -2572,7 +2538,7 @@ Additional Link Relation Types</h3>
 </p>
 <a name="extract"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.3.28"></a><h3>8.3.28.&nbsp;
+<a name="rfc.section.8.3.24"></a><h3>8.3.24.&nbsp;
 &quot;extract&quot;</h3>
 
 <p>
@@ -2751,9 +2717,12 @@ Fields</h3>
 <dd>
                             REQUIRED. Unique identifier for the Entry record.
                             Each Entry returned MUST include a non-empty <tt>id</tt> value.
-                            This identifier MUST be unique across the user's entire metadata set (see <a class='info' href='#auth'>Section&nbsp;6.5<span> (</span><span class='info'>Authentication and Authorization</span><span>)</span></a>), but MAY not be unique across multiple users' metadata sets.
+                            If a metadata publishing party is defined as per a non-empty <tt>metadataPublisher</tt> relationship, this identifier MUST be unique across the metadata publishing party's entire metadata set.
+                            Otherwise this identifier MUST be unique across the Service Provider entire metadata set (see <a class='info' href='#auth'>Section&nbsp;6.5<span> (</span><span class='info'>Authentication and Authorization</span><span>)</span></a>), but MAY not be unique across multiple Provider metadata sets.
                             It MUST be a stable ID that does not change when the same Entry is returned in subsequent requests.
                             Usually, an internal database ID will be the right choice here, e.g. <tt>"12345"</tt>.
+                            Care MUST be taken when a Service Provider aggregates metadata from several metadata publishing parties in order to make sure that identifiers from different parties do not clash.
+                            It is RECOMMENDED to use a globally unique identifier formed with a unique string prefix representing the metadata publishing party (e.g. the registered Internet Domain Name of the party) with the suffix of the metadata publishing party database ID.
                         
 </dd>
 <dt>displayName: (STRING)</dt>
@@ -2799,7 +2768,7 @@ Links</h3>
 <dt>metadataRights: (LINK)</dt>
 <dd>
                             The copyright license terms under which the Entry content metadata is provided.
-                            If the field is set, the <tt>rel</tt> sub-field MUST have the <tt>license</tt> value.
+                            If the field is set, the <tt>rel</tt> sub-field SHALL be <tt>license</tt>.
                         
 </dd>
 <dt>metadataSource: (LINK)</dt>
@@ -2828,6 +2797,11 @@ Links</h3>
 </dl></blockquote>
                         
 </dd>
+<dt>aliases: [LINK]</dt>
+<dd>
+                            Additional or alternative identifiers for an Entry expressed as IRI.
+                        
+</dd>
 <dt>links: [LINK]</dt>
 <dd>
                             An Entry MAY have associated one ore more links to external Web resources.
@@ -2847,8 +2821,9 @@ Relationships</h3>
 <blockquote class="text"><dl>
 <dt>metadataPublisher: (AGENT)</dt>
 <dd>
-                            The Agent publishing the metadata instances as served by a Service Provider.
-                            If the field is set, the <tt>rel</tt> sub-field MUST have the <tt>author</tt> value.
+                            The metadata publishing party responsible for the metadata instances as served by a Service Provider.
+                            If set, the <tt>rel</tt> sub-field SHALL be <tt>author</tt>.
+                            If not set, the metadata publishing party is left undefined.
                         
 </dd>
 <dt>parent: (ENTRY)</dt>
@@ -3069,24 +3044,6 @@ Fields</h3>
 <dt>value: (TIMESTAMP or PERIOD)</dt>
 <dd>
                                     The alternative date.
-                                
-</dd>
-</dl></blockquote>
-                        
-</dd>
-<dt>aliases: [COMPLEX]</dt>
-<dd>
-                            Additional or alternative identifiers for the piece of content.
-                            
-<blockquote class="text"><dl>
-<dt>value: (IRI or STRING)</dt>
-<dd>
-                                    The alternative identifier.
-                                
-</dd>
-<dt>authority: (IRI)</dt>
-<dd>
-                                    An optional issuing authority fully qualified IRI.
                                 
 </dd>
 </dl></blockquote>
@@ -3635,6 +3592,11 @@ Relationships</h3>
                             The availabilities associated with a particular version when it is made available on-demand. 
                         
 </dd>
+<dt>segments: [SEGMENT]</dt>
+<dd>
+                            The segments or segment groups associated with a particular version (e.g. bookmarks, highlights, preview, insertion points, shots, speech).
+                        
+</dd>
 </dl></blockquote><p>
                 
 </p>
@@ -3751,6 +3713,21 @@ Programme Publication</h3>
                 The Programme Publication object type is identified with the string PROGRAMME_PUBLICATION.
                 A programme publication is associated with a service, and with a particular version of a programme.
                 For example, a programme instance on a broadcast or on-demand service.
+            
+</p>
+<p>
+                Note that in order to guarantee the creation of a unqiue and disambiguating programme publication <tt>id</tt> field, the following information SHALL be combined:
+                </p>
+<ul class="text">
+<li>The metadata publishing party identifier (if defined).
+</li>
+<li>The parent service identifier.
+</li>
+<li>The programme version identifier.
+</li>
+<li>The published start and end time values.
+</li>
+</ul><p>
             
 </p>
 <a name="programme-publication-fields"></a><br /><hr />
@@ -3934,6 +3911,19 @@ Schedule</h3>
                 The Schedule object type extends the CONTENT object type and represents a group of broadcast events from the same service (e.g. ZDF service schedule).
             
 </p>
+<p>
+                Note that in order to guarantee the creation of a unqiue and disambiguating schedule <tt>id</tt> field, the following information SHALL be combined:
+                </p>
+<ul class="text">
+<li>The metadata publishing party identifier (if defined).
+</li>
+<li>The parent service identifier.
+</li>
+<li>The start and end period values.
+</li>
+</ul><p>                
+            
+</p>
 <a name="schedule-fields"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.4.16.1"></a><h3>8.4.16.1.&nbsp;
@@ -3983,6 +3973,19 @@ Catalogue</h3>
 
 <p>
                 The Catalogue object type extends the CONTENT object type and represents a group of on-demand publications from the same service (e.g. YouTube catalogue).
+            
+</p>
+<p>
+                Note that in order to guarantee the creation of a unqiue and disambiguating catalogue <tt>id</tt> field, the following information SHALL be combined:
+                </p>
+<ul class="text">
+<li>The metadata publishing party identifier (if defined).
+</li>
+<li>The parent service identifier.
+</li>
+<li>The catalogue type value.
+</li>
+</ul><p>                
             
 </p>
 <a name="catalogue-fields"></a><br /><hr />
@@ -4127,6 +4130,21 @@ Application Publication</h3>
                 An application is associated with a service, and with a particular application build.
             
 </p>
+<p>
+                Note that in order to guarantee the creation of a unqiue and disambiguating application publication <tt>id</tt> field, the following information SHALL be combined:
+                </p>
+<ul class="text">
+<li>The metadata publishing party identifier (if defined).
+</li>
+<li>The parent service identifier.
+</li>
+<li>The application build identifier.
+</li>
+<li>The published start and end time values.
+</li>
+</ul><p>                
+            
+</p>
 <a name="application-publication-fields"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.4.20.1"></a><h3>8.4.20.1.&nbsp;
@@ -4202,6 +4220,17 @@ Application Gallery</h3>
 
 <p>
                 The Application Gallery object type extends the CONTENT object type and represents a group of application publications from the same service (e.g. iTunes AppStore).
+            
+</p>
+<p>
+                Note that in order to guarantee the creation of a unqiue and disambiguating application gallery <tt>id</tt> field, the following information SHALL be combined:
+                </p>
+<ul class="text">
+<li>The metadata publishing party identifier (if defined).
+</li>
+<li>The parent service identifier.
+</li>
+</ul><p>
             
 </p>
 <a name="application-gallery-relationships"></a><br /><hr />
@@ -4460,8 +4489,11 @@ Relationships</h3>
 Segment</h3>
 
 <p>
-                The Segment object type extends the CONTENT object type and represents a continuous portion of a piece of a programme version, for example a single topic in a news programme or the highlights of a soccer match.
-                A particular segment can belong to a single programme only, but it can be a member of multiple segment groups.
+                The Segment object type extends the CONTENT object type and represents a continuous portion of a piece of a programme version with a defined start and optional end point, defined relative to the start of the programme. For example a single topic in a news programme or the highlights of a soccer match.
+            
+</p>
+<p>
+                A particular segment can belong to a single programme version only, but it can be a member of multiple segment groups.
                 A programme can contain multiple segments.
                 Segments are reusable, editorially distinct items.
             
@@ -4476,7 +4508,7 @@ Fields</h3>
 <blockquote class="text"><dl>
 <dt>segmentType: (ENUM)</dt>
 <dd>
-                            The type of segment SHOULD BE selected from a standard list of values (e.g. 'highlights', 'bookmarks', 'preview', 'insertion points', 'shots', 'speech').
+                            The type of segment SHALL be selected from one of the following values: <tt>static-segmentation</tt>, <tt>live-segmentation</tt>, <tt>live-post-segmentation</tt>, <tt>post-segmentation</tt>.
                         
 </dd>
 <dt>start: (TIMECODE or TIME or NUMBER)</dt>
@@ -4848,6 +4880,23 @@ IANA Considerations</h3>
 <p>
               </p>
 <ul class="text">
+<li>Relation Name: supplemental-information
+</li>
+<li>
+                      Description: Refers to a resource containing supplemental information about the link's context.
+                  
+</li>
+<li>
+                      Reference: This specification,
+                      <a class='info' href='#supplemental-information'>Section&nbsp;8.3.2<span> (</span><span class='info'>&quot;supplemental-information&quot;</span><span>)</span></a>.
+                  
+</li>
+</ul><p>
+          
+</p>
+<p>
+              </p>
+<ul class="text">
 <li>Relation Name: review
 </li>
 <li>
@@ -4856,7 +4905,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#review'>Section&nbsp;8.3.2<span> (</span><span class='info'>&quot;review&quot;</span><span>)</span></a>.
+                      <a class='info' href='#review'>Section&nbsp;8.3.3<span> (</span><span class='info'>&quot;review&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -4873,7 +4922,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#highlights'>Section&nbsp;8.3.3<span> (</span><span class='info'>&quot;highlights&quot;</span><span>)</span></a>.
+                      <a class='info' href='#highlights'>Section&nbsp;8.3.4<span> (</span><span class='info'>&quot;highlights&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -4890,7 +4939,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#screenplay'>Section&nbsp;8.3.4<span> (</span><span class='info'>&quot;screenplay&quot;</span><span>)</span></a>.
+                      <a class='info' href='#screenplay'>Section&nbsp;8.3.5<span> (</span><span class='info'>&quot;screenplay&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -4907,7 +4956,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#transcript'>Section&nbsp;8.3.5<span> (</span><span class='info'>&quot;transcript&quot;</span><span>)</span></a>.
+                      <a class='info' href='#transcript'>Section&nbsp;8.3.6<span> (</span><span class='info'>&quot;transcript&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -4924,7 +4973,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#shot-list'>Section&nbsp;8.3.6<span> (</span><span class='info'>&quot;shot-list&quot;</span><span>)</span></a>.
+                      <a class='info' href='#shot-list'>Section&nbsp;8.3.7<span> (</span><span class='info'>&quot;shot-list&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -4941,7 +4990,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#edit-decision-list'>Section&nbsp;8.3.7<span> (</span><span class='info'>&quot;edit-decision-list&quot;</span><span>)</span></a>.
+                      <a class='info' href='#edit-decision-list'>Section&nbsp;8.3.8<span> (</span><span class='info'>&quot;edit-decision-list&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -4958,7 +5007,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#rundown'>Section&nbsp;8.3.8<span> (</span><span class='info'>&quot;rundown&quot;</span><span>)</span></a>.
+                      <a class='info' href='#rundown'>Section&nbsp;8.3.9<span> (</span><span class='info'>&quot;rundown&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -4975,7 +5024,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#dopesheet'>Section&nbsp;8.3.9<span> (</span><span class='info'>&quot;dopesheet&quot;</span><span>)</span></a>.
+                      <a class='info' href='#dopesheet'>Section&nbsp;8.3.10<span> (</span><span class='info'>&quot;dopesheet&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -4992,7 +5041,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#trailer'>Section&nbsp;8.3.10<span> (</span><span class='info'>&quot;trailer&quot;</span><span>)</span></a>.
+                      <a class='info' href='#trailer'>Section&nbsp;8.3.11<span> (</span><span class='info'>&quot;trailer&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5009,7 +5058,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#simulcast'>Section&nbsp;8.3.11<span> (</span><span class='info'>&quot;simulcast&quot;</span><span>)</span></a>.
+                      <a class='info' href='#simulcast'>Section&nbsp;8.3.12<span> (</span><span class='info'>&quot;simulcast&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5026,7 +5075,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#ondemand'>Section&nbsp;8.3.12<span> (</span><span class='info'>&quot;ondemand&quot;</span><span>)</span></a>.
+                      <a class='info' href='#ondemand'>Section&nbsp;8.3.13<span> (</span><span class='info'>&quot;ondemand&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5043,7 +5092,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#catchup'>Section&nbsp;8.3.13<span> (</span><span class='info'>&quot;catchup&quot;</span><span>)</span></a>.
+                      <a class='info' href='#catchup'>Section&nbsp;8.3.14<span> (</span><span class='info'>&quot;catchup&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5060,7 +5109,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#recommendation'>Section&nbsp;8.3.14<span> (</span><span class='info'>&quot;recommendation&quot;</span><span>)</span></a>.
+                      <a class='info' href='#recommendation'>Section&nbsp;8.3.15<span> (</span><span class='info'>&quot;recommendation&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5077,7 +5126,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#advert'>Section&nbsp;8.3.15<span> (</span><span class='info'>&quot;advert&quot;</span><span>)</span></a>.
+                      <a class='info' href='#advert'>Section&nbsp;8.3.16<span> (</span><span class='info'>&quot;advert&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5094,7 +5143,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#telescoped-advert'>Section&nbsp;8.3.16<span> (</span><span class='info'>&quot;telescoped-advert&quot;</span><span>)</span></a>.
+                      <a class='info' href='#telescoped-advert'>Section&nbsp;8.3.17<span> (</span><span class='info'>&quot;telescoped-advert&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5111,7 +5160,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#speedbump'>Section&nbsp;8.3.17<span> (</span><span class='info'>&quot;speedbump&quot;</span><span>)</span></a>.
+                      <a class='info' href='#speedbump'>Section&nbsp;8.3.18<span> (</span><span class='info'>&quot;speedbump&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5128,7 +5177,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#product-purchase'>Section&nbsp;8.3.18<span> (</span><span class='info'>&quot;product-purchase&quot;</span><span>)</span></a>.
+                      <a class='info' href='#product-purchase'>Section&nbsp;8.3.19<span> (</span><span class='info'>&quot;product-purchase&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5145,7 +5194,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#recap'>Section&nbsp;8.3.19<span> (</span><span class='info'>&quot;recap&quot;</span><span>)</span></a>.
+                      <a class='info' href='#recap'>Section&nbsp;8.3.20<span> (</span><span class='info'>&quot;recap&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5162,76 +5211,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#making-of'>Section&nbsp;8.3.20<span> (</span><span class='info'>&quot;making-of&quot;</span><span>)</span></a>.
-                  
-</li>
-</ul><p>
-          
-</p>
-<p>
-              </p>
-<ul class="text">
-<li>Relation Name: static-segmentation
-</li>
-<li>
-                      Description: Refers to &quot;static&quot; segmentation metadata about the link's context which will not change as the content progresses.
-                  
-</li>
-<li>
-                      Reference: This specification,
-                      <a class='info' href='#static-segmentation'>Section&nbsp;8.3.21<span> (</span><span class='info'>&quot;static-segmentation&quot;</span><span>)</span></a>.
-                  
-</li>
-</ul><p>
-          
-</p>
-<p>
-              </p>
-<ul class="text">
-<li>Relation Name: live-segmentation
-</li>
-<li>
-                      Description: Refers to &quot;live&quot; segmentation metadata which will change dynamically as the link's context content progresses.
-                  
-</li>
-<li>
-                      Reference: This specification,
-                      <a class='info' href='#live-segmentation'>Section&nbsp;8.3.22<span> (</span><span class='info'>&quot;live-segmentation&quot;</span><span>)</span></a>.
-                  
-</li>
-</ul><p>
-          
-</p>
-<p>
-              </p>
-<ul class="text">
-<li>Relation Name: live-post-segmentation
-</li>
-<li>
-                      Description: Refers to &quot;live&quot; segmentation metadata which will change dynamically as the link's context content progresses.
-                      Such segmentation metadata may also be updated after the link's context content has completed transmission.
-                  
-</li>
-<li>
-                      Reference: This specification,
-                      <a class='info' href='#live-post-segmentation'>Section&nbsp;8.3.23<span> (</span><span class='info'>&quot;live-post-segmentation&quot;</span><span>)</span></a>.
-                  
-</li>
-</ul><p>
-          
-</p>
-<p>
-              </p>
-<ul class="text">
-<li>Relation Name: post-segmentation
-</li>
-<li>
-                      Description: Refers to segmentation metadata which will only be available after the link's context content has completed transmission.
-                  
-</li>
-<li>
-                      Reference: This specification,
-                      <a class='info' href='#post-segmentation'>Section&nbsp;8.3.24<span> (</span><span class='info'>&quot;post-segmentation&quot;</span><span>)</span></a>.
+                      <a class='info' href='#making-of'>Section&nbsp;8.3.21<span> (</span><span class='info'>&quot;making-of&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5248,24 +5228,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#content-package'>Section&nbsp;8.3.25<span> (</span><span class='info'>&quot;content-package&quot;</span><span>)</span></a>.
-                  
-</li>
-</ul><p>
-          
-</p>
-<p>
-              </p>
-<ul class="text">
-<li>Relation Name: supplemental-information
-</li>
-<li>
-                      Description: Refers to a resource containing supplemental information about the link's context.
-                  
-</li>
-<li>
-                      Reference: This specification,
-                      <a class='info' href='#supplemental-information'>Section&nbsp;8.3.26<span> (</span><span class='info'>&quot;supplemental-information&quot;</span><span>)</span></a>.
+                      <a class='info' href='#content-package'>Section&nbsp;8.3.22<span> (</span><span class='info'>&quot;content-package&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5282,7 +5245,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#best-of'>Section&nbsp;8.3.27<span> (</span><span class='info'>&quot;best-of&quot;</span><span>)</span></a>.
+                      <a class='info' href='#best-of'>Section&nbsp;8.3.23<span> (</span><span class='info'>&quot;best-of&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5299,7 +5262,7 @@ IANA Considerations</h3>
 </li>
 <li>
                       Reference: This specification,
-                      <a class='info' href='#extract'>Section&nbsp;8.3.28<span> (</span><span class='info'>&quot;extract&quot;</span><span>)</span></a>.
+                      <a class='info' href='#extract'>Section&nbsp;8.3.24<span> (</span><span class='info'>&quot;extract&quot;</span><span>)</span></a>.
                   
 </li>
 </ul><p>
@@ -5476,9 +5439,17 @@ Change Log</h3>
 <ul class="text">
 <li>Added "alternativePublication" to Programme Publication and Application Publication.
 </li>
-<li>Added "trailer", ""simulcast", "ondemand", "catchup", "recommendation", "advert", "telescoped-advert", "speedbump", "product-purchase", "recap", "making-of", "static-segmentation", "live-segmentation", "live-post-segmentation", "post-segmentation", "content-package", "supplemental-information", "best-of" and "extract" link relation types.
+<li>Added "trailer", "simulcast", "ondemand", "catchup", "recommendation", "advert", "telescoped-advert", "speedbump", "product-purchase", "recap", "making-of", "content-package", "supplemental-information", "best-of" and "extract" link relation types.
 </li>
 <li>Removed "supportingMaterial" from Content and mandate use links of type "supplemental-material" instead.
+</li>
+<li>Added "segments" to Version.
+</li>
+<li>Updated "segmentType" definition.
+</li>
+<li>Redefined "aliases" as links and moved to Entry.
+</li>
+<li>Added "id" query paramter to request specific information via "aliases".
 </li>
 </ul><p>
         
@@ -5697,6 +5668,14 @@ Content-Type: application/listings+json;
           "label": "Episode 2",
           "rel": "next"
         }
+      ],
+      "aliases": [
+          {
+            "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+          },
+          {
+            "href": "http://www.imdb.com/title/tt0278784/"
+          }
       ]
     },
     {
