@@ -565,6 +565,14 @@ Content-Type: application/listings+json
         <t>
           Portable Listings defines a standard set of operations that can be used to filter, sort, and paginate response results. The operations are specified by adding query parameter to the Base URL, either in the query string or as HTTP POST data. Providers MAY support additional query parameters not specified here, and Providers SHOULD ignore any query parameters they don't recognize.
         </t>
+        <!-- TODO - Add about how how a specific profile (e.g. core) will constraint Filtering and Ordering parameter valid values to a finite set for simplicity, however API is generic and a Provider MAY decide
+                   to support additional values
+         
+                   basically we need to define in a profile per object type what it is:
+                        searchable = filterBy
+                        browseable = filterLinksBy/filterRelationshipBy
+                        displayable = fields, links and relationships -->
+        <!-- TODO - Add note about allowing multiple URL query parameters for ANDs and use comma-separated values for ORs -->
 
         <section title="Filtering" anchor="filtering">
           <t>
@@ -576,7 +584,7 @@ Content-Type: application/listings+json
                 If the specified field is a Plural Field, the Entry SHALL match if any of the instances of the given field match the specified criterion (e.g. if an Entry has multiple <spanx style="verb">alternativeTitle</spanx> values, only one has to match for the entire Entry to match).
                 If a Simple Field is specified, its value must match the specified <spanx style="verb">filterValue</spanx> according to the specified <spanx style="verb">filterOp</spanx>.
                 If a Complex Field is specified, its Primary Sub-Field must match.
-                If the specified field is not a direct child of the <spanx style="verb">entry</spanx> element, the full path MUST be specified using the '.' character as separator.
+                If the specified field is not a direct child of the <spanx style="verb">entry</spanx> element, the full path MUST be specified using the '.' character as separator (i.e. <spanx style="verb">field.subfield</spanx>).
                 For example, to filter by gender the parameter value is <spanx style="verb">gender</spanx> and to filter by first name, the parameter value is <spanx style="verb">name.givenName</spanx>.
                 <!--The parameter SHALL be used only to filter Entry top level fields.-->
                 Links SHALL be filtered using the <spanx style="verb">filterLinksBy</spanx> filter while relationships SHALL be filtered using the <spanx style="verb">filterRelationshipsBy</spanx> filter.
@@ -1379,11 +1387,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   <t hangText="height: (NUMBER)">
                       When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal height in pixels.
                   </t>
-                  <t hangText="duration: (NUMBER)">
-                      When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration in seconds.
+                  <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
+                      When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration.
                   </t>
               </list>
-              
               Unless otherwise specified, when the link construct is used in a Plural Field, Providers MAY return the link construct with the same href and rel values combination more than once with different type, hreflang, label, length, width, height or duration, but MUST NOT return more than once the same type and hreflang combination for a given href with rel field of value "alternate".
           </t>
     </section>
@@ -2546,11 +2553,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="position: (NUMBER)">
                             The position of a particular piece of content within a container or collection (e.g. Collection, Programme, Programme Group, Series).
                         </t>
-                        
-                        <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
-                            The duration of a the pieces of content in seconds. Please note that the published duration may be different (see <xref target="programme-publication-type"/>).
-                            For Media Resources and Segments the value MAY be expressed as TIMECODE or DURATION.
-                        </t>
                     </list>
                 </t>
             </section>
@@ -2721,6 +2723,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The Programme Item object type extends the PROGRAMME object type and represents a programme that can have versions (e.g. an episode, a clip).
                 The Programme Item object type is identified with the string PROGRAMME_ITEM.
             </t>
+            <section title="Fields" anchor="programme-item-fields">
+                <t>
+                    <list style="hanging">
+                        <t hangText="duration: (NUMBER)">
+                            The duration of a the programme item in seconds. Please note that the published duration may be different (see <xref target="programme-publication-type"/>).
+                        </t>
+                    </list>
+                </t>
+            </section>
             <section title="Relationships" anchor="programme-item-relationships">
                 <t>
                     <list style="hanging">
@@ -2881,6 +2892,19 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The published duration of the Programme version in seconds.
                             For broadcast publication events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
                         </t>
+                        <t hangText="free: (BOOLEAN)">
+                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand is free.
+                        </t>
+                        <t hangText="signed: (BOOLEAN)">
+                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has signing accessibility features.
+                        </t>
+                        <t hangText="hasSubtitles: (BOOLEAN)">
+                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has subtitles.
+                        </t>
+                        <t hangText="audioDescribed: (BOOLEAN)">
+                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has audio description accessibility features.
+                            .
+                        </t>
                     </list>
                 </t>
             </section>
@@ -2930,15 +2954,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="lastShowing: (BOOLEAN)">
                             A Boolean value indicating whether the programme version being broadcasted is a last showing.
                         </t>
-                        <!-- TODO - add 'signed' 'audioDescribed' etc. -->
                         <t hangText="repeat: (BOOLEAN)">
                             A Boolean value indicating whether the programme version being broadcasted is a repeat.
                         </t>
                         <t hangText="live: (BOOLEAN)">
                             A Boolean value indicating whether the programme version being broadcasted is a live broadcast.
-                        </t>
-                        <t hangText="free: (BOOLEAN)">
-                            A Boolean value indicating whether the access to the programme version being broadcasted is free.
                         </t>
                     </list>
                 </t>
@@ -3233,6 +3253,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The media resource size or length in octets.
                             The value is a hint about the content length of the media resource representing the media resource and it does not override the actual content length of the representation as reported by the underlying protocol.
                         </t>
+                        <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
+                            The duration of a the media resource.
+                        </t>
                         <t hangText="start: (TIMECODE or TIME or NUMBER)">
                             The beginning point for playback of the media resource (e.g. 'seeking position').
                         </t>
@@ -3369,6 +3392,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         </t>
                         <t hangText="end: (TIMECODE or TIME or NUMBER)">
                             An optional ending point for playback of the programme segment.
+                        </t>
+                        <t hangText="duration: (TIMECODE or DURATION)">
+                            The duration of a the programme the segement.
                         </t>
                         <t hangText="chapter: (BOOLEAN)">
                             A Boolean value indicating whether the programme segment is a chapter.
@@ -4034,6 +4060,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "id" query paramter to request specific information via "aliases".</t>
                 <t>Added "end" to Segment.</t>
                 <t>Added "insertion-points" and "shot" link relation types.</t>
+                <t>Moved "duration" from Content to Programme Item and Segment.</t>
+                <t>Moved "free" from Broadcast to Programme Publication.</t>
+                <t>Added "signed", "hasSubtitles" and "audioDescribed" to Programme Publication.</t>
             </list>
         </t>
     </section>

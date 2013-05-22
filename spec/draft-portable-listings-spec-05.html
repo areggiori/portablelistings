@@ -316,7 +316,9 @@ Brand<br />
 Series<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programme-item-type">8.4.8.</a>&nbsp;
 Programme Item<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programme-item-relationships">8.4.8.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programme-item-fields">8.4.8.1.</a>&nbsp;
+Fields<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programme-item-relationships">8.4.8.2.</a>&nbsp;
 Relationships<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#episode-type">8.4.9.</a>&nbsp;
 Episode<br />
@@ -1003,7 +1005,7 @@ Filtering</h3>
                 If the specified field is a Plural Field, the Entry SHALL match if any of the instances of the given field match the specified criterion (e.g. if an Entry has multiple <tt>alternativeTitle</tt> values, only one has to match for the entire Entry to match).
                 If a Simple Field is specified, its value must match the specified <tt>filterValue</tt> according to the specified <tt>filterOp</tt>.
                 If a Complex Field is specified, its Primary Sub-Field must match.
-                If the specified field is not a direct child of the <tt>entry</tt> element, the full path MUST be specified using the '.' character as separator.
+                If the specified field is not a direct child of the <tt>entry</tt> element, the full path MUST be specified using the '.' character as separator (i.e. <tt>field.subfield</tt>).
                 For example, to filter by gender the parameter value is <tt>gender</tt> and to filter by first name, the parameter value is <tt>name.givenName</tt>.
                 
                 Links SHALL be filtered using the <tt>filterLinksBy</tt> filter while relationships SHALL be filtered using the <tt>filterRelationshipsBy</tt> filter.
@@ -1943,13 +1945,12 @@ Links</h3>
                       When the target resource is a visual media item, for example if the media type is image/* or video/*, this value is a hint about the item's intrinsic or ideal height in pixels.
                   
 </dd>
-<dt>duration: (NUMBER)</dt>
+<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
 <dd>
-                      When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration in seconds.
+                      When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration.
                   
 </dd>
 </dl></blockquote><p>
-              
               Unless otherwise specified, when the link construct is used in a Plural Field, Providers MAY return the link construct with the same href and rel values combination more than once with different type, hreflang, label, length, width, height or duration, but MUST NOT return more than once the same type and hreflang combination for a given href with rel field of value "alternate".
           
 </p>
@@ -3289,12 +3290,6 @@ Fields</h3>
                             The position of a particular piece of content within a container or collection (e.g. Collection, Programme, Programme Group, Series).
                         
 </dd>
-<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
-<dd>
-                            The duration of a the pieces of content in seconds. Please note that the published duration may be different (see <a class='info' href='#programme-publication-type'>Section&nbsp;8.4.13<span> (</span><span class='info'>Programme Publication</span><span>)</span></a>).
-                            For Media Resources and Segments the value MAY be expressed as TIMECODE or DURATION.
-                        
-</dd>
 </dl></blockquote><p>
                 
 </p>
@@ -3528,9 +3523,25 @@ Programme Item</h3>
                 The Programme Item object type is identified with the string PROGRAMME_ITEM.
             
 </p>
-<a name="programme-item-relationships"></a><br /><hr />
+<a name="programme-item-fields"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.4.8.1"></a><h3>8.4.8.1.&nbsp;
+Fields</h3>
+
+<p>
+                    </p>
+<blockquote class="text"><dl>
+<dt>duration: (NUMBER)</dt>
+<dd>
+                            The duration of a the programme item in seconds. Please note that the published duration may be different (see <a class='info' href='#programme-publication-type'>Section&nbsp;8.4.13<span> (</span><span class='info'>Programme Publication</span><span>)</span></a>).
+                        
+</dd>
+</dl></blockquote><p>
+                
+</p>
+<a name="programme-item-relationships"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.8.2"></a><h3>8.4.8.2.&nbsp;
 Relationships</h3>
 
 <p>
@@ -3775,6 +3786,27 @@ Fields</h3>
                             For broadcast publication events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
                         
 </dd>
+<dt>free: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand is free.
+                        
+</dd>
+<dt>signed: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has signing accessibility features.
+                        
+</dd>
+<dt>hasSubtitles: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has subtitles.
+                        
+</dd>
+<dt>audioDescribed: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has audio description accessibility features.
+                            .
+                        
+</dd>
 </dl></blockquote><p>
                 
 </p>
@@ -3864,11 +3896,6 @@ Fields</h3>
 <dt>live: (BOOLEAN)</dt>
 <dd>
                             A Boolean value indicating whether the programme version being broadcasted is a live broadcast.
-                        
-</dd>
-<dt>free: (BOOLEAN)</dt>
-<dd>
-                            A Boolean value indicating whether the access to the programme version being broadcasted is free.
                         
 </dd>
 </dl></blockquote><p>
@@ -4339,6 +4366,11 @@ Fields</h3>
                             The value is a hint about the content length of the media resource representing the media resource and it does not override the actual content length of the representation as reported by the underlying protocol.
                         
 </dd>
+<dt>duration: (TIMECODE or DURATION or NUMBER)</dt>
+<dd>
+                            The duration of a the media resource.
+                        
+</dd>
 <dt>start: (TIMECODE or TIME or NUMBER)</dt>
 <dd>
                             The beginning point for playback of the media resource (e.g. 'seeking position').
@@ -4550,6 +4582,11 @@ Fields</h3>
 <dt>end: (TIMECODE or TIME or NUMBER)</dt>
 <dd>
                             An optional ending point for playback of the programme segment.
+                        
+</dd>
+<dt>duration: (TIMECODE or DURATION)</dt>
+<dd>
+                            The duration of a the programme the segement.
                         
 </dd>
 <dt>chapter: (BOOLEAN)</dt>
@@ -5524,6 +5561,12 @@ Change Log</h3>
 <li>Added "end" to Segment.
 </li>
 <li>Added "insertion-points" and "shot" link relation types.
+</li>
+<li>Moved "duration" from Content to Programme Item and Segment.
+</li>
+<li>Moved "free" from Broadcast to Programme Publication.
+</li>
+<li>Added "signed", "hasSubtitles" and "audioDescribed" to Programme Publication.
 </li>
 </ul><p>
         
