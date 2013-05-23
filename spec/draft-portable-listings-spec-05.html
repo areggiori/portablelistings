@@ -143,7 +143,7 @@
 <table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
 <tr><td class="header">Working Draft</td><td class="header">A. Reggiori</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">Derrick Media</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">May 22, 2013</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">May 23, 2013</td></tr>
 </table></td></tr></table>
 <h1><br />Portable Listings</h1>
 
@@ -1891,7 +1891,7 @@ Fields</h3>
 Links</h3>
 
 <p>
-              A multi-value attribute which represent a standard LINK as defined by section 3 of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
+              A Complex Field which represent a standard LINK as defined by section 3 of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
               This enables Providers to create generic standard links between an Entry and other resources, including other Entries (see <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>), using the registry of links relations defined by the Web Linking specification and HTML5 Link types <a class='info' href='#HTML5'>[HTML5]<span> (</span><span class='info'>W3C, &ldquo;HTML5 - A vocabulary and associated APIs for HTML and XHTML,&rdquo; .</span><span>)</span></a>.
               The Context of the LINK is the Entry which has a field using the LINK construct as value.
               
@@ -1905,7 +1905,7 @@ Links</h3>
 <dd>
                       REQUIRED. The IRI of the link. This IRI MAY be relative or absolute. If the URI is relative it is resolved against the Service Provider root API endpoint URL.
                       Unless otherwise specified, this is the Primary Sub-Field for the field having this construct as value, for the purposes of sorting and filtering.
-                      The <tt>value</tt> and <tt>lang</tt> sub-fields SHALL not be specified.
+                      The <tt>value</tt> sub-field SHALL not be specified.
                   
 </dd>
 <dt>rel: (ENUM or IRI)</dt>
@@ -1922,7 +1922,10 @@ Links</h3>
 </dd>
 <dt>hreflang: (LANGUAGE)</dt>
 <dd>
-                      The content language of the representation identified by the IRI of the link. When used together with the rel sub-field with value "alternate", it implies a translated version of the Context of the link. A link construct MAY have an hreflang sub-field, whose value MUST be a valid LANGUAGE Canonical Value.
+                      The content language of the representation identified by the IRI of the link.
+                      When used together with the rel sub-field with value "alternate", it implies a translated version of the Context of the link.
+                      A link construct MAY have an hreflang sub-field, whose value MUST be a valid LANGUAGE Canonical Value.
+                      The <tt>lang</tt> sub-field SHALL not be specified.
                   
 </dd>
 <dt>label: (STRING)</dt>
@@ -1950,6 +1953,13 @@ Links</h3>
                       When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration.
                   
 </dd>
+<dt>primary: (BOOLEAN)</dt>
+<dd>
+                      If the link construct is used in a Plural Field, this is a boolean value indicating whether this instance of the link is the primary or preferred value of for the link, e.g. the preferred link.
+                      Service Providers MUST NOT mark more than one instance of the same link as primary="true", and MAY choose not to mark any links as primary, if this information is not available.
+                      For efficiency, Service Providers SHOULD NOT mark all non-primary links with primary="false", but should instead omit this sub-field for all non-primary instances.
+                  
+</dd>
 </dl></blockquote><p>
               Unless otherwise specified, when the link construct is used in a Plural Field, Providers MAY return the link construct with the same href and rel values combination more than once with different type, hreflang, label, length, width, height or duration, but MUST NOT return more than once the same type and hreflang combination for a given href with rel field of value "alternate".
           
@@ -1970,14 +1980,14 @@ Relationships</h3>
         
 </p>
 <p>
-          Entry relationships information is formatted using a multi-value attribute for a Singular Relationship, and a multi-value attribute listing the child attributes for a Plural Relationship.
-          The field name is defined to be the relationship <tt>label</tt> (e.g. <tt>creator</tt>, <tt>publisher</tt> or <tt>contributor</tt>).
-          The relationship multi-value attribute MUST BE a direct child of the <tt>entry</tt> element representing the Source Entry (i.e. a sub-field can not be used to express a relationship).
-          A relationship multi-value attribute MAY have additional sub-fields, but MUST NOT contain multi-value attributes representing other relationships.
+          Entry relationships information is formatted using a Singular Complex Field for a Singular Relationship, and a Plural Complex Field for a Plural Relationship.
+          The Complex Field name is defined to be the relationship <tt>label</tt> (e.g. <tt>creator</tt>, <tt>publisher</tt> or <tt>contributor</tt>).
+          The relationship Complex Field MUST BE a direct child of the <tt>entry</tt> element representing the Source Entry (i.e. a sub-field can not be used to express a relationship).
+          A relationship Complex Field MAY have additional Simple or Complex sub-fields, but MUST NOT contain Complex Fields representing other relationships.
         
 </p>
 <p>
-          The structure of the multi-value attribute varies depending whether the relationship information is requested <tt>by-reference</tt> or <tt>by-value</tt> as follow:
+            The structure of the Complex Field varies depending whether the relationship information is requested <tt>by-reference</tt> or <tt>by-value</tt>. However, the <tt>value</tt> sub-field SHALL not be specified.
           </p>
 <blockquote class="text"><dl>
 <dt>by-reference</dt>
@@ -2008,11 +2018,19 @@ Relationships</h3>
 <dd>
                         The content language of the metadata Entry referenced.
                         The value MUST be a valid LANGUAGE Canonical Value.
+                        The <tt>lang</tt> sub-field SHALL not be specified.
                     
 </dd>
 <dt>label: (STRING)</dt>
 <dd>
                         If non-empty or null, the label SHOULD match the <tt>displayName</tt> field of the Sub-Entry.
+                    
+</dd>
+<dt>primary: (BOOLEAN)</dt>
+<dd>
+                        If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
+                        Service Providers MUST NOT mark more than one instance of the same relationship as primary="true", and MAY choose not to mark any relationship as primary, if this information is not available.
+                        For efficiency, Service Providers SHOULD NOT mark all non-primary relationships with primary="false", but should instead omit this sub-field for all non-primary instances.
                     
 </dd>
 </dl></blockquote>
@@ -2047,14 +2065,21 @@ Relationships</h3>
                     The label SHOULD match the <tt>displayName</tt> field of the Sub-Entry.
                   
 </dd>
+<dt>primary: (BOOLEAN)</dt>
+<dd>
+                    If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
+                    Service Providers MUST NOT mark more than one instance of the same relationship as primary="true", and MAY choose not to mark any relationship as primary, if this information is not available.
+                    For efficiency, Service Providers SHOULD NOT mark all non-primary relationships with primary="false", but should instead omit this sub-field for all non-primary instances.
+                  
+</dd>
 </dl></blockquote>
-                A Provider MAY define additional fields if necessary.
+                A Provider MAY define additional sub-fields if necessary.
               
 </dd>
 </dl></blockquote><p>
             
             
-          Note that the above definitions effectively require a Provider to represent each individual member of a relationship using one multi-value attribute for each individual associated Sub-Entry.
+          Note that the above definitions effectively require a Provider to represent each individual member of a relationship using one Complex Field (either a link or an entry structure) for each individual associated Sub-Entry.
         
 </p>
 <p>

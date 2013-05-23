@@ -1349,7 +1349,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   
     <section title="Links" anchor="link-structure">
           <t>
-              A multi-value attribute which represent a standard LINK as defined by section 3 of <xref target="RFC5988" />.
+              A Complex Field which represent a standard LINK as defined by section 3 of <xref target="RFC5988" />.
               This enables Providers to create generic standard links between an Entry and other resources, including other Entries (see <xref target="relationships"/>), using the registry of links relations defined by the Web Linking specification and HTML5 Link types <xref target="HTML5"/>.
               The Context of the LINK is the Entry which has a field using the LINK construct as value.
               <!-- see requirements atom link-inline stuff -->
@@ -1362,7 +1362,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   <t hangText="href: (IRI)">
                       REQUIRED. The IRI of the link. This IRI MAY be relative or absolute. If the URI is relative it is resolved against the Service Provider root API endpoint URL.
                       Unless otherwise specified, this is the Primary Sub-Field for the field having this construct as value, for the purposes of sorting and filtering.
-                      The <spanx style="verb">value</spanx> and <spanx style="verb">lang</spanx> sub-fields SHALL not be specified.
+                      The <spanx style="verb">value</spanx> sub-field SHALL not be specified.
                   </t>
                   <t hangText="rel: (ENUM or IRI)">
                       The link relation type. Unless otherwise specified, the rel value MUST be a valid Canonical Value as defined in <xref target="IANA-RELREG" /> and in <xref target="additional-link-relation-types"/>.
@@ -1373,7 +1373,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                       Note that the type field does not override the actual media type returned with the representation. A link construct MAY have a type sub-field, whose value MUST conform to the syntax of a MIME media type defined in <xref target="MIMEREG"/>. Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <xref target="IANA-MIMEREG"/>.
                   </t>
                   <t hangText="hreflang: (LANGUAGE)">
-                      The content language of the representation identified by the IRI of the link. When used together with the rel sub-field with value "alternate", it implies a translated version of the Context of the link. A link construct MAY have an hreflang sub-field, whose value MUST be a valid LANGUAGE Canonical Value.
+                      The content language of the representation identified by the IRI of the link.
+                      When used together with the rel sub-field with value "alternate", it implies a translated version of the Context of the link.
+                      A link construct MAY have an hreflang sub-field, whose value MUST be a valid LANGUAGE Canonical Value.
+                      The <spanx style="verb">lang</spanx> sub-field SHALL not be specified.
                   </t>
                   <t hangText="label: (STRING)">
                       A human-readable label about the link.
@@ -1389,6 +1392,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   </t>
                   <t hangText="duration: (TIMECODE or DURATION or NUMBER)">
                       When the target resource is a time-based media item, for example if the media type is video/* or audio/*, this value is a hint about the item's approximate duration.
+                  </t>
+                  <t hangText="primary: (BOOLEAN)">
+                      If the link construct is used in a Plural Field, this is a boolean value indicating whether this instance of the link is the primary or preferred value of for the link, e.g. the preferred link.
+                      Service Providers MUST NOT mark more than one instance of the same link as primary="true", and MAY choose not to mark any links as primary, if this information is not available.
+                      For efficiency, Service Providers SHOULD NOT mark all non-primary links with primary="false", but should instead omit this sub-field for all non-primary instances.
                   </t>
               </list>
               Unless otherwise specified, when the link construct is used in a Plural Field, Providers MAY return the link construct with the same href and rel values combination more than once with different type, hreflang, label, length, width, height or duration, but MUST NOT return more than once the same type and hreflang combination for a given href with rel field of value "alternate".
@@ -1455,13 +1463,13 @@ WWW-Authenticate: Basic realm="sample.site.org"
           The Core profile (see <xref target="core-profile"/>) defines a pre-defined set of relationship names, based on existing industrial standards and vocabularies aiming to provide a standard list of named relationships.
         </t>
         <t>
-          Entry relationships information is formatted using a multi-value attribute for a Singular Relationship, and a multi-value attribute listing the child attributes for a Plural Relationship.
-          The field name is defined to be the relationship <spanx style="verb">label</spanx> (e.g. <spanx style="verb">creator</spanx>, <spanx style="verb">publisher</spanx> or <spanx style="verb">contributor</spanx>).
-          The relationship multi-value attribute MUST BE a direct child of the <spanx style="verb">entry</spanx> element representing the Source Entry (i.e. a sub-field can not be used to express a relationship).
-          A relationship multi-value attribute MAY have additional sub-fields, but MUST NOT contain multi-value attributes representing other relationships.
+          Entry relationships information is formatted using a Singular Complex Field for a Singular Relationship, and a Plural Complex Field for a Plural Relationship.
+          The Complex Field name is defined to be the relationship <spanx style="verb">label</spanx> (e.g. <spanx style="verb">creator</spanx>, <spanx style="verb">publisher</spanx> or <spanx style="verb">contributor</spanx>).
+          The relationship Complex Field MUST BE a direct child of the <spanx style="verb">entry</spanx> element representing the Source Entry (i.e. a sub-field can not be used to express a relationship).
+          A relationship Complex Field MAY have additional Simple or Complex sub-fields, but MUST NOT contain Complex Fields representing other relationships.
         </t>
         <t>
-          The structure of the multi-value attribute varies depending whether the relationship information is requested <spanx style="verb">by-reference</spanx> or <spanx style="verb">by-value</spanx> as follow:
+            The structure of the Complex Field varies depending whether the relationship information is requested <spanx style="verb">by-reference</spanx> or <spanx style="verb">by-value</spanx>. However, the <spanx style="verb">value</spanx> sub-field SHALL not be specified.
           <list style="hanging">
               <t hangText="by-reference">
                 The relationship is formatted using a LINK structure as defined in <xref target="link-structure"/> with the following differences:
@@ -1482,9 +1490,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     <t hangText="hreflang: (LANGUAGE)">
                         The content language of the metadata Entry referenced.
                         The value MUST be a valid LANGUAGE Canonical Value.
+                        The <spanx style="verb">lang</spanx> sub-field SHALL not be specified.
                     </t>
                     <t hangText="label: (STRING)">
                         If non-empty or null, the label SHOULD match the <spanx style="verb">displayName</spanx> field of the Sub-Entry.
+                    </t>
+                    <t hangText="primary: (BOOLEAN)">
+                        If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
+                        Service Providers MUST NOT mark more than one instance of the same relationship as primary="true", and MAY choose not to mark any relationship as primary, if this information is not available.
+                        For efficiency, Service Providers SHOULD NOT mark all non-primary relationships with primary="false", but should instead omit this sub-field for all non-primary instances.
                     </t>
                 </list>
                 A Provider MAY define additional fields if necessary.
@@ -1507,6 +1521,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   <t hangText="label: (STRING)">
                     The label SHOULD match the <spanx style="verb">displayName</spanx> field of the Sub-Entry.
                   </t>
+                  <t hangText="primary: (BOOLEAN)">
+                    If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
+                    Service Providers MUST NOT mark more than one instance of the same relationship as primary="true", and MAY choose not to mark any relationship as primary, if this information is not available.
+                    For efficiency, Service Providers SHOULD NOT mark all non-primary relationships with primary="false", but should instead omit this sub-field for all non-primary instances.
+                  </t>
                   <!--
                   <t hangText="profile: [IRI]">
                     An array of IRI containing the identifiers for the profiles used to describe their metadata Entries included.
@@ -1514,7 +1533,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                   </t>
                   -->
                 </list>
-                A Provider MAY define additional fields if necessary.
+                A Provider MAY define additional sub-fields if necessary.
               </t>
           </list>
             <!--
@@ -1524,7 +1543,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <!--
             Also unless specified otherwise, when returning Plural Fields, Service Providers SHOULD canonicalize the value returned, if appropriate (e.g. for URLs and e-mail addresses). Providers MAY return the same value more than once with different types (e.g. the same XXXX may used as YYYYYY in american english or ZZZZZ in british english), but SHOULD NOT return the same (type, value) combination more than once per Plural Field, as this complicates processing by the Consumer.
             -->
-          Note that the above definitions effectively require a Provider to represent each individual member of a relationship using one multi-value attribute for each individual associated Sub-Entry.
+          Note that the above definitions effectively require a Provider to represent each individual member of a relationship using one Complex Field (either a link or an entry structure) for each individual associated Sub-Entry.
         </t>
         <t>
           For efficiency, Service Providers SHOULD return relationships information <spanx style="verb">by-reference</spanx>.
