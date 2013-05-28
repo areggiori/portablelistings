@@ -137,7 +137,7 @@ ISSUES:
             A Target Entry is the Sub-Entry target of a Relationship from a Source Entry. A Target Entry can play one or more Roles with a given Source Entry.
           </t>
           <t hangText="Sub-Entry Role">
-            The role played by the Target Entry in a Relationship with a given Source Entry is defined to be the name or label of the relationship itself.
+            The role played by the Target Entry in a Relationship with a given Source Entry is defined to be the name of the relationship itself.
           </t>
           <t hangText="Profile:">
             A particular format (or schema) for the various Entries per <xref target="RFC6906"/>.
@@ -625,6 +625,7 @@ Content-Type: application/listings+json
                     the big problem that this also would impact the output JSON/format
                     -->
               </t>
+              <!-- TODO : Add filterType to filter complex field "type" e.g. "directorCommentary" when filterBy=alternativeLanguage -->
               <t hangText="filterValue:">
                 Specifies the value to filter by, using the comparison method defined by <spanx style="verb">filterOp</spanx>.
               </t>
@@ -691,8 +692,8 @@ Content-Type: application/listings+json
               </t>
 
               <t hangText="filterRelationshipsBy:">
-                Specifies a relationship label to filter Entries by (e.g. 'service').
-                A Service Provider SHALL match only Entries which have the provided relationship label.
+                Specifies a relationship name to filter Entries by (e.g. 'service').
+                A Service Provider SHALL match only Entries which have the provided relationship name.
                 The <spanx style="verb">metadataPublisher</spanx> relationship SHALL be filtered using the <spanx style="verb">filterPublisher</spanx> filter.
               </t>
               <t hangText="filterRelationshipsType:">
@@ -826,7 +827,7 @@ Content-Type: application/listings+json
                 Providers MUST decline to present results if the specified links parameter format is not recognized (as per <xref target="declining" />).
               </t>
               <t hangText="relationships:">
-                If non-empty, each Entry returned SHALL contain only the relationship labels explicitly requested.
+                If non-empty, each Entry returned SHALL contain only the relationship names explicitly requested.
                 A Service Provider MAY return a subset of the requested relationships if they are not supported.
                 A Provider SHOULD return at least the <spanx style="verb">href</spanx> and <spanx style="verb">entry</spanx> fields for relationships included <spanx style="verb">by-reference</spanx> and <spanx style="verb">by-value</spanx> respectively (see <xref target="relationships"/>).
                 This parameter is used for efficiency when a Consumer wishes to access only a subset of the relationships.
@@ -1051,7 +1052,7 @@ Content-Type: application/listings+json
               <spanx style="verb">entry</spanx>: an array of Entry objects, one for each Entry matching the request, as defined in <xref target="core-profile" />.
               For consistency of parsing, if the request could possibly return multiple Entries (as is normally the case), this value MUST always be an array of results, even if there happens to be 0 or 1 matching results.
               If the request is specifically for a single Entry (e.g. because the request contains Additional Path Information like <spanx style="verb">/id</spanx>), then <spanx style="verb">entry</spanx> MUST be an object containing the single Entry returned (i.e. <spanx style="verb">"entry": [ { /* first Entry */ }, ... ]</spanx> and <spanx style="verb">"entry": { /* only Entry */ }</spanx> respectively).
-              When Sub-Entries are requested <spanx style="verb">by-value</spanx> to be included inline (see <xref target="relationships"/>), then the same <spanx style="verb">entry</spanx> construct MUST be used to express any Sub-Entries as value of the RELATIONSHIP Complex Field its sub-field <spanx style="verb">entry</spanx> (i.e. <spanx style="verb">"entry": [ { /* Entry fields */ ... , "pluralRelationship_label": [ { "entry": { /* first Sub-Entry */ }, "rel": "first" }, ... ] } ]</spanx> for Plural Relationships, and <spanx style="verb">"entry": [ { /* Entry fields */ ... , "singularRelationship_label": { "entry": { /* only Sub-Entry */ }, "rel": "next" } } ]</spanx> for Singular Relationships respectively).
+              When Sub-Entries are requested <spanx style="verb">by-value</spanx> to be included inline (see <xref target="relationships"/>), then the same <spanx style="verb">entry</spanx> construct MUST be used to express any Sub-Entries as value of the RELATIONSHIP Complex Field its sub-field <spanx style="verb">entry</spanx> (i.e. <spanx style="verb">"entry": [ { /* Entry fields */ ... , "pluralRelationship_name": [ { "entry": { /* first Sub-Entry */ }, "rel": "first" }, ... ] } ]</spanx> for Plural Relationships, and <spanx style="verb">"entry": [ { /* Entry fields */ ... , "singularRelationship_name": { "entry": { /* only Sub-Entry */ }, "rel": "next" } } ]</spanx> for Singular Relationships respectively).
             </t>            
           </list>
         </t>
@@ -1455,16 +1456,13 @@ WWW-Authenticate: Basic realm="sample.site.org"
     <section title="Relationships" anchor="relationships">
         <t>
           A relationship expresses a directed labeled and typed connection from a Source Entry (or relationship Context Entry) to a Target Entry.
-          Each relationship MUST have a label and a type.
+          Each relationship MUST have a name and a type.
           Each relationship between two Entries is defined as either a Singular Relationship, in which case there MUST be one and only one Sub-Entry associated, or as a Plural Relationship, in which case any number of Sub-Entries MAY be associated to the source Entry being described.
           When a relationship is defined as REQUIRED its minimal cardinality is set to one Sub-Entry.
-          A Provider MAY express multiple relationships between two given Entries, either with the same or different labels and types.
-          For example, a Programme Entry could be connected to a Person Entry either via the <spanx style="verb">creator</spanx>, <spanx style="verb">publisher</spanx> or <spanx style="verb">contributor</spanx> relationship.
-          The Core profile (see <xref target="core-profile"/>) defines a pre-defined set of relationship names, based on existing industrial standards and vocabularies aiming to provide a standard list of named relationships.
         </t>
         <t>
           Entry relationships information is formatted using a Singular Complex Field for a Singular Relationship, and a Plural Complex Field for a Plural Relationship.
-          The Complex Field name is defined to be the relationship <spanx style="verb">label</spanx> (e.g. <spanx style="verb">creator</spanx>, <spanx style="verb">publisher</spanx> or <spanx style="verb">contributor</spanx>).
+          The Complex Field name is defined to be the relationship name (e.g. <spanx style="verb">creator</spanx>, <spanx style="verb">publisher</spanx> or <spanx style="verb">contributor</spanx>).
           The relationship Complex Field MUST BE a direct child of the <spanx style="verb">entry</spanx> element representing the Source Entry (i.e. a sub-field can not be used to express a relationship).
           A relationship Complex Field MAY have additional Simple or Complex sub-fields, but MUST NOT contain Complex Fields representing other relationships.
         </t>
@@ -1486,6 +1484,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <!-- It is the field used to filter relationships by type (see <xref target="query-params"/>). -->
                         The value must be a valid relation type as defined in <xref target="IANA-RELREG" /> and in <xref target="additional-link-relation-types"/>.
                         If this attribute is omitted it MUST BE processed as if the value were the string "related".
+                    </t>
+                    <t hangText="role: (ENUM or IRI)">
+                        Unless otherwise specified, this ia an optional sub-field used to represent the role played by the Target Entry in the relationship (e.g. <spanx style="verb">contributor</spanx> as specified in <xref target="content-type-relationships"/>).
+                        The value SHOULD BE selected from a standard list of values.
                     </t>
                     <t hangText="hreflang: (LANGUAGE)">
                         The content language of the metadata Entry referenced.
@@ -1513,6 +1515,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     The link relation type. <!-- It is the field used to filter relationships by type (see <xref target="query-params"/>). -->
                     The value must be a valid relation type as defined in <xref target="IANA-RELREG" /> and in <xref target="additional-link-relation-types"/>.
                     If this attribute is omitted it MUST BE processed as if the value were the string "related".
+                  </t>
+                  <t hangText="role: (ENUM or IRI)">
+                    Unless otherwise specified, this ia an optional sub-field used to represent the role played by the Target Entry in the relationship (e.g. <spanx style="verb">contributor</spanx> as specified in <xref target="content-type-relationships"/>).
+                    The value SHOULD BE selected from a standard list of values.
                   </t>
                   <t hangText="lang: (LANGUAGE)">
                     The content language of the metadata Entry included.
@@ -1546,6 +1552,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
           Note that the above definitions effectively require a Provider to represent each individual member of a relationship using one Complex Field (either a link or an entry structure) for each individual associated Sub-Entry.
         </t>
         <t>
+            A Provider MAY return Plural Relationships with the same href (if by-reference) or entry (if by-value) and rel values combination more than once with different role and hreflang (if by-reference) or lang (if by-value).
+        </t>
+        <t>
           For efficiency, Service Providers SHOULD return relationships information <spanx style="verb">by-reference</spanx>.
           A Consumer MAY explicitly request to include relationships information <spanx style="verb">by-value</spanx> as explained in <xref target="presentation"/>.
         </t>
@@ -1564,15 +1573,18 @@ WWW-Authenticate: Basic realm="sample.site.org"
         <t>
             Relationships structures will be described as follow:
             <list style="hanging">
-                <t hangText="singularRelationshipLabel: (OBJECTYPE)">
-                    A Singular Relationship with a lablel of <spanx style="verb">singular_relationship_label</spanx> connecting the Source Entry containing the named relationship attriubute with a Target Entry of type OBJECTYPE.
+                <t hangText="singularRelationshipName: (OBJECTYPE)">
+                    A Singular Relationship with a name of <spanx style="verb">singular_relationship_name</spanx> connecting the Source Entry containing the named relationship attriubute with a Target Entry of type OBJECTYPE.
                     The relationship type is expressed using the <spanx style="verb">rel</spanx> sub-field.
                 </t>
-                <t hangText="pluralRelationshipLabel: [OBJECTYPE]">
-                    A Plural Relationship with a lablel of <spanx style="verb">plural_relationship_label</spanx> connecting the Source Entry containing the named relationship attriubute with a Target Entry of type OBJECTYPE.
+                <t hangText="pluralRelationshipName: [OBJECTYPE]">
+                    A Plural Relationship with a name of <spanx style="verb">plural_relationship_name</spanx> connecting the Source Entry containing the named relationship attriubute with a Target Entry of type OBJECTYPE.
                     The relationship type is expressed using the <spanx style="verb">rel</spanx> sub-field.
                 </t>
             </list>
+        </t>
+        <t>
+            The Core profile (see <xref target="core-profile"/>) defines a pre-defined set of relationship names, based on existing industrial standards and vocabularies aiming to provide a standard list of named relationships.
         </t>
 
         <!--
@@ -2519,8 +2531,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             <list style="hanging">
                                 <t hangText="type: (ENUM)">
                                     The language purpose.
-                                    The value SHOULD BE selected from the following list: <spanx style="verb">audio</spanx>, <spanx style="verb">mainOriginalLanguage</spanx>, <spanx style="verb">mainDubbedLanguage</spanx>, <spanx style="verb">additionalOriginalLanguage</spanx>, <spanx style="verb">additionalDubbedLanguage</spanx>, <spanx style="verb">descriptiveVideoInformation</spanx>, <spanx style="verb">supplementalCommentary</spanx>, <spanx style="verb">directorCommentary</spanx>, <spanx style="verb">audioDescription</spanx>, <spanx style="verb">supplementaryAudioProgramme</spanx>, <spanx style="verb">educationalNotes</spanx>, <spanx style="verb">voiceOver</spanx>, <spanx style="verb">originalCommentary</spanx>, <spanx style="verb">dubbedCommentary</spanx>, <spanx style="verb">originalNarration</spanx>, <spanx style="verb">dubbedDialogue</spanx>, <spanx style="verb">dubbedNarration</spanx>, <spanx style="verb">interviewerLanguage</spanx>, <spanx style="verb">intervieweeLanguage</spanx>, <spanx style="verb">text</spanx>, <spanx style="verb">textDescription</spanx>, <spanx style="verb">transcript</spanx>, <spanx style="verb">caption</spanx>, <spanx style="verb">openCaption</spanx>, <spanx style="verb">closedCaption</spanx>, <spanx style="verb">supplemental</spanx>, <spanx style="verb">titles</spanx>, <spanx style="verb">subtitles</spanx>, <spanx style="verb">openSubtitles</spanx>, <spanx style="verb">closedSubtitles</spanx>, <spanx style="verb">songLyrics</spanx>, <spanx style="verb">signLanguage</spanx>, <spanx style="verb">dubbedSignLanguage</spanx>.
-                                    The <spanx style="verb">main</spanx>, <spanx style="verb">production</spanx> and <spanx style="verb">original</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
+                                    The value SHOULD BE selected from the following list: <spanx style="verb">mainDubbedLanguage</spanx>, <spanx style="verb">additionalOriginalLanguage</spanx>, <spanx style="verb">additionalDubbedLanguage</spanx>, <spanx style="verb">descriptiveVideoInformation</spanx>, <spanx style="verb">supplementalCommentary</spanx>, <spanx style="verb">directorCommentary</spanx>, <spanx style="verb">audioDescription</spanx>, <spanx style="verb">supplementaryAudioProgramme</spanx>, <spanx style="verb">educationalNotes</spanx>, <spanx style="verb">voiceOver</spanx>, <spanx style="verb">originalCommentary</spanx>, <spanx style="verb">dubbedCommentary</spanx>, <spanx style="verb">originalNarration</spanx>, <spanx style="verb">dubbedDialogue</spanx>, <spanx style="verb">dubbedNarration</spanx>, <spanx style="verb">interviewerLanguage</spanx>, <spanx style="verb">intervieweeLanguage</spanx>, <spanx style="verb">text</spanx>, <spanx style="verb">textDescription</spanx>, <spanx style="verb">transcript</spanx>, <spanx style="verb">caption</spanx>, <spanx style="verb">openCaption</spanx>, <spanx style="verb">closedCaption</spanx>, <spanx style="verb">supplemental</spanx>, <spanx style="verb">titles</spanx>, <spanx style="verb">subtitles</spanx>, <spanx style="verb">openSubtitles</spanx>, <spanx style="verb">closedSubtitles</spanx>, <spanx style="verb">songLyrics</spanx>, <spanx style="verb">signLanguage</spanx>, <spanx style="verb">dubbedSignLanguage</spanx>.
+                                    The <spanx style="verb">main</spanx>, <spanx style="verb">production</spanx>, <spanx style="verb">original</spanx>, <spanx style="verb">audio</spanx> and <spanx style="verb">mainOriginalLanguage</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
                                 </t>
                                 <t hangText="value: (LANGUAGE)">
                                     The alternative language value.
@@ -2603,9 +2615,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The following fields are additionally defined for the contributor relationship:
                             <list style="hanging">
                                 <t hangText="role: (ENUM or IRI)">
-                                    REQUIRED. A Canonical Value representing the role played by the Target Entry as contributor (e.g. author, director, actor, producer).
+                                    REQUIRED. A Canonical Value representing the role played by the Target Entry as contributor (e.g. director, actor, producer).
                                     The value SHOULD BE selected from a standard list of values such as the European Broadcasting Union Role Codes <xref target="EBU-ROLE-CODES"/>.
-                                    This is the Primary Sub-Field for the purposes of sorting and filtering.
                                 </t>
                                 <t hangText="roleLabel: (STRING)">
                                     A human-readable label or name associated to the <spanx style="verb">role</spanx> sub-field.
@@ -2981,11 +2992,19 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="lastShowing: (BOOLEAN)">
                             A Boolean value indicating whether the programme version being broadcasted is a last showing.
                         </t>
+                        <t hangText="primaryShowing: (BOOLEAN)">
+                            A Boolean value indicating whether the programme version being broadcasted is the primary or preferred showing.
+                            Service Providers MUST NOT mark more than one broadcast publication as primaryShowing="true", and MAY choose not to mark any broadcast as primary, if this information is not available.
+                            For efficiency, Service Providers SHOULD NOT mark all non-primary broadcast with primaryShowing="false", but should instead omit this sub-field for all non-primary broadcasts.
+                        </t>
                         <t hangText="repeat: (BOOLEAN)">
                             A Boolean value indicating whether the programme version being broadcasted is a repeat.
                         </t>
                         <t hangText="live: (BOOLEAN)">
                             A Boolean value indicating whether the programme version being broadcasted is a live broadcast.
+                        </t>
+                        <t hangText="dummy: (BOOLEAN)">
+                            A Boolean value indicating whether the broadcast represents a period of time when the service is off air.
                         </t>
                     </list>
                 </t>
@@ -3020,9 +3039,14 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             A Boolean value indicating whether the programme version is for instant viewing.
                         </t>
                         <t hangText="deliveryMode: (ENUM)">
-                            The on-demand pblication delivery mode such as 'streaming', 'download', 'progressive-download' etc.
-                            This string generally is specified to contain a valid Canonical Value from a reference data vocabulary.
-                            A Provider SHOULD use any additional deliveryMode values as necessary.
+                            The on-demand publication delivery mode SHALL be selected from one of the following values: <spanx style="verb">unicastStream</spanx>, <spanx style="verb">download</spanx>, <spanx style="verb">progressiveDownload</spanx>.
+                            A Provider MAY use any additional deliveryMode values as necessary.
+                        </t>
+                        <t hangText="catchup: (BOOLEAN)">
+                            A Boolean value indicating whether the on-demand publication is catch-up.
+                        </t>
+                        <t hangText="archive: (BOOLEAN)">
+                            A Boolean value indicating whether the on-demand publication is archive.
                         </t>
                     </list>
                 </t>
@@ -3295,7 +3319,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The audio configuration parameters SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes (e.g. 'stereo', '2+1', 'surround', 'surround (7+1)').
                         </t>
                         <t hangText="audioBitrate: (NUMBER)">
-                            The audio bit rate.
+                            The average audio bit rate.
                         </t>
                         <t hangText="minAudioBitrate: (NUMBER)">
                             The minimal audio bit rate.
@@ -3334,7 +3358,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The value SHOULD BE selected from a standard list of values such as the EBU Video Compression Codes.
                         </t>
                         <t hangText="videoBitrate: (NUMBER)">
-                            The video bit rate.
+                            The average video bit rate.
                         </t>
                         <t hangText="minVideoBitrate: (NUMBER)">
                             The minimal video bit rate.
@@ -4082,6 +4106,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Moved "free" from Broadcast to Programme Publication.</t>
                 <t>Added "signed", "hasSubtitles" and "audioDescribed" to Programme Publication.</t>
                 <t>Moved "hd", "3d" and "uhd" to Programme Publication.</t>
+                <t>Added "dummy" and "primaryShowing" to Broadcast.</t>
+                <t>Added "catchup" and "archive" to Ondemand.</t>
+                <t>Added "role" to reltionships definition.</t>
             </list>
         </t>
     </section>

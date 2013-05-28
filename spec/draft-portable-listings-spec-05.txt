@@ -3,7 +3,7 @@
 
 Working Draft                                                A. Reggiori
                                                            Derrick Media
-                                                            May 23, 2013
+                                                            May 28, 2013
 
 
                            Portable Listings
@@ -43,11 +43,11 @@ Table of Contents
        7.1.1.  Fields . . . . . . . . . . . . . . . . . . . . . . . . 29
        7.1.2.  Links  . . . . . . . . . . . . . . . . . . . . . . . . 32
        7.1.3.  Relationships  . . . . . . . . . . . . . . . . . . . . 34
-     7.2.  Multilingual Fields  . . . . . . . . . . . . . . . . . . . 36
+     7.2.  Multilingual Fields  . . . . . . . . . . . . . . . . . . . 37
      7.3.  Interoperability Considerations  . . . . . . . . . . . . . 37
      7.4.  Referencing Profiles . . . . . . . . . . . . . . . . . . . 37
-   8.  Core Profile . . . . . . . . . . . . . . . . . . . . . . . . . 37
-     8.1.  Reference Data . . . . . . . . . . . . . . . . . . . . . . 38
+   8.  Core Profile . . . . . . . . . . . . . . . . . . . . . . . . . 38
+     8.1.  Reference Data . . . . . . . . . . . . . . . . . . . . . . 39
      8.2.  Profile Identifier . . . . . . . . . . . . . . . . . . . . 39
 
 
@@ -60,16 +60,16 @@ Reggiori                                                        [Page 1]
      8.3.  Additional Link Relation Types . . . . . . . . . . . . . . 39
        8.3.1.  "promotional-information"  . . . . . . . . . . . . . . 39
        8.3.2.  "supplemental-information" . . . . . . . . . . . . . . 39
-       8.3.3.  "review" . . . . . . . . . . . . . . . . . . . . . . . 39
+       8.3.3.  "review" . . . . . . . . . . . . . . . . . . . . . . . 40
        8.3.4.  "highlights" . . . . . . . . . . . . . . . . . . . . . 40
        8.3.5.  "screenplay" . . . . . . . . . . . . . . . . . . . . . 40
        8.3.6.  "transcript" . . . . . . . . . . . . . . . . . . . . . 40
        8.3.7.  "shot" . . . . . . . . . . . . . . . . . . . . . . . . 40
-       8.3.8.  "shot-list"  . . . . . . . . . . . . . . . . . . . . . 40
+       8.3.8.  "shot-list"  . . . . . . . . . . . . . . . . . . . . . 41
        8.3.9.  "edit-decision-list" . . . . . . . . . . . . . . . . . 41
        8.3.10. "rundown"  . . . . . . . . . . . . . . . . . . . . . . 41
        8.3.11. "dopesheet"  . . . . . . . . . . . . . . . . . . . . . 41
-       8.3.12. "trailer"  . . . . . . . . . . . . . . . . . . . . . . 41
+       8.3.12. "trailer"  . . . . . . . . . . . . . . . . . . . . . . 42
        8.3.13. "simulcast"  . . . . . . . . . . . . . . . . . . . . . 42
        8.3.14. "ondemand" . . . . . . . . . . . . . . . . . . . . . . 42
        8.3.15. "catchup"  . . . . . . . . . . . . . . . . . . . . . . 42
@@ -78,20 +78,20 @@ Reggiori                                                        [Page 1]
        8.3.18. "advert" . . . . . . . . . . . . . . . . . . . . . . . 43
        8.3.19. "telescoped-advert"  . . . . . . . . . . . . . . . . . 43
        8.3.20. "speedbump"  . . . . . . . . . . . . . . . . . . . . . 43
-       8.3.21. "product-purchase" . . . . . . . . . . . . . . . . . . 43
+       8.3.21. "product-purchase" . . . . . . . . . . . . . . . . . . 44
        8.3.22. "recap"  . . . . . . . . . . . . . . . . . . . . . . . 44
        8.3.23. "making-of"  . . . . . . . . . . . . . . . . . . . . . 44
        8.3.24. "content-package"  . . . . . . . . . . . . . . . . . . 44
        8.3.25. "best-of"  . . . . . . . . . . . . . . . . . . . . . . 44
-       8.3.26. "extract"  . . . . . . . . . . . . . . . . . . . . . . 44
-     8.4.  Object Types . . . . . . . . . . . . . . . . . . . . . . . 44
+       8.3.26. "extract"  . . . . . . . . . . . . . . . . . . . . . . 45
+     8.4.  Object Types . . . . . . . . . . . . . . . . . . . . . . . 45
        8.4.1.  Entry  . . . . . . . . . . . . . . . . . . . . . . . . 46
          8.4.1.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 46
          8.4.1.2.  Links  . . . . . . . . . . . . . . . . . . . . . . 47
          8.4.1.3.  Relationships  . . . . . . . . . . . . . . . . . . 48
        8.4.2.  Category . . . . . . . . . . . . . . . . . . . . . . . 48
-         8.4.2.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 48
-         8.4.2.2.  Relationships  . . . . . . . . . . . . . . . . . . 48
+         8.4.2.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 49
+         8.4.2.2.  Relationships  . . . . . . . . . . . . . . . . . . 49
        8.4.3.  Content  . . . . . . . . . . . . . . . . . . . . . . . 49
          8.4.3.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 49
          8.4.3.2.  Links  . . . . . . . . . . . . . . . . . . . . . . 53
@@ -100,7 +100,7 @@ Reggiori                                                        [Page 1]
          8.4.4.1.  Fields . . . . . . . . . . . . . . . . . . . . . . 54
          8.4.4.2.  Relationships  . . . . . . . . . . . . . . . . . . 54
        8.4.5.  Programme Group  . . . . . . . . . . . . . . . . . . . 54
-         8.4.5.1.  Relationships  . . . . . . . . . . . . . . . . . . 54
+         8.4.5.1.  Relationships  . . . . . . . . . . . . . . . . . . 55
        8.4.6.  Brand  . . . . . . . . . . . . . . . . . . . . . . . . 55
        8.4.7.  Series . . . . . . . . . . . . . . . . . . . . . . . . 55
        8.4.8.  Programme Item . . . . . . . . . . . . . . . . . . . . 55
@@ -125,39 +125,39 @@ Reggiori                                                        [Page 2]
          8.4.12.3. Relationships  . . . . . . . . . . . . . . . . . . 57
        8.4.13. Programme Publication  . . . . . . . . . . . . . . . . 58
          8.4.13.1. Fields . . . . . . . . . . . . . . . . . . . . . . 58
-         8.4.13.2. Relationships  . . . . . . . . . . . . . . . . . . 58
+         8.4.13.2. Relationships  . . . . . . . . . . . . . . . . . . 59
        8.4.14. Broadcast  . . . . . . . . . . . . . . . . . . . . . . 59
          8.4.14.1. Fields . . . . . . . . . . . . . . . . . . . . . . 59
-       8.4.15. Ondemand . . . . . . . . . . . . . . . . . . . . . . . 59
-         8.4.15.1. Fields . . . . . . . . . . . . . . . . . . . . . . 59
+       8.4.15. Ondemand . . . . . . . . . . . . . . . . . . . . . . . 60
+         8.4.15.1. Fields . . . . . . . . . . . . . . . . . . . . . . 60
        8.4.16. Schedule . . . . . . . . . . . . . . . . . . . . . . . 60
-         8.4.16.1. Fields . . . . . . . . . . . . . . . . . . . . . . 60
-         8.4.16.2. Relationships  . . . . . . . . . . . . . . . . . . 60
+         8.4.16.1. Fields . . . . . . . . . . . . . . . . . . . . . . 61
+         8.4.16.2. Relationships  . . . . . . . . . . . . . . . . . . 61
        8.4.17. Catalogue  . . . . . . . . . . . . . . . . . . . . . . 61
          8.4.17.1. Fields . . . . . . . . . . . . . . . . . . . . . . 61
          8.4.17.2. Relationships  . . . . . . . . . . . . . . . . . . 61
        8.4.18. Application  . . . . . . . . . . . . . . . . . . . . . 61
-         8.4.18.1. Fields . . . . . . . . . . . . . . . . . . . . . . 61
-         8.4.18.2. Relationships  . . . . . . . . . . . . . . . . . . 61
+         8.4.18.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
+         8.4.18.2. Relationships  . . . . . . . . . . . . . . . . . . 62
        8.4.19. Application Build  . . . . . . . . . . . . . . . . . . 62
          8.4.19.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
          8.4.19.2. Relationships  . . . . . . . . . . . . . . . . . . 62
        8.4.20. Application Publication  . . . . . . . . . . . . . . . 62
-         8.4.20.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
+         8.4.20.1. Fields . . . . . . . . . . . . . . . . . . . . . . 63
          8.4.20.2. Relationships  . . . . . . . . . . . . . . . . . . 63
        8.4.21. Application Gallery  . . . . . . . . . . . . . . . . . 63
-         8.4.21.1. Relationships  . . . . . . . . . . . . . . . . . . 63
-       8.4.22. Media Resource . . . . . . . . . . . . . . . . . . . . 63
+         8.4.21.1. Relationships  . . . . . . . . . . . . . . . . . . 64
+       8.4.22. Media Resource . . . . . . . . . . . . . . . . . . . . 64
          8.4.22.1. Fields . . . . . . . . . . . . . . . . . . . . . . 64
-       8.4.23. Media Group  . . . . . . . . . . . . . . . . . . . . . 65
+       8.4.23. Media Group  . . . . . . . . . . . . . . . . . . . . . 66
          8.4.23.1. Relationships  . . . . . . . . . . . . . . . . . . 66
        8.4.24. Segment  . . . . . . . . . . . . . . . . . . . . . . . 66
-         8.4.24.1. Fields . . . . . . . . . . . . . . . . . . . . . . 66
+         8.4.24.1. Fields . . . . . . . . . . . . . . . . . . . . . . 67
          8.4.24.2. Relationships  . . . . . . . . . . . . . . . . . . 67
        8.4.25. Segment Group  . . . . . . . . . . . . . . . . . . . . 67
          8.4.25.1. Relationships  . . . . . . . . . . . . . . . . . . 67
        8.4.26. Content Collection . . . . . . . . . . . . . . . . . . 67
-         8.4.26.1. Relationships  . . . . . . . . . . . . . . . . . . 67
+         8.4.26.1. Relationships  . . . . . . . . . . . . . . . . . . 68
        8.4.27. Rights . . . . . . . . . . . . . . . . . . . . . . . . 68
          8.4.27.1. Fields . . . . . . . . . . . . . . . . . . . . . . 68
          8.4.27.2. Relationships  . . . . . . . . . . . . . . . . . . 68
@@ -169,25 +169,25 @@ Reggiori                                                        [Page 3]
                             Portable Listings                   May 2013
 
 
-       8.4.28. Award  . . . . . . . . . . . . . . . . . . . . . . . . 68
-         8.4.28.1. Fields . . . . . . . . . . . . . . . . . . . . . . 68
+       8.4.28. Award  . . . . . . . . . . . . . . . . . . . . . . . . 69
+         8.4.28.1. Fields . . . . . . . . . . . . . . . . . . . . . . 69
          8.4.28.2. Relationships  . . . . . . . . . . . . . . . . . . 69
        8.4.29. Agent  . . . . . . . . . . . . . . . . . . . . . . . . 69
        8.4.30. Person . . . . . . . . . . . . . . . . . . . . . . . . 69
        8.4.31. Organisation . . . . . . . . . . . . . . . . . . . . . 69
          8.4.31.1. Relationships  . . . . . . . . . . . . . . . . . . 69
        8.4.32. Group  . . . . . . . . . . . . . . . . . . . . . . . . 69
-         8.4.32.1. Relationships  . . . . . . . . . . . . . . . . . . 69
-   9.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 69
+         8.4.32.1. Relationships  . . . . . . . . . . . . . . . . . . 70
+   9.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 70
    10. Security Considerations  . . . . . . . . . . . . . . . . . . . 73
    11. Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . 73
-   12. Change Log . . . . . . . . . . . . . . . . . . . . . . . . . . 73
+   12. Change Log . . . . . . . . . . . . . . . . . . . . . . . . . . 74
    13. References . . . . . . . . . . . . . . . . . . . . . . . . . . 76
      13.1. Normative References . . . . . . . . . . . . . . . . . . . 76
      13.2. Informative References . . . . . . . . . . . . . . . . . . 77
    Appendix A.  Examples  . . . . . . . . . . . . . . . . . . . . . . 79
    Appendix B.  Compatibility with EBUCore and other standards  . . . 82
-   Author's Address . . . . . . . . . . . . . . . . . . . . . . . . . 82
+   Author's Address . . . . . . . . . . . . . . . . . . . . . . . . . 83
 
 
 
@@ -325,8 +325,8 @@ Reggiori                                                        [Page 5]
       Relationship from a Source Entry.  A Target Entry can play one or
       more Roles with a given Source Entry.
    Sub-Entry Role  The role played by the Target Entry in a Relationship
-      with a given Source Entry is defined to be the name or label of
-      the relationship itself.
+      with a given Source Entry is defined to be the name of the
+      relationship itself.
 
 
 
@@ -897,9 +897,9 @@ Reggiori                                                       [Page 16]
                             Portable Listings                   May 2013
 
 
-   filterRelationshipsBy:  Specifies a relationship label to filter
+   filterRelationshipsBy:  Specifies a relationship name to filter
       Entries by (e.g. 'service').  A Service Provider SHALL match only
-      Entries which have the provided relationship label.  The
+      Entries which have the provided relationship name.  The
       "metadataPublisher" relationship SHALL be filtered using the
       "filterPublisher" filter.
    filterRelationshipsType:  Specifies a relationship type to filter
@@ -1052,7 +1052,7 @@ Reggiori                                                       [Page 18]
       results if the specified links parameter format is not recognized
       (as per Section 6.2.5).
    relationships:  If non-empty, each Entry returned SHALL contain only
-      the relationship labels explicitly requested.  A Service Provider
+      the relationship names explicitly requested.  A Service Provider
       MAY return a subset of the requested relationships if they are not
       supported.  A Provider SHOULD return at least the "href" and
       "entry" fields for relationships included "by-reference" and
@@ -1380,10 +1380,10 @@ Reggiori                                                       [Page 24]
       same "entry" construct MUST be used to express any Sub-Entries as
       value of the RELATIONSHIP Complex Field its sub-field "entry"
       (i.e. ""entry": [ { /* Entry fields */ ... ,
-      "pluralRelationship_label": [ { "entry": { /* first Sub-Entry */
-      }, "rel": "first" }, ... ] } ]" for Plural Relationships, and
+      "pluralRelationship_name": [ { "entry": { /* first Sub-Entry */ },
+      "rel": "first" }, ... ] } ]" for Plural Relationships, and
       ""entry": [ { /* Entry fields */ ... ,
-      "singularRelationship_label": { "entry": { /* only Sub-Entry */ },
+      "singularRelationship_name": { "entry": { /* only Sub-Entry */ },
       "rel": "next" } } ]" for Singular Relationships respectively).
 
 6.4.  Error Codes
@@ -1859,25 +1859,18 @@ Reggiori                                                       [Page 33]
 
    A relationship expresses a directed labeled and typed connection from
    a Source Entry (or relationship Context Entry) to a Target Entry.
-   Each relationship MUST have a label and a type.  Each relationship
+   Each relationship MUST have a name and a type.  Each relationship
    between two Entries is defined as either a Singular Relationship, in
    which case there MUST be one and only one Sub-Entry associated, or as
    a Plural Relationship, in which case any number of Sub-Entries MAY be
    associated to the source Entry being described.  When a relationship
    is defined as REQUIRED its minimal cardinality is set to one Sub-
-   Entry.  A Provider MAY express multiple relationships between two
-   given Entries, either with the same or different labels and types.
-   For example, a Programme Entry could be connected to a Person Entry
-   either via the "creator", "publisher" or "contributor" relationship.
-   The Core profile (see Section 8) defines a pre-defined set of
-   relationship names, based on existing industrial standards and
-   vocabularies aiming to provide a standard list of named
-   relationships.
+   Entry.
 
    Entry relationships information is formatted using a Singular Complex
    Field for a Singular Relationship, and a Plural Complex Field for a
    Plural Relationship.  The Complex Field name is defined to be the
-   relationship "label" (e.g. "creator", "publisher" or "contributor").
+   relationship name (e.g. "creator", "publisher" or "contributor").
    The relationship Complex Field MUST BE a direct child of the "entry"
    element representing the Source Entry (i.e. a sub-field can not be
    used to express a relationship).  A relationship Complex Field MAY
@@ -1897,6 +1890,13 @@ Reggiori                                                       [Page 33]
          this definition also covers the scenario of relationships
          expressed between Entries across Service Providers.  Although a
          Provider SHOULD NOT reference Entries on another Provider as
+         this complicates processing by the Consumer.
+      type: (ENUM)  If non-empty or null, the media type is defined to
+         be "application/listings+json".  The "profile" media type
+         parameter MAY be specified as defined in Section 7.4.
+
+
+
 
 
 
@@ -1905,14 +1905,15 @@ Reggiori                                                       [Page 34]
                             Portable Listings                   May 2013
 
 
-         this complicates processing by the Consumer.
-      type: (ENUM)  If non-empty or null, the media type is defined to
-         be "application/listings+json".  The "profile" media type
-         parameter MAY be specified as defined in Section 7.4.
       rel: (ENUM or IRI)  The value must be a valid relation type as
          defined in [IANA-RELREG] and in Section 8.3.  If this attribute
          is omitted it MUST BE processed as if the value were the string
          "related".
+      role: (ENUM or IRI)  Unless otherwise specified, this ia an
+         optional sub-field used to represent the role played by the
+         Target Entry in the relationship (e.g. "contributor" as
+         specified in Section 8.4.3.3).  The value SHOULD BE selected
+         from a standard list of values.
       hreflang: (LANGUAGE)  The content language of the metadata Entry
          referenced.  The value MUST be a valid LANGUAGE Canonical
          Value.  The "lang" sub-field SHALL not be specified.
@@ -1938,6 +1939,11 @@ Reggiori                                                       [Page 34]
          valid relation type as defined in [IANA-RELREG] and in
          Section 8.3.  If this attribute is omitted it MUST BE processed
          as if the value were the string "related".
+      role: (ENUM or IRI)  Unless otherwise specified, this ia an
+         optional sub-field used to represent the role played by the
+         Target Entry in the relationship (e.g. "contributor" as
+         specified in Section 8.4.3.3).  The value SHOULD BE selected
+         from a standard list of values.
       lang: (LANGUAGE)  The content language of the metadata Entry
          included.  The value MUST be a valid LANGUAGE Canonical Value.
       label: (STRING)  The label SHOULD match the "displayName" field of
@@ -1947,12 +1953,6 @@ Reggiori                                                       [Page 34]
          instance of the relationship is the primary or preferred value
          of for the relationship, e.g. the preferred relationship.
          Service Providers MUST NOT mark more than one instance of the
-         same relationship as primary="true", and MAY choose not to mark
-         any relationship as primary, if this information is not
-         available.  For efficiency, Service Providers SHOULD NOT mark
-         all non-primary relationships with primary="false", but should
-         instead omit this sub-field for all non-primary instances.
-      A Provider MAY define additional sub-fields if necessary.
 
 
 
@@ -1961,10 +1961,21 @@ Reggiori                                                       [Page 35]
                             Portable Listings                   May 2013
 
 
+         same relationship as primary="true", and MAY choose not to mark
+         any relationship as primary, if this information is not
+         available.  For efficiency, Service Providers SHOULD NOT mark
+         all non-primary relationships with primary="false", but should
+         instead omit this sub-field for all non-primary instances.
+      A Provider MAY define additional sub-fields if necessary.
    Note that the above definitions effectively require a Provider to
    represent each individual member of a relationship using one Complex
    Field (either a link or an entry structure) for each individual
    associated Sub-Entry.
+
+   A Provider MAY return Plural Relationships with the same href (if by-
+   reference) or entry (if by-value) and rel values combination more
+   than once with different role and hreflang (if by-reference) or lang
+   (if by-value).
 
    For efficiency, Service Providers SHOULD return relationships
    information "by-reference".  A Consumer MAY explicitly request to
@@ -1990,16 +2001,32 @@ Reggiori                                                       [Page 35]
    Organisation.
 
    Relationships structures will be described as follow:
-   singularRelationshipLabel: (OBJECTYPE)  A Singular Relationship with
-      a lablel of "singular_relationship_label" connecting the Source
-      Entry containing the named relationship attriubute with a Target
-      Entry of type OBJECTYPE.  The relationship type is expressed using
-      the "rel" sub-field.
-   pluralRelationshipLabel: [OBJECTYPE]  A Plural Relationship with a
-      lablel of "plural_relationship_label" connecting the Source Entry
+   singularRelationshipName: (OBJECTYPE)  A Singular Relationship with a
+      name of "singular_relationship_name" connecting the Source Entry
       containing the named relationship attriubute with a Target Entry
       of type OBJECTYPE.  The relationship type is expressed using the
       "rel" sub-field.
+
+
+
+
+
+
+Reggiori                                                       [Page 36]
+
+                            Portable Listings                   May 2013
+
+
+   pluralRelationshipName: [OBJECTYPE]  A Plural Relationship with a
+      name of "plural_relationship_name" connecting the Source Entry
+      containing the named relationship attriubute with a Target Entry
+      of type OBJECTYPE.  The relationship type is expressed using the
+      "rel" sub-field.
+
+   The Core profile (see Section 8) defines a pre-defined set of
+   relationship names, based on existing industrial standards and
+   vocabularies aiming to provide a standard list of named
+   relationships.
 
 7.2.  Multilingual Fields
 
@@ -2009,14 +2036,6 @@ Reggiori                                                       [Page 35]
    language is left undefined.
 
    A Provider MAY return fields in multiple languages using the MIME
-
-
-
-Reggiori                                                       [Page 36]
-
-                            Portable Listings                   May 2013
-
-
    multipart/alternative Content-Type in combination with the Content-
    Language header (see section 4.2 in [RFC5646]).
 
@@ -2046,6 +2065,14 @@ Reggiori                                                       [Page 36]
    header with the media type parameter "profile" containing a
    whitespace-separated list of the profile URIs used.
 
+
+
+
+Reggiori                                                       [Page 37]
+
+                            Portable Listings                   May 2013
+
+
    Alternatively profiles MAY be referenced per [RFC6906] as follow:
    o  From individual metadata Entries using the "links" field with a
       "rel" attribute of "profile".
@@ -2065,14 +2092,6 @@ Reggiori                                                       [Page 36]
 8.  Core Profile
 
    The "core profile" aims to provide a minimal metadata set to identify
-
-
-
-Reggiori                                                       [Page 37]
-
-                            Portable Listings                   May 2013
-
-
    and describe a piece of audiovisual content through the whole content
    value chain.  It is expected that other specifications will be
    produced that to define formats specific to various broadcasting and
@@ -2101,6 +2120,15 @@ Reggiori                                                       [Page 37]
       and structure mappings remain equivalent, which it means that it
       SHOULD BE easy to convert Portable Listings metadata to and from
       original vocabualries
+
+
+
+
+Reggiori                                                       [Page 38]
+
+                            Portable Listings                   May 2013
+
+
    o  Last, aiming for simplicity and pragmatism and even if the list of
       structrues and fields is broad, this first version of the core
       profile specification left out some of the concepts defined into
@@ -2117,17 +2145,6 @@ Reggiori                                                       [Page 37]
    Classification Schemes [TV-ANYTIME].  A Provider MAY either use the
    well-defined and standardised lists of Canonical Values or it MAY
    define application specific values which a Consumer can reference.
-
-
-
-
-
-
-
-Reggiori                                                       [Page 38]
-
-                            Portable Listings                   May 2013
-
 
 8.2.  Profile Identifier
 
@@ -2160,6 +2177,14 @@ Reggiori                                                       [Page 38]
    example supplemental information for a television programme may
    include related articles, close-ups, replays, outtakes, galleries,
    commercial tie-ins, games, sound clips, video clips, product
+
+
+
+Reggiori                                                       [Page 39]
+
+                            Portable Listings                   May 2013
+
+
    information.
 
    Multiple pieces of supplemental information can be indicated through
@@ -2173,17 +2198,6 @@ Reggiori                                                       [Page 38]
 
    Multiple reviews can be indicated through the use of multiple
    "review" link relations.
-
-
-
-
-
-
-
-Reggiori                                                       [Page 39]
-
-                            Portable Listings                   May 2013
-
 
 8.3.4.  "highlights"
 
@@ -2219,6 +2233,14 @@ Reggiori                                                       [Page 39]
    The "shot" link relation can be used to refer to a resource that
    represents a shot, for example indexed against time or frame count.
    A shot MAY also be expressed using a Segment (see Section 8.4.24) and
+
+
+
+Reggiori                                                       [Page 40]
+
+                            Portable Listings                   May 2013
+
+
    referenced from a Version or Segment Group with the "segments"
    relationship.
 
@@ -2232,14 +2254,6 @@ Reggiori                                                       [Page 39]
    against time or frame count.  A shot list MAY also be expressed using
    a Segment Group (see Section 8.4.25) and referenced from a Version
    with the "segments" relationship.
-
-
-
-
-Reggiori                                                       [Page 40]
-
-                            Portable Listings                   May 2013
-
 
    Multiple shot lists can be indicated through the use of multiple
    "shot-list" link relations.
@@ -2275,6 +2289,14 @@ Reggiori                                                       [Page 40]
 
    The "dopesheet" link relation can be used to refer to a resource that
    represents an exposure sheet which allows an animator to organize his
+
+
+
+Reggiori                                                       [Page 41]
+
+                            Portable Listings                   May 2013
+
+
    thinking and give instructions to the cameraman on how the animation
    is to be shot.
 
@@ -2288,14 +2310,6 @@ Reggiori                                                       [Page 40]
 
    Multiple trailers can be indicated through the use of multiple
    "trailer" link relations.
-
-
-
-
-Reggiori                                                       [Page 41]
-
-                            Portable Listings                   May 2013
-
 
 8.3.13.  "simulcast"
 
@@ -2331,6 +2345,14 @@ Reggiori                                                       [Page 41]
 
    The "recommendation" link relation can be used to refer to a resource
    recommended by the provider of the link's context.  The service
+
+
+
+Reggiori                                                       [Page 42]
+
+                            Portable Listings                   May 2013
+
+
    provider considers there to be similarities between the link's
    context resource and the referenced resource.  Example: This could
    provide access to previous or next episodes or to all episodes (the
@@ -2343,15 +2365,6 @@ Reggiori                                                       [Page 41]
 
    Multiple recommendations can be indicated through the use of multiple
    "recommendation" link relations.
-
-
-
-
-
-Reggiori                                                       [Page 42]
-
-                            Portable Listings                   May 2013
-
 
 8.3.17.  "insertion-points"
 
@@ -2388,6 +2401,14 @@ Reggiori                                                       [Page 42]
    Multiple speedbumps can be indicated through the use of multiple
    "speedbump" link relations.
 
+
+
+
+Reggiori                                                       [Page 43]
+
+                            Portable Listings                   May 2013
+
+
 8.3.21.  "product-purchase"
 
    The "product-purchase" link relation can be used to refer to a
@@ -2401,13 +2422,6 @@ Reggiori                                                       [Page 42]
 
    Multiple purchaseable products can be indicated through the use of
    multiple "product-purchase" link relations.
-
-
-
-Reggiori                                                       [Page 43]
-
-                            Portable Listings                   May 2013
-
 
 8.3.22.  "recap"
 
@@ -2444,6 +2458,13 @@ Reggiori                                                       [Page 43]
    Multiple resources collecting best-of selections can be indicated
    through the use of multiple "best-of" link relations.
 
+
+
+Reggiori                                                       [Page 44]
+
+                            Portable Listings                   May 2013
+
+
 8.3.26.  "extract"
 
    The "extract" link relation can be used to refer to a resource
@@ -2457,14 +2478,6 @@ Reggiori                                                       [Page 43]
    The following sections describe the object structure that can be used
    to represent a piece of audiovisual content metadata and any related
    piece of information.  Each object is provided with a general
-
-
-
-Reggiori                                                       [Page 44]
-
-                            Portable Listings                   May 2013
-
-
    description and definitions of its Singular and Plural fields as well
    as any Singular and Plural Relationships.  Any additional requirement
    or restriction on the object, fields, values and relationships is
@@ -2498,6 +2511,16 @@ Reggiori                                                       [Page 44]
             Application Build (Section 8.4.19)
             Application Publication (Section 8.4.20)
             Application Gallery (Section 8.4.21)
+
+
+
+
+
+Reggiori                                                       [Page 45]
+
+                            Portable Listings                   May 2013
+
+
             Media Resource (Section 8.4.22)
                Media Group (Section 8.4.23)
             Segment (Section 8.4.24)
@@ -2509,17 +2532,6 @@ Reggiori                                                       [Page 44]
             Person (Section 8.4.30)
             Organisation (Section 8.4.31)
             Group (Section 8.4.32)
-
-
-
-
-
-
-
-Reggiori                                                       [Page 45]
-
-                            Portable Listings                   May 2013
-
 
 8.4.1.  Entry
 
@@ -2557,6 +2569,14 @@ Reggiori                                                       [Page 45]
       returned MUST include a non-empty "displayName" value.  The value
       provided SHOULD be the primary textual field by which the Entry is
       normally displayed by the Service Provider when presenting it to
+
+
+
+Reggiori                                                       [Page 46]
+
+                            Portable Listings                   May 2013
+
+
       end-users.  Unless otherwise specified, the displayName value is
       used for the purposes of sorting and filtering.
    objectType: (ENUM)  The object type of the Entry record.  A profile
@@ -2569,14 +2589,6 @@ Reggiori                                                       [Page 45]
       type Entry.  The list of valid Canonical Values for this field
       consists of the list of lowercased object type names defined in
       Section 8.4.
-
-
-
-Reggiori                                                       [Page 46]
-
-                            Portable Listings                   May 2013
-
-
    published: (TIMESTAMP)  The date the metadata Entry record was first
       added to the user's metadata set or database (i.e. the creation
       date of the Entry).  This field MAY also be associated with the
@@ -2609,6 +2621,18 @@ Reggiori                                                       [Page 46]
          Initial Identifier suitable for discovery of the source
          Portable Listings API Provider endpoint from where the metadata
          Entry was derived from as explained in Section 5.
+
+
+
+
+
+
+
+Reggiori                                                       [Page 47]
+
+                            Portable Listings                   May 2013
+
+
       rel: (ENUM)  The rel value MUST BE the "via" relation type as
          defined in section 6.2.2. of [RFC5988].  If this property is
          omitted or null it MUST BE processed as if the value was the
@@ -2623,15 +2647,6 @@ Reggiori                                                       [Page 46]
       external Web resources.  A Provider SHOULD NOT use the links
       element to express relationships by-reference as this complicates
       processing by the Consumer.
-
-
-
-
-
-Reggiori                                                       [Page 47]
-
-                            Portable Listings                   May 2013
-
 
 8.4.1.3.  Relationships
 
@@ -2666,6 +2681,14 @@ Reggiori                                                       [Page 47]
    The Category object type extends the basic type ENTRY and it
    represents a user-facing category.
 
+
+
+
+Reggiori                                                       [Page 48]
+
+                            Portable Listings                   May 2013
+
+
 8.4.2.1.  Fields
 
    term: (ENUM OR IRI)  A link or code to or within a classification
@@ -2676,18 +2699,6 @@ Reggiori                                                       [Page 47]
       contain adult material.
 
 8.4.2.2.  Relationships
-
-
-
-
-
-
-
-
-Reggiori                                                       [Page 48]
-
-                            Portable Listings                   May 2013
-
 
    subCategories: [CATEGORY]  The list of sub-categories.  Categories
       MAY be grouped hierarchically.
@@ -2724,17 +2735,6 @@ Reggiori                                                       [Page 48]
          "international", "translation", "pseudo", "ingest".  The
          "short" and "main" values SHOULD NOT be used as this
          complicates processing by the Consumer.
-      value: (STRING or HTML)  The alternative name text.
-   synopsis: (STRING or HTML)  A brief or condensed statement giving a
-      general view about the piece of content e.g. a brief summary of
-      the plot of a novel, motion picture, play, etc.  This is being
-      referred as short synopsis.
-   description: [COMPLEX]  An extended textual description of the piece
-      of content other than the information provided with the "synopsis"
-      field.  The extended description MAY also consist of outlines,
-      lists, bullet points, edit decision lists, indexes and have
-      references to external media and graphical material.
-
 
 
 
@@ -2745,6 +2745,16 @@ Reggiori                                                       [Page 49]
                             Portable Listings                   May 2013
 
 
+      value: (STRING or HTML)  The alternative name text.
+   synopsis: (STRING or HTML)  A brief or condensed statement giving a
+      general view about the piece of content e.g. a brief summary of
+      the plot of a novel, motion picture, play, etc.  This is being
+      referred as short synopsis.
+   description: [COMPLEX]  An extended textual description of the piece
+      of content other than the information provided with the "synopsis"
+      field.  The extended description MAY also consist of outlines,
+      lists, bullet points, edit decision lists, indexes and have
+      references to external media and graphical material.
       type: (ENUM)  The type of field SHOULD BE selected from the
          following list: "mediumSynopsis", "longSynopsis", "summary",
          "annotation", "annotationSynopsis", "abstract",
@@ -2783,16 +2793,6 @@ Reggiori                                                       [Page 49]
          processing by the Consumer.  Note that value "updated" and
          "published" values when specified will always refer to the
          actual piece of content rather than the Entry metadata (see
-         Section 8.4.1).
-      value: (TIMESTAMP or PERIOD)  The alternative date.
-   tags: [STRING]  A user-defined category or label for the piece of
-      content, e.g. "coolshow" or "web20".  These values SHOULD be case-
-      insensitive, and there SHOULD NOT be multiple tags provided for a
-      given Entry that differ only in case.  Note that this field is a
-      Plural Simple Field, meaning each instance consists only of a
-      string value.
-
-
 
 
 
@@ -2801,6 +2801,14 @@ Reggiori                                                       [Page 50]
                             Portable Listings                   May 2013
 
 
+         Section 8.4.1).
+      value: (TIMESTAMP or PERIOD)  The alternative date.
+   tags: [STRING]  A user-defined category or label for the piece of
+      content, e.g. "coolshow" or "web20".  These values SHOULD be case-
+      insensitive, and there SHOULD NOT be multiple tags provided for a
+      given Entry that differ only in case.  Note that this field is a
+      Plural Simple Field, meaning each instance consists only of a
+      string value.
    keywords: [STRING]  A list of keywords and phrases assigned by the
       Provider to the piece of content, e.g. "sports" or "live".  These
       values SHOULD be case-insensitive, and there SHOULD NOT be
@@ -2841,14 +2849,6 @@ Reggiori                                                       [Page 50]
          sub-field.  If the exclusive attribute is omitted or has the
          value false then the piece of content is editorially targeted
          at the target place specified in the value sub-field.
-   format: (COMPLEX)  The editorial format categorising the piece of
-      content other than "category" and "keywords".
-      value: (ENUM or IRI)  The value SHOULD BE selected from a standard
-         list of values such as the EBU Editorial Format types.
-
-
-
-
 
 
 
@@ -2857,6 +2857,10 @@ Reggiori                                                       [Page 51]
                             Portable Listings                   May 2013
 
 
+   format: (COMPLEX)  The editorial format categorising the piece of
+      content other than "category" and "keywords".
+      value: (ENUM or IRI)  The value SHOULD BE selected from a standard
+         list of values such as the EBU Editorial Format types.
    source: [COMPLEX]  Reference to the resources from which the piece of
       content is derived in whole or in part.
       type: (ENUM)  The type of field SHOULD BE selected from a standard
@@ -2867,20 +2871,20 @@ Reggiori                                                       [Page 51]
    alternativeLanguage: [COMPLEX]  Alternative languages of the content
       and their use.
       type: (ENUM)  The language purpose.  The value SHOULD BE selected
-         from the following list: "audio", "mainOriginalLanguage",
-         "mainDubbedLanguage", "additionalOriginalLanguage",
-         "additionalDubbedLanguage", "descriptiveVideoInformation",
-         "supplementalCommentary", "directorCommentary",
-         "audioDescription", "supplementaryAudioProgramme",
-         "educationalNotes", "voiceOver", "originalCommentary",
-         "dubbedCommentary", "originalNarration", "dubbedDialogue",
-         "dubbedNarration", "interviewerLanguage",
+         from the following list: "mainDubbedLanguage",
+         "additionalOriginalLanguage", "additionalDubbedLanguage",
+         "descriptiveVideoInformation", "supplementalCommentary",
+         "directorCommentary", "audioDescription",
+         "supplementaryAudioProgramme", "educationalNotes", "voiceOver",
+         "originalCommentary", "dubbedCommentary", "originalNarration",
+         "dubbedDialogue", "dubbedNarration", "interviewerLanguage",
          "intervieweeLanguage", "text", "textDescription", "transcript",
          "caption", "openCaption", "closedCaption", "supplemental",
          "titles", "subtitles", "openSubtitles", "closedSubtitles",
          "songLyrics", "signLanguage", "dubbedSignLanguage".  The
-         "main", "production" and "original" values SHOULD NOT be used
-         as this complicates processing by the Consumer.
+         "main", "production", "original", "audio" and
+         "mainOriginalLanguage" values SHOULD NOT be used as this
+         complicates processing by the Consumer.
       value: (LANGUAGE)  The alternative language value.
    productionCountry: [TERRITORY]  The original country (or countries)
       where the piece of content was produced.  The values SHALL BE an
@@ -2897,10 +2901,6 @@ Reggiori                                                       [Page 51]
          is purely fictional.
    temporal: [COMPLEX]  Temporal coverage information associated with
       the piece of content.
-      type: (ENUM)  The type of field SHOULD BE selected from a standard
-         list of values (e.g. 'filmingPeriod', 'depictedPeriod').
-      value: (PERIOD or YEAR)  The actual temporal coverage period or
-         gregorian calendar year.
 
 
 
@@ -2913,6 +2913,10 @@ Reggiori                                                       [Page 52]
                             Portable Listings                   May 2013
 
 
+      type: (ENUM)  The type of field SHOULD BE selected from a standard
+         list of values (e.g. 'filmingPeriod', 'depictedPeriod').
+      value: (PERIOD or YEAR)  The actual temporal coverage period or
+         gregorian calendar year.
       fictional: (BOOLEAN)  A Boolean value indicating whether the
          temporal period is purely fictional (e.g. 'year 2030').
    contentVersion: (STRING or NUMBER)  The version of the content.
@@ -2937,11 +2941,10 @@ Reggiori                                                       [Page 52]
       following fields are additionally defined for the contributor
       relationship:
       role: (ENUM or IRI)  REQUIRED.  A Canonical Value representing the
-         role played by the Target Entry as contributor (e.g. author,
-         director, actor, producer).  The value SHOULD BE selected from
-         a standard list of values such as the European Broadcasting
-         Union Role Codes [EBU-ROLE-CODES].  This is the Primary Sub-
-         Field for the purposes of sorting and filtering.
+         role played by the Target Entry as contributor (e.g. director,
+         actor, producer).  The value SHOULD BE selected from a standard
+         list of values such as the European Broadcasting Union Role
+         Codes [EBU-ROLE-CODES].
       roleLabel: (STRING)  A human-readable label or name associated to
          the "role" sub-field.
       stageName: (STRING or HTML)  A human-readable label or name
@@ -2956,9 +2959,6 @@ Reggiori                                                       [Page 52]
       pieces of content which are cross-promotions (e.g. "if you liked
       this piece of content you may also like these other content
       items").
-      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "related"
-         relation type as defined in [RFC5988].
-
 
 
 
@@ -2968,6 +2968,9 @@ Reggiori                                                       [Page 53]
 
                             Portable Listings                   May 2013
 
+
+      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "related"
+         relation type as defined in [RFC5988].
 
 8.4.4.  Programme
 
@@ -3013,9 +3016,6 @@ Reggiori                                                       [Page 53]
    collection of programmes, mini-Series, compilation, serial, concept,
    show, theme etc.
 
-8.4.5.1.  Relationships
-
-
 
 
 
@@ -3024,6 +3024,8 @@ Reggiori                                                       [Page 54]
 
                             Portable Listings                   May 2013
 
+
+8.4.5.1.  Relationships
 
    programmes: [PROGRAMME]  The list of Programmes inside the Programme
       Group (e.g. the list of Series part of a Brand or Episodes part of
@@ -3071,8 +3073,6 @@ Reggiori                                                       [Page 54]
    represents an editorial concept which groups one or more versions.
    Often when talking about a television programme what it is really
    meant is an episode.  An episode could be simply be part of a brand a
-   so called pilot episode.
-
 
 
 
@@ -3080,6 +3080,8 @@ Reggiori                                                       [Page 55]
 
                             Portable Listings                   May 2013
 
+
+   so called pilot episode.
 
 8.4.10.  Clip
 
@@ -3123,8 +3125,6 @@ Reggiori                                                       [Page 55]
 
 8.4.11.2.  Relationships
 
-   broadcasts: [BROADCAST]  The broadcast events associated with a
-      particular version.
 
 
 
@@ -3137,6 +3137,8 @@ Reggiori                                                       [Page 56]
                             Portable Listings                   May 2013
 
 
+   broadcasts: [BROADCAST]  The broadcast events associated with a
+      particular version.
    availabilities: [ONDEMAND]  The availabilities associated with a
       particular version when it is made available on-demand.
    segments: [SEGMENT]  The segments or segment groups associated with a
@@ -3180,11 +3182,9 @@ Reggiori                                                       [Page 56]
       media (dvd, blu-ray, VHS), theatre (cinema), mobile.
    organisation: (ORGANISATION)  Relates a Service to an Organisation
       providing the service.
-   application: (APPLICATION)  A reference to a media player or helper
-      Application.  A media player will be invoked to present all
-      publications associated with an ondemand service.  An on-screen
-      helper application MAY be used instead to help users to provision
-      IPTV services and resolve issues.
+
+
+
 
 
 
@@ -3192,6 +3192,12 @@ Reggiori                                                       [Page 57]
 
                             Portable Listings                   May 2013
 
+
+   application: (APPLICATION)  A reference to a media player or helper
+      Application.  A media player will be invoked to present all
+      publications associated with an ondemand service.  An on-screen
+      helper application MAY be used instead to help users to provision
+      IPTV services and resolve issues.
 
 8.4.13.  Programme Publication
 
@@ -3231,13 +3237,7 @@ Reggiori                                                       [Page 57]
    hd: (BOOLEAN)  A Boolean value indicating whether the programme
       version being broadcasted or made available on-demand is high
       definition.
-   3d: (BOOLEAN)  A Boolean value indicating whether the programme
-      version being broadcasted or made available on-demand is 3D.
-   uhd: (BOOLEAN)  A Boolean value indicating whether the programme
-      version being broadcasted or made available on-demand is ultra
-      high definition.
 
-8.4.13.2.  Relationships
 
 
 
@@ -3248,6 +3248,14 @@ Reggiori                                                       [Page 58]
 
                             Portable Listings                   May 2013
 
+
+   3d: (BOOLEAN)  A Boolean value indicating whether the programme
+      version being broadcasted or made available on-demand is 3D.
+   uhd: (BOOLEAN)  A Boolean value indicating whether the programme
+      version being broadcasted or made available on-demand is ultra
+      high definition.
+
+8.4.13.2.  Relationships
 
    service: (SERVICE)  A reference to the Service on which the programme
       instance will be broadcasted or made available on demand.
@@ -3279,10 +3287,30 @@ Reggiori                                                       [Page 58]
       programme version being broadcasted is a first showing.
    lastShowing: (BOOLEAN)  A Boolean value indicating whether the
       programme version being broadcasted is a last showing.
+   primaryShowing: (BOOLEAN)  A Boolean value indicating whether the
+      programme version being broadcasted is the primary or preferred
+      showing.  Service Providers MUST NOT mark more than one broadcast
+      publication as primaryShowing="true", and MAY choose not to mark
+      any broadcast as primary, if this information is not available.
+      For efficiency, Service Providers SHOULD NOT mark all non-primary
+      broadcast with primaryShowing="false", but should instead omit
+      this sub-field for all non-primary broadcasts.
+
+
+
+
+
+Reggiori                                                       [Page 59]
+
+                            Portable Listings                   May 2013
+
+
    repeat: (BOOLEAN)  A Boolean value indicating whether the programme
       version being broadcasted is a repeat.
    live: (BOOLEAN)  A Boolean value indicating whether the programme
       version being broadcasted is a live broadcast.
+   dummy: (BOOLEAN)  A Boolean value indicating whether the broadcast
+      represents a period of time when the service is off air.
 
 8.4.15.  Ondemand
 
@@ -3293,17 +3321,6 @@ Reggiori                                                       [Page 58]
    opera).
 
 8.4.15.1.  Fields
-
-
-
-
-
-
-
-Reggiori                                                       [Page 59]
-
-                            Portable Listings                   May 2013
-
 
    startAvailability: (TIMESTAMP)  The published date and time that the
       programme version will be available.  If not specified the
@@ -3320,11 +3337,14 @@ Reggiori                                                       [Page 59]
       viewing.
    instantViewing: (BOOLEAN)  A Boolean value indicating whether the
       programme version is for instant viewing.
-   deliveryMode: (ENUM)  The on-demand pblication delivery mode such as
-      'streaming', 'download', 'progressive-download' etc.  This string
-      generally is specified to contain a valid Canonical Value from a
-      reference data vocabulary.  A Provider SHOULD use any additional
-      deliveryMode values as necessary.
+   deliveryMode: (ENUM)  The on-demand publication delivery mode SHALL
+      be selected from one of the following values: "unicastStream",
+      "download", "progressiveDownload".  A Provider MAY use any
+      additional deliveryMode values as necessary.
+   catchup: (BOOLEAN)  A Boolean value indicating whether the on-demand
+      publication is catch-up.
+   archive: (BOOLEAN)  A Boolean value indicating whether the on-demand
+      publication is archive.
 
 8.4.16.  Schedule
 
@@ -3333,6 +3353,14 @@ Reggiori                                                       [Page 59]
    ZDF service schedule).
 
    Note that in order to guarantee the creation of a unqiue and
+
+
+
+Reggiori                                                       [Page 60]
+
+                            Portable Listings                   May 2013
+
+
    disambiguating schedule "id" field, the following information SHALL
    be combined:
    o  The metadata publishing party identifier (if defined).
@@ -3349,17 +3377,6 @@ Reggiori                                                       [Page 59]
    service: (SERVICE)  A reference to the Service on which the
       programmes will be broadcasted.
    broadcasts: [BROADCAST]  The list of broadcasts inside the schedule.
-
-
-
-
-
-
-
-Reggiori                                                       [Page 60]
-
-                            Portable Listings                   May 2013
-
 
 8.4.17.  Catalogue
 
@@ -3391,6 +3408,15 @@ Reggiori                                                       [Page 60]
    represents an abstract application (e.g.  BBC iPlayer).  The
    Application object type is identified with the string APPLICATION.
 
+
+
+
+
+Reggiori                                                       [Page 61]
+
+                            Portable Listings                   May 2013
+
+
 8.4.18.1.  Fields
 
    country: [TERRITORY]  The countries and regions where the application
@@ -3406,16 +3432,6 @@ Reggiori                                                       [Page 60]
       than one build should be labelled as "canonical" because of the
       ambiguity this creates and this complicates processing by the
       Consumer.
-
-
-
-
-
-
-Reggiori                                                       [Page 61]
-
-                            Portable Listings                   May 2013
-
 
 8.4.19.  Application Build
 
@@ -3449,6 +3465,14 @@ Reggiori                                                       [Page 61]
    represents an instance or publication event of an Application.  The
    application object type is identified with the string
    APPLICATION_PUBLICATION.  An application is associated with a
+
+
+
+Reggiori                                                       [Page 62]
+
+                            Portable Listings                   May 2013
+
+
    service, and with a particular application build.
 
    Note that in order to guarantee the creation of a unqiue and
@@ -3460,18 +3484,6 @@ Reggiori                                                       [Page 61]
    o  The published start and end time values.
 
 8.4.20.1.  Fields
-
-
-
-
-
-
-
-
-Reggiori                                                       [Page 62]
-
-                            Portable Listings                   May 2013
-
 
    startAvailability: (TIMESTAMP)  The published date and time that the
       application build will be available.  If not specified the
@@ -3507,6 +3519,16 @@ Reggiori                                                       [Page 62]
    Note that in order to guarantee the creation of a unqiue and
    disambiguating application gallery "id" field, the following
    information SHALL be combined:
+
+
+
+
+
+Reggiori                                                       [Page 63]
+
+                            Portable Listings                   May 2013
+
+
    o  The metadata publishing party identifier (if defined).
    o  The parent service identifier.
 
@@ -3521,14 +3543,6 @@ Reggiori                                                       [Page 62]
 
    The Media Resource type extends the CONTENT object type and
    represents a digital or physical manifestation of a version.  For an
-
-
-
-Reggiori                                                       [Page 63]
-
-                            Portable Listings                   May 2013
-
-
    organisation or producer acting as caretaker for a media resource, it
    MAY contain a string formatted piece of information about a specific
    e.g. tape name, shelf location for an asset, including an
@@ -3560,6 +3574,17 @@ Reggiori                                                       [Page 63]
       a container file or format.
    medium: (COMPLEX)  The material or physical carrier of the resource.
       If a file, it should be the carrier format.
+
+
+
+
+
+
+Reggiori                                                       [Page 64]
+
+                            Portable Listings                   May 2013
+
+
       value: (ENUM)  The type of media resource SHOULD BE selected from
          a standard list of values such as the EBU Storage Media types
          (e.g. '1BM', 'BMX', 'video', 'audio').
@@ -3575,20 +3600,10 @@ Reggiori                                                       [Page 63]
    audioEncoding: (ENUM)  The audio encoding parameters SHOULD BE
       selected from a standard list of values such as the EBU Audio
       Compression Codes.
-
-
-
-
-
-Reggiori                                                       [Page 64]
-
-                            Portable Listings                   May 2013
-
-
    audioConfiguration: (ENUM)  The audio configuration parameters SHOULD
       BE selected from a standard list of values such as the EBU Audio
       Format Codes (e.g. 'stereo', '2+1', 'surround', 'surround (7+1)').
-   audioBitrate: (NUMBER)  The audio bit rate.
+   audioBitrate: (NUMBER)  The average audio bit rate.
    minAudioBitrate: (NUMBER)  The minimal audio bit rate.
    maxAudioBitrate: (NUMBER)  The maximum audio bit rate.
    audioSamplingRate: (NUMBER)  The audio sampling rate.
@@ -3608,13 +3623,23 @@ Reggiori                                                       [Page 64]
    videoEncoding: (ENUM)  The video encoding parameters.  The value
       SHOULD BE selected from a standard list of values such as the EBU
       Video Compression Codes.
-   videoBitrate: (NUMBER)  The video bit rate.
+   videoBitrate: (NUMBER)  The average video bit rate.
    minVideoBitrate: (NUMBER)  The minimal video bit rate.
    maxVideoBitrate: (NUMBER)  The maximum video bit rate.
    videoSamplingRate: (NUMBER)  The video sampling rate.
    embedCode: (HTML)  An HTML fragment that, when embedded in an HTML
       page, will provide an interactive player UI for the media
       resource.
+
+
+
+
+
+
+Reggiori                                                       [Page 65]
+
+                            Portable Listings                   May 2013
+
 
 8.4.23.  Media Group
 
@@ -3630,16 +3655,6 @@ Reggiori                                                       [Page 64]
    more alternative media sources MAY specified.  A Consumer MUST BE
    able to select the main alternative media source by stepping through
    each of the specified sources in the given order.
-
-
-
-
-
-
-Reggiori                                                       [Page 65]
-
-                            Portable Listings                   May 2013
-
 
 8.4.23.1.  Relationships
 
@@ -3671,6 +3686,17 @@ Reggiori                                                       [Page 65]
    contain multiple segments.  Segments are reusable, editorially
    distinct items.
 
+
+
+
+
+
+
+Reggiori                                                       [Page 66]
+
+                            Portable Listings                   May 2013
+
+
 8.4.24.1.  Fields
 
    segmentType: (ENUM)  The type of segment SHALL be selected from one
@@ -3685,17 +3711,6 @@ Reggiori                                                       [Page 65]
       segement.
    chapter: (BOOLEAN)  A Boolean value indicating whether the programme
       segment is a chapter.
-
-
-
-
-
-
-
-Reggiori                                                       [Page 66]
-
-                            Portable Listings                   May 2013
-
 
 8.4.24.2.  Relationships
 
@@ -3731,6 +3746,13 @@ Reggiori                                                       [Page 66]
    and represents a group or list of related pieces of content, and it
    has the following fields and relationships:
 
+
+
+Reggiori                                                       [Page 67]
+
+                            Portable Listings                   May 2013
+
+
 8.4.26.1.  Relationships
 
    contents: [CONTENT]  The list of pieces of content that are contained
@@ -3741,17 +3763,6 @@ Reggiori                                                       [Page 66]
          value MUST BE the "collection" relation type as defined in
          [RFC6573] when referring to a piece of Content representing a
          hierarchical collection of content.
-
-
-
-
-
-
-
-Reggiori                                                       [Page 67]
-
-                            Portable Listings                   May 2013
-
 
 8.4.27.  Rights
 
@@ -3787,6 +3798,17 @@ Reggiori                                                       [Page 67]
    rightsHolder: (AGENT)  The person or organisation holding or managing
       the rights related to the piece of content.
 
+
+
+
+
+
+
+Reggiori                                                       [Page 68]
+
+                            Portable Listings                   May 2013
+
+
 8.4.28.  Award
 
    The Award object type extends the basic object type CONTENT and
@@ -3799,15 +3821,6 @@ Reggiori                                                       [Page 67]
    awardCategory: (ENUM)  Specify the category in which the programme
       won the awards or the nomination.  The value SHOULD BE selected
       from a standard list of values.
-
-
-
-
-
-Reggiori                                                       [Page 68]
-
-                            Portable Listings                   May 2013
-
 
 8.4.28.2.  Relationships
 
@@ -3842,6 +3855,16 @@ Reggiori                                                       [Page 68]
    The Group object type extends the AGENT object type and represents a
    group of people or organisations.
 
+
+
+
+
+
+Reggiori                                                       [Page 69]
+
+                            Portable Listings                   May 2013
+
+
 8.4.32.1.  Relationships
 
    members: [AGENT]  The members of the group.
@@ -3853,18 +3876,6 @@ Reggiori                                                       [Page 68]
    grammar, can be identified with the following media type:
    MIME Media Type Name  application
    MIME Subtype Name  listings+json
-
-
-
-
-
-
-
-Reggiori                                                       [Page 69]
-
-                            Portable Listings                   May 2013
-
-
    Required Parameters  none
    Optional parameters:
       "profile":  This parameter contains a whitespace-separated list of
@@ -3900,6 +3911,16 @@ Reggiori                                                       [Page 69]
    o  Reference: This specification, Section 8.3.3.
 
    o  Relation Name: highlights
+
+
+
+
+
+Reggiori                                                       [Page 70]
+
+                            Portable Listings                   May 2013
+
+
    o  Description: Refers to a resource that represents striking,
       noticeable aspects of the link's context.
    o  Reference: This specification, Section 8.3.4.
@@ -3911,16 +3932,6 @@ Reggiori                                                       [Page 69]
    o  Reference: This specification, Section 8.3.5.
 
    o  Relation Name: transcript
-
-
-
-
-
-Reggiori                                                       [Page 70]
-
-                            Portable Listings                   May 2013
-
-
    o  Description: Refers to an exact copy or reproduction of the link's
       context.
    o  Reference: This specification, Section 8.3.6.
@@ -3956,6 +3967,16 @@ Reggiori                                                       [Page 70]
    o  Reference: This specification, Section 8.3.12.
 
    o  Relation Name: simulcast
+
+
+
+
+
+Reggiori                                                       [Page 71]
+
+                            Portable Listings                   May 2013
+
+
    o  Description: Refers to an alternative version of the link's
       context that is being shown simultaneously with the link's
       context.
@@ -3967,16 +3988,6 @@ Reggiori                                                       [Page 70]
    o  Reference: This specification, Section 8.3.14.
 
    o  Relation Name: catchup
-
-
-
-
-
-Reggiori                                                       [Page 71]
-
-                            Portable Listings                   May 2013
-
-
    o  Description: Refers to an alternative version of link's context
       that is available for consumption on demand from a catch-up TV
       service.
@@ -4013,6 +4024,15 @@ Reggiori                                                       [Page 71]
       resource.
    o  Reference: This specification, Section 8.3.21.
 
+
+
+
+
+Reggiori                                                       [Page 72]
+
+                            Portable Listings                   May 2013
+
+
    o  Relation Name: recap
    o  Description: Refers to a text or AV recap of the link's context.
    o  Reference: This specification, Section 8.3.22.
@@ -4024,15 +4044,6 @@ Reggiori                                                       [Page 71]
    o  Relation Name: content-package
    o  Description: Refers to a content package associated to the link's
       context.
-
-
-
-
-Reggiori                                                       [Page 72]
-
-                            Portable Listings                   May 2013
-
-
    o  Reference: This specification, Section 8.3.24.
 
    o  Relation Name: best-of
@@ -4068,6 +4079,16 @@ Reggiori                                                       [Page 72]
    discussions.
 
 
+
+
+
+
+
+Reggiori                                                       [Page 73]
+
+                            Portable Listings                   May 2013
+
+
 12.  Change Log
 
    Changes from -03 version (Draft C)
@@ -4079,16 +4100,6 @@ Reggiori                                                       [Page 72]
    o  Added "attributionDate", "note" and "lang" sub-fileds to Complex
       fields.
    o  Corrected "lang" sub-filed definition for relationships.
-
-
-
-
-
-Reggiori                                                       [Page 73]
-
-                            Portable Listings                   May 2013
-
-
    o  Simplified "alternativeTitle" definition.
    o  Added "Additional Link Relation Types" section.
    o  Updated "contributor" sub-filed "role" as ENUM or IRI.
@@ -4124,6 +4135,16 @@ Reggiori                                                       [Page 73]
    o  Added Application types hierarchy and referred from "application"
       in Service.
    o  Made Programme "country" plural.
+
+
+
+
+
+Reggiori                                                       [Page 74]
+
+                            Portable Listings                   May 2013
+
+
    o  Added TERRITORY type to "location" possible list of value types."
    o  Added YEAR type to "temporal" possible list of value types.
    o  Added "minAudioBitrate", "maxAudioBitrate", "minVideoBitrate" and
@@ -4135,16 +4156,6 @@ Reggiori                                                       [Page 73]
    o  Added "childrensContent" and "educationalContent" to Content.
    o  Updated "language" to be main production language.
    o  Added "alternativeLanguage".
-
-
-
-
-
-Reggiori                                                       [Page 74]
-
-                            Portable Listings                   May 2013
-
-
    o  Moved "parent" and "peers" to Entry.
    o  Dropped "related" from Content.
    o  Added "crossPromotions" to Content.
@@ -4182,6 +4193,14 @@ Reggiori                                                       [Page 74]
       "product-purchase", "recap", "making-of", "content-package",
       "supplemental-information", "best-of" and "extract" link relation
       types.
+
+
+
+Reggiori                                                       [Page 75]
+
+                            Portable Listings                   May 2013
+
+
    o  Removed "supportingMaterial" from Content and mandate use links of
       type "supplemental-material" instead.
    o  Added "segments" to Version.
@@ -4191,21 +4210,14 @@ Reggiori                                                       [Page 74]
       "aliases".
    o  Added "end" to Segment.
    o  Added "insertion-points" and "shot" link relation types.
-
-
-
-
-
-Reggiori                                                       [Page 75]
-
-                            Portable Listings                   May 2013
-
-
    o  Moved "duration" from Content to Programme Item and Segment.
    o  Moved "free" from Broadcast to Programme Publication.
    o  Added "signed", "hasSubtitles" and "audioDescribed" to Programme
       Publication.
    o  Moved "hd", "3d" and "uhd" to Programme Publication.
+   o  Added "dummy" and "primaryShowing" to Broadcast.
+   o  Added "catchup" and "archive" to Ondemand.
+   o  Added "role" to reltionships definition.
 
 
 13.  References
@@ -4237,6 +4249,14 @@ Reggiori                                                       [Page 75]
    [RFC4287]  Nottingham, M., Ed. and R. Sayre, Ed., "The Atom
               Syndication Format", RFC 4287, December 2005.
 
+
+
+
+Reggiori                                                       [Page 76]
+
+                            Portable Listings                   May 2013
+
+
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627, July 2006.
 
@@ -4249,14 +4269,6 @@ Reggiori                                                       [Page 75]
               RFC 6573, April 2012.
 
    [RFC6906]  Wilde, E., "The 'profile' Link Relation Type", RFC 6906,
-
-
-
-Reggiori                                                       [Page 76]
-
-                            Portable Listings                   May 2013
-
-
               March 2013.
 
 13.2.  Informative References
@@ -4293,6 +4305,14 @@ Reggiori                                                       [Page 76]
    [EBUCORE]  EBU, "EBU - TECH 3293 - EBU Core Metadata Set (EBU Core)
               v.1.4".
 
+
+
+
+Reggiori                                                       [Page 77]
+
+                            Portable Listings                   May 2013
+
+
    [GEO-JSON]
               "The GeoJSON Format Specification".
 
@@ -4304,14 +4324,6 @@ Reggiori                                                       [Page 76]
 
    [HTML5-MM]
               W3C, "Media Multitrack API".
-
-
-
-
-Reggiori                                                       [Page 77]
-
-                            Portable Listings                   May 2013
-
 
    [IANA-MIMEREG]
               IANA, "MIME Media Types".
@@ -4349,6 +4361,14 @@ Reggiori                                                       [Page 77]
    [PortableContacts]
               Smarr, J., "Portable Contacts 1.0 Draft C".
 
+
+
+
+Reggiori                                                       [Page 78]
+
+                            Portable Listings                   May 2013
+
+
    [TV-ANYTIME]
               ETSI, "TV Anytime".
 
@@ -4361,14 +4381,6 @@ Reggiori                                                       [Page 77]
    [XSD-DATATYPES]
               Biron, P. and A. Malhotra, "XML Schema Part 2: Datatypes
               Second Edition", October 2004,
-
-
-
-Reggiori                                                       [Page 78]
-
-                            Portable Listings                   May 2013
-
-
               <http://www.w3.org/TR/xmlschema-2/>.
 
 
@@ -4405,6 +4417,14 @@ Appendix A.  Examples
          "displayName": "Episode 1",
          "title": "Pilot",
          "alternativeTitle": {
+
+
+
+Reggiori                                                       [Page 79]
+
+                            Portable Listings                   May 2013
+
+
            "type": "original",
            "value": "Northwest Passage"
          },
@@ -4417,14 +4437,6 @@ Appendix A.  Examples
          },
          "tags": [
            "FBI", "murder", "twinpeaks"
-
-
-
-Reggiori                                                       [Page 79]
-
-                            Portable Listings                   May 2013
-
-
          ],
          "genre": [
            {
@@ -4461,6 +4473,14 @@ Reggiori                                                       [Page 79]
              "label": "David Lynch"
            },
            {
+
+
+
+Reggiori                                                       [Page 80]
+
+                            Portable Listings                   May 2013
+
+
              "href": "2F050A9AF481",
              "role": "writer",
              "label": "Mark Frost"
@@ -4473,14 +4493,6 @@ Reggiori                                                       [Page 79]
            }
          ],
          "position": 1,
-
-
-
-Reggiori                                                       [Page 80]
-
-                            Portable Listings                   May 2013
-
-
          "parent": {
            "href": "55835B5213C7",
            "label": "Series 1"
@@ -4517,6 +4529,14 @@ Reggiori                                                       [Page 80]
              "primary": true
            },
            {
+
+
+
+Reggiori                                                       [Page 81]
+
+                            Portable Listings                   May 2013
+
+
              "href": "C675EDD23A2D",
              "role": "writer",
              "label": "David Lynch"
@@ -4529,14 +4549,6 @@ Reggiori                                                       [Page 80]
          ],
          "position": 2,
          "parent": {
-
-
-
-Reggiori                                                       [Page 81]
-
-                            Portable Listings                   May 2013
-
-
            "href": "55835B5213C7",
            "label": "Series 1"
          },
@@ -4573,24 +4585,20 @@ Appendix B.  Compatibility with EBUCore and other standards
    long as it is feasible, and so long as the changes required are
    compatible with the Goals and Approach of this spec.  Although
    Portable Listings is an independent spec, with a more limited scope
-   than other broadcast and television industry and Web standards, any
-   proposed changes to the Portable Listings spec SHOULD BE considered
-   in the context of other communities, and we should strive not to
-   break compatibility unless it is truly necessary, e.g. if the goals
-   of different standard communities diverge significantly in the
-   future.
-
-
-
-
-
-
 
 
 
 Reggiori                                                       [Page 82]
 
                             Portable Listings                   May 2013
+
+
+   than other broadcast and television industry and Web standards, any
+   proposed changes to the Portable Listings spec SHOULD BE considered
+   in the context of other communities, and we should strive not to
+   break compatibility unless it is truly necessary, e.g. if the goals
+   of different standard communities diverge significantly in the
+   future.
 
 
 Author's Address
@@ -4600,14 +4608,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
-
-
-
-
-
-
-
 
 
 

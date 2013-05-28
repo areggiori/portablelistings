@@ -143,7 +143,7 @@
 <table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
 <tr><td class="header">Working Draft</td><td class="header">A. Reggiori</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">Derrick Media</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">May 23, 2013</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">May 28, 2013</td></tr>
 </table></td></tr></table>
 <h1><br />Portable Listings</h1>
 
@@ -587,7 +587,7 @@ Definitions</h3>
 </dd>
 <dt>Sub-Entry Role</dt>
 <dd>
-            The role played by the Target Entry in a Relationship with a given Source Entry is defined to be the name or label of the relationship itself.
+            The role played by the Target Entry in a Relationship with a given Source Entry is defined to be the name of the relationship itself.
           
 </dd>
 <dt>Profile:</dt>
@@ -1125,8 +1125,8 @@ Filtering</h3>
 </dd>
 <dt>filterRelationshipsBy:</dt>
 <dd>
-                Specifies a relationship label to filter Entries by (e.g. 'service').
-                A Service Provider SHALL match only Entries which have the provided relationship label.
+                Specifies a relationship name to filter Entries by (e.g. 'service').
+                A Service Provider SHALL match only Entries which have the provided relationship name.
                 The <tt>metadataPublisher</tt> relationship SHALL be filtered using the <tt>filterPublisher</tt> filter.
               
 </dd>
@@ -1269,7 +1269,7 @@ Presentation</h3>
 </dd>
 <dt>relationships:</dt>
 <dd>
-                If non-empty, each Entry returned SHALL contain only the relationship labels explicitly requested.
+                If non-empty, each Entry returned SHALL contain only the relationship names explicitly requested.
                 A Service Provider MAY return a subset of the requested relationships if they are not supported.
                 A Provider SHOULD return at least the <tt>href</tt> and <tt>entry</tt> fields for relationships included <tt>by-reference</tt> and <tt>by-value</tt> respectively (see <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>).
                 This parameter is used for efficiency when a Consumer wishes to access only a subset of the relationships.
@@ -1497,7 +1497,7 @@ Response Format</h3>
               <tt>entry</tt>: an array of Entry objects, one for each Entry matching the request, as defined in <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a>.
               For consistency of parsing, if the request could possibly return multiple Entries (as is normally the case), this value MUST always be an array of results, even if there happens to be 0 or 1 matching results.
               If the request is specifically for a single Entry (e.g. because the request contains Additional Path Information like <tt>/id</tt>), then <tt>entry</tt> MUST be an object containing the single Entry returned (i.e. <tt>"entry": [ { /* first Entry */ }, ... ]</tt> and <tt>"entry": { /* only Entry */ }</tt> respectively).
-              When Sub-Entries are requested <tt>by-value</tt> to be included inline (see <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>), then the same <tt>entry</tt> construct MUST be used to express any Sub-Entries as value of the RELATIONSHIP Complex Field its sub-field <tt>entry</tt> (i.e. <tt>"entry": [ { /* Entry fields */ ... , "pluralRelationship_label": [ { "entry": { /* first Sub-Entry */ }, "rel": "first" }, ... ] } ]</tt> for Plural Relationships, and <tt>"entry": [ { /* Entry fields */ ... , "singularRelationship_label": { "entry": { /* only Sub-Entry */ }, "rel": "next" } } ]</tt> for Singular Relationships respectively).
+              When Sub-Entries are requested <tt>by-value</tt> to be included inline (see <a class='info' href='#relationships'>Section&nbsp;7.1.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>), then the same <tt>entry</tt> construct MUST be used to express any Sub-Entries as value of the RELATIONSHIP Complex Field its sub-field <tt>entry</tt> (i.e. <tt>"entry": [ { /* Entry fields */ ... , "pluralRelationship_name": [ { "entry": { /* first Sub-Entry */ }, "rel": "first" }, ... ] } ]</tt> for Plural Relationships, and <tt>"entry": [ { /* Entry fields */ ... , "singularRelationship_name": { "entry": { /* only Sub-Entry */ }, "rel": "next" } } ]</tt> for Singular Relationships respectively).
             
 </li>
 </ul><p>
@@ -1971,17 +1971,14 @@ Relationships</h3>
 
 <p>
           A relationship expresses a directed labeled and typed connection from a Source Entry (or relationship Context Entry) to a Target Entry.
-          Each relationship MUST have a label and a type.
+          Each relationship MUST have a name and a type.
           Each relationship between two Entries is defined as either a Singular Relationship, in which case there MUST be one and only one Sub-Entry associated, or as a Plural Relationship, in which case any number of Sub-Entries MAY be associated to the source Entry being described.
           When a relationship is defined as REQUIRED its minimal cardinality is set to one Sub-Entry.
-          A Provider MAY express multiple relationships between two given Entries, either with the same or different labels and types.
-          For example, a Programme Entry could be connected to a Person Entry either via the <tt>creator</tt>, <tt>publisher</tt> or <tt>contributor</tt> relationship.
-          The Core profile (see <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a>) defines a pre-defined set of relationship names, based on existing industrial standards and vocabularies aiming to provide a standard list of named relationships.
         
 </p>
 <p>
           Entry relationships information is formatted using a Singular Complex Field for a Singular Relationship, and a Plural Complex Field for a Plural Relationship.
-          The Complex Field name is defined to be the relationship <tt>label</tt> (e.g. <tt>creator</tt>, <tt>publisher</tt> or <tt>contributor</tt>).
+          The Complex Field name is defined to be the relationship name (e.g. <tt>creator</tt>, <tt>publisher</tt> or <tt>contributor</tt>).
           The relationship Complex Field MUST BE a direct child of the <tt>entry</tt> element representing the Source Entry (i.e. a sub-field can not be used to express a relationship).
           A relationship Complex Field MAY have additional Simple or Complex sub-fields, but MUST NOT contain Complex Fields representing other relationships.
         
@@ -2012,6 +2009,12 @@ Relationships</h3>
                         
                         The value must be a valid relation type as defined in <a class='info' href='#IANA-RELREG'>[IANA&#8209;RELREG]<span> (</span><span class='info'>IANA, &ldquo;Link Relation Types,&rdquo; .</span><span>)</span></a> and in <a class='info' href='#additional-link-relation-types'>Section&nbsp;8.3<span> (</span><span class='info'>Additional Link Relation Types</span><span>)</span></a>.
                         If this attribute is omitted it MUST BE processed as if the value were the string "related".
+                    
+</dd>
+<dt>role: (ENUM or IRI)</dt>
+<dd>
+                        Unless otherwise specified, this ia an optional sub-field used to represent the role played by the Target Entry in the relationship (e.g. <tt>contributor</tt> as specified in <a class='info' href='#content-type-relationships'>Section&nbsp;8.4.3.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>).
+                        The value SHOULD BE selected from a standard list of values.
                     
 </dd>
 <dt>hreflang: (LANGUAGE)</dt>
@@ -2054,6 +2057,12 @@ Relationships</h3>
                     If this attribute is omitted it MUST BE processed as if the value were the string "related".
                   
 </dd>
+<dt>role: (ENUM or IRI)</dt>
+<dd>
+                    Unless otherwise specified, this ia an optional sub-field used to represent the role played by the Target Entry in the relationship (e.g. <tt>contributor</tt> as specified in <a class='info' href='#content-type-relationships'>Section&nbsp;8.4.3.3<span> (</span><span class='info'>Relationships</span><span>)</span></a>).
+                    The value SHOULD BE selected from a standard list of values.
+                  
+</dd>
 <dt>lang: (LANGUAGE)</dt>
 <dd>
                     The content language of the metadata Entry included.
@@ -2083,6 +2092,10 @@ Relationships</h3>
         
 </p>
 <p>
+            A Provider MAY return Plural Relationships with the same href (if by-reference) or entry (if by-value) and rel values combination more than once with different role and hreflang (if by-reference) or lang (if by-value).
+        
+</p>
+<p>
           For efficiency, Service Providers SHOULD return relationships information <tt>by-reference</tt>.
           A Consumer MAY explicitly request to include relationships information <tt>by-value</tt> as explained in <a class='info' href='#presentation'>Section&nbsp;6.2.4<span> (</span><span class='info'>Presentation</span><span>)</span></a>.
         
@@ -2106,19 +2119,23 @@ Relationships</h3>
             Relationships structures will be described as follow:
             </p>
 <blockquote class="text"><dl>
-<dt>singularRelationshipLabel: (OBJECTYPE)</dt>
+<dt>singularRelationshipName: (OBJECTYPE)</dt>
 <dd>
-                    A Singular Relationship with a lablel of <tt>singular_relationship_label</tt> connecting the Source Entry containing the named relationship attriubute with a Target Entry of type OBJECTYPE.
+                    A Singular Relationship with a name of <tt>singular_relationship_name</tt> connecting the Source Entry containing the named relationship attriubute with a Target Entry of type OBJECTYPE.
                     The relationship type is expressed using the <tt>rel</tt> sub-field.
                 
 </dd>
-<dt>pluralRelationshipLabel: [OBJECTYPE]</dt>
+<dt>pluralRelationshipName: [OBJECTYPE]</dt>
 <dd>
-                    A Plural Relationship with a lablel of <tt>plural_relationship_label</tt> connecting the Source Entry containing the named relationship attriubute with a Target Entry of type OBJECTYPE.
+                    A Plural Relationship with a name of <tt>plural_relationship_name</tt> connecting the Source Entry containing the named relationship attriubute with a Target Entry of type OBJECTYPE.
                     The relationship type is expressed using the <tt>rel</tt> sub-field.
                 
 </dd>
 </dl></blockquote><p>
+        
+</p>
+<p>
+            The Core profile (see <a class='info' href='#core-profile'>Section&nbsp;8<span> (</span><span class='info'>Core Profile</span><span>)</span></a>) defines a pre-defined set of relationship names, based on existing industrial standards and vocabularies aiming to provide a standard list of named relationships.
         
 </p>
 <a name="multilingual-fields"></a><br /><hr />
@@ -3240,8 +3257,8 @@ Fields</h3>
 <dt>type: (ENUM)</dt>
 <dd>
                                     The language purpose.
-                                    The value SHOULD BE selected from the following list: <tt>audio</tt>, <tt>mainOriginalLanguage</tt>, <tt>mainDubbedLanguage</tt>, <tt>additionalOriginalLanguage</tt>, <tt>additionalDubbedLanguage</tt>, <tt>descriptiveVideoInformation</tt>, <tt>supplementalCommentary</tt>, <tt>directorCommentary</tt>, <tt>audioDescription</tt>, <tt>supplementaryAudioProgramme</tt>, <tt>educationalNotes</tt>, <tt>voiceOver</tt>, <tt>originalCommentary</tt>, <tt>dubbedCommentary</tt>, <tt>originalNarration</tt>, <tt>dubbedDialogue</tt>, <tt>dubbedNarration</tt>, <tt>interviewerLanguage</tt>, <tt>intervieweeLanguage</tt>, <tt>text</tt>, <tt>textDescription</tt>, <tt>transcript</tt>, <tt>caption</tt>, <tt>openCaption</tt>, <tt>closedCaption</tt>, <tt>supplemental</tt>, <tt>titles</tt>, <tt>subtitles</tt>, <tt>openSubtitles</tt>, <tt>closedSubtitles</tt>, <tt>songLyrics</tt>, <tt>signLanguage</tt>, <tt>dubbedSignLanguage</tt>.
-                                    The <tt>main</tt>, <tt>production</tt> and <tt>original</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
+                                    The value SHOULD BE selected from the following list: <tt>mainDubbedLanguage</tt>, <tt>additionalOriginalLanguage</tt>, <tt>additionalDubbedLanguage</tt>, <tt>descriptiveVideoInformation</tt>, <tt>supplementalCommentary</tt>, <tt>directorCommentary</tt>, <tt>audioDescription</tt>, <tt>supplementaryAudioProgramme</tt>, <tt>educationalNotes</tt>, <tt>voiceOver</tt>, <tt>originalCommentary</tt>, <tt>dubbedCommentary</tt>, <tt>originalNarration</tt>, <tt>dubbedDialogue</tt>, <tt>dubbedNarration</tt>, <tt>interviewerLanguage</tt>, <tt>intervieweeLanguage</tt>, <tt>text</tt>, <tt>textDescription</tt>, <tt>transcript</tt>, <tt>caption</tt>, <tt>openCaption</tt>, <tt>closedCaption</tt>, <tt>supplemental</tt>, <tt>titles</tt>, <tt>subtitles</tt>, <tt>openSubtitles</tt>, <tt>closedSubtitles</tt>, <tt>songLyrics</tt>, <tt>signLanguage</tt>, <tt>dubbedSignLanguage</tt>.
+                                    The <tt>main</tt>, <tt>production</tt>, <tt>original</tt>, <tt>audio</tt> and <tt>mainOriginalLanguage</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
                                 
 </dd>
 <dt>value: (LANGUAGE)</dt>
@@ -3364,9 +3381,8 @@ Relationships</h3>
 <blockquote class="text"><dl>
 <dt>role: (ENUM or IRI)</dt>
 <dd>
-                                    REQUIRED. A Canonical Value representing the role played by the Target Entry as contributor (e.g. author, director, actor, producer).
+                                    REQUIRED. A Canonical Value representing the role played by the Target Entry as contributor (e.g. director, actor, producer).
                                     The value SHOULD BE selected from a standard list of values such as the European Broadcasting Union Role Codes <a class='info' href='#EBU-ROLE-CODES'>[EBU&#8209;ROLE&#8209;CODES]<span> (</span><span class='info'>EBU, &ldquo;European Broadcasting Union - Role Codes,&rdquo; .</span><span>)</span></a>.
-                                    This is the Primary Sub-Field for the purposes of sorting and filtering.
                                 
 </dd>
 <dt>roleLabel: (STRING)</dt>
@@ -3927,6 +3943,13 @@ Fields</h3>
                             A Boolean value indicating whether the programme version being broadcasted is a last showing.
                         
 </dd>
+<dt>primaryShowing: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the programme version being broadcasted is the primary or preferred showing.
+                            Service Providers MUST NOT mark more than one broadcast publication as primaryShowing="true", and MAY choose not to mark any broadcast as primary, if this information is not available.
+                            For efficiency, Service Providers SHOULD NOT mark all non-primary broadcast with primaryShowing="false", but should instead omit this sub-field for all non-primary broadcasts.
+                        
+</dd>
 <dt>repeat: (BOOLEAN)</dt>
 <dd>
                             A Boolean value indicating whether the programme version being broadcasted is a repeat.
@@ -3935,6 +3958,11 @@ Fields</h3>
 <dt>live: (BOOLEAN)</dt>
 <dd>
                             A Boolean value indicating whether the programme version being broadcasted is a live broadcast.
+                        
+</dd>
+<dt>dummy: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the broadcast represents a period of time when the service is off air.
                         
 </dd>
 </dl></blockquote><p>
@@ -3991,9 +4019,18 @@ Fields</h3>
 </dd>
 <dt>deliveryMode: (ENUM)</dt>
 <dd>
-                            The on-demand pblication delivery mode such as 'streaming', 'download', 'progressive-download' etc.
-                            This string generally is specified to contain a valid Canonical Value from a reference data vocabulary.
-                            A Provider SHOULD use any additional deliveryMode values as necessary.
+                            The on-demand publication delivery mode SHALL be selected from one of the following values: <tt>unicastStream</tt>, <tt>download</tt>, <tt>progressiveDownload</tt>.
+                            A Provider MAY use any additional deliveryMode values as necessary.
+                        
+</dd>
+<dt>catchup: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the on-demand publication is catch-up.
+                        
+</dd>
+<dt>archive: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the on-demand publication is archive.
                         
 </dd>
 </dl></blockquote><p>
@@ -4427,7 +4464,7 @@ Fields</h3>
 </dd>
 <dt>audioBitrate: (NUMBER)</dt>
 <dd>
-                            The audio bit rate.
+                            The average audio bit rate.
                         
 </dd>
 <dt>minAudioBitrate: (NUMBER)</dt>
@@ -4488,7 +4525,7 @@ Fields</h3>
 </dd>
 <dt>videoBitrate: (NUMBER)</dt>
 <dd>
-                            The video bit rate.
+                            The average video bit rate.
                         
 </dd>
 <dt>minVideoBitrate: (NUMBER)</dt>
@@ -5593,6 +5630,12 @@ Change Log</h3>
 <li>Added "signed", "hasSubtitles" and "audioDescribed" to Programme Publication.
 </li>
 <li>Moved "hd", "3d" and "uhd" to Programme Publication.
+</li>
+<li>Added "dummy" and "primaryShowing" to Broadcast.
+</li>
+<li>Added "catchup" and "archive" to Ondemand.
+</li>
+<li>Added "role" to reltionships definition.
 </li>
 </ul><p>
         
