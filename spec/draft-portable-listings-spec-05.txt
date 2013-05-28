@@ -1909,7 +1909,7 @@ Reggiori                                                       [Page 34]
          defined in [IANA-RELREG] and in Section 8.3.  If this attribute
          is omitted it MUST BE processed as if the value were the string
          "related".
-      role: (ENUM or IRI)  Unless otherwise specified, this ia an
+      role: (ENUM or IRI)  Unless otherwise specified, this is an
          optional sub-field used to represent the role played by the
          Target Entry in the relationship (e.g. "contributor" as
          specified in Section 8.4.3.3).  The value SHOULD BE selected
@@ -1939,7 +1939,7 @@ Reggiori                                                       [Page 34]
          valid relation type as defined in [IANA-RELREG] and in
          Section 8.3.  If this attribute is omitted it MUST BE processed
          as if the value were the string "related".
-      role: (ENUM or IRI)  Unless otherwise specified, this ia an
+      role: (ENUM or IRI)  Unless otherwise specified, this is an
          optional sub-field used to represent the role played by the
          Target Entry in the relationship (e.g. "contributor" as
          specified in Section 8.4.3.3).  The value SHOULD BE selected

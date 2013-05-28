@@ -1486,7 +1486,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         If this attribute is omitted it MUST BE processed as if the value were the string "related".
                     </t>
                     <t hangText="role: (ENUM or IRI)">
-                        Unless otherwise specified, this ia an optional sub-field used to represent the role played by the Target Entry in the relationship (e.g. <spanx style="verb">contributor</spanx> as specified in <xref target="content-type-relationships"/>).
+                        Unless otherwise specified, this is an optional sub-field used to represent the role played by the Target Entry in the relationship (e.g. <spanx style="verb">contributor</spanx> as specified in <xref target="content-type-relationships"/>).
                         The value SHOULD BE selected from a standard list of values.
                     </t>
                     <t hangText="hreflang: (LANGUAGE)">
@@ -1517,7 +1517,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     If this attribute is omitted it MUST BE processed as if the value were the string "related".
                   </t>
                   <t hangText="role: (ENUM or IRI)">
-                    Unless otherwise specified, this ia an optional sub-field used to represent the role played by the Target Entry in the relationship (e.g. <spanx style="verb">contributor</spanx> as specified in <xref target="content-type-relationships"/>).
+                    Unless otherwise specified, this is an optional sub-field used to represent the role played by the Target Entry in the relationship (e.g. <spanx style="verb">contributor</spanx> as specified in <xref target="content-type-relationships"/>).
                     The value SHOULD BE selected from a standard list of values.
                   </t>
                   <t hangText="lang: (LANGUAGE)">
