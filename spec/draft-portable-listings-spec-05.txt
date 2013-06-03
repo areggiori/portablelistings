@@ -3,7 +3,7 @@
 
 Working Draft                                                A. Reggiori
                                                            Derrick Media
-                                                            May 28, 2013
+                                                                May 2013
 
 
                            Portable Listings
@@ -1681,6 +1681,7 @@ Reggiori                                                       [Page 30]
                             Portable Listings                   May 2013
 
 
+      CONSTANT:  A pre-defined constant unchangable Simple value.
       Providers MAY support additional Simple field string type values
       if they choose.  Consumer MAY choose to ignore any unknown
       information or process those values as STRING.
@@ -1725,7 +1726,6 @@ Reggiori                                                       [Page 30]
          "value" sub-field.
       lang: (LANGUAGE)  The language of the attribute value.  The value
          MUST be a valid LANGUAGE Canonical Value.
-
 
 
 
@@ -1891,8 +1891,8 @@ Reggiori                                                       [Page 33]
          expressed between Entries across Service Providers.  Although a
          Provider SHOULD NOT reference Entries on another Provider as
          this complicates processing by the Consumer.
-      type: (ENUM)  If non-empty or null, the media type is defined to
-         be "application/listings+json".  The "profile" media type
+      type: (CONSTANT)  If non-empty or null, the media type is defined
+         to be "application/listings+json".  The "profile" media type
          parameter MAY be specified as defined in Section 7.4.
 
 
@@ -2633,7 +2633,7 @@ Reggiori                                                       [Page 47]
                             Portable Listings                   May 2013
 
 
-      rel: (ENUM)  The rel value MUST BE the "via" relation type as
+      rel: (CONSTANT)  The rel value MUST BE the "via" relation type as
          defined in section 6.2.2. of [RFC5988].  If this property is
          omitted or null it MUST BE processed as if the value was the
          string "via".
@@ -2659,7 +2659,7 @@ Reggiori                                                       [Page 47]
       access the parent Entries in Collections, Programme Groups, Series
       and so on.  The following fields are refined for the parent
       relationship:
-      rel: (ENUM)  The rel value MUST BE the "up" relation type as
+      rel: (CONSTANT)  The rel value MUST BE the "up" relation type as
          defined in section 6.2.2. of [RFC5988].  If this property is
          omitted or null it MUST BE processed as if the value was the
          string "up".
@@ -2669,11 +2669,11 @@ Reggiori                                                       [Page 47]
       Entries in Collections, Programme Groups, Series, Episodes (e.g.
       previous episode, next episode).  The following fields are refined
       for the parent relationship:
-      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "prev" relation
-         type as defined in section 6.2.2. of [RFC5988] when referring
-         to a previous Entry in a list or collection.  The rel value
-         MUST BE the "next" relation type as defined in section 6.2.2.
-         of [RFC5988] when referring to a next Entry in a list or
+      rel: (CONSTANT)  The rel value MUST BE the "prev" relation type as
+         defined in section 6.2.2. of [RFC5988] when referring to a
+         previous Entry in a list or collection.  The rel value MUST BE
+         the "next" relation type as defined in section 6.2.2. of
+         [RFC5988] when referring to a next Entry in a list or
          collection.
 
 8.4.2.  Category
@@ -2702,10 +2702,10 @@ Reggiori                                                       [Page 48]
 
    subCategories: [CATEGORY]  The list of sub-categories.  Categories
       MAY be grouped hierarchically.
-      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "item" relation
-         type as defined in [RFC6573] when referring to a Category part
-         of a hierarchical collection of categories.  The rel value MUST
-         BE the "collection" relation type as defined in [RFC6573] when
+      rel: (CONSTANT)  The rel value MUST BE the "item" relation type as
+         defined in [RFC6573] when referring to a Category part of a
+         hierarchical collection of categories.  The rel value MUST BE
+         the "collection" relation type as defined in [RFC6573] when
          referring to a Category representing a hierarchical collection
          categories.
 
@@ -2819,7 +2819,8 @@ Reggiori                                                       [Page 50]
       than "category" and "keywords".
       value: (ENUM or IRI)  The value SHOULD BE selected from a standard
          list of values such as the EBU Content Genre, Intention or the
-         TV-Anytime Content Commercial or Content Alert types.
+         TV-Anytime Content Commercial, Content Alert or Content
+         Origination types.
    targetAudience: [COMPLEX]  The target audience (demographic or
       guidance) categorising the piece of content other than "category"
       and "keywords".
@@ -2844,11 +2845,10 @@ Reggiori                                                       [Page 50]
       geographical targeting is provided, the piece of content is
       assumed to be applicable to all places, i.e. worldwide.
       value: (TERRITORY)  The target country and region for the rating.
-      exclusive: (BOOLEAN)  A flag to indicate that the piece of content
-         is available only in the target place specified in the value
-         sub-field.  If the exclusive attribute is omitted or has the
-         value false then the piece of content is editorially targeted
-         at the target place specified in the value sub-field.
+
+
+
+
 
 
 
@@ -2857,6 +2857,11 @@ Reggiori                                                       [Page 51]
                             Portable Listings                   May 2013
 
 
+      exclusive: (BOOLEAN)  A flag to indicate that the piece of content
+         is available only in the target place specified in the value
+         sub-field.  If the exclusive attribute is omitted or has the
+         value false then the piece of content is editorially targeted
+         at the target place specified in the value sub-field.
    format: (COMPLEX)  The editorial format categorising the piece of
       content other than "category" and "keywords".
       value: (ENUM or IRI)  The value SHOULD BE selected from a standard
@@ -2897,11 +2902,6 @@ Reggiori                                                       [Page 51]
          processing by the Consumer.
       value: (PLACE or TERRITORY)  The actual geographical place or
          territory.
-      fictional: (BOOLEAN)  A Boolean value indicating whether the place
-         is purely fictional.
-   temporal: [COMPLEX]  Temporal coverage information associated with
-      the piece of content.
-
 
 
 
@@ -2913,6 +2913,10 @@ Reggiori                                                       [Page 52]
                             Portable Listings                   May 2013
 
 
+      fictional: (BOOLEAN)  A Boolean value indicating whether the place
+         is purely fictional.
+   temporal: [COMPLEX]  Temporal coverage information associated with
+      the piece of content.
       type: (ENUM)  The type of field SHOULD BE selected from a standard
          list of values (e.g. 'filmingPeriod', 'depictedPeriod').
       value: (PERIOD or YEAR)  The actual temporal coverage period or
@@ -2955,10 +2959,6 @@ Reggiori                                                       [Page 52]
    rights: [RIGHTS]  Content rights information.  If the rights
       information is absent, no assumptions can be made about the status
       of these and other rights with respect to the piece of content.
-   crossPromotions: [CONTENT]  Relates a piece of content to other
-      pieces of content which are cross-promotions (e.g. "if you liked
-      this piece of content you may also like these other content
-      items").
 
 
 
@@ -2969,8 +2969,12 @@ Reggiori                                                       [Page 53]
                             Portable Listings                   May 2013
 
 
-      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "related"
-         relation type as defined in [RFC5988].
+   crossPromotions: [CONTENT]  Relates a piece of content to other
+      pieces of content which are cross-promotions (e.g. "if you liked
+      this piece of content you may also like these other content
+      items").
+      rel: (ENUM)  The rel value SHALL BE the "related" relation type as
+         defined in [RFC5988].
 
 8.4.4.  Programme
 
@@ -2981,8 +2985,8 @@ Reggiori                                                       [Page 53]
 
 8.4.4.1.  Fields
 
-   country: [TERRITORY]  The countries and regions where the programme
-      has been released.
+   releaseCountry: [TERRITORY]  The countries and regions where the
+      programme has been released.
    firstTransmissionDate: (TIMESTAMP)  The first transmission or
       publication date and time.
 
@@ -3013,10 +3017,6 @@ Reggiori                                                       [Page 53]
    which are not Series or Brand.  A Programme Group can contain
    Programmes or other Programme Groups.  The Programme Group object
    type is identified with the string PROGRAMME_GROUP.  For example, a
-   collection of programmes, mini-Series, compilation, serial, concept,
-   show, theme etc.
-
-
 
 
 
@@ -3024,6 +3024,9 @@ Reggiori                                                       [Page 54]
 
                             Portable Listings                   May 2013
 
+
+   collection of programmes, mini-Series, compilation, serial, concept,
+   show, theme etc.
 
 8.4.5.1.  Relationships
 
@@ -3061,18 +3064,15 @@ Reggiori                                                       [Page 54]
 8.4.8.2.  Relationships
 
    versions: [VERSION]  Different versions of a same episode or clip can
-      exist.  The relationship "primary" boolean flag SHOULD be used to
-      flag the so called "canonical" or preferred version.  No more than
-      one version should be labelled as "canonical" because of the
-      ambiguity this creates and this complicates processing by the
-      Consumer.
+      exist.  The relationship type "canonical" SHALL be used to flag
+      the so called "canonical" or preferred version.  No more than one
+      version should be labelled as "canonical" because of the ambiguity
+      this creates and this complicates processing by the Consumer.
 
 8.4.9.  Episode
 
    The Episode object type extends the PROGRAMME_ITEM object type and
    represents an editorial concept which groups one or more versions.
-   Often when talking about a television programme what it is really
-   meant is an episode.  An episode could be simply be part of a brand a
 
 
 
@@ -3081,6 +3081,8 @@ Reggiori                                                       [Page 55]
                             Portable Listings                   May 2013
 
 
+   Often when talking about a television programme what it is really
+   meant is an episode.  An episode could be simply be part of a brand a
    so called pilot episode.
 
 8.4.10.  Clip
@@ -3130,8 +3132,6 @@ Reggiori                                                       [Page 55]
 
 
 
-
-
 Reggiori                                                       [Page 56]
 
                             Portable Listings                   May 2013
@@ -3165,12 +3165,12 @@ Reggiori                                                       [Page 56]
 8.4.12.2.  Links
 
    logo: (LINK)  A logo or icon associated to the service.
-      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "icon" relation
-         type as defined in [RFC5988].
+      rel: (ENUM)  The rel value SHALL BE the "icon" relation type as
+         defined in [RFC5988].
    dog: (LINK)  A Digital On screen Graphic (DOG) associated to the
       service.
-      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "icon" relation
-         type as defined in [RFC5988].
+      rel: (ENUM)  The rel value SHALL BE the "icon" relation type as
+         defined in [RFC5988].
 
 8.4.12.3.  Relationships
 
@@ -3419,8 +3419,8 @@ Reggiori                                                       [Page 61]
 
 8.4.18.1.  Fields
 
-   country: [TERRITORY]  The countries and regions where the application
-      has been released.
+   releaseCountry: [TERRITORY]  The countries and regions where the
+      application has been released.
 
 8.4.18.2.  Relationships
 
@@ -3757,12 +3757,12 @@ Reggiori                                                       [Page 67]
 
    contents: [CONTENT]  The list of pieces of content that are contained
       within the collection.
-      rel: (ENUM)  REQUIRED.  The rel value MUST BE the "item" relation
-         type as defined in [RFC6573] when referring to a piece of
-         Content part of a hierarchical collection of content.  The rel
-         value MUST BE the "collection" relation type as defined in
-         [RFC6573] when referring to a piece of Content representing a
-         hierarchical collection of content.
+      rel: (ENUM)  The rel value SHALL BE the "item" relation type as
+         defined in [RFC6573] when referring to a piece of Content part
+         of a hierarchical collection of content.  The rel value SHALL
+         BE the "collection" relation type as defined in [RFC6573] when
+         referring to a piece of Content representing a hierarchical
+         collection of content.
 
 8.4.27.  Rights
 
@@ -4218,6 +4218,11 @@ Reggiori                                                       [Page 75]
    o  Added "dummy" and "primaryShowing" to Broadcast.
    o  Added "catchup" and "archive" to Ondemand.
    o  Added "role" to reltionships definition.
+   o  Added CONSTANT to Simple field definition.
+   o  Renamed "country" to "releaseCountry" in Programme and
+      Application.
+   o  Use "canonical" relationship type for "versions" in Programme
+      item.
 
 
 13.  References
@@ -4244,11 +4249,6 @@ Reggiori                                                       [Page 75]
 
    [RFC4281]  Gellens, R., Singer, D., and P. Frojdh, "The Codecs
               Parameter for "Bucket" Media Types", RFC 4281,
-              November 2005.
-
-   [RFC4287]  Nottingham, M., Ed. and R. Sayre, Ed., "The Atom
-              Syndication Format", RFC 4287, December 2005.
-
 
 
 
@@ -4256,6 +4256,11 @@ Reggiori                                                       [Page 76]
 
                             Portable Listings                   May 2013
 
+
+              November 2005.
+
+   [RFC4287]  Nottingham, M., Ed. and R. Sayre, Ed., "The Atom
+              Syndication Format", RFC 4287, December 2005.
 
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627, July 2006.
@@ -4300,11 +4305,6 @@ Reggiori                                                       [Page 76]
               Data".
 
    [EBU-ROLE-CODES]
-              EBU, "European Broadcasting Union - Role Codes".
-
-   [EBUCORE]  EBU, "EBU - TECH 3293 - EBU Core Metadata Set (EBU Core)
-              v.1.4".
-
 
 
 
@@ -4312,6 +4312,11 @@ Reggiori                                                       [Page 77]
 
                             Portable Listings                   May 2013
 
+
+              EBU, "European Broadcasting Union - Role Codes".
+
+   [EBUCORE]  EBU, "EBU - TECH 3293 - EBU Core Metadata Set (EBU Core)
+              v.1.4".
 
    [GEO-JSON]
               "The GeoJSON Format Specification".
@@ -4356,11 +4361,6 @@ Reggiori                                                       [Page 77]
               Clinton, D., "OpenSearch 1.1".
 
    [OpenSocial]
-              "OpenSocial Social API Server Specification 2.0 DRAFT".
-
-   [PortableContacts]
-              Smarr, J., "Portable Contacts 1.0 Draft C".
-
 
 
 
@@ -4368,6 +4368,11 @@ Reggiori                                                       [Page 78]
 
                             Portable Listings                   May 2013
 
+
+              "OpenSocial Social API Server Specification 2.0 DRAFT".
+
+   [PortableContacts]
+              Smarr, J., "Portable Contacts 1.0 Draft C".
 
    [TV-ANYTIME]
               ETSI, "TV Anytime".
@@ -4412,11 +4417,6 @@ Appendix A.  Examples
      "lang": "en",
      "entry": [
        {
-         "id": "5E5EEBED3173",
-         "objectType": "episode",
-         "displayName": "Episode 1",
-         "title": "Pilot",
-         "alternativeTitle": {
 
 
 
@@ -4425,6 +4425,11 @@ Reggiori                                                       [Page 79]
                             Portable Listings                   May 2013
 
 
+         "id": "5E5EEBED3173",
+         "objectType": "episode",
+         "displayName": "Episode 1",
+         "title": "Pilot",
+         "alternativeTitle": {
            "type": "original",
            "value": "Northwest Passage"
          },
@@ -4468,11 +4473,6 @@ Reggiori                                                       [Page 79]
              "primary": true
            },
            {
-             "href": "C675EDD23A2D",
-             "role": "writer",
-             "label": "David Lynch"
-           },
-           {
 
 
 
@@ -4481,6 +4481,11 @@ Reggiori                                                       [Page 80]
                             Portable Listings                   May 2013
 
 
+             "href": "C675EDD23A2D",
+             "role": "writer",
+             "label": "David Lynch"
+           },
+           {
              "href": "2F050A9AF481",
              "role": "writer",
              "label": "Mark Frost"
@@ -4524,11 +4529,6 @@ Reggiori                                                       [Page 80]
          "contributor": [
            {
              "href": "3C67E1038205",
-             "role": "director",
-             "label": "Duwayne Dunham",
-             "primary": true
-           },
-           {
 
 
 
@@ -4537,6 +4537,11 @@ Reggiori                                                       [Page 81]
                             Portable Listings                   May 2013
 
 
+             "role": "director",
+             "label": "Duwayne Dunham",
+             "primary": true
+           },
+           {
              "href": "C675EDD23A2D",
              "role": "writer",
              "label": "David Lynch"
@@ -4581,11 +4586,6 @@ Appendix B.  Compatibility with EBUCore and other standards
    Protocol version 2.0 format [OpenSocial].  Note though that the API
    interfaces are not compatible and differ.
 
-   It is our intention to maintain this compatibility going forward, so
-   long as it is feasible, and so long as the changes required are
-   compatible with the Goals and Approach of this spec.  Although
-   Portable Listings is an independent spec, with a more limited scope
-
 
 
 Reggiori                                                       [Page 82]
@@ -4593,6 +4593,10 @@ Reggiori                                                       [Page 82]
                             Portable Listings                   May 2013
 
 
+   It is our intention to maintain this compatibility going forward, so
+   long as it is feasible, and so long as the changes required are
+   compatible with the Goals and Approach of this spec.  Although
+   Portable Listings is an independent spec, with a more limited scope
    than other broadcast and television industry and Web standards, any
    proposed changes to the Portable Listings spec SHOULD BE considered
    in the context of other communities, and we should strive not to
@@ -4608,10 +4612,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
-
-
-
 
 
 

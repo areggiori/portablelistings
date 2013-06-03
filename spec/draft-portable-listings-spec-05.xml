@@ -1275,6 +1275,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     A simple field MAY contain Canonical Values specified as an enumerated list of valids to represent specific Reference Data values (see for example the <spanx style="verb">core profile</spanx> <xref target="reference-data"/>).
                     In this case Service Providers SHOULD try to conform to those values if appropriate, but MAY provide alternate values to represent additional values.
                 </t>
+                <t hangText="CONSTANT:">
+                    A pre-defined constant unchangable Simple value.
+                </t>
                 <!--            
                         Add default types:
                             -> 'html'for embedding DIV/html into json - see json-syndication format
@@ -1477,7 +1480,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         Note that this definition also covers the scenario of relationships expressed between Entries across Service Providers.
                         Although a Provider SHOULD NOT reference Entries on another Provider as this complicates processing by the Consumer.
                     </t>
-                    <t hangText="type: (ENUM)">
+                    <t hangText="type: (CONSTANT)">
                         If non-empty or null, the media type is defined to be <spanx style="verb">application/listings+json</spanx>.  The <spanx style="verb">profile</spanx> media type parameter MAY be specified as defined in <xref target="referencing-profiles"/>.
                     </t>
                     <t hangText="rel: (ENUM or IRI)">
@@ -2257,7 +2260,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                 <t hangText="href: (IRI)">
                                     REQUIRED. The IRI of the source MUST BE a valid Initial Identifier suitable for discovery of the source Portable Listings API Provider endpoint from where the metadata Entry was derived from as explained in <xref target="discovery"/>.
                                 </t>
-                                <t hangText="rel: (ENUM)">
+                                <t hangText="rel: (CONSTANT)">
                                     The rel value MUST BE the "via" relation type as defined in section 6.2.2. of <xref target="RFC5988" />.
                                     If this property is omitted or null it MUST BE processed as if the value was the string "via".
                                 </t>
@@ -2290,7 +2293,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             This relationship SHOULD BE used to access the parent Entries in Collections, Programme Groups, Series and so on.
                             The following fields are refined for the parent relationship:
                             <list style="hanging">
-                                <t hangText="rel: (ENUM)">
+                                <t hangText="rel: (CONSTANT)">
                                     The rel value MUST BE the "up" relation type as defined in section 6.2.2. of <xref target="RFC5988" />.
                                     If this property is omitted or null it MUST BE processed as if the value was the string "up".
                                 </t>
@@ -2301,8 +2304,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             This relationship SHOULD BE used to access the previous and next Entries in Collections, Programme Groups, Series, Episodes (e.g. previous episode, next episode).
                             The following fields are refined for the parent relationship:
                             <list style="hanging">
-                                <t hangText="rel: (ENUM)">
-                                    REQUIRED. The rel value MUST BE the "prev" relation type as defined in section 6.2.2. of <xref target="RFC5988" /> when referring to a previous Entry in a list or collection.
+                                <t hangText="rel: (CONSTANT)">
+                                    The rel value MUST BE the "prev" relation type as defined in section 6.2.2. of <xref target="RFC5988" /> when referring to a previous Entry in a list or collection.
                                     The rel value MUST BE the "next" relation type as defined in section 6.2.2. of <xref target="RFC5988" /> when referring to a next Entry in a list or collection.
                                 </t>
                             </list>
@@ -2340,8 +2343,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="subCategories: [CATEGORY]">
                             The list of sub-categories. Categories MAY be grouped hierarchically.
                             <list style="hanging">
-                                <t hangText="rel: (ENUM)">
-                                    REQUIRED. The rel value MUST BE the "item" relation type as defined in <xref target="RFC6573" /> when referring to a Category part of a hierarchical collection of categories.
+                                <t hangText="rel: (CONSTANT)">
+                                    The rel value MUST BE the "item" relation type as defined in <xref target="RFC6573" /> when referring to a Category part of a hierarchical collection of categories.
                                     The rel value MUST BE the "collection" relation type as defined in <xref target="RFC6573" /> when referring to a Category representing a hierarchical collection categories.
                                 </t>
                             </list>
@@ -2460,7 +2463,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The genre categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
                             <list style="hanging">
                                 <t hangText="value: (ENUM or IRI)">
-                                    The value SHOULD BE selected from a standard list of values such as the EBU Content Genre, Intention or the TV-Anytime Content Commercial or Content Alert types.
+                                    The value SHOULD BE selected from a standard list of values such as the EBU Content Genre, Intention or the TV-Anytime Content Commercial, Content Alert or Content Origination types.
                                 </t>
                             </list>
                         </t>
@@ -2642,7 +2645,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             Relates a piece of content to other pieces of content which are cross-promotions (e.g. "if you liked this piece of content you may also like these other content items").
                             <list style="hanging">
                                 <t hangText="rel: (ENUM)">
-                                    REQUIRED. The rel value MUST BE the "related" relation type as defined in <xref target="RFC5988" />.
+                                    The rel value SHALL BE the "related" relation type as defined in <xref target="RFC5988" />.
                                 </t>
                             </list>
                         </t>
@@ -2663,7 +2666,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>
                     <list style="hanging">
                         <!-- possible additions: PID, clip -->
-                        <t hangText="country: [TERRITORY]">
+                        <t hangText="releaseCountry: [TERRITORY]">
                             The countries and regions where the programme has been released.
                         </t>
                         <t hangText="firstTransmissionDate: (TIMESTAMP)">
@@ -2767,7 +2770,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     <list style="hanging">
                         <t hangText="versions: [VERSION]">
                             Different versions of a same episode or clip can exist.
-                            The relationship <spanx style="verb">primary</spanx> boolean flag SHOULD be used to flag the so called "canonical" or preferred version.
+                            The relationship type <spanx style="verb">canonical</spanx> SHALL be used to flag the so called "canonical" or preferred version.
                             No more than one version should be labelled as "canonical" because of the ambiguity this creates and this complicates processing by the Consumer.
                             
                         </t>
@@ -2863,7 +2866,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             A logo or icon associated to the service.
                             <list style="hanging">
                                 <t hangText="rel: (ENUM)">
-                                    REQUIRED. The rel value MUST BE the "icon" relation type as defined in <xref target="RFC5988" />.
+                                    The rel value SHALL BE the "icon" relation type as defined in <xref target="RFC5988" />.
                                 </t>
                             </list>
                         </t>
@@ -2871,7 +2874,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             A Digital On screen Graphic (DOG) associated to the service.
                             <list style="hanging">
                                 <t hangText="rel: (ENUM)">
-                                    REQUIRED. The rel value MUST BE the "icon" relation type as defined in <xref target="RFC5988" />.
+                                    The rel value SHALL BE the "icon" relation type as defined in <xref target="RFC5988" />.
                                 </t>
                             </list>
                         </t>
@@ -3135,7 +3138,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <section title="Fields" anchor="application-fields">
                 <t>
                     <list style="hanging">
-                        <t hangText="country: [TERRITORY]">
+                        <t hangText="releaseCountry: [TERRITORY]">
                             The countries and regions where the application has been released.
                         </t>
                     </list>
@@ -3500,8 +3503,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The list of pieces of content that are contained within the collection.
                             <list style="hanging">
                                 <t hangText="rel: (ENUM)">
-                                    REQUIRED. The rel value MUST BE the "item" relation type as defined in <xref target="RFC6573" /> when referring to a piece of Content part of a hierarchical collection of content.
-                                    The rel value MUST BE the "collection" relation type as defined in <xref target="RFC6573" /> when referring to a piece of Content representing a hierarchical collection of content.
+                                    The rel value SHALL BE the "item" relation type as defined in <xref target="RFC6573" /> when referring to a piece of Content part of a hierarchical collection of content.
+                                    The rel value SHALL BE the "collection" relation type as defined in <xref target="RFC6573" /> when referring to a piece of Content representing a hierarchical collection of content.
                                 </t>
                             </list>
                         </t>
@@ -4109,6 +4112,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "dummy" and "primaryShowing" to Broadcast.</t>
                 <t>Added "catchup" and "archive" to Ondemand.</t>
                 <t>Added "role" to reltionships definition.</t>
+                <t>Added CONSTANT to Simple field definition.</t>
+                <t>Renamed "country" to "releaseCountry" in Programme and Application.</t>
+                <t>Use "canonical" relationship type for "versions" in Programme item.</t>
             </list>
         </t>
     </section>

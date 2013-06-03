@@ -143,7 +143,7 @@
 <table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
 <tr><td class="header">Working Draft</td><td class="header">A. Reggiori</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">Derrick Media</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">May 28, 2013</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">May 2013</td></tr>
 </table></td></tr></table>
 <h1><br />Portable Listings</h1>
 
@@ -1790,6 +1790,11 @@ Fields</h3>
                     In this case Service Providers SHOULD try to conform to those values if appropriate, but MAY provide alternate values to represent additional values.
                 
 </dd>
+<dt>CONSTANT:</dt>
+<dd>
+                    A pre-defined constant unchangable Simple value.
+                
+</dd>
 </dl></blockquote>
                 Providers MAY support additional Simple field string type values if they choose. Consumer MAY choose to ignore any unknown information or process those values as STRING.
                 <br />
@@ -1999,7 +2004,7 @@ Relationships</h3>
                         Although a Provider SHOULD NOT reference Entries on another Provider as this complicates processing by the Consumer.
                     
 </dd>
-<dt>type: (ENUM)</dt>
+<dt>type: (CONSTANT)</dt>
 <dd>
                         If non-empty or null, the media type is defined to be <tt>application/listings+json</tt>.  The <tt>profile</tt> media type parameter MAY be specified as defined in <a class='info' href='#referencing-profiles'>Section&nbsp;7.4<span> (</span><span class='info'>Referencing Profiles</span><span>)</span></a>.
                     
@@ -2857,7 +2862,7 @@ Links</h3>
                                     REQUIRED. The IRI of the source MUST BE a valid Initial Identifier suitable for discovery of the source Portable Listings API Provider endpoint from where the metadata Entry was derived from as explained in <a class='info' href='#discovery'>Section&nbsp;5<span> (</span><span class='info'>Discovery</span><span>)</span></a>.
                                 
 </dd>
-<dt>rel: (ENUM)</dt>
+<dt>rel: (CONSTANT)</dt>
 <dd>
                                     The rel value MUST BE the "via" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
                                     If this property is omitted or null it MUST BE processed as if the value was the string "via".
@@ -2907,7 +2912,7 @@ Relationships</h3>
                             The following fields are refined for the parent relationship:
                             
 <blockquote class="text"><dl>
-<dt>rel: (ENUM)</dt>
+<dt>rel: (CONSTANT)</dt>
 <dd>
                                     The rel value MUST BE the "up" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
                                     If this property is omitted or null it MUST BE processed as if the value was the string "up".
@@ -2923,9 +2928,9 @@ Relationships</h3>
                             The following fields are refined for the parent relationship:
                             
 <blockquote class="text"><dl>
-<dt>rel: (ENUM)</dt>
+<dt>rel: (CONSTANT)</dt>
 <dd>
-                                    REQUIRED. The rel value MUST BE the "prev" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a> when referring to a previous Entry in a list or collection.
+                                    The rel value MUST BE the "prev" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a> when referring to a previous Entry in a list or collection.
                                     The rel value MUST BE the "next" relation type as defined in section 6.2.2. of <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a> when referring to a next Entry in a list or collection.
                                 
 </dd>
@@ -2984,9 +2989,9 @@ Relationships</h3>
                             The list of sub-categories. Categories MAY be grouped hierarchically.
                             
 <blockquote class="text"><dl>
-<dt>rel: (ENUM)</dt>
+<dt>rel: (CONSTANT)</dt>
 <dd>
-                                    REQUIRED. The rel value MUST BE the "item" relation type as defined in <a class='info' href='#RFC6573'>[RFC6573]<span> (</span><span class='info'>Amundsen, M., &ldquo;The Item and Collection Link Relations,&rdquo; April&nbsp;2012.</span><span>)</span></a> when referring to a Category part of a hierarchical collection of categories.
+                                    The rel value MUST BE the "item" relation type as defined in <a class='info' href='#RFC6573'>[RFC6573]<span> (</span><span class='info'>Amundsen, M., &ldquo;The Item and Collection Link Relations,&rdquo; April&nbsp;2012.</span><span>)</span></a> when referring to a Category part of a hierarchical collection of categories.
                                     The rel value MUST BE the "collection" relation type as defined in <a class='info' href='#RFC6573'>[RFC6573]<span> (</span><span class='info'>Amundsen, M., &ldquo;The Item and Collection Link Relations,&rdquo; April&nbsp;2012.</span><span>)</span></a> when referring to a Category representing a hierarchical collection categories.
                                 
 </dd>
@@ -3144,7 +3149,7 @@ Fields</h3>
 <blockquote class="text"><dl>
 <dt>value: (ENUM or IRI)</dt>
 <dd>
-                                    The value SHOULD BE selected from a standard list of values such as the EBU Content Genre, Intention or the TV-Anytime Content Commercial or Content Alert types.
+                                    The value SHOULD BE selected from a standard list of values such as the EBU Content Genre, Intention or the TV-Anytime Content Commercial, Content Alert or Content Origination types.
                                 
 </dd>
 </dl></blockquote>
@@ -3416,7 +3421,7 @@ Relationships</h3>
 <blockquote class="text"><dl>
 <dt>rel: (ENUM)</dt>
 <dd>
-                                    REQUIRED. The rel value MUST BE the "related" relation type as defined in <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
+                                    The rel value SHALL BE the "related" relation type as defined in <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
                                 
 </dd>
 </dl></blockquote>
@@ -3444,7 +3449,7 @@ Fields</h3>
 <p>
                     </p>
 <blockquote class="text"><dl>
-<dt>country: [TERRITORY]</dt>
+<dt>releaseCountry: [TERRITORY]</dt>
 <dd>
                             The countries and regions where the programme has been released.
                         
@@ -3591,7 +3596,7 @@ Relationships</h3>
 <dt>versions: [VERSION]</dt>
 <dd>
                             Different versions of a same episode or clip can exist.
-                            The relationship <tt>primary</tt> boolean flag SHOULD be used to flag the so called "canonical" or preferred version.
+                            The relationship type <tt>canonical</tt> SHALL be used to flag the so called "canonical" or preferred version.
                             No more than one version should be labelled as "canonical" because of the ambiguity this creates and this complicates processing by the Consumer.
                             
                         
@@ -3735,7 +3740,7 @@ Links</h3>
 <blockquote class="text"><dl>
 <dt>rel: (ENUM)</dt>
 <dd>
-                                    REQUIRED. The rel value MUST BE the "icon" relation type as defined in <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
+                                    The rel value SHALL BE the "icon" relation type as defined in <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
                                 
 </dd>
 </dl></blockquote>
@@ -3748,7 +3753,7 @@ Links</h3>
 <blockquote class="text"><dl>
 <dt>rel: (ENUM)</dt>
 <dd>
-                                    REQUIRED. The rel value MUST BE the "icon" relation type as defined in <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
+                                    The rel value SHALL BE the "icon" relation type as defined in <a class='info' href='#RFC5988'>[RFC5988]<span> (</span><span class='info'>Nottingham, M., &ldquo;Web Linking,&rdquo; October&nbsp;2010.</span><span>)</span></a>.
                                 
 </dd>
 </dl></blockquote>
@@ -4177,7 +4182,7 @@ Fields</h3>
 <p>
                     </p>
 <blockquote class="text"><dl>
-<dt>country: [TERRITORY]</dt>
+<dt>releaseCountry: [TERRITORY]</dt>
 <dd>
                             The countries and regions where the application has been released.
                         
@@ -4741,8 +4746,8 @@ Relationships</h3>
 <blockquote class="text"><dl>
 <dt>rel: (ENUM)</dt>
 <dd>
-                                    REQUIRED. The rel value MUST BE the "item" relation type as defined in <a class='info' href='#RFC6573'>[RFC6573]<span> (</span><span class='info'>Amundsen, M., &ldquo;The Item and Collection Link Relations,&rdquo; April&nbsp;2012.</span><span>)</span></a> when referring to a piece of Content part of a hierarchical collection of content.
-                                    The rel value MUST BE the "collection" relation type as defined in <a class='info' href='#RFC6573'>[RFC6573]<span> (</span><span class='info'>Amundsen, M., &ldquo;The Item and Collection Link Relations,&rdquo; April&nbsp;2012.</span><span>)</span></a> when referring to a piece of Content representing a hierarchical collection of content.
+                                    The rel value SHALL BE the "item" relation type as defined in <a class='info' href='#RFC6573'>[RFC6573]<span> (</span><span class='info'>Amundsen, M., &ldquo;The Item and Collection Link Relations,&rdquo; April&nbsp;2012.</span><span>)</span></a> when referring to a piece of Content part of a hierarchical collection of content.
+                                    The rel value SHALL BE the "collection" relation type as defined in <a class='info' href='#RFC6573'>[RFC6573]<span> (</span><span class='info'>Amundsen, M., &ldquo;The Item and Collection Link Relations,&rdquo; April&nbsp;2012.</span><span>)</span></a> when referring to a piece of Content representing a hierarchical collection of content.
                                 
 </dd>
 </dl></blockquote>
@@ -5636,6 +5641,12 @@ Change Log</h3>
 <li>Added "catchup" and "archive" to Ondemand.
 </li>
 <li>Added "role" to reltionships definition.
+</li>
+<li>Added CONSTANT to Simple field definition.
+</li>
+<li>Renamed "country" to "releaseCountry" in Programme and Application.
+</li>
+<li>Use "canonical" relationship type for "versions" in Programme item.
 </li>
 </ul><p>
         
