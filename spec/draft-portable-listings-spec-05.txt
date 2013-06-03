@@ -3427,9 +3427,9 @@ Reggiori                                                       [Page 61]
    ownership: (SERVICE)  Associate an Application to the owner Service
       (e.g.  BBC Applications).
    builds: [APPLICATION_BUILD]  Different builds of the same application
-      can exist.  The relationship "primary" boolean flag SHOULD be used
-      to flag the so called "canonical" or preferred build.  No more
-      than one build should be labelled as "canonical" because of the
+      can exist.  The relationship type "canonical" SHALL be used to
+      flag the so called "canonical" or preferred build.  No more than
+      one build should be labelled as "canonical" because of the
       ambiguity this creates and this complicates processing by the
       Consumer.
 
@@ -4221,8 +4221,8 @@ Reggiori                                                       [Page 75]
    o  Added CONSTANT to Simple field definition.
    o  Renamed "country" to "releaseCountry" in Programme and
       Application.
-   o  Use "canonical" relationship type for "versions" in Programme
-      item.
+   o  Use "canonical" relationship type for "versions" in Programme Item
+      and Application.
 
 
 13.  References
