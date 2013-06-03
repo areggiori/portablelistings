@@ -2977,7 +2977,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
         <section title="Broadcast" anchor="broadcast-type">
             <t>
-                The Broadcast object type extends the PROGRAMME_LOCATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific service).
+                The Broadcast object type extends the PROGRAMME_PUBLICATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific service).
                 Multiple broadcast events can be grouped into a Schedule.
             </t>
             <section title="Fields" anchor="broadcast-fields">
@@ -3016,7 +3016,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
         <section title="Ondemand" anchor="ondemand-type">
             <t>
-                The Ondemand object type extends the PROGRAMME_LOCATION object type and represents an on-demand publication event designating a window of availability of a single Programme version on a particular service between two dates (e.g. catch-up on yesterday night 20:00pm soap opera).
+                The Ondemand object type extends the PROGRAMME_PUBLICATION object type and represents an on-demand publication event designating a window of availability of a single Programme version on a particular service between two dates (e.g. catch-up on yesterday night 20:00pm soap opera).
             </t>
             <section title="Fields" anchor="ondemand-fields">
                 <t>

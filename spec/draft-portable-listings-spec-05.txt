@@ -3272,10 +3272,11 @@ Reggiori                                                       [Page 58]
 
 8.4.14.  Broadcast
 
-   The Broadcast object type extends the PROGRAMME_LOCATION object type
-   and represents a publication event of a single Programme version on a
-   single service at particular time (e.g. news at 21:00 on specific
-   service).  Multiple broadcast events can be grouped into a Schedule.
+   The Broadcast object type extends the PROGRAMME_PUBLICATION object
+   type and represents a publication event of a single Programme version
+   on a single service at particular time (e.g. news at 21:00 on
+   specific service).  Multiple broadcast events can be grouped into a
+   Schedule.
 
 8.4.14.1.  Fields
 
@@ -3299,7 +3300,6 @@ Reggiori                                                       [Page 58]
 
 
 
-
 Reggiori                                                       [Page 59]
 
                             Portable Listings                   May 2013
@@ -3314,11 +3314,11 @@ Reggiori                                                       [Page 59]
 
 8.4.15.  Ondemand
 
-   The Ondemand object type extends the PROGRAMME_LOCATION object type
-   and represents an on-demand publication event designating a window of
-   availability of a single Programme version on a particular service
-   between two dates (e.g. catch-up on yesterday night 20:00pm soap
-   opera).
+   The Ondemand object type extends the PROGRAMME_PUBLICATION object
+   type and represents an on-demand publication event designating a
+   window of availability of a single Programme version on a particular
+   service between two dates (e.g. catch-up on yesterday night 20:00pm
+   soap opera).
 
 8.4.15.1.  Fields
 
