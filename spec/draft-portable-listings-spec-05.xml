@@ -4114,7 +4114,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "role" to reltionships definition.</t>
                 <t>Added CONSTANT to Simple field definition.</t>
                 <t>Renamed "country" to "releaseCountry" in Programme and Application.</t>
-                <t>Use "canonical" relationship type for "versions" in Programme Item and Application.</t>
+                <t>Use "canonical" relationship type for "versions" in Programme Item and "builds" in Application.</t>
             </list>
         </t>
     </section>

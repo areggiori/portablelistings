@@ -4222,7 +4222,7 @@ Reggiori                                                       [Page 75]
    o  Renamed "country" to "releaseCountry" in Programme and
       Application.
    o  Use "canonical" relationship type for "versions" in Programme Item
-      and Application.
+      and "builds" in Application.
 
 
 13.  References
