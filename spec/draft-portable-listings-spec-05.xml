@@ -3152,7 +3152,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         </t>
                         <t hangText="builds: [APPLICATION_BUILD]">
                             Different builds of the same application can exist.
-                            The relationship <spanx style="verb">primary</spanx> boolean flag SHOULD be used to flag the so called "canonical" or preferred build.
+                            The relationship type <spanx style="verb">canonical</spanx> SHALL be used to flag the so called "canonical" or preferred build.
                             No more than one build should be labelled as "canonical" because of the ambiguity this creates and this complicates processing by the Consumer.
                         </t>
                     </list>
@@ -4114,7 +4114,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "role" to reltionships definition.</t>
                 <t>Added CONSTANT to Simple field definition.</t>
                 <t>Renamed "country" to "releaseCountry" in Programme and Application.</t>
-                <t>Use "canonical" relationship type for "versions" in Programme item.</t>
+                <t>Use "canonical" relationship type for "versions" in Programme Item and Application.</t>
             </list>
         </t>
     </section>
