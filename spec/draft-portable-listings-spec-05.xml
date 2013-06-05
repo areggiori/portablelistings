@@ -2507,13 +2507,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                 </t>
                             </list>
                         </t>
-                        <t hangText="format: (COMPLEX)">
+                        <t hangText="format: (ENUM or IRI)">
                             The editorial format categorising the piece of content other than <spanx style="verb">category</spanx> and <spanx style="verb">keywords</spanx>.
-                            <list style="hanging">
-                                <t hangText="value: (ENUM or IRI)">
-                                    The value SHOULD BE selected from a standard list of values such as the EBU Editorial Format types.
-                                </t>
-                            </list>
+                            The value SHOULD BE selected from a standard list of values such as the EBU Editorial Format types.
                         </t>
                         <t hangText="source: [COMPLEX]">
                             Reference to the resources from which the piece of content is derived in whole or in part.
@@ -3263,7 +3259,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="service: (SERVICE)">
                             A reference to the Service on which the applications will be made available to download and install.
                         </t>
-                        <t hangText="applications: [APPLICATION_BUILD]">
+                        <t hangText="applications: [APPLICATION_PUBLICATION]">
                             The list of applications inside the application gallery.
                         </t>
                     </list>
@@ -3295,13 +3291,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <xref target="IANA-MIMEREG"/> includind any media type paramters, such as the "codecs" parameter <xref target="RFC4281"/>.
                             Note that the same Media Resource MAY be used to represent different versions when the media type is a container file or format.
                         </t>
-                        <t hangText="medium: (COMPLEX)">
+                        <t hangText="medium: (ENUM or IRI)">
                             The material or physical carrier of the resource. If a file, it should be the carrier format.
-                            <list style="hanging">
-                                <t hangText="value: (ENUM)">
-                                    The type of media resource SHOULD BE selected from a standard list of values such as the EBU Storage Media types (e.g. '1BM', 'BMX', 'video', 'audio').
-                                </t>
-                            </list>
+                            The type of media resource SHOULD BE selected from a standard list of values such as the EBU Storage Media types (e.g. '1BM', 'BMX', 'video', 'audio').
                         </t>
                         <t hangText="length: (NUMBER)">
                             The media resource size or length in octets.
@@ -3597,12 +3589,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <t>
                 The Person object type extends the basic object type AGENT and represents a contact as defined in <xref target="PortableContacts"/>.
                 This effectively means that a valid Portable Listings Person is a valid Portable Contacts Contact (see section 7.2 of <xref target="PortableContacts"/>).
+                The only difference is that the <spanx style="verb">organization</spanx> field is defined to be a plural relationship to one or more ORGANISATION.
             </t>
         </section>
             
         <section title="Organisation" anchor="organisation-type">
             <t>
-                The Organisation object type extends the AGENT object type and represents an organisation or institution.
+                The Organisation object type extends the AGENT object type and represents an organisation or institution as defined in <xref target="PortableContacts"/>.
+                A valid Portable Listings Organisation is defined to be a Portable Contacts Organization (see section 7.5 of <xref target="PortableContacts"/>) with only the <spanx style="verb">name</spanx> and <spanx style="verb">location</spanx> fields specified.
+                The <spanx style="verb">department</spanx>, <spanx style="verb">title</spanx>, <spanx style="verb">startDate</spanx>, <spanx style="verb">endDate</spanx> and <spanx style="verb">description</spanx> fields SHALL be specified as sub-fields of the PERSON <spanx style="verb">organization</spanx> relationship due they are specific to the contact.
             </t>
             <section title="Relationships" anchor="organisation-relationships">
                 <t>
@@ -3619,6 +3614,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <t>
                 The Group object type extends the AGENT object type and represents a group of people or organisations.
             </t>
+            <section title="Fields" anchor="group-fields">
+                <t>
+                    <list style="hanging">
+                        <t hangText="name: (STRING)">
+                            The name of the group.
+                        </t>
+                    </list>
+                </t>
+            </section>
             <section title="Relationships" anchor="group-relationships">
                 <t>
                     <list style="hanging">
@@ -4115,6 +4119,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added CONSTANT to Simple field definition.</t>
                 <t>Renamed "country" to "releaseCountry" in Programme and Application.</t>
                 <t>Use "canonical" relationship type for "versions" in Programme Item and "builds" in Application.</t>
+                <t>Simplified Content "format" and Media Resource "medium definitions.</t>
+                <t>Redefined Organisation following Portable Contacts.</t>
+                <t>Added "name" to Group.</t>
+                <t>Fixed "applications" to refer to Application Publication.</t>
             </list>
         </t>
     </section>

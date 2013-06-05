@@ -430,7 +430,9 @@ Organisation<br />
 Relationships<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#group-type">8.4.32.</a>&nbsp;
 Group<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#group-relationships">8.4.32.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#group-fields">8.4.32.1.</a>&nbsp;
+Fields<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#group-relationships">8.4.32.2.</a>&nbsp;
 Relationships<br />
 <a href="#IANA">9.</a>&nbsp;
 IANA Considerations<br />
@@ -3218,17 +3220,10 @@ Fields</h3>
 </dl></blockquote>
                         
 </dd>
-<dt>format: (COMPLEX)</dt>
+<dt>format: (ENUM or IRI)</dt>
 <dd>
                             The editorial format categorising the piece of content other than <tt>category</tt> and <tt>keywords</tt>.
-                            
-<blockquote class="text"><dl>
-<dt>value: (ENUM or IRI)</dt>
-<dd>
-                                    The value SHOULD BE selected from a standard list of values such as the EBU Editorial Format types.
-                                
-</dd>
-</dl></blockquote>
+                            The value SHOULD BE selected from a standard list of values such as the EBU Editorial Format types.
                         
 </dd>
 <dt>source: [COMPLEX]</dt>
@@ -4385,7 +4380,7 @@ Relationships</h3>
                             A reference to the Service on which the applications will be made available to download and install.
                         
 </dd>
-<dt>applications: [APPLICATION_BUILD]</dt>
+<dt>applications: [APPLICATION_PUBLICATION]</dt>
 <dd>
                             The list of applications inside the application gallery.
                         
@@ -4428,17 +4423,10 @@ Fields</h3>
                             Note that the same Media Resource MAY be used to represent different versions when the media type is a container file or format.
                         
 </dd>
-<dt>medium: (COMPLEX)</dt>
+<dt>medium: (ENUM or IRI)</dt>
 <dd>
                             The material or physical carrier of the resource. If a file, it should be the carrier format.
-                            
-<blockquote class="text"><dl>
-<dt>value: (ENUM)</dt>
-<dd>
-                                    The type of media resource SHOULD BE selected from a standard list of values such as the EBU Storage Media types (e.g. '1BM', 'BMX', 'video', 'audio').
-                                
-</dd>
-</dl></blockquote>
+                            The type of media resource SHOULD BE selected from a standard list of values such as the EBU Storage Media types (e.g. '1BM', 'BMX', 'video', 'audio').
                         
 </dd>
 <dt>length: (NUMBER)</dt>
@@ -4895,6 +4883,7 @@ Person</h3>
 <p>
                 The Person object type extends the basic object type AGENT and represents a contact as defined in <a class='info' href='#PortableContacts'>[PortableContacts]<span> (</span><span class='info'>Smarr, J., &ldquo;Portable Contacts 1.0 Draft C,&rdquo; .</span><span>)</span></a>.
                 This effectively means that a valid Portable Listings Person is a valid Portable Contacts Contact (see section 7.2 of <a class='info' href='#PortableContacts'>[PortableContacts]<span> (</span><span class='info'>Smarr, J., &ldquo;Portable Contacts 1.0 Draft C,&rdquo; .</span><span>)</span></a>).
+                The only difference is that the <tt>organization</tt> field is defined to be a plural relationship to one or more ORGANISATION.
             
 </p>
 <a name="organisation-type"></a><br /><hr />
@@ -4903,7 +4892,9 @@ Person</h3>
 Organisation</h3>
 
 <p>
-                The Organisation object type extends the AGENT object type and represents an organisation or institution.
+                The Organisation object type extends the AGENT object type and represents an organisation or institution as defined in <a class='info' href='#PortableContacts'>[PortableContacts]<span> (</span><span class='info'>Smarr, J., &ldquo;Portable Contacts 1.0 Draft C,&rdquo; .</span><span>)</span></a>.
+                A valid Portable Listings Organisation is defined to be a Portable Contacts Organization (see section 7.5 of <a class='info' href='#PortableContacts'>[PortableContacts]<span> (</span><span class='info'>Smarr, J., &ldquo;Portable Contacts 1.0 Draft C,&rdquo; .</span><span>)</span></a>) with only the <tt>name</tt> and <tt>location</tt> fields specified.
+                The <tt>department</tt>, <tt>title</tt>, <tt>startDate</tt>, <tt>endDate</tt> and <tt>description</tt> fields SHALL be specified as sub-fields of the PERSON <tt>organization</tt> relationship due they are specific to the contact.
             
 </p>
 <a name="organisation-relationships"></a><br /><hr />
@@ -4931,9 +4922,25 @@ Group</h3>
                 The Group object type extends the AGENT object type and represents a group of people or organisations.
             
 </p>
-<a name="group-relationships"></a><br /><hr />
+<a name="group-fields"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.4.32.1"></a><h3>8.4.32.1.&nbsp;
+Fields</h3>
+
+<p>
+                    </p>
+<blockquote class="text"><dl>
+<dt>name: (STRING)</dt>
+<dd>
+                            The name of the group.
+                        
+</dd>
+</dl></blockquote><p>
+                
+</p>
+<a name="group-relationships"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.32.2"></a><h3>8.4.32.2.&nbsp;
 Relationships</h3>
 
 <p>
@@ -5647,6 +5654,14 @@ Change Log</h3>
 <li>Renamed "country" to "releaseCountry" in Programme and Application.
 </li>
 <li>Use "canonical" relationship type for "versions" in Programme Item and "builds" in Application.
+</li>
+<li>Simplified Content "format" and Media Resource "medium definitions.
+</li>
+<li>Redefined Organisation following Portable Contacts.
+</li>
+<li>Added "name" to Group.
+</li>
+<li>Fixed "applications" to refer to Application Publication.
 </li>
 </ul><p>
         

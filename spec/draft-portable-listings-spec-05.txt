@@ -149,15 +149,15 @@ Reggiori                                                        [Page 2]
          8.4.21.1. Relationships  . . . . . . . . . . . . . . . . . . 64
        8.4.22. Media Resource . . . . . . . . . . . . . . . . . . . . 64
          8.4.22.1. Fields . . . . . . . . . . . . . . . . . . . . . . 64
-       8.4.23. Media Group  . . . . . . . . . . . . . . . . . . . . . 66
+       8.4.23. Media Group  . . . . . . . . . . . . . . . . . . . . . 65
          8.4.23.1. Relationships  . . . . . . . . . . . . . . . . . . 66
        8.4.24. Segment  . . . . . . . . . . . . . . . . . . . . . . . 66
-         8.4.24.1. Fields . . . . . . . . . . . . . . . . . . . . . . 67
+         8.4.24.1. Fields . . . . . . . . . . . . . . . . . . . . . . 66
          8.4.24.2. Relationships  . . . . . . . . . . . . . . . . . . 67
        8.4.25. Segment Group  . . . . . . . . . . . . . . . . . . . . 67
          8.4.25.1. Relationships  . . . . . . . . . . . . . . . . . . 67
        8.4.26. Content Collection . . . . . . . . . . . . . . . . . . 67
-         8.4.26.1. Relationships  . . . . . . . . . . . . . . . . . . 68
+         8.4.26.1. Relationships  . . . . . . . . . . . . . . . . . . 67
        8.4.27. Rights . . . . . . . . . . . . . . . . . . . . . . . . 68
          8.4.27.1. Fields . . . . . . . . . . . . . . . . . . . . . . 68
          8.4.27.2. Relationships  . . . . . . . . . . . . . . . . . . 68
@@ -169,7 +169,7 @@ Reggiori                                                        [Page 3]
                             Portable Listings                   May 2013
 
 
-       8.4.28. Award  . . . . . . . . . . . . . . . . . . . . . . . . 69
+       8.4.28. Award  . . . . . . . . . . . . . . . . . . . . . . . . 68
          8.4.28.1. Fields . . . . . . . . . . . . . . . . . . . . . . 69
          8.4.28.2. Relationships  . . . . . . . . . . . . . . . . . . 69
        8.4.29. Agent  . . . . . . . . . . . . . . . . . . . . . . . . 69
@@ -177,7 +177,8 @@ Reggiori                                                        [Page 3]
        8.4.31. Organisation . . . . . . . . . . . . . . . . . . . . . 69
          8.4.31.1. Relationships  . . . . . . . . . . . . . . . . . . 69
        8.4.32. Group  . . . . . . . . . . . . . . . . . . . . . . . . 69
-         8.4.32.1. Relationships  . . . . . . . . . . . . . . . . . . 70
+         8.4.32.1. Fields . . . . . . . . . . . . . . . . . . . . . . 70
+         8.4.32.2. Relationships  . . . . . . . . . . . . . . . . . . 70
    9.  IANA Considerations  . . . . . . . . . . . . . . . . . . . . . 70
    10. Security Considerations  . . . . . . . . . . . . . . . . . . . 73
    11. Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . 73
@@ -188,7 +189,6 @@ Reggiori                                                        [Page 3]
    Appendix A.  Examples  . . . . . . . . . . . . . . . . . . . . . . 79
    Appendix B.  Compatibility with EBUCore and other standards  . . . 82
    Author's Address . . . . . . . . . . . . . . . . . . . . . . . . . 83
-
 
 
 
@@ -2862,10 +2862,10 @@ Reggiori                                                       [Page 51]
          sub-field.  If the exclusive attribute is omitted or has the
          value false then the piece of content is editorially targeted
          at the target place specified in the value sub-field.
-   format: (COMPLEX)  The editorial format categorising the piece of
-      content other than "category" and "keywords".
-      value: (ENUM or IRI)  The value SHOULD BE selected from a standard
-         list of values such as the EBU Editorial Format types.
+   format: (ENUM or IRI)  The editorial format categorising the piece of
+      content other than "category" and "keywords".  The value SHOULD BE
+      selected from a standard list of values such as the EBU Editorial
+      Format types.
    source: [COMPLEX]  Reference to the resources from which the piece of
       content is derived in whole or in part.
       type: (ENUM)  The type of field SHOULD BE selected from a standard
@@ -3536,8 +3536,8 @@ Reggiori                                                       [Page 63]
 
    service: (SERVICE)  A reference to the Service on which the
       applications will be made available to download and install.
-   applications: [APPLICATION_BUILD]  The list of applications inside
-      the application gallery.
+   applications: [APPLICATION_PUBLICATION]  The list of applications
+      inside the application gallery.
 
 8.4.22.  Media Resource
 
@@ -3572,11 +3572,11 @@ Reggiori                                                       [Page 63]
       "codecs" parameter [RFC4281].  Note that the same Media Resource
       MAY be used to represent different versions when the media type is
       a container file or format.
-   medium: (COMPLEX)  The material or physical carrier of the resource.
-      If a file, it should be the carrier format.
-
-
-
+   medium: (ENUM or IRI)  The material or physical carrier of the
+      resource.  If a file, it should be the carrier format.  The type
+      of media resource SHOULD BE selected from a standard list of
+      values such as the EBU Storage Media types (e.g. '1BM', 'BMX',
+      'video', 'audio').
 
 
 
@@ -3585,9 +3585,6 @@ Reggiori                                                       [Page 64]
                             Portable Listings                   May 2013
 
 
-      value: (ENUM)  The type of media resource SHOULD BE selected from
-         a standard list of values such as the EBU Storage Media types
-         (e.g. '1BM', 'BMX', 'video', 'audio').
    length: (NUMBER)  The media resource size or length in octets.  The
       value is a hint about the content length of the media resource
       representing the media resource and it does not override the
@@ -3631,8 +3628,11 @@ Reggiori                                                       [Page 64]
       page, will provide an interactive player UI for the media
       resource.
 
+8.4.23.  Media Group
 
-
+   The Media Group object type extends the MEDIA_RESOURCE object type
+   and represents a group of related media resources containing one or
+   more versions.  For example, a Media Group MAY BE used to express
 
 
 
@@ -3641,11 +3641,6 @@ Reggiori                                                       [Page 65]
                             Portable Listings                   May 2013
 
 
-8.4.23.  Media Group
-
-   The Media Group object type extends the MEDIA_RESOURCE object type
-   and represents a group of related media resources containing one or
-   more versions.  For example, a Media Group MAY BE used to express
    alternative representations for the same media resource or it MAY BE
    used to represent multiple external tracks (audio, video, text etc)
    associated and syncronized to the main audio and video tracks.  The
@@ -3686,7 +3681,12 @@ Reggiori                                                       [Page 65]
    contain multiple segments.  Segments are reusable, editorially
    distinct items.
 
+8.4.24.1.  Fields
 
+   segmentType: (ENUM)  The type of segment SHALL be selected from one
+      of the following values: "static-segmentation",
+      "live-segmentation", "live-post-segmentation",
+      "post-segmentation".
 
 
 
@@ -3697,12 +3697,6 @@ Reggiori                                                       [Page 66]
                             Portable Listings                   May 2013
 
 
-8.4.24.1.  Fields
-
-   segmentType: (ENUM)  The type of segment SHALL be selected from one
-      of the following values: "static-segmentation",
-      "live-segmentation", "live-post-segmentation",
-      "post-segmentation".
    start: (TIMECODE or TIME or NUMBER)  The beginning point for playback
       of the programme segment.
    end: (TIMECODE or TIME or NUMBER)  An optional ending point for
@@ -3746,14 +3740,18 @@ Reggiori                                                       [Page 66]
    and represents a group or list of related pieces of content, and it
    has the following fields and relationships:
 
+8.4.26.1.  Relationships
+
+
+
+
+
 
 
 Reggiori                                                       [Page 67]
 
                             Portable Listings                   May 2013
 
-
-8.4.26.1.  Relationships
 
    contents: [CONTENT]  The list of pieces of content that are contained
       within the collection.
@@ -3798,8 +3796,10 @@ Reggiori                                                       [Page 67]
    rightsHolder: (AGENT)  The person or organisation holding or managing
       the rights related to the piece of content.
 
+8.4.28.  Award
 
-
+   The Award object type extends the basic object type CONTENT and
+   represents an award or an award nominations for a programme.
 
 
 
@@ -3808,11 +3808,6 @@ Reggiori                                                       [Page 68]
 
                             Portable Listings                   May 2013
 
-
-8.4.28.  Award
-
-   The Award object type extends the basic object type CONTENT and
-   represents an award or an award nominations for a programme.
 
 8.4.28.1.  Fields
 
@@ -3840,11 +3835,19 @@ Reggiori                                                       [Page 68]
    represents a contact as defined in [PortableContacts].  This
    effectively means that a valid Portable Listings Person is a valid
    Portable Contacts Contact (see section 7.2 of [PortableContacts]).
+   The only difference is that the "organization" field is defined to be
+   a plural relationship to one or more ORGANISATION.
 
 8.4.31.  Organisation
 
    The Organisation object type extends the AGENT object type and
-   represents an organisation or institution.
+   represents an organisation or institution as defined in
+   [PortableContacts].  A valid Portable Listings Organisation is
+   defined to be a Portable Contacts Organization (see section 7.5 of
+   [PortableContacts]) with only the "name" and "location" fields
+   specified.  The "department", "title", "startDate", "endDate" and
+   "description" fields SHALL be specified as sub-fields of the PERSON
+   "organization" relationship due they are specific to the contact.
 
 8.4.31.1.  Relationships
 
@@ -3857,15 +3860,16 @@ Reggiori                                                       [Page 68]
 
 
 
-
-
-
 Reggiori                                                       [Page 69]
 
                             Portable Listings                   May 2013
 
 
-8.4.32.1.  Relationships
+8.4.32.1.  Fields
+
+   name: (STRING)  The name of the group.
+
+8.4.32.2.  Relationships
 
    members: [AGENT]  The members of the group.
 
@@ -3908,10 +3912,6 @@ Reggiori                                                       [Page 69]
    o  Relation Name: review
    o  Description: Refers to a resource containings a critical article
       or report concerning the link's context.
-   o  Reference: This specification, Section 8.3.3.
-
-   o  Relation Name: highlights
-
 
 
 
@@ -3921,6 +3921,9 @@ Reggiori                                                       [Page 70]
                             Portable Listings                   May 2013
 
 
+   o  Reference: This specification, Section 8.3.3.
+
+   o  Relation Name: highlights
    o  Description: Refers to a resource that represents striking,
       noticeable aspects of the link's context.
    o  Reference: This specification, Section 8.3.4.
@@ -3964,9 +3967,6 @@ Reggiori                                                       [Page 70]
 
    o  Relation Name: trailer
    o  Description: Refers to trailer of the link's context.
-   o  Reference: This specification, Section 8.3.12.
-
-   o  Relation Name: simulcast
 
 
 
@@ -3977,6 +3977,9 @@ Reggiori                                                       [Page 71]
                             Portable Listings                   May 2013
 
 
+   o  Reference: This specification, Section 8.3.12.
+
+   o  Relation Name: simulcast
    o  Description: Refers to an alternative version of the link's
       context that is being shown simultaneously with the link's
       context.
@@ -4022,9 +4025,6 @@ Reggiori                                                       [Page 71]
    o  Description: Refers to a product or service directly linked to the
       link's context, which can be purchased directly from this linked
       resource.
-   o  Reference: This specification, Section 8.3.21.
-
-
 
 
 
@@ -4032,6 +4032,8 @@ Reggiori                                                       [Page 72]
 
                             Portable Listings                   May 2013
 
+
+   o  Reference: This specification, Section 8.3.21.
 
    o  Relation Name: recap
    o  Description: Refers to a text or AV recap of the link's context.
@@ -4077,8 +4079,6 @@ Reggiori                                                       [Page 72]
    to other past and present people which have collaborated with the
    author either in informal chats, brainstorming sessions and email
    discussions.
-
-
 
 
 
@@ -4223,6 +4223,11 @@ Reggiori                                                       [Page 75]
       Application.
    o  Use "canonical" relationship type for "versions" in Programme Item
       and "builds" in Application.
+   o  Simplified Content "format" and Media Resource "medium
+      definitions.
+   o  Redefined Organisation following Portable Contacts.
+   o  Added "name" to Group.
+   o  Fixed "applications" to refer to Application Publication.
 
 
 13.  References
@@ -4244,11 +4249,6 @@ Reggiori                                                       [Page 75]
    [RFC3339]  Klyne, G., Ed. and C. Newman, "Date and Time on the
               Internet: Timestamps", RFC 3339, July 2002.
 
-   [RFC3987]  Duerst, M. and M. Suignard, "Internationalized Resource
-              Identifiers (IRIs)", RFC 3987, January 2005.
-
-   [RFC4281]  Gellens, R., Singer, D., and P. Frojdh, "The Codecs
-              Parameter for "Bucket" Media Types", RFC 4281,
 
 
 
@@ -4257,6 +4257,11 @@ Reggiori                                                       [Page 76]
                             Portable Listings                   May 2013
 
 
+   [RFC3987]  Duerst, M. and M. Suignard, "Internationalized Resource
+              Identifiers (IRIs)", RFC 3987, January 2005.
+
+   [RFC4281]  Gellens, R., Singer, D., and P. Frojdh, "The Codecs
+              Parameter for "Bucket" Media Types", RFC 4281,
               November 2005.
 
    [RFC4287]  Nottingham, M., Ed. and R. Sayre, Ed., "The Atom
@@ -4300,11 +4305,6 @@ Reggiori                                                       [Page 76]
    [EBU-OBJECTMODEL]
               EBU, "EBU Object Model".
 
-   [EBU-REFERENCEDATA]
-              EBU, "European Broadcasting Union - Metadata Reference
-              Data".
-
-   [EBU-ROLE-CODES]
 
 
 
@@ -4313,6 +4313,11 @@ Reggiori                                                       [Page 77]
                             Portable Listings                   May 2013
 
 
+   [EBU-REFERENCEDATA]
+              EBU, "European Broadcasting Union - Metadata Reference
+              Data".
+
+   [EBU-ROLE-CODES]
               EBU, "European Broadcasting Union - Role Codes".
 
    [EBUCORE]  EBU, "EBU - TECH 3293 - EBU Core Metadata Set (EBU Core)
@@ -4357,11 +4362,6 @@ Reggiori                                                       [Page 77]
    [OAuth 2.0]
               "The OAuth 2.0 Authorization Protocol".
 
-   [OpenSearch]
-              Clinton, D., "OpenSearch 1.1".
-
-   [OpenSocial]
-
 
 
 Reggiori                                                       [Page 78]
@@ -4369,6 +4369,10 @@ Reggiori                                                       [Page 78]
                             Portable Listings                   May 2013
 
 
+   [OpenSearch]
+              Clinton, D., "OpenSearch 1.1".
+
+   [OpenSocial]
               "OpenSocial Social API Server Specification 2.0 DRAFT".
 
    [PortableContacts]
@@ -4413,10 +4417,6 @@ Appendix A.  Examples
    {
      "startIndex": 1,
      "itemsPerPage": 10,
-     "totalResults": 8,
-     "lang": "en",
-     "entry": [
-       {
 
 
 
@@ -4425,6 +4425,10 @@ Reggiori                                                       [Page 79]
                             Portable Listings                   May 2013
 
 
+     "totalResults": 8,
+     "lang": "en",
+     "entry": [
+       {
          "id": "5E5EEBED3173",
          "objectType": "episode",
          "displayName": "Episode 1",
@@ -4469,10 +4473,6 @@ Reggiori                                                       [Page 79]
            {
              "href": "C675EDD23A2D",
              "role": "director",
-             "label": "David Lynch",
-             "primary": true
-           },
-           {
 
 
 
@@ -4481,6 +4481,10 @@ Reggiori                                                       [Page 80]
                             Portable Listings                   May 2013
 
 
+             "label": "David Lynch",
+             "primary": true
+           },
+           {
              "href": "C675EDD23A2D",
              "role": "writer",
              "label": "David Lynch"
@@ -4525,10 +4529,6 @@ Reggiori                                                       [Page 80]
          "title": "Traces to Nowhere",
          "summary": "Cooper's investigation into the murder of
                      Laura Palmer continues, as her secret
-                     boyfriend James Hurley is interrogated...",
-         "contributor": [
-           {
-             "href": "3C67E1038205",
 
 
 
@@ -4537,6 +4537,10 @@ Reggiori                                                       [Page 81]
                             Portable Listings                   May 2013
 
 
+                     boyfriend James Hurley is interrogated...",
+         "contributor": [
+           {
+             "href": "3C67E1038205",
              "role": "director",
              "label": "Duwayne Dunham",
              "primary": true
@@ -4581,10 +4585,6 @@ Appendix B.  Compatibility with EBUCore and other standards
    specification is aligned and compatible with other Open Standards
    such as TV-Anytime, the BBC Programme ontology and HTML5 Video and
    Multitrack related specifications.  The Person object type syntax and
-   definitions is currenly wire-compatible with Portable Contacts, and
-   consequently with the overlapping portion of the OpenSocial RESTful
-   Protocol version 2.0 format [OpenSocial].  Note though that the API
-   interfaces are not compatible and differ.
 
 
 
@@ -4592,6 +4592,11 @@ Reggiori                                                       [Page 82]
 
                             Portable Listings                   May 2013
 
+
+   definitions is currenly wire-compatible with Portable Contacts, and
+   consequently with the overlapping portion of the OpenSocial RESTful
+   Protocol version 2.0 format [OpenSocial].  Note though that the API
+   interfaces are not compatible and differ.
 
    It is our intention to maintain this compatibility going forward, so
    long as it is feasible, and so long as the changes required are
@@ -4612,11 +4617,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
-
-
-
-
 
 
 
