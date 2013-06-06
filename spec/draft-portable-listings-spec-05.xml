@@ -351,10 +351,12 @@ Content-Type: application/listings+json
       "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
-      "alternativeTitle": {
-              "type": "original",
-              "value": "Northwest Passage"
-              },
+      "alternativeTitle": [
+                  {
+                    "type": "original",
+                    "value": "Northwest Passage"
+                  }
+              ],
       "summary": "The small northwest town of
                   Twin Peaks, Washington
                   is shaken when the body of
@@ -457,10 +459,12 @@ Content-Type: application/listings+json
       "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
-      "alternativeTitle": {
-              "type": "original",
-              "value": "Northwest Passage"
-              },
+      "alternativeTitle": [
+                  {
+                  "type": "original",
+                  "value": "Northwest Passage"
+                  }
+              ],
       "summary": "The small northwest town of Twin Peaks,
                   Washington is shaken when the body of
                   Laura Palmer, is discovered...",
@@ -907,10 +911,12 @@ Content-Type: application/listings+json
       "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
-      "alternativeTitle": {
-        "type": "original",
-        "value": "Northwest Passage"
-      },
+      "alternativeTitle": [
+            {
+            "type": "original",
+            "value": "Northwest Passage"
+            }
+        ],
       "contributor": [
         {
           "entry": {
@@ -972,10 +978,12 @@ Content-Type: application/listings+json
       "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
-      "alternativeTitle": {
-        "type": "original",
-        "value": "Northwest Passage"
-      },
+      "alternativeTitle": [
+            {
+            "type": "original",
+            "value": "Northwest Passage"
+            }
+        ],
       "contributor": [
         {
           "href": "C675EDD23A2D",
@@ -4614,10 +4622,12 @@ Content-Type: application/listings+json;
       "objectType": "episode",
       "displayName": "Episode 1",
       "title": "Pilot",
-      "alternativeTitle": {
-        "type": "original",
-        "value": "Northwest Passage"
-      },
+      "alternativeTitle": [
+            {
+            "type": "original",
+            "value": "Northwest Passage"
+            }
+        ],
       "summary": "The small northwest town of Twin Peaks,
                   Washington is shaken when the body of Laura Palmer,
                   is discovered...",
