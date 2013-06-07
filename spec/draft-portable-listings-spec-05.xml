@@ -2935,7 +2935,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="signed: (BOOLEAN)">
                             A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has signing accessibility features.
                         </t>
-                        <t hangText="hasSubtitles: (BOOLEAN)">
+                        <t hangText="subtitled: (BOOLEAN)">
                             A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has subtitles.
                         </t>
                         <t hangText="audioDescribed: (BOOLEAN)">
@@ -4131,6 +4131,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Redefined Organisation following Portable Contacts.</t>
                 <t>Added "name" to Group.</t>
                 <t>Fixed "applications" to refer to Application Publication.</t>
+                <t>Renamed "hasSubtitles" to "subtitled".</t>
             </list>
         </t>
     </section>

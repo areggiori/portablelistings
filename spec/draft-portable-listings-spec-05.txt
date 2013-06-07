@@ -3228,9 +3228,9 @@ Reggiori                                                       [Page 57]
    signed: (BOOLEAN)  A Boolean value indicating whether the access to
       the programme version being broadcasted or made available on-
       demand has signing accessibility features.
-   hasSubtitles: (BOOLEAN)  A Boolean value indicating whether the
-      access to the programme version being broadcasted or made
-      available on-demand has subtitles.
+   subtitled: (BOOLEAN)  A Boolean value indicating whether the access
+      to the programme version being broadcasted or made available on-
+      demand has subtitles.
    audioDescribed: (BOOLEAN)  A Boolean value indicating whether the
       access to the programme version being broadcasted or made
       available on-demand has audio description accessibility features.
@@ -4228,6 +4228,7 @@ Reggiori                                                       [Page 75]
    o  Redefined Organisation following Portable Contacts.
    o  Added "name" to Group.
    o  Fixed "applications" to refer to Application Publication.
+   o  Renamed "hasSubtitles" to "subtitled".
 
 
 13.  References
@@ -4248,7 +4249,6 @@ Reggiori                                                       [Page 75]
 
    [RFC3339]  Klyne, G., Ed. and C. Newman, "Date and Time on the
               Internet: Timestamps", RFC 3339, July 2002.
-
 
 
 
