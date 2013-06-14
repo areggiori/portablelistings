@@ -3604,8 +3604,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
         <section title="Organisation" anchor="organisation-type">
             <t>
                 The Organisation object type extends the AGENT object type and represents an organisation or institution as defined in <xref target="PortableContacts"/>.
-                A valid Portable Listings Organisation is defined to be a Portable Contacts Organization (see section 7.5 of <xref target="PortableContacts"/>) with only the <spanx style="verb">name</spanx> and <spanx style="verb">location</spanx> fields specified.
-                The <spanx style="verb">department</spanx>, <spanx style="verb">title</spanx>, <spanx style="verb">startDate</spanx>, <spanx style="verb">endDate</spanx> and <spanx style="verb">description</spanx> fields SHALL be specified as sub-fields of the PERSON <spanx style="verb">organization</spanx> relationship due they are specific to the contact.
+                A valid Portable Listings Organisation is defined to be a Portable Contacts Organization (see section 7.5 of <xref target="PortableContacts"/>) with only the <spanx style="verb">name</spanx>, <spanx style="verb">field</spanx>, <spanx style="verb">subfield</spanx>, <spanx style="verb">location</spanx> and <spanx style="verb">webpage</spanx> fields specified.
+                The <spanx style="verb">department</spanx>, <spanx style="verb">title</spanx>, <spanx style="verb">type</spanx>, <spanx style="verb">startDate</spanx>, <spanx style="verb">endDate</spanx>, <spanx style="verb">description</spanx> and <spanx style="verb">salary</spanx> fields SHALL be specified as sub-fields of the PERSON <spanx style="verb">organization</spanx> relationship due they are specific to the contact.
             </t>
             <section title="Relationships" anchor="organisation-relationships">
                 <t>
