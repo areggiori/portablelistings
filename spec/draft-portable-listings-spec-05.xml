@@ -2495,7 +2495,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="adultContent: (BOOLEAN)">
                             A flag to indicate this the piece of content contains adult content (if set to true).
                         </t>
-                        <t hangText="childrensContent: (BOOLEAN)">
+                        <t hangText="childrenContent: (BOOLEAN)">
                             A flag to indicate this the piece of content is suitable for viewing by children (if set to true).
                         </t>
                         <t hangText="educationalContent: (BOOLEAN)">
@@ -4077,7 +4077,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "minAudioBitrate", "maxAudioBitrate", "minVideoBitrate" and "maxVideoBitrate" to Media Resource.</t>
                 <t>Added "guidanceText" and "longGuidanceText" to "targetAudience" on Content.</t>
                 <t>Added "mediumSynopsis" and "mediumSynopsis" to "description" on Content.</t>
-                <t>Added "childrensContent" and "educationalContent" to Content.</t>
+                <t>Added "childrenContent" and "educationalContent" to Content.</t>
                 <t>Updated "language" to be main production language.</t>
                 <t>Added "alternativeLanguage".</t>
                 <t>Moved "parent" and "peers" to Entry.</t>
