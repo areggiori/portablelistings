@@ -344,9 +344,9 @@ Programme Publication<br />
 Fields<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programme-publication-relationships">8.4.13.2.</a>&nbsp;
 Relationships<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#broadcast-type">8.4.14.</a>&nbsp;
-Broadcast<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#broadcast-fields">8.4.14.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#schedule-event-type">8.4.14.</a>&nbsp;
+Schedule Event<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#schedule-event-fields">8.4.14.1.</a>&nbsp;
 Fields<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#ondemand-type">8.4.15.</a>&nbsp;
 Ondemand<br />
@@ -2704,7 +2704,7 @@ Object Types</h3>
 <p><a class='info' href='#programme-publication-type'>Programme Publication<span> (</span><span class='info'>Programme Publication</span><span>)</span></a>
                                 </p>
 <blockquote class="text">
-<p><a class='info' href='#broadcast-type'>Broadcast<span> (</span><span class='info'>Broadcast</span><span>)</span></a>
+<p><a class='info' href='#schedule-event-type'>Schedule Event<span> (</span><span class='info'>Schedule Event</span><span>)</span></a>
                                     
 </p>
 <p><a class='info' href='#ondemand-type'>Ondemand<span> (</span><span class='info'>Ondemand</span><span>)</span></a>
@@ -3673,9 +3673,9 @@ Relationships</h3>
 <p>
                     </p>
 <blockquote class="text"><dl>
-<dt>broadcasts: [BROADCAST]</dt>
+<dt>events: [SCHEDULE_EVENT]</dt>
 <dd>
-                            The broadcast events associated with a particular version.
+                            The schedule events associated with a particular version.
                         
 </dd>
 <dt>availabilities: [ONDEMAND]</dt>
@@ -3832,7 +3832,7 @@ Fields</h3>
 <dt>publishedDuration: (NUMBER)</dt>
 <dd>
                             The published duration of the Programme version in seconds.
-                            For broadcast publication events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
+                            For schedule events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
                         
 </dd>
 <dt>free: (BOOLEAN)</dt>
@@ -3913,17 +3913,17 @@ Relationships</h3>
 </dl></blockquote><p>
                 
 </p>
-<a name="broadcast-type"></a><br /><hr />
+<a name="schedule-event-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.4.14"></a><h3>8.4.14.&nbsp;
-Broadcast</h3>
+Schedule Event</h3>
 
 <p>
-                The Broadcast object type extends the PROGRAMME_PUBLICATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific service).
-                Multiple broadcast events can be grouped into a Schedule.
+                The Schedule Event object type extends the PROGRAMME_PUBLICATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific service).
+                Multiple schedule events can be grouped into a Schedule.
             
 </p>
-<a name="broadcast-fields"></a><br /><hr />
+<a name="schedule-event-fields"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.4.14.1"></a><h3>8.4.14.1.&nbsp;
 Fields</h3>
@@ -3954,7 +3954,7 @@ Fields</h3>
 <dt>primaryShowing: (BOOLEAN)</dt>
 <dd>
                             A Boolean value indicating whether the programme version being broadcasted is the primary or preferred showing.
-                            Service Providers MUST NOT mark more than one broadcast publication as primaryShowing="true", and MAY choose not to mark any broadcast as primary, if this information is not available.
+                            Service Providers MUST NOT mark more than one schedule event as primaryShowing="true", and MAY choose not to mark any schedule event as primary, if this information is not available.
                             For efficiency, Service Providers SHOULD NOT mark all non-primary broadcast with primaryShowing="false", but should instead omit this sub-field for all non-primary broadcasts.
                         
 </dd>
@@ -4050,7 +4050,7 @@ Fields</h3>
 Schedule</h3>
 
 <p>
-                The Schedule object type extends the CONTENT object type and represents a group of broadcast events from the same service (e.g. ZDF service schedule).
+                The Schedule object type extends the CONTENT object type and represents a group of schedule events from the same service (e.g. ZDF service schedule).
             
 </p>
 <p>
@@ -4100,9 +4100,9 @@ Relationships</h3>
                             A reference to the Service on which the programmes will be broadcasted.
                         
 </dd>
-<dt>broadcasts: [BROADCAST]</dt>
+<dt>events: [SCHEDULE_EVENT]</dt>
 <dd>
-                            The list of broadcasts inside the schedule.
+                            The list of schedule events inside the schedule.
                         
 </dd>
 </dl></blockquote><p>
@@ -5672,6 +5672,10 @@ Change Log</h3>
 <li>Fixed "applications" to refer to Application Publication.
 </li>
 <li>Renamed "hasSubtitles" to "subtitled".
+</li>
+<li>Renamed "Broadcast" to "Schedule Event".
+</li>
+<li>Renamed Version and Schedule "broadcasts" to "events".
 </li>
 </ul><p>
         

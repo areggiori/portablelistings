@@ -2139,7 +2139,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             </t>
                             <t><xref target="programme-publication-type">Programme Publication</xref>
                                 <list style="empty">
-                                    <t><xref target="broadcast-type">Broadcast</xref>
+                                    <t><xref target="schedule-event-type">Schedule Event</xref>
                                     </t>
                                     <t><xref target="ondemand-type">Ondemand</xref>
                                     </t>
@@ -2827,8 +2827,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>
                     <list style="hanging">
                         <!-- add other EBU core format fields - see also TVA - aspect ratio, sound format etc. -->
-                        <t hangText="broadcasts: [BROADCAST]">
-                            The broadcast events associated with a particular version.
+                        <t hangText="events: [SCHEDULE_EVENT]">
+                            The schedule events associated with a particular version.
                         </t>
                         <t hangText="availabilities: [ONDEMAND]">
                             The availabilities associated with a particular version when it is made available on-demand. <!-- or push to download -->
@@ -2927,7 +2927,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     <list style="hanging">
                         <t hangText="publishedDuration: (NUMBER)">
                             The published duration of the Programme version in seconds.
-                            For broadcast publication events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
+                            For schedule events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
                         </t>
                         <t hangText="free: (BOOLEAN)">
                             A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand is free.
@@ -2979,12 +2979,12 @@ WWW-Authenticate: Basic realm="sample.site.org"
             </section>
         </section>
 
-        <section title="Broadcast" anchor="broadcast-type">
+        <section title="Schedule Event" anchor="schedule-event-type">
             <t>
-                The Broadcast object type extends the PROGRAMME_PUBLICATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific service).
-                Multiple broadcast events can be grouped into a Schedule.
+                The Schedule Event object type extends the PROGRAMME_PUBLICATION object type and represents a publication event of a single Programme version on a single service at particular time (e.g. news at 21:00 on specific service).
+                Multiple schedule events can be grouped into a Schedule.
             </t>
-            <section title="Fields" anchor="broadcast-fields">
+            <section title="Fields" anchor="schedule-event-fields">
                 <t>
                     <list style="hanging">
                         <t hangText="start: (TIMESTAMP)">
@@ -3001,7 +3001,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         </t>
                         <t hangText="primaryShowing: (BOOLEAN)">
                             A Boolean value indicating whether the programme version being broadcasted is the primary or preferred showing.
-                            Service Providers MUST NOT mark more than one broadcast publication as primaryShowing="true", and MAY choose not to mark any broadcast as primary, if this information is not available.
+                            Service Providers MUST NOT mark more than one schedule event as primaryShowing="true", and MAY choose not to mark any schedule event as primary, if this information is not available.
                             For efficiency, Service Providers SHOULD NOT mark all non-primary broadcast with primaryShowing="false", but should instead omit this sub-field for all non-primary broadcasts.
                         </t>
                         <t hangText="repeat: (BOOLEAN)">
@@ -3062,7 +3062,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
             
         <section title="Schedule" anchor="schedule-type">
             <t>
-                The Schedule object type extends the CONTENT object type and represents a group of broadcast events from the same service (e.g. ZDF service schedule).
+                The Schedule object type extends the CONTENT object type and represents a group of schedule events from the same service (e.g. ZDF service schedule).
             </t>
             <t>
                 Note that in order to guarantee the creation of a unqiue and disambiguating schedule <spanx style="verb">id</spanx> field, the following information SHALL be combined:
@@ -3090,8 +3090,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="service: (SERVICE)">
                             A reference to the Service on which the programmes will be broadcasted.
                         </t>
-                        <t hangText="broadcasts: [BROADCAST]">
-                            The list of broadcasts inside the schedule.
+                        <t hangText="events: [SCHEDULE_EVENT]">
+                            The list of schedule events inside the schedule.
                         </t>
                     </list>
                 </t>
@@ -4132,6 +4132,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "name" to Group.</t>
                 <t>Fixed "applications" to refer to Application Publication.</t>
                 <t>Renamed "hasSubtitles" to "subtitled".</t>
+                <t>Renamed "Broadcast" to "Schedule Event".</t>
+                <t>Renamed Version and Schedule "broadcasts" to "events".</t>
             </list>
         </t>
     </section>

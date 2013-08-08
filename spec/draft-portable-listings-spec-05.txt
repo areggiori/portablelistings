@@ -126,7 +126,7 @@ Reggiori                                                        [Page 2]
        8.4.13. Programme Publication  . . . . . . . . . . . . . . . . 58
          8.4.13.1. Fields . . . . . . . . . . . . . . . . . . . . . . 58
          8.4.13.2. Relationships  . . . . . . . . . . . . . . . . . . 59
-       8.4.14. Broadcast  . . . . . . . . . . . . . . . . . . . . . . 59
+       8.4.14. Schedule Event . . . . . . . . . . . . . . . . . . . . 59
          8.4.14.1. Fields . . . . . . . . . . . . . . . . . . . . . . 59
        8.4.15. Ondemand . . . . . . . . . . . . . . . . . . . . . . . 60
          8.4.15.1. Fields . . . . . . . . . . . . . . . . . . . . . . 60
@@ -2503,7 +2503,7 @@ Reggiori                                                       [Page 44]
             Version (Section 8.4.11)
             Service (Section 8.4.12)
             Programme Publication (Section 8.4.13)
-               Broadcast (Section 8.4.14)
+               Schedule Event (Section 8.4.14)
                Ondemand (Section 8.4.15)
             Schedule (Section 8.4.16)
             Catalogue (Section 8.4.17)
@@ -3137,7 +3137,7 @@ Reggiori                                                       [Page 56]
                             Portable Listings                   May 2013
 
 
-   broadcasts: [BROADCAST]  The broadcast events associated with a
+   events: [SCHEDULE_EVENT]  The schedule events associated with a
       particular version.
    availabilities: [ONDEMAND]  The availabilities associated with a
       particular version when it is made available on-demand.
@@ -3219,9 +3219,9 @@ Reggiori                                                       [Page 57]
 8.4.13.1.  Fields
 
    publishedDuration: (NUMBER)  The published duration of the Programme
-      version in seconds.  For broadcast publication events, when all
-      the time parameters are provided, the published duration MUST be
-      equal to the difference between end time and start time.
+      version in seconds.  For schedule events, when all the time
+      parameters are provided, the published duration MUST be equal to
+      the difference between end time and start time.
    free: (BOOLEAN)  A Boolean value indicating whether the access to the
       programme version being broadcasted or made available on-demand is
       free.
@@ -3270,12 +3270,12 @@ Reggiori                                                       [Page 58]
       or more alternative publications (e.g. simulcast in HD, catchup,
       ondemand, recommendation etc.).
 
-8.4.14.  Broadcast
+8.4.14.  Schedule Event
 
-   The Broadcast object type extends the PROGRAMME_PUBLICATION object
-   type and represents a publication event of a single Programme version
-   on a single service at particular time (e.g. news at 21:00 on
-   specific service).  Multiple broadcast events can be grouped into a
+   The Schedule Event object type extends the PROGRAMME_PUBLICATION
+   object type and represents a publication event of a single Programme
+   version on a single service at particular time (e.g. news at 21:00 on
+   specific service).  Multiple schedule events can be grouped into a
    Schedule.
 
 8.4.14.1.  Fields
@@ -3290,9 +3290,9 @@ Reggiori                                                       [Page 58]
       programme version being broadcasted is a last showing.
    primaryShowing: (BOOLEAN)  A Boolean value indicating whether the
       programme version being broadcasted is the primary or preferred
-      showing.  Service Providers MUST NOT mark more than one broadcast
-      publication as primaryShowing="true", and MAY choose not to mark
-      any broadcast as primary, if this information is not available.
+      showing.  Service Providers MUST NOT mark more than one schedule
+      event as primaryShowing="true", and MAY choose not to mark any
+      schedule event as primary, if this information is not available.
       For efficiency, Service Providers SHOULD NOT mark all non-primary
       broadcast with primaryShowing="false", but should instead omit
       this sub-field for all non-primary broadcasts.
@@ -3349,7 +3349,7 @@ Reggiori                                                       [Page 59]
 8.4.16.  Schedule
 
    The Schedule object type extends the CONTENT object type and
-   represents a group of broadcast events from the same service (e.g.
+   represents a group of schedule events from the same service (e.g.
    ZDF service schedule).
 
    Note that in order to guarantee the creation of a unqiue and
@@ -3376,7 +3376,8 @@ Reggiori                                                       [Page 60]
 
    service: (SERVICE)  A reference to the Service on which the
       programmes will be broadcasted.
-   broadcasts: [BROADCAST]  The list of broadcasts inside the schedule.
+   events: [SCHEDULE_EVENT]  The list of schedule events inside the
+      schedule.
 
 8.4.17.  Catalogue
 
@@ -3407,7 +3408,6 @@ Reggiori                                                       [Page 60]
    The Application object type extends the CONTENT object type and
    represents an abstract application (e.g.  BBC iPlayer).  The
    Application object type is identified with the string APPLICATION.
-
 
 
 
@@ -4236,6 +4236,8 @@ Reggiori                                                       [Page 75]
    o  Added "name" to Group.
    o  Fixed "applications" to refer to Application Publication.
    o  Renamed "hasSubtitles" to "subtitled".
+   o  Renamed "Broadcast" to "Schedule Event".
+   o  Renamed Version and Schedule "broadcasts" to "events".
 
 
 13.  References
@@ -4247,8 +4249,6 @@ Reggiori                                                       [Page 75]
 
    [RFC2616]  Fielding, R., Gettys, J., Mogul, J., Frystyk, H.,
               Masinter, L., Leach, P., and T. Berners-Lee, "Hypertext
-              Transfer Protocol -- HTTP/1.1", RFC 2616, June 1999.
-
 
 
 
@@ -4256,6 +4256,8 @@ Reggiori                                                       [Page 76]
 
                             Portable Listings                   May 2013
 
+
+              Transfer Protocol -- HTTP/1.1", RFC 2616, June 1999.
 
    [RFC2617]  Franks, J., Hallam-Baker, P., Hostetler, J., Lawrence, S.,
               Leach, P., Luotonen, A., and L. Stewart, "HTTP
@@ -4303,8 +4305,6 @@ Reggiori                                                       [Page 76]
    [BBC-PROGRAMMES]
               BBC, "Programmes ontology".
 
-   [DCMI-PERIOD]
-              "DCMI Period Encoding Scheme".
 
 
 
@@ -4312,6 +4312,9 @@ Reggiori                                                       [Page 77]
 
                             Portable Listings                   May 2013
 
+
+   [DCMI-PERIOD]
+              "DCMI Period Encoding Scheme".
 
    [DVB-URI]  British Broadcasting Corportation and Condition-ALPHA,
               "Uniform Resource Identifier (URI) Scheme for Digital
@@ -4359,9 +4362,6 @@ Reggiori                                                       [Page 77]
    [MEDIA-FRAGMENTS-URI]
               W3C, "Media Fragments URI 1.0".
 
-   [MEDIA-RSS]
-              Yahoo! Inc. and RSS Advisory Board, "Media RSS
-
 
 
 Reggiori                                                       [Page 78]
@@ -4369,6 +4369,8 @@ Reggiori                                                       [Page 78]
                             Portable Listings                   May 2013
 
 
+   [MEDIA-RSS]
+              Yahoo! Inc. and RSS Advisory Board, "Media RSS
               Specification".
 
    [MIMEREG]  Freed, N. and J. Klensin, "Media Type Specifications and
@@ -4416,8 +4418,6 @@ Appendix A.  Examples
    Sample response (JSON):
 
 
-   HTTP/1.1 200 OK
-
 
 
 Reggiori                                                       [Page 79]
@@ -4425,6 +4425,7 @@ Reggiori                                                       [Page 79]
                             Portable Listings                   May 2013
 
 
+   HTTP/1.1 200 OK
    Content-Length: ...
    Content-Language: en
    Content-Type: application/listings+json;
@@ -4472,7 +4473,6 @@ Reggiori                                                       [Page 79]
            }
          ],
          "language": "en",
-         "alternativeLanguage": [
 
 
 
@@ -4481,6 +4481,7 @@ Reggiori                                                       [Page 80]
                             Portable Listings                   May 2013
 
 
+         "alternativeLanguage": [
            {
              "type": "additionalOriginalLanguage",
              "value": "no",
@@ -4528,7 +4529,6 @@ Reggiori                                                       [Page 80]
                "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
              },
              {
-               "href": "http://www.imdb.com/title/tt0278784/"
 
 
 
@@ -4537,6 +4537,7 @@ Reggiori                                                       [Page 81]
                             Portable Listings                   May 2013
 
 
+               "href": "http://www.imdb.com/title/tt0278784/"
              }
          ]
        },
@@ -4584,7 +4585,6 @@ Reggiori                                                       [Page 81]
            }
          ]
        }
-     ]
 
 
 
@@ -4593,6 +4593,7 @@ Reggiori                                                       [Page 82]
                             Portable Listings                   May 2013
 
 
+     ]
    }
 
 
@@ -4627,7 +4628,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
 
 
 
