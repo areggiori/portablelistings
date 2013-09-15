@@ -2855,7 +2855,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The service type SHOULD BE selected from the following list: <spanx style="verb">broadcast</spanx>, <spanx style="verb">virtual</spanx>, <spanx style="verb">iptv</spanx>, <spanx style="verb">ondemand</spanx>, <spanx style="verb">owning</spanx>.
                         </t>
                         <t hangText="entitlementType: (ENUM)">
-                            The service entitlement type SHOULD BE selected from the following list: <spanx style="verb">freeToAir</spanx>, <spanx style="verb">freeToView</spanx>, <spanx style="verb">subscription</spanx>.
+                            The service entitlement type SHOULD BE selected from the following list: <spanx style="verb">free-to-air</spanx>, <spanx style="verb">free-to-view</spanx>, <spanx style="verb">subscription</spanx>.
                         </t>
                         <t hangText="free: (BOOLEAN)">
                             A Boolean value indicating whether the access to the service is free. If the field is omitted it is assumed that the service is free-to-air (i.e. offered completely free of charge and without any access restrictions). For services that are not free-to-air this field shall be set to <spanx style="verb">false</spanx>.

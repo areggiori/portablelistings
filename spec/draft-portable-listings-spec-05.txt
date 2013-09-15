@@ -3162,7 +3162,7 @@ Reggiori                                                       [Page 56]
       following list: "broadcast", "virtual", "iptv", "ondemand",
       "owning".
    entitlementType: (ENUM)  The service entitlement type SHOULD BE
-      selected from the following list: "freeToAir", "freeToView",
+      selected from the following list: "free-to-air", "free-to-view",
       "subscription".
    free: (BOOLEAN)  A Boolean value indicating whether the access to the
       service is free.  If the field is omitted it is assumed that the
