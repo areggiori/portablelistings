@@ -3697,7 +3697,7 @@ Relationships</h3>
 Service</h3>
 
 <p>
-                The Service object type extends the CONTENT object type and represents a publication outlet (e.g. a broadcasting service).
+                The Service object type extends the CONTENT object type and represents a publication outlet (e.g. a linear broadcast service, on-demand player service) or a content owning service (e.g. a service representing a commissioner or a service that manages any user-facing branding such as names, descriptive text and logos/images).
                 A service is a collection of outlets which contain common material, but with some variations (e.g. by region).
                 Hierarchies of services MAY be defined (e.g. radio, tv, online, mobile).
             
@@ -3780,9 +3780,9 @@ Relationships</h3>
                             For example, in the movie industry some movie publication or distribution ondemand outlets may be: on-air, online (payed, subscription, advertised), physical media (dvd, blu-ray, VHS), theatre (cinema), mobile.
                         
 </dd>
-<dt>organisation: (ORGANISATION)</dt>
+<dt>ownership: (SERVICE)</dt>
 <dd>
-                            Relates a Service to an Organisation providing the service.
+                            Relates a Service to the owner Service.
                         
 </dd>
 <dt>application: (APPLICATION)</dt>
@@ -5676,6 +5676,8 @@ Change Log</h3>
 <li>Renamed "Broadcast" to "Schedule Event".
 </li>
 <li>Renamed Version and Schedule "broadcasts" to "events".
+</li>
+<li>Renamed "organisation" to "ownership" in Service.
 </li>
 </ul><p>
         

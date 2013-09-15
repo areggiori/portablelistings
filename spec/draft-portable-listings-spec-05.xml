@@ -2843,7 +2843,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
         
         <section title="Service" anchor="service-type">
             <t>
-                The Service object type extends the CONTENT object type and represents a publication outlet (e.g. a broadcasting service).
+                The Service object type extends the CONTENT object type and represents a publication outlet (e.g. a linear broadcast service, on-demand player service) or a content owning service (e.g. a service representing a commissioner or a service that manages any user-facing branding such as names, descriptive text and logos/images).
                 A service is a collection of outlets which contain common material, but with some variations (e.g. by region).
                 Hierarchies of services MAY be defined (e.g. radio, tv, online, mobile).
             </t>
@@ -2893,8 +2893,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             An outlet represents a service which does not have variations.
                             For example, in the movie industry some movie publication or distribution ondemand outlets may be: on-air, online (payed, subscription, advertised), physical media (dvd, blu-ray, VHS), theatre (cinema), mobile.
                         </t>
-                        <t hangText="organisation: (ORGANISATION)">
-                            Relates a Service to an Organisation providing the service.
+                        <t hangText="ownership: (SERVICE)">
+                            Relates a Service to the owner Service.
                         </t>
                         <t hangText="application: (APPLICATION)">
                             A reference to a media player or helper Application. A media player will be invoked to present all publications associated with an ondemand service.
@@ -4134,6 +4134,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Renamed "hasSubtitles" to "subtitled".</t>
                 <t>Renamed "Broadcast" to "Schedule Event".</t>
                 <t>Renamed Version and Schedule "broadcasts" to "events".</t>
+                <t>Renamed "organisation" to "ownership" in Service.</t>
             </list>
         </t>
     </section>

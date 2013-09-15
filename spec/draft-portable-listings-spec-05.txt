@@ -3148,7 +3148,10 @@ Reggiori                                                       [Page 56]
 8.4.12.  Service
 
    The Service object type extends the CONTENT object type and
-   represents a publication outlet (e.g. a broadcasting service).  A
+   represents a publication outlet (e.g. a linear broadcast service, on-
+   demand player service) or a content owning service (e.g. a service
+   representing a commissioner or a service that manages any user-facing
+   branding such as names, descriptive text and logos/images).  A
    service is a collection of outlets which contain common material, but
    with some variations (e.g. by region).  Hierarchies of services MAY
    be defined (e.g. radio, tv, online, mobile).
@@ -3180,9 +3183,6 @@ Reggiori                                                       [Page 56]
       industry some movie publication or distribution ondemand outlets
       may be: on-air, online (payed, subscription, advertised), physical
       media (dvd, blu-ray, VHS), theatre (cinema), mobile.
-   organisation: (ORGANISATION)  Relates a Service to an Organisation
-      providing the service.
-
 
 
 
@@ -3193,6 +3193,7 @@ Reggiori                                                       [Page 57]
                             Portable Listings                   May 2013
 
 
+   ownership: (SERVICE)  Relates a Service to the owner Service.
    application: (APPLICATION)  A reference to a media player or helper
       Application.  A media player will be invoked to present all
       publications associated with an ondemand service.  An on-screen
@@ -3237,7 +3238,6 @@ Reggiori                                                       [Page 57]
    hd: (BOOLEAN)  A Boolean value indicating whether the programme
       version being broadcasted or made available on-demand is high
       definition.
-
 
 
 
@@ -4238,6 +4238,7 @@ Reggiori                                                       [Page 75]
    o  Renamed "hasSubtitles" to "subtitled".
    o  Renamed "Broadcast" to "Schedule Event".
    o  Renamed Version and Schedule "broadcasts" to "events".
+   o  Renamed "organisation" to "ownership" in Service.
 
 
 13.  References
@@ -4248,7 +4249,6 @@ Reggiori                                                       [Page 75]
               Requirement Levels", BCP 14, RFC 2119, March 1997.
 
    [RFC2616]  Fielding, R., Gettys, J., Mogul, J., Frystyk, H.,
-              Masinter, L., Leach, P., and T. Berners-Lee, "Hypertext
 
 
 
@@ -4257,6 +4257,7 @@ Reggiori                                                       [Page 76]
                             Portable Listings                   May 2013
 
 
+              Masinter, L., Leach, P., and T. Berners-Lee, "Hypertext
               Transfer Protocol -- HTTP/1.1", RFC 2616, June 1999.
 
    [RFC2617]  Franks, J., Hallam-Baker, P., Hostetler, J., Lawrence, S.,
@@ -4304,7 +4305,6 @@ Reggiori                                                       [Page 76]
 
    [BBC-PROGRAMMES]
               BBC, "Programmes ontology".
-
 
 
 
