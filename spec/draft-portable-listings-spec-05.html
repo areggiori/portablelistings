@@ -3715,6 +3715,16 @@ Fields</h3>
                             The service type SHOULD BE selected from the following list: <tt>broadcast</tt>, <tt>virtual</tt>, <tt>iptv</tt>, <tt>ondemand</tt>, <tt>owning</tt>.
                         
 </dd>
+<dt>entitlementType: (ENUM)</dt>
+<dd>
+                            The service entitlement type SHOULD BE selected from the following list: <tt>freeToAir</tt>, <tt>freeToView</tt>, <tt>subscription</tt>.
+                        
+</dd>
+<dt>free: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the access to the service is free. If the field is omitted it is assumed that the service is free-to-air (i.e. offered completely free of charge and without any access restrictions). For services that are not free-to-air this field shall be set to <tt>false</tt>.
+                        
+</dd>
 <dt>locator: (IRI)</dt>
 <dd>
                             A service locator per <a class='info' href='#DVB-URI'>[DVB&#8209;URI]<span> (</span><span class='info'>British Broadcasting Corportation and Condition-ALPHA, &ldquo;Uniform Resource Identifier (URI) Scheme for Digital Video Broadcasting (DVB) Programme Resources,&rdquo; March&nbsp;2013.</span><span>)</span></a> (e.g. dvb://233a.1041.10bf).
@@ -5678,6 +5688,8 @@ Change Log</h3>
 <li>Renamed Version and Schedule "broadcasts" to "events".
 </li>
 <li>Renamed "organisation" to "ownership" in Service.
+</li>
+<li>Added "entitlementType" and "free" to Service.
 </li>
 </ul><p>
         

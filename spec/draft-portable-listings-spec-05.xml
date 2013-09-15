@@ -2854,6 +2854,12 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="serviceType: (ENUM)">
                             The service type SHOULD BE selected from the following list: <spanx style="verb">broadcast</spanx>, <spanx style="verb">virtual</spanx>, <spanx style="verb">iptv</spanx>, <spanx style="verb">ondemand</spanx>, <spanx style="verb">owning</spanx>.
                         </t>
+                        <t hangText="entitlementType: (ENUM)">
+                            The service entitlement type SHOULD BE selected from the following list: <spanx style="verb">freeToAir</spanx>, <spanx style="verb">freeToView</spanx>, <spanx style="verb">subscription</spanx>.
+                        </t>
+                        <t hangText="free: (BOOLEAN)">
+                            A Boolean value indicating whether the access to the service is free. If the field is omitted it is assumed that the service is free-to-air (i.e. offered completely free of charge and without any access restrictions). For services that are not free-to-air this field shall be set to <spanx style="verb">false</spanx>.
+                        </t>
                         <t hangText="locator: (IRI)">
                             A service locator per <xref target="DVB-URI"/> (e.g. dvb://233a.1041.10bf).
                         </t>
@@ -4135,6 +4141,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Renamed "Broadcast" to "Schedule Event".</t>
                 <t>Renamed Version and Schedule "broadcasts" to "events".</t>
                 <t>Renamed "organisation" to "ownership" in Service.</t>
+                <t>Added "entitlementType" and "free" to Service.</t>
             </list>
         </t>
     </section>
