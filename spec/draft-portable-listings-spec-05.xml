@@ -2649,7 +2649,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             Relates a piece of content to other pieces of content which are cross-promotions (e.g. "if you liked this piece of content you may also like these other content items").
                             <list style="hanging">
                                 <t hangText="rel: (ENUM)">
-                                    The rel value SHALL BE the "related" relation type as defined in <xref target="RFC5988" />.
+                                    The rel value SHALL BE the "recommendation" relation type as defined in <xref target="recommendation" />.
                                 </t>
                             </list>
                         </t>
@@ -4142,6 +4142,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Renamed Version and Schedule "broadcasts" to "events".</t>
                 <t>Renamed "organisation" to "ownership" in Service.</t>
                 <t>Added "entitlementType" and "free" to Service.</t>
+                <t>Changed crossPromotions "related" relation type to "recommendation".</t>
             </list>
         </t>
     </section>

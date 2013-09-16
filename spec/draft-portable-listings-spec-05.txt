@@ -2973,8 +2973,8 @@ Reggiori                                                       [Page 53]
       pieces of content which are cross-promotions (e.g. "if you liked
       this piece of content you may also like these other content
       items").
-      rel: (ENUM)  The rel value SHALL BE the "related" relation type as
-         defined in [RFC5988].
+      rel: (ENUM)  The rel value SHALL BE the "recommendation" relation
+         type as defined in Section 8.3.16.
 
 8.4.4.  Programme
 
@@ -4281,6 +4281,8 @@ Reggiori                                                       [Page 76]
    o  Renamed Version and Schedule "broadcasts" to "events".
    o  Renamed "organisation" to "ownership" in Service.
    o  Added "entitlementType" and "free" to Service.
+   o  Changed crossPromotions "related" relation type to
+      "recommendation".
 
 
 13.  References
@@ -4303,8 +4305,6 @@ Reggiori                                                       [Page 76]
               Internet: Timestamps", RFC 3339, July 2002.
 
    [RFC3987]  Duerst, M. and M. Suignard, "Internationalized Resource
-              Identifiers (IRIs)", RFC 3987, January 2005.
-
 
 
 
@@ -4312,6 +4312,8 @@ Reggiori                                                       [Page 77]
 
                             Portable Listings                   May 2013
 
+
+              Identifiers (IRIs)", RFC 3987, January 2005.
 
    [RFC4281]  Gellens, R., Singer, D., and P. Frojdh, "The Codecs
               Parameter for "Bucket" Media Types", RFC 4281,
@@ -4359,8 +4361,6 @@ Reggiori                                                       [Page 77]
               EBU, "EBU Object Model".
 
    [EBU-REFERENCEDATA]
-              EBU, "European Broadcasting Union - Metadata Reference
-              Data".
 
 
 
@@ -4368,6 +4368,9 @@ Reggiori                                                       [Page 78]
 
                             Portable Listings                   May 2013
 
+
+              EBU, "European Broadcasting Union - Metadata Reference
+              Data".
 
    [EBU-ROLE-CODES]
               EBU, "European Broadcasting Union - Role Codes".
@@ -4414,9 +4417,6 @@ Reggiori                                                       [Page 78]
    [OAuth 2.0]
               "The OAuth 2.0 Authorization Protocol".
 
-   [OpenSearch]
-              Clinton, D., "OpenSearch 1.1".
-
 
 
 
@@ -4424,6 +4424,9 @@ Reggiori                                                       [Page 79]
 
                             Portable Listings                   May 2013
 
+
+   [OpenSearch]
+              Clinton, D., "OpenSearch 1.1".
 
    [OpenSocial]
               "OpenSocial Social API Server Specification 2.0 DRAFT".
@@ -4470,9 +4473,6 @@ Appendix A.  Examples
    {
      "startIndex": 1,
      "itemsPerPage": 10,
-     "totalResults": 8,
-     "lang": "en",
-     "entry": [
 
 
 
@@ -4481,6 +4481,9 @@ Reggiori                                                       [Page 80]
                             Portable Listings                   May 2013
 
 
+     "totalResults": 8,
+     "lang": "en",
+     "entry": [
        {
          "id": "5E5EEBED3173",
          "objectType": "episode",
@@ -4526,9 +4529,6 @@ Reggiori                                                       [Page 80]
          ],
          "contributor": [
            {
-             "href": "C675EDD23A2D",
-             "role": "director",
-             "label": "David Lynch",
 
 
 
@@ -4537,6 +4537,9 @@ Reggiori                                                       [Page 81]
                             Portable Listings                   May 2013
 
 
+             "href": "C675EDD23A2D",
+             "role": "director",
+             "label": "David Lynch",
              "primary": true
            },
            {
@@ -4582,9 +4585,6 @@ Reggiori                                                       [Page 81]
          "objectType": "episode",
          "displayName": "Episode 2",
          "title": "Traces to Nowhere",
-         "summary": "Cooper's investigation into the murder of
-                     Laura Palmer continues, as her secret
-                     boyfriend James Hurley is interrogated...",
 
 
 
@@ -4593,6 +4593,9 @@ Reggiori                                                       [Page 82]
                             Portable Listings                   May 2013
 
 
+         "summary": "Cooper's investigation into the murder of
+                     Laura Palmer continues, as her secret
+                     boyfriend James Hurley is interrogated...",
          "contributor": [
            {
              "href": "3C67E1038205",
@@ -4638,9 +4641,6 @@ Appendix B.  Compatibility with EBUCore and other standards
    This version of the Portable Listings specification is currently
    wire-compatible with the EBUCore standard.  Additionally the
    specification is aligned and compatible with other Open Standards
-   such as TV-Anytime, the BBC Programme ontology and HTML5 Video and
-   Multitrack related specifications.  The Person object type syntax and
-   definitions is currenly wire-compatible with Portable Contacts, and
 
 
 
@@ -4649,6 +4649,9 @@ Reggiori                                                       [Page 83]
                             Portable Listings                   May 2013
 
 
+   such as TV-Anytime, the BBC Programme ontology and HTML5 Video and
+   Multitrack related specifications.  The Person object type syntax and
+   definitions is currenly wire-compatible with Portable Contacts, and
    consequently with the overlapping portion of the OpenSocial RESTful
    Protocol version 2.0 format [OpenSocial].  Note though that the API
    interfaces are not compatible and differ.
@@ -4672,9 +4675,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
-
-
 
 
 
