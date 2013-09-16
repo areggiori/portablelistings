@@ -2730,11 +2730,11 @@ Reggiori                                                       [Page 48]
       type: (ENUM)  The type of field SHOULD BE selected from the
          following list: "secondary", "subtitle",
          "alternativeSecondary", "original", "artWorkOriginal",
-         "pledged", "version", "working", "alternativeWorking", "long",
-         "full", "abridged", "transmission", "published",
-         "international", "translation", "pseudo", "ingest".  The
-         "short" and "main" values SHOULD NOT be used as this
-         complicates processing by the Consumer.
+         "pledged", "working", "alternativeWorking", "long", "full",
+         "abridged", "transmission", "international", "translation",
+         "pseudo", "ingest".  The "main", "published", "short" and
+         "version" values SHOULD NOT be used as this complicates
+         processing by the Consumer.
 
 
 
