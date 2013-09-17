@@ -3717,7 +3717,7 @@ Fields</h3>
 </dd>
 <dt>entitlementType: (ENUM)</dt>
 <dd>
-                            The service entitlement type SHOULD BE selected from the following list: <tt>free-to-air</tt>, <tt>free-to-view</tt>, <tt>subscription</tt>.
+                            The service entitlement type SHOULD BE selected from the following list: <tt>free-to-view</tt>, <tt>subscription</tt>, <tt>rental</tt>, <tt>ownership</tt>.
                         
 </dd>
 <dt>free: (BOOLEAN)</dt>
@@ -3845,9 +3845,14 @@ Fields</h3>
                             For schedule events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
                         
 </dd>
+<dt>entitlementType: (ENUM)</dt>
+<dd>
+                            The programme publication entitlement type SHOULD BE selected from the following list: <tt>free-to-view</tt>, <tt>subscription</tt>, <tt>rental</tt>, <tt>ownership</tt>.
+                        
+</dd>
 <dt>free: (BOOLEAN)</dt>
 <dd>
-                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand is free.
+                            A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand is free. If the field is omitted it is assumed that the programme is free-to-air (i.e. offered completely free of charge and without any access restrictions). For programmes that are not free-to-air this field shall be set to <tt>false</tt>.
                         
 </dd>
 <dt>signed: (BOOLEAN)</dt>
@@ -5692,6 +5697,8 @@ Change Log</h3>
 <li>Added "entitlementType" and "free" to Service.
 </li>
 <li>Changed crossPromotions "related" relation type to "recommendation".
+</li>
+<li>Added "entitlementType" to Programme Publication.
 </li>
 </ul><p>
         

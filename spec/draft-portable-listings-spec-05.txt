@@ -140,7 +140,7 @@ Reggiori                                                        [Page 2]
          8.4.18.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
          8.4.18.2. Relationships  . . . . . . . . . . . . . . . . . . 62
        8.4.19. Application Build  . . . . . . . . . . . . . . . . . . 62
-         8.4.19.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
+         8.4.19.1. Fields . . . . . . . . . . . . . . . . . . . . . . 63
          8.4.19.2. Relationships  . . . . . . . . . . . . . . . . . . 63
        8.4.20. Application Publication  . . . . . . . . . . . . . . . 63
          8.4.20.1. Fields . . . . . . . . . . . . . . . . . . . . . . 63
@@ -3162,8 +3162,8 @@ Reggiori                                                       [Page 56]
       following list: "broadcast", "virtual", "iptv", "ondemand",
       "owning".
    entitlementType: (ENUM)  The service entitlement type SHOULD BE
-      selected from the following list: "free-to-air", "free-to-view",
-      "subscription".
+      selected from the following list: "free-to-view", "subscription",
+      "rental", "ownership".
    free: (BOOLEAN)  A Boolean value indicating whether the access to the
       service is free.  If the field is omitted it is assumed that the
       service is free-to-air (i.e. offered completely free of charge and
@@ -3231,15 +3231,15 @@ Reggiori                                                       [Page 57]
       version in seconds.  For schedule events, when all the time
       parameters are provided, the published duration MUST be equal to
       the difference between end time and start time.
+   entitlementType: (ENUM)  The programme publication entitlement type
+      SHOULD BE selected from the following list: "free-to-view",
+      "subscription", "rental", "ownership".
    free: (BOOLEAN)  A Boolean value indicating whether the access to the
       programme version being broadcasted or made available on-demand is
-      free.
-   signed: (BOOLEAN)  A Boolean value indicating whether the access to
-      the programme version being broadcasted or made available on-
-      demand has signing accessibility features.
-
-
-
+      free.  If the field is omitted it is assumed that the programme is
+      free-to-air (i.e. offered completely free of charge and without
+      any access restrictions).  For programmes that are not free-to-air
+      this field shall be set to "false".
 
 
 
@@ -3249,6 +3249,9 @@ Reggiori                                                       [Page 58]
                             Portable Listings                   May 2013
 
 
+   signed: (BOOLEAN)  A Boolean value indicating whether the access to
+      the programme version being broadcasted or made available on-
+      demand has signing accessibility features.
    subtitled: (BOOLEAN)  A Boolean value indicating whether the access
       to the programme version being broadcasted or made available on-
       demand has subtitles.
@@ -3291,9 +3294,6 @@ Reggiori                                                       [Page 58]
 
    start: (TIMESTAMP)  The published date and time at which the
       programme version broadcast will be starting.
-   end: (TIMESTAMP)  The published date and time at which the programme
-      version broadcast will be ending.
-
 
 
 
@@ -3305,6 +3305,8 @@ Reggiori                                                       [Page 59]
                             Portable Listings                   May 2013
 
 
+   end: (TIMESTAMP)  The published date and time at which the programme
+      version broadcast will be ending.
    firstShowing: (BOOLEAN)  A Boolean value indicating whether the
       programme version being broadcasted is a first showing.
    lastShowing: (BOOLEAN)  A Boolean value indicating whether the
@@ -3347,8 +3349,6 @@ Reggiori                                                       [Page 59]
    expiryDate: (TIMESTAMP)  The published date and time when the
       programme version expires or it is no longer available for
       viewing.
-   instantViewing: (BOOLEAN)  A Boolean value indicating whether the
-      programme version is for instant viewing.
 
 
 
@@ -3361,6 +3361,8 @@ Reggiori                                                       [Page 60]
                             Portable Listings                   May 2013
 
 
+   instantViewing: (BOOLEAN)  A Boolean value indicating whether the
+      programme version is for instant viewing.
    deliveryMode: (ENUM)  The on-demand publication delivery mode SHALL
       be selected from one of the following values: "unicastStream",
       "download", "progressiveDownload".  A Provider MAY use any
@@ -3405,8 +3407,6 @@ Reggiori                                                       [Page 60]
    disambiguating catalogue "id" field, the following information SHALL
    be combined:
    o  The metadata publishing party identifier (if defined).
-   o  The parent service identifier.
-   o  The catalogue type value.
 
 
 
@@ -3416,6 +3416,9 @@ Reggiori                                                       [Page 61]
 
                             Portable Listings                   May 2013
 
+
+   o  The parent service identifier.
+   o  The catalogue type value.
 
 8.4.17.1.  Fields
 
@@ -3459,9 +3462,6 @@ Reggiori                                                       [Page 61]
    (e.g.  BBC iPlayer for iPad with Retina).  The Application object
    type is identified with the string APPLICATION_BUILD.
 
-8.4.19.1.  Fields
-
-
 
 
 
@@ -3472,6 +3472,8 @@ Reggiori                                                       [Page 62]
 
                             Portable Listings                   May 2013
 
+
+8.4.19.1.  Fields
 
    original: (BOOLEAN)  A Boolean value indicating whether or not the
       application build is the original.  Service Providers MUST NOT
@@ -3516,8 +3518,6 @@ Reggiori                                                       [Page 62]
       application build is free or requires a payment.
 
 8.4.20.2.  Relationships
-
-
 
 
 
@@ -4283,6 +4283,7 @@ Reggiori                                                       [Page 76]
    o  Added "entitlementType" and "free" to Service.
    o  Changed crossPromotions "related" relation type to
       "recommendation".
+   o  Added "entitlementType" to Programme Publication.
 
 
 13.  References
@@ -4304,7 +4305,6 @@ Reggiori                                                       [Page 76]
    [RFC3339]  Klyne, G., Ed. and C. Newman, "Date and Time on the
               Internet: Timestamps", RFC 3339, July 2002.
 
-   [RFC3987]  Duerst, M. and M. Suignard, "Internationalized Resource
 
 
 
@@ -4313,6 +4313,7 @@ Reggiori                                                       [Page 77]
                             Portable Listings                   May 2013
 
 
+   [RFC3987]  Duerst, M. and M. Suignard, "Internationalized Resource
               Identifiers (IRIs)", RFC 3987, January 2005.
 
    [RFC4281]  Gellens, R., Singer, D., and P. Frojdh, "The Codecs
@@ -4360,7 +4361,6 @@ Reggiori                                                       [Page 77]
    [EBU-OBJECTMODEL]
               EBU, "EBU Object Model".
 
-   [EBU-REFERENCEDATA]
 
 
 
@@ -4369,6 +4369,7 @@ Reggiori                                                       [Page 78]
                             Portable Listings                   May 2013
 
 
+   [EBU-REFERENCEDATA]
               EBU, "European Broadcasting Union - Metadata Reference
               Data".
 
@@ -4416,7 +4417,6 @@ Reggiori                                                       [Page 78]
 
    [OAuth 2.0]
               "The OAuth 2.0 Authorization Protocol".
-
 
 
 
