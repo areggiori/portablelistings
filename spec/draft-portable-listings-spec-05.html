@@ -4322,9 +4322,14 @@ Fields</h3>
                             If not specified the application build is meant to be made available indefinitely.
                         
 </dd>
+<dt>entitlementType: (ENUM)</dt>
+<dd>
+                            The application build entitlement type SHOULD BE selected from the following list: <tt>free-to-view</tt>, <tt>subscription</tt>, <tt>rental</tt>, <tt>ownership</tt>.
+                        
+</dd>
 <dt>free: (BOOLEAN)</dt>
 <dd>
-                            A Boolean value indicating whether the access to the application build is free or requires a payment.
+                            A Boolean value indicating whether the access to the application build is free. If the field is omitted it is assumed that the application build is free (i.e. offered completely free of charge and without any access restrictions). For application builds that are not free this field shall be set to <tt>false</tt>.
                         
 </dd>
 </dl></blockquote><p>
@@ -5699,6 +5704,8 @@ Change Log</h3>
 <li>Changed crossPromotions "related" relation type to "recommendation".
 </li>
 <li>Added "entitlementType" to Programme Publication.
+</li>
+<li>Added "entitlementType" to Application Publication.
 </li>
 </ul><p>
         

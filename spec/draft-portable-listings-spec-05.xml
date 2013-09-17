@@ -3243,8 +3243,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The published date and time that the application build will no longer be available.
                             If not specified the application build is meant to be made available indefinitely.
                         </t>
+                        <t hangText="entitlementType: (ENUM)">
+                            The application build entitlement type SHOULD BE selected from the following list: <spanx style="verb">free-to-view</spanx>, <spanx style="verb">subscription</spanx>, <spanx style="verb">rental</spanx>, <spanx style="verb">ownership</spanx>.
+                        </t>
                         <t hangText="free: (BOOLEAN)">
-                            A Boolean value indicating whether the access to the application build is free or requires a payment.
+                            A Boolean value indicating whether the access to the application build is free. If the field is omitted it is assumed that the application build is free (i.e. offered completely free of charge and without any access restrictions). For application builds that are not free this field shall be set to <spanx style="verb">false</spanx>.
                         </t>
                     </list>
                 </t>
@@ -4163,6 +4166,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "entitlementType" and "free" to Service.</t>
                 <t>Changed crossPromotions "related" relation type to "recommendation".</t>
                 <t>Added "entitlementType" to Programme Publication.</t>
+                <t>Added "entitlementType" to Application Publication.</t>
             </list>
         </t>
     </section>
