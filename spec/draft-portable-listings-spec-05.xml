@@ -2935,7 +2935,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The published duration of the Programme version in seconds.
                             For schedule events, when all the time parameters are provided, the published duration MUST be equal to the difference between end time and start time.
                         </t>
-                        <t hangText="entitlementType: (ENUM)">
+                        <t hangText="entitlementType: [ENUM]">
                             The programme publication entitlement type SHOULD BE selected from the following list: <spanx style="verb">free-to-view</spanx>, <spanx style="verb">subscription</spanx>, <spanx style="verb">rental</spanx>, <spanx style="verb">ownership</spanx>.
                         </t>
                         <t hangText="free: (BOOLEAN)">
@@ -2948,11 +2948,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                 <t hangText="currency: (ENUM or IRI)">
                                     The value SHOULD BE selected from a standard list of values such as the <xref target="ISO4217"/> currency code list.
                                 </t>
-                                <t hangText="value: (NUMBER)">
-                                    A short human-readable editorial guidance message.
-                                </t>
-                                <t hangText="longGuidanceText: (STRING or HTML)">
-                                    A long human-readable editorial guidance message.
+                                <t hangText="amount: (NUMBER)">
+                                    The indicative price.
                                 </t>
                             </list>
                         </t>
@@ -3243,7 +3240,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The published date and time that the application build will no longer be available.
                             If not specified the application build is meant to be made available indefinitely.
                         </t>
-                        <t hangText="entitlementType: (ENUM)">
+                        <t hangText="entitlementType: [ENUM]">
                             The application build entitlement type SHOULD BE selected from the following list: <spanx style="verb">free-to-view</spanx>, <spanx style="verb">subscription</spanx>, <spanx style="verb">rental</spanx>, <spanx style="verb">ownership</spanx>.
                         </t>
                         <t hangText="free: (BOOLEAN)">
