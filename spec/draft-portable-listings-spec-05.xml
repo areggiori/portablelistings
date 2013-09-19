@@ -2531,15 +2531,15 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             </list>
                         </t>
                         <t hangText="language: (LANGUAGE)">
-                            The main production language of the piece of content. This may also be referrred as original language.
+                            The main production language of the piece of content. This is the language in which the content was originally created.
                         </t>
                         <t hangText="alternativeLanguage: [COMPLEX]">
                             Alternative languages of the content and their use.
                             <list style="hanging">
                                 <t hangText="type: (ENUM)">
                                     The language purpose.
-                                    The value SHOULD BE selected from the following list: <spanx style="verb">mainDubbedLanguage</spanx>, <spanx style="verb">additionalOriginalLanguage</spanx>, <spanx style="verb">additionalDubbedLanguage</spanx>, <spanx style="verb">descriptiveVideoInformation</spanx>, <spanx style="verb">supplementalCommentary</spanx>, <spanx style="verb">directorCommentary</spanx>, <spanx style="verb">audioDescription</spanx>, <spanx style="verb">supplementaryAudioProgramme</spanx>, <spanx style="verb">educationalNotes</spanx>, <spanx style="verb">voiceOver</spanx>, <spanx style="verb">originalCommentary</spanx>, <spanx style="verb">dubbedCommentary</spanx>, <spanx style="verb">originalNarration</spanx>, <spanx style="verb">dubbedDialogue</spanx>, <spanx style="verb">dubbedNarration</spanx>, <spanx style="verb">interviewerLanguage</spanx>, <spanx style="verb">intervieweeLanguage</spanx>, <spanx style="verb">text</spanx>, <spanx style="verb">textDescription</spanx>, <spanx style="verb">transcript</spanx>, <spanx style="verb">caption</spanx>, <spanx style="verb">openCaption</spanx>, <spanx style="verb">closedCaption</spanx>, <spanx style="verb">supplemental</spanx>, <spanx style="verb">titles</spanx>, <spanx style="verb">subtitles</spanx>, <spanx style="verb">openSubtitles</spanx>, <spanx style="verb">closedSubtitles</spanx>, <spanx style="verb">songLyrics</spanx>, <spanx style="verb">signLanguage</spanx>, <spanx style="verb">dubbedSignLanguage</spanx>.
-                                    The <spanx style="verb">main</spanx>, <spanx style="verb">production</spanx>, <spanx style="verb">original</spanx>, <spanx style="verb">audio</spanx> and <spanx style="verb">mainOriginalLanguage</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
+                                    The value SHOULD BE selected from the following list: <spanx style="verb">audio</spanx>, <spanx style="verb">mainDubbedLanguage</spanx>, <spanx style="verb">additionalOriginalLanguage</spanx>, <spanx style="verb">additionalDubbedLanguage</spanx>, <spanx style="verb">descriptiveVideoInformation</spanx>, <spanx style="verb">supplementalCommentary</spanx>, <spanx style="verb">directorCommentary</spanx>, <spanx style="verb">audioDescription</spanx>, <spanx style="verb">supplementaryAudioProgramme</spanx>, <spanx style="verb">educationalNotes</spanx>, <spanx style="verb">voiceOver</spanx>, <spanx style="verb">originalCommentary</spanx>, <spanx style="verb">dubbedCommentary</spanx>, <spanx style="verb">originalNarration</spanx>, <spanx style="verb">dubbedDialogue</spanx>, <spanx style="verb">dubbedNarration</spanx>, <spanx style="verb">interviewerLanguage</spanx>, <spanx style="verb">intervieweeLanguage</spanx>, <spanx style="verb">text</spanx>, <spanx style="verb">textDescription</spanx>, <spanx style="verb">transcript</spanx>, <spanx style="verb">caption</spanx>, <spanx style="verb">openCaption</spanx>, <spanx style="verb">closedCaption</spanx>, <spanx style="verb">supplemental</spanx>, <spanx style="verb">titles</spanx>, <spanx style="verb">subtitles</spanx>, <spanx style="verb">openSubtitles</spanx>, <spanx style="verb">closedSubtitles</spanx>, <spanx style="verb">songLyrics</spanx>, <spanx style="verb">signLanguage</spanx>, <spanx style="verb">dubbedSignLanguage</spanx>.
+                                    The <spanx style="verb">main</spanx>, <spanx style="verb">production</spanx>, <spanx style="verb">original</spanx> and <spanx style="verb">mainOriginalLanguage</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
                                 </t>
                                 <t hangText="value: (LANGUAGE)">
                                     The alternative language value.
@@ -2972,6 +2972,40 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="uhd: (BOOLEAN)">
                             A Boolean value indicating whether the programme version being broadcasted or made available on-demand is ultra high definition.
                         </t>
+                        <!-- audio-visual attributes - we denormalise some of the media resource attributes for convenience -->
+                        <t hangText="audioConfiguration: (ENUM)">
+                            The type of audio mix available in programme publication SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes (e.g. 'no audio', 'mono', 'stereo', '2+1', 'surround', 'surround (7+1)').
+                        </t>
+                        <t hangText="audioBitrate: (NUMBER)">
+                            The programme publication average audio bit rate.
+                        </t>
+                        <t hangText="minAudioBitrate: (NUMBER)">
+                            The programme publication minimal audio bit rate.
+                        </t>
+                        <t hangText="maxAudioBitrate: (NUMBER)">
+                            The programme publication maximum audio bit rate.
+                        </t>
+                        <t hangText="width: (NUMBER)">
+                            This value is a hint about the programme publication video's intrinsic or ideal width in pixels.
+                        </t>
+                        <t hangText="height: (NUMBER)">
+                            This value is a hint about the programme publication video's intrinsic or ideal height in pixels.
+                        </t>
+                        <t hangText="aspectRatio: (ENUM)">
+                            The programme publication video aspect ratio SHOULD BE selected from a standard list of values such as the EBU Visual Aspect Ratio types.
+                        </t>
+                        <t hangText="colourMode: (ENUM)">
+                            The programme publication video colour mode SHOULD BE selected from a standard list of values such as the EBU Colour Codes.
+                        </t>
+                        <t hangText="videoBitrate: (NUMBER)">
+                            The programme publication average video bit rate.
+                        </t>
+                        <t hangText="minVideoBitrate: (NUMBER)">
+                            The programme publication minimal video bit rate.
+                        </t>
+                        <t hangText="maxVideoBitrate: (NUMBER)">
+                            The programme publication maximum video bit rate.
+                        </t>
                     </list>
                 </t>
             </section>
@@ -3344,7 +3378,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The audio encoding parameters SHOULD BE selected from a standard list of values such as the EBU Audio Compression Codes.
                         </t>
                         <t hangText="audioConfiguration: (ENUM)">
-                            The audio configuration parameters SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes (e.g. 'stereo', '2+1', 'surround', 'surround (7+1)').
+                            The audio configuration parameters SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes (e.g. 'no audio', 'mono', 'stereo', '2+1', 'surround', 'surround (7+1)').
                         </t>
                         <t hangText="audioBitrate: (NUMBER)">
                             The average audio bit rate.
@@ -4164,6 +4198,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Changed crossPromotions "related" relation type to "recommendation".</t>
                 <t>Added "entitlementType" to Programme Publication.</t>
                 <t>Added "entitlementType" to Application Publication.</t>
+                <t>Added "audioBitrate", "minAudioBitrate", "maxAudioBitrate", "width", "height", "aspectRatio", "colourMode", "videoBitrate", "minVideoBitrate" and "maxVideoBitrate" to Programme Publication</t>
             </list>
         </t>
     </section>

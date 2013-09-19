@@ -3254,7 +3254,7 @@ Fields</h3>
 </dd>
 <dt>language: (LANGUAGE)</dt>
 <dd>
-                            The main production language of the piece of content. This may also be referrred as original language.
+                            The main production language of the piece of content. This is the language in which the content was originally created.
                         
 </dd>
 <dt>alternativeLanguage: [COMPLEX]</dt>
@@ -3265,8 +3265,8 @@ Fields</h3>
 <dt>type: (ENUM)</dt>
 <dd>
                                     The language purpose.
-                                    The value SHOULD BE selected from the following list: <tt>mainDubbedLanguage</tt>, <tt>additionalOriginalLanguage</tt>, <tt>additionalDubbedLanguage</tt>, <tt>descriptiveVideoInformation</tt>, <tt>supplementalCommentary</tt>, <tt>directorCommentary</tt>, <tt>audioDescription</tt>, <tt>supplementaryAudioProgramme</tt>, <tt>educationalNotes</tt>, <tt>voiceOver</tt>, <tt>originalCommentary</tt>, <tt>dubbedCommentary</tt>, <tt>originalNarration</tt>, <tt>dubbedDialogue</tt>, <tt>dubbedNarration</tt>, <tt>interviewerLanguage</tt>, <tt>intervieweeLanguage</tt>, <tt>text</tt>, <tt>textDescription</tt>, <tt>transcript</tt>, <tt>caption</tt>, <tt>openCaption</tt>, <tt>closedCaption</tt>, <tt>supplemental</tt>, <tt>titles</tt>, <tt>subtitles</tt>, <tt>openSubtitles</tt>, <tt>closedSubtitles</tt>, <tt>songLyrics</tt>, <tt>signLanguage</tt>, <tt>dubbedSignLanguage</tt>.
-                                    The <tt>main</tt>, <tt>production</tt>, <tt>original</tt>, <tt>audio</tt> and <tt>mainOriginalLanguage</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
+                                    The value SHOULD BE selected from the following list: <tt>audio</tt>, <tt>mainDubbedLanguage</tt>, <tt>additionalOriginalLanguage</tt>, <tt>additionalDubbedLanguage</tt>, <tt>descriptiveVideoInformation</tt>, <tt>supplementalCommentary</tt>, <tt>directorCommentary</tt>, <tt>audioDescription</tt>, <tt>supplementaryAudioProgramme</tt>, <tt>educationalNotes</tt>, <tt>voiceOver</tt>, <tt>originalCommentary</tt>, <tt>dubbedCommentary</tt>, <tt>originalNarration</tt>, <tt>dubbedDialogue</tt>, <tt>dubbedNarration</tt>, <tt>interviewerLanguage</tt>, <tt>intervieweeLanguage</tt>, <tt>text</tt>, <tt>textDescription</tt>, <tt>transcript</tt>, <tt>caption</tt>, <tt>openCaption</tt>, <tt>closedCaption</tt>, <tt>supplemental</tt>, <tt>titles</tt>, <tt>subtitles</tt>, <tt>openSubtitles</tt>, <tt>closedSubtitles</tt>, <tt>songLyrics</tt>, <tt>signLanguage</tt>, <tt>dubbedSignLanguage</tt>.
+                                    The <tt>main</tt>, <tt>production</tt>, <tt>original</tt> and <tt>mainOriginalLanguage</tt> values SHOULD NOT be used as this complicates processing by the Consumer.
                                 
 </dd>
 <dt>value: (LANGUAGE)</dt>
@@ -3885,6 +3885,61 @@ Fields</h3>
                             A Boolean value indicating whether the programme version being broadcasted or made available on-demand is ultra high definition.
                         
 </dd>
+<dt>audioConfiguration: (ENUM)</dt>
+<dd>
+                            The type of audio mix available in programme publication SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes (e.g. 'no audio', 'mono', 'stereo', '2+1', 'surround', 'surround (7+1)').
+                        
+</dd>
+<dt>audioBitrate: (NUMBER)</dt>
+<dd>
+                            The programme publication average audio bit rate.
+                        
+</dd>
+<dt>minAudioBitrate: (NUMBER)</dt>
+<dd>
+                            The programme publication minimal audio bit rate.
+                        
+</dd>
+<dt>maxAudioBitrate: (NUMBER)</dt>
+<dd>
+                            The programme publication maximum audio bit rate.
+                        
+</dd>
+<dt>width: (NUMBER)</dt>
+<dd>
+                            This value is a hint about the programme publication video's intrinsic or ideal width in pixels.
+                        
+</dd>
+<dt>height: (NUMBER)</dt>
+<dd>
+                            This value is a hint about the programme publication video's intrinsic or ideal height in pixels.
+                        
+</dd>
+<dt>aspectRatio: (ENUM)</dt>
+<dd>
+                            The programme publication video aspect ratio SHOULD BE selected from a standard list of values such as the EBU Visual Aspect Ratio types.
+                        
+</dd>
+<dt>colourMode: (ENUM)</dt>
+<dd>
+                            The programme publication video colour mode SHOULD BE selected from a standard list of values such as the EBU Colour Codes.
+                        
+</dd>
+<dt>videoBitrate: (NUMBER)</dt>
+<dd>
+                            The programme publication average video bit rate.
+                        
+</dd>
+<dt>minVideoBitrate: (NUMBER)</dt>
+<dd>
+                            The programme publication minimal video bit rate.
+                        
+</dd>
+<dt>maxVideoBitrate: (NUMBER)</dt>
+<dd>
+                            The programme publication maximum video bit rate.
+                        
+</dd>
 </dl></blockquote><p>
                 
 </p>
@@ -4480,7 +4535,7 @@ Fields</h3>
 </dd>
 <dt>audioConfiguration: (ENUM)</dt>
 <dd>
-                            The audio configuration parameters SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes (e.g. 'stereo', '2+1', 'surround', 'surround (7+1)').
+                            The audio configuration parameters SHOULD BE selected from a standard list of values such as the EBU Audio Format Codes (e.g. 'no audio', 'mono', 'stereo', '2+1', 'surround', 'surround (7+1)').
                         
 </dd>
 <dt>audioBitrate: (NUMBER)</dt>
@@ -5706,6 +5761,8 @@ Change Log</h3>
 <li>Added "entitlementType" to Programme Publication.
 </li>
 <li>Added "entitlementType" to Application Publication.
+</li>
+<li>Added "audioBitrate", "minAudioBitrate", "maxAudioBitrate", "width", "height", "aspectRatio", "colourMode", "videoBitrate", "minVideoBitrate" and "maxVideoBitrate" to Programme Publication
 </li>
 </ul><p>
         
