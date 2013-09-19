@@ -114,18 +114,18 @@ Reggiori                                                        [Page 2]
 
 
          8.4.8.2.  Relationships  . . . . . . . . . . . . . . . . . . 55
-       8.4.9.  Episode  . . . . . . . . . . . . . . . . . . . . . . . 56
+       8.4.9.  Episode  . . . . . . . . . . . . . . . . . . . . . . . 55
        8.4.10. Clip . . . . . . . . . . . . . . . . . . . . . . . . . 56
        8.4.11. Version  . . . . . . . . . . . . . . . . . . . . . . . 56
          8.4.11.1. Fields . . . . . . . . . . . . . . . . . . . . . . 56
-         8.4.11.2. Relationships  . . . . . . . . . . . . . . . . . . 57
+         8.4.11.2. Relationships  . . . . . . . . . . . . . . . . . . 56
        8.4.12. Service  . . . . . . . . . . . . . . . . . . . . . . . 57
          8.4.12.1. Fields . . . . . . . . . . . . . . . . . . . . . . 57
          8.4.12.2. Links  . . . . . . . . . . . . . . . . . . . . . . 57
-         8.4.12.3. Relationships  . . . . . . . . . . . . . . . . . . 58
+         8.4.12.3. Relationships  . . . . . . . . . . . . . . . . . . 57
        8.4.13. Programme Publication  . . . . . . . . . . . . . . . . 58
          8.4.13.1. Fields . . . . . . . . . . . . . . . . . . . . . . 58
-         8.4.13.2. Relationships  . . . . . . . . . . . . . . . . . . 60
+         8.4.13.2. Relationships  . . . . . . . . . . . . . . . . . . 59
        8.4.14. Schedule Event . . . . . . . . . . . . . . . . . . . . 60
          8.4.14.1. Fields . . . . . . . . . . . . . . . . . . . . . . 60
        8.4.15. Ondemand . . . . . . . . . . . . . . . . . . . . . . . 61
@@ -137,7 +137,7 @@ Reggiori                                                        [Page 2]
          8.4.17.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
          8.4.17.2. Relationships  . . . . . . . . . . . . . . . . . . 62
        8.4.18. Application  . . . . . . . . . . . . . . . . . . . . . 62
-         8.4.18.1. Fields . . . . . . . . . . . . . . . . . . . . . . 63
+         8.4.18.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
          8.4.18.2. Relationships  . . . . . . . . . . . . . . . . . . 63
        8.4.19. Application Build  . . . . . . . . . . . . . . . . . . 63
          8.4.19.1. Fields . . . . . . . . . . . . . . . . . . . . . . 63
@@ -2831,8 +2831,6 @@ Reggiori                                                       [Page 50]
          guidance message.
       longGuidanceText: (STRING or HTML)  A long human-readable
          editorial guidance message.
-   notRated: (BOOLEAN)  A flag to indicate that the piece of content has
-      not been rated (if set to true).
    adultContent: (BOOLEAN)  A flag to indicate this the piece of content
       contains adult content (if set to true).
    childrenContent: (BOOLEAN)  A flag to indicate this the piece of
@@ -2845,9 +2843,11 @@ Reggiori                                                       [Page 50]
       geographical targeting is provided, the piece of content is
       assumed to be applicable to all places, i.e. worldwide.
       value: (TERRITORY)  The target country and region for the rating.
-
-
-
+      exclusive: (BOOLEAN)  A flag to indicate that the piece of content
+         is available only in the target place specified in the value
+         sub-field.  If the exclusive attribute is omitted or has the
+         value false then the piece of content is editorially targeted
+         at the target place specified in the value sub-field.
 
 
 
@@ -2857,11 +2857,6 @@ Reggiori                                                       [Page 51]
                             Portable Listings                   May 2013
 
 
-      exclusive: (BOOLEAN)  A flag to indicate that the piece of content
-         is available only in the target place specified in the value
-         sub-field.  If the exclusive attribute is omitted or has the
-         value false then the piece of content is editorially targeted
-         at the target place specified in the value sub-field.
    format: (ENUM or IRI)  The editorial format categorising the piece of
       content other than "category" and "keywords".  The value SHOULD BE
       selected from a standard list of values such as the EBU Editorial
@@ -2901,7 +2896,12 @@ Reggiori                                                       [Page 51]
          list of values (e.g. 'filming', 'depicted').  The "main" and
          "production" values SHOULD NOT be used as this complicates
          processing by the Consumer.
-
+      value: (PLACE or TERRITORY)  The actual geographical place or
+         territory.
+      fictional: (BOOLEAN)  A Boolean value indicating whether the place
+         is purely fictional.
+   temporal: [COMPLEX]  Temporal coverage information associated with
+      the piece of content.
 
 
 
@@ -2913,12 +2913,6 @@ Reggiori                                                       [Page 52]
                             Portable Listings                   May 2013
 
 
-      value: (PLACE or TERRITORY)  The actual geographical place or
-         territory.
-      fictional: (BOOLEAN)  A Boolean value indicating whether the place
-         is purely fictional.
-   temporal: [COMPLEX]  Temporal coverage information associated with
-      the piece of content.
       type: (ENUM)  The type of field SHOULD BE selected from a standard
          list of values (e.g. 'filmingPeriod', 'depictedPeriod').
       value: (PERIOD or YEAR)  The actual temporal coverage period or
@@ -2958,7 +2952,13 @@ Reggiori                                                       [Page 52]
          'character name' or 'interviewer').
    category: [CATEGORY]  One or more user-facing categories associated
       to the piece of content.
-
+   rights: [RIGHTS]  Content rights information.  If the rights
+      information is absent, no assumptions can be made about the status
+      of these and other rights with respect to the piece of content.
+   crossPromotions: [CONTENT]  Relates a piece of content to other
+      pieces of content which are cross-promotions (e.g. "if you liked
+      this piece of content you may also like these other content
+      items").
 
 
 
@@ -2969,13 +2969,6 @@ Reggiori                                                       [Page 53]
                             Portable Listings                   May 2013
 
 
-   rights: [RIGHTS]  Content rights information.  If the rights
-      information is absent, no assumptions can be made about the status
-      of these and other rights with respect to the piece of content.
-   crossPromotions: [CONTENT]  Relates a piece of content to other
-      pieces of content which are cross-promotions (e.g. "if you liked
-      this piece of content you may also like these other content
-      items").
       rel: (ENUM)  The rel value SHALL BE the "recommendation" relation
          type as defined in Section 8.3.16.
 
@@ -3017,6 +3010,13 @@ Reggiori                                                       [Page 53]
 
    The Programme Group object type extends the PROGRAMME object type and
    represents a collection of Programmes that are grouped together,
+   which are not Series or Brand.  A Programme Group can contain
+   Programmes or other Programme Groups.  The Programme Group object
+   type is identified with the string PROGRAMME_GROUP.  For example, a
+   collection of programmes, mini-Series, compilation, serial, concept,
+   show, theme etc.
+
+
 
 
 
@@ -3024,12 +3024,6 @@ Reggiori                                                       [Page 54]
 
                             Portable Listings                   May 2013
 
-
-   which are not Series or Brand.  A Programme Group can contain
-   Programmes or other Programme Groups.  The Programme Group object
-   type is identified with the string PROGRAMME_GROUP.  For example, a
-   collection of programmes, mini-Series, compilation, serial, concept,
-   show, theme etc.
 
 8.4.5.1.  Relationships
 
@@ -3072,15 +3066,6 @@ Reggiori                                                       [Page 54]
       version should be labelled as "canonical" because of the ambiguity
       this creates and this complicates processing by the Consumer.
 
-
-
-
-
-Reggiori                                                       [Page 55]
-
-                            Portable Listings                   May 2013
-
-
 8.4.9.  Episode
 
    The Episode object type extends the PROGRAMME_ITEM object type and
@@ -3088,6 +3073,13 @@ Reggiori                                                       [Page 55]
    Often when talking about a television programme what it is really
    meant is an episode.  An episode could be simply be part of a brand a
    so called pilot episode.
+
+
+
+Reggiori                                                       [Page 55]
+
+                            Portable Listings                   May 2013
+
 
 8.4.10.  Clip
 
@@ -3129,6 +3121,14 @@ Reggiori                                                       [Page 55]
       Versions with original="false", but should instead omit this sub-
       field for all non-original instances.
 
+8.4.11.2.  Relationships
+
+   events: [SCHEDULE_EVENT]  The schedule events associated with a
+      particular version.
+
+
+
+
 
 
 
@@ -3137,10 +3137,6 @@ Reggiori                                                       [Page 56]
                             Portable Listings                   May 2013
 
 
-8.4.11.2.  Relationships
-
-   events: [SCHEDULE_EVENT]  The schedule events associated with a
-      particular version.
    availabilities: [ONDEMAND]  The availabilities associated with a
       particular version when it is made available on-demand.
    segments: [SEGMENT]  The segments or segment groups associated with a
@@ -3182,6 +3178,10 @@ Reggiori                                                       [Page 56]
          defined in [RFC5988].
    dog: (LINK)  A Digital On screen Graphic (DOG) associated to the
       service.
+      rel: (ENUM)  The rel value SHALL BE the "icon" relation type as
+         defined in [RFC5988].
+
+8.4.12.3.  Relationships
 
 
 
@@ -3192,11 +3192,6 @@ Reggiori                                                       [Page 57]
 
                             Portable Listings                   May 2013
 
-
-      rel: (ENUM)  The rel value SHALL BE the "icon" relation type as
-         defined in [RFC5988].
-
-8.4.12.3.  Relationships
 
    outlets: [SERVICE]  Relates a Service to the Outlets that are
       contained within the Service.  An outlet represents a service
@@ -3237,7 +3232,12 @@ Reggiori                                                       [Page 57]
    entitlementType: [ENUM]  The programme publication entitlement type
       SHOULD BE selected from the following list: "free-to-view",
       "subscription", "rental", "ownership".
-
+   free: (BOOLEAN)  A Boolean value indicating whether the access to the
+      programme version being broadcasted or made available on-demand is
+      free.  If the field is omitted it is assumed that the programme is
+      free-to-air (i.e. offered completely free of charge and without
+      any access restrictions).  For programmes that are not free-to-air
+      this field shall be set to "false".
 
 
 
@@ -3249,12 +3249,6 @@ Reggiori                                                       [Page 58]
                             Portable Listings                   May 2013
 
 
-   free: (BOOLEAN)  A Boolean value indicating whether the access to the
-      programme version being broadcasted or made available on-demand is
-      free.  If the field is omitted it is assumed that the programme is
-      free-to-air (i.e. offered completely free of charge and without
-      any access restrictions).  For programmes that are not free-to-air
-      this field shall be set to "false".
    signed: (BOOLEAN)  A Boolean value indicating whether the access to
       the programme version being broadcasted or made available on-
       demand has signing accessibility features.
@@ -3294,6 +3288,12 @@ Reggiori                                                       [Page 58]
       Colour Codes.
    videoBitrate: (NUMBER)  The programme publication average video bit
       rate.
+   minVideoBitrate: (NUMBER)  The programme publication minimal video
+      bit rate.
+   maxVideoBitrate: (NUMBER)  The programme publication maximum video
+      bit rate.
+
+8.4.13.2.  Relationships
 
 
 
@@ -3304,13 +3304,6 @@ Reggiori                                                       [Page 59]
 
                             Portable Listings                   May 2013
 
-
-   minVideoBitrate: (NUMBER)  The programme publication minimal video
-      bit rate.
-   maxVideoBitrate: (NUMBER)  The programme publication maximum video
-      bit rate.
-
-8.4.13.2.  Relationships
 
    service: (SERVICE)  A reference to the Service on which the programme
       instance will be broadcasted or made available on demand.
@@ -3351,6 +3344,13 @@ Reggiori                                                       [Page 59]
       For efficiency, Service Providers SHOULD NOT mark all non-primary
       broadcast with primaryShowing="false", but should instead omit
       this sub-field for all non-primary broadcasts.
+   repeat: (BOOLEAN)  A Boolean value indicating whether the programme
+      version being broadcasted is a repeat.
+   live: (BOOLEAN)  A Boolean value indicating whether the programme
+      version being broadcasted is a live broadcast.
+   dummy: (BOOLEAN)  A Boolean value indicating whether the broadcast
+      represents a period of time when the service is off air.
+
 
 
 
@@ -3360,13 +3360,6 @@ Reggiori                                                       [Page 60]
 
                             Portable Listings                   May 2013
 
-
-   repeat: (BOOLEAN)  A Boolean value indicating whether the programme
-      version being broadcasted is a repeat.
-   live: (BOOLEAN)  A Boolean value indicating whether the programme
-      version being broadcasted is a live broadcast.
-   dummy: (BOOLEAN)  A Boolean value indicating whether the broadcast
-      represents a period of time when the service is off air.
 
 8.4.15.  Ondemand
 
@@ -3409,6 +3402,13 @@ Reggiori                                                       [Page 60]
    ZDF service schedule).
 
    Note that in order to guarantee the creation of a unqiue and
+   disambiguating schedule "id" field, the following information SHALL
+   be combined:
+   o  The metadata publishing party identifier (if defined).
+   o  The parent service identifier.
+   o  The start and end period values.
+
+
 
 
 
@@ -3416,12 +3416,6 @@ Reggiori                                                       [Page 61]
 
                             Portable Listings                   May 2013
 
-
-   disambiguating schedule "id" field, the following information SHALL
-   be combined:
-   o  The metadata publishing party identifier (if defined).
-   o  The parent service identifier.
-   o  The start and end period values.
 
 8.4.16.1.  Fields
 
@@ -3465,6 +3459,12 @@ Reggiori                                                       [Page 61]
    represents an abstract application (e.g.  BBC iPlayer).  The
    Application object type is identified with the string APPLICATION.
 
+8.4.18.1.  Fields
+
+
+
+
+
 
 
 
@@ -3472,8 +3472,6 @@ Reggiori                                                       [Page 62]
 
                             Portable Listings                   May 2013
 
-
-8.4.18.1.  Fields
 
    releaseCountry: [TERRITORY]  The countries and regions where the
       application has been released.
@@ -3521,6 +3519,8 @@ Reggiori                                                       [Page 62]
    represents an instance or publication event of an Application.  The
    application object type is identified with the string
    APPLICATION_PUBLICATION.  An application is associated with a
+   service, and with a particular application build.
+
 
 
 
@@ -3528,8 +3528,6 @@ Reggiori                                                       [Page 63]
 
                             Portable Listings                   May 2013
 
-
-   service, and with a particular application build.
 
    Note that in order to guarantee the creation of a unqiue and
    disambiguating application publication "id" field, the following
@@ -3578,6 +3576,8 @@ Reggiori                                                       [Page 63]
    and represents a group of application publications from the same
    service (e.g. iTunes AppStore).
 
+   Note that in order to guarantee the creation of a unqiue and
+
 
 
 Reggiori                                                       [Page 64]
@@ -3585,7 +3585,6 @@ Reggiori                                                       [Page 64]
                             Portable Listings                   May 2013
 
 
-   Note that in order to guarantee the creation of a unqiue and
    disambiguating application gallery "id" field, the following
    information SHALL be combined:
    o  The metadata publishing party identifier (if defined).
@@ -3631,6 +3630,7 @@ Reggiori                                                       [Page 64]
       "codecs" parameter [RFC4281].  Note that the same Media Resource
       MAY be used to represent different versions when the media type is
       a container file or format.
+
 
 
 
@@ -4324,6 +4324,7 @@ Reggiori                                                       [Page 77]
    o  Added "audioBitrate", "minAudioBitrate", "maxAudioBitrate",
       "width", "height", "aspectRatio", "colourMode", "videoBitrate",
       "minVideoBitrate" and "maxVideoBitrate" to Programme Publication
+   o  Removed "notRated" from Content.
 
 
 13.  References
@@ -4360,7 +4361,6 @@ Reggiori                                                       [Page 77]
 
    [RFC5646]  Phillips, A. and M. Davis, "Tags for Identifying
               Languages", BCP 47, RFC 5646, September 2009.
-
 
 
 

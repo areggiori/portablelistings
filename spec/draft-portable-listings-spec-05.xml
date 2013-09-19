@@ -2489,9 +2489,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                 </t>
                             </list>
                         </t>
-                        <t hangText="notRated: (BOOLEAN)">
-                            A flag to indicate that the piece of content has not been rated (if set to true).
-                        </t>
                         <t hangText="adultContent: (BOOLEAN)">
                             A flag to indicate this the piece of content contains adult content (if set to true).
                         </t>
@@ -4199,6 +4196,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "entitlementType" to Programme Publication.</t>
                 <t>Added "entitlementType" to Application Publication.</t>
                 <t>Added "audioBitrate", "minAudioBitrate", "maxAudioBitrate", "width", "height", "aspectRatio", "colourMode", "videoBitrate", "minVideoBitrate" and "maxVideoBitrate" to Programme Publication</t>
+                <t>Removed "notRated" from Content.</t>
             </list>
         </t>
     </section>
