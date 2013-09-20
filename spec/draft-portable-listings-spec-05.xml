@@ -2991,8 +2991,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="aspectRatio: (ENUM)">
                             The programme publication video aspect ratio SHOULD BE selected from a standard list of values such as the EBU Visual Aspect Ratio types.
                         </t>
-                        <t hangText="colourMode: (ENUM)">
-                            The programme publication video colour mode SHOULD BE selected from a standard list of values such as the EBU Colour Codes.
+                        <t hangText="colourMode: [ENUM]">
+                            The programme publication video colour mode SHOULD BE selected from a standard list of values such as the EBU Colour Codes. Multiple video colours may be specified for the same publication (e.g. when film colorization is used to modernize or restore a video).
                         </t>
                         <t hangText="videoBitrate: (NUMBER)">
                             The programme publication average video bit rate.
@@ -3409,8 +3409,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="aspectRatio: (ENUM)">
                             The video aspect ratio SHOULD BE selected from a standard list of values such as the EBU Visual Aspect Ratio types.
                         </t>
-                        <t hangText="colourMode: (ENUM)">
-                            The video colour mode SHOULD BE selected from a standard list of values such as the EBU Colour Codes.
+                        <t hangText="colourMode: [ENUM]">
+                            The video colour mode SHOULD BE selected from a standard list of values such as the EBU Colour Codes. Multiple video colours may be specified for the media resource (e.g. when film colorization is used to modernize or restore a video).
                         </t>
                         <t hangText="videoEncoding: (ENUM)">
                             The video encoding parameters.

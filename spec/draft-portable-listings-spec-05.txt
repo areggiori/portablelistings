@@ -125,7 +125,7 @@ Reggiori                                                        [Page 2]
          8.4.12.3. Relationships  . . . . . . . . . . . . . . . . . . 57
        8.4.13. Programme Publication  . . . . . . . . . . . . . . . . 58
          8.4.13.1. Fields . . . . . . . . . . . . . . . . . . . . . . 58
-         8.4.13.2. Relationships  . . . . . . . . . . . . . . . . . . 59
+         8.4.13.2. Relationships  . . . . . . . . . . . . . . . . . . 60
        8.4.14. Schedule Event . . . . . . . . . . . . . . . . . . . . 60
          8.4.14.1. Fields . . . . . . . . . . . . . . . . . . . . . . 60
        8.4.15. Ondemand . . . . . . . . . . . . . . . . . . . . . . . 61
@@ -137,7 +137,7 @@ Reggiori                                                        [Page 2]
          8.4.17.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
          8.4.17.2. Relationships  . . . . . . . . . . . . . . . . . . 62
        8.4.18. Application  . . . . . . . . . . . . . . . . . . . . . 62
-         8.4.18.1. Fields . . . . . . . . . . . . . . . . . . . . . . 62
+         8.4.18.1. Fields . . . . . . . . . . . . . . . . . . . . . . 63
          8.4.18.2. Relationships  . . . . . . . . . . . . . . . . . . 63
        8.4.19. Application Build  . . . . . . . . . . . . . . . . . . 63
          8.4.19.1. Fields . . . . . . . . . . . . . . . . . . . . . . 63
@@ -3283,17 +3283,17 @@ Reggiori                                                       [Page 58]
    aspectRatio: (ENUM)  The programme publication video aspect ratio
       SHOULD BE selected from a standard list of values such as the EBU
       Visual Aspect Ratio types.
-   colourMode: (ENUM)  The programme publication video colour mode
+   colourMode: [ENUM]  The programme publication video colour mode
       SHOULD BE selected from a standard list of values such as the EBU
-      Colour Codes.
+      Colour Codes.  Multiple video colours may be specified for the
+      same publication (e.g. when film colorization is used to modernize
+      or restore a video).
    videoBitrate: (NUMBER)  The programme publication average video bit
       rate.
    minVideoBitrate: (NUMBER)  The programme publication minimal video
       bit rate.
    maxVideoBitrate: (NUMBER)  The programme publication maximum video
       bit rate.
-
-8.4.13.2.  Relationships
 
 
 
@@ -3304,6 +3304,8 @@ Reggiori                                                       [Page 59]
 
                             Portable Listings                   May 2013
 
+
+8.4.13.2.  Relationships
 
    service: (SERVICE)  A reference to the Service on which the programme
       instance will be broadcasted or made available on demand.
@@ -3348,8 +3350,6 @@ Reggiori                                                       [Page 59]
       version being broadcasted is a repeat.
    live: (BOOLEAN)  A Boolean value indicating whether the programme
       version being broadcasted is a live broadcast.
-   dummy: (BOOLEAN)  A Boolean value indicating whether the broadcast
-      represents a period of time when the service is off air.
 
 
 
@@ -3360,6 +3360,9 @@ Reggiori                                                       [Page 60]
 
                             Portable Listings                   May 2013
 
+
+   dummy: (BOOLEAN)  A Boolean value indicating whether the broadcast
+      represents a period of time when the service is off air.
 
 8.4.15.  Ondemand
 
@@ -3404,9 +3407,6 @@ Reggiori                                                       [Page 60]
    Note that in order to guarantee the creation of a unqiue and
    disambiguating schedule "id" field, the following information SHALL
    be combined:
-   o  The metadata publishing party identifier (if defined).
-   o  The parent service identifier.
-   o  The start and end period values.
 
 
 
@@ -3416,6 +3416,10 @@ Reggiori                                                       [Page 61]
 
                             Portable Listings                   May 2013
 
+
+   o  The metadata publishing party identifier (if defined).
+   o  The parent service identifier.
+   o  The start and end period values.
 
 8.4.16.1.  Fields
 
@@ -3459,10 +3463,6 @@ Reggiori                                                       [Page 61]
    represents an abstract application (e.g.  BBC iPlayer).  The
    Application object type is identified with the string APPLICATION.
 
-8.4.18.1.  Fields
-
-
-
 
 
 
@@ -3472,6 +3472,8 @@ Reggiori                                                       [Page 62]
 
                             Portable Listings                   May 2013
 
+
+8.4.18.1.  Fields
 
    releaseCountry: [TERRITORY]  The countries and regions where the
       application has been released.
@@ -3519,8 +3521,6 @@ Reggiori                                                       [Page 62]
    represents an instance or publication event of an Application.  The
    application object type is identified with the string
    APPLICATION_PUBLICATION.  An application is associated with a
-   service, and with a particular application build.
-
 
 
 
@@ -3528,6 +3528,8 @@ Reggiori                                                       [Page 63]
 
                             Portable Listings                   May 2013
 
+
+   service, and with a particular application build.
 
    Note that in order to guarantee the creation of a unqiue and
    disambiguating application publication "id" field, the following
@@ -3576,8 +3578,6 @@ Reggiori                                                       [Page 63]
    and represents a group of application publications from the same
    service (e.g. iTunes AppStore).
 
-   Note that in order to guarantee the creation of a unqiue and
-
 
 
 Reggiori                                                       [Page 64]
@@ -3585,6 +3585,7 @@ Reggiori                                                       [Page 64]
                             Portable Listings                   May 2013
 
 
+   Note that in order to guarantee the creation of a unqiue and
    disambiguating application gallery "id" field, the following
    information SHALL be combined:
    o  The metadata publishing party identifier (if defined).
@@ -3635,7 +3636,6 @@ Reggiori                                                       [Page 64]
 
 
 
-
 Reggiori                                                       [Page 65]
 
                             Portable Listings                   May 2013
@@ -3677,14 +3677,14 @@ Reggiori                                                       [Page 65]
       Frame Rate types.
    aspectRatio: (ENUM)  The video aspect ratio SHOULD BE selected from a
       standard list of values such as the EBU Visual Aspect Ratio types.
-   colourMode: (ENUM)  The video colour mode SHOULD BE selected from a
-      standard list of values such as the EBU Colour Codes.
+   colourMode: [ENUM]  The video colour mode SHOULD BE selected from a
+      standard list of values such as the EBU Colour Codes.  Multiple
+      video colours may be specified for the media resource (e.g. when
+      film colorization is used to modernize or restore a video).
    videoEncoding: (ENUM)  The video encoding parameters.  The value
       SHOULD BE selected from a standard list of values such as the EBU
       Video Compression Codes.
    videoBitrate: (NUMBER)  The average video bit rate.
-   minVideoBitrate: (NUMBER)  The minimal video bit rate.
-   maxVideoBitrate: (NUMBER)  The maximum video bit rate.
 
 
 
@@ -3697,6 +3697,8 @@ Reggiori                                                       [Page 66]
                             Portable Listings                   May 2013
 
 
+   minVideoBitrate: (NUMBER)  The minimal video bit rate.
+   maxVideoBitrate: (NUMBER)  The maximum video bit rate.
    videoSamplingRate: (NUMBER)  The video sampling rate.
    embedCode: (HTML)  An HTML fragment that, when embedded in an HTML
       page, will provide an interactive player UI for the media
@@ -3743,8 +3745,6 @@ Reggiori                                                       [Page 66]
    programme or the highlights of a soccer match.
 
    A particular segment can belong to a single programme version only,
-   but it can be a member of multiple segment groups.  A programme can
-   contain multiple segments.  Segments are reusable, editorially
 
 
 
@@ -3753,6 +3753,8 @@ Reggiori                                                       [Page 67]
                             Portable Listings                   May 2013
 
 
+   but it can be a member of multiple segment groups.  A programme can
+   contain multiple segments.  Segments are reusable, editorially
    distinct items.
 
 8.4.24.1.  Fields
@@ -3797,8 +3799,6 @@ Reggiori                                                       [Page 67]
    segments: [SEGMENT]  The list of segments that are contained within
       the segment group.  The order of the references to segments
       determines the temporal playback order of segments in this group.
-
-
 
 
 
