@@ -2757,15 +2757,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The Programme Item object type extends the PROGRAMME object type and represents a programme that can have versions (e.g. an episode, a clip).
                 The Programme Item object type is identified with the string PROGRAMME_ITEM.
             </t>
-            <section title="Fields" anchor="programme-item-fields">
-                <t>
-                    <list style="hanging">
-                        <t hangText="duration: (NUMBER)">
-                            The duration of a the programme item in seconds. Please note that the published duration may be different (see <xref target="programme-publication-type"/>).
-                        </t>
-                    </list>
-                </t>
-            </section>
             <section title="Relationships" anchor="programme-item-relationships">
                 <t>
                     <list style="hanging">
@@ -2811,6 +2802,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <section title="Fields" anchor="version-fields">
                 <t>
                     <list style="hanging">
+                        <t hangText="duration: (NUMBER)">
+                            The duration of a the Version in seconds. Please note that the published duration may be different (see <xref target="programme-publication-type"/>).
+                        </t>
                         <t hangText="original: (BOOLEAN)">
                             A Boolean value indicating whether or not the Version is the original.
                             Service Providers MUST NOT mark more than one Version as original="true", and MAY choose not to mark any Version as original, if this information is not available.
@@ -4197,6 +4191,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "entitlementType" to Application Publication.</t>
                 <t>Added "audioBitrate", "minAudioBitrate", "maxAudioBitrate", "width", "height", "aspectRatio", "colourMode", "videoBitrate", "minVideoBitrate" and "maxVideoBitrate" to Programme Publication</t>
                 <t>Removed "notRated" from Content.</t>
+                <t>Moved "duration" to Version level.</t>
             </list>
         </t>
     </section>

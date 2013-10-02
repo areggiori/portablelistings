@@ -316,9 +316,7 @@ Brand<br />
 Series<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programme-item-type">8.4.8.</a>&nbsp;
 Programme Item<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programme-item-fields">8.4.8.1.</a>&nbsp;
-Fields<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programme-item-relationships">8.4.8.2.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#programme-item-relationships">8.4.8.1.</a>&nbsp;
 Relationships<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#episode-type">8.4.9.</a>&nbsp;
 Episode<br />
@@ -3567,25 +3565,9 @@ Programme Item</h3>
                 The Programme Item object type is identified with the string PROGRAMME_ITEM.
             
 </p>
-<a name="programme-item-fields"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.8.1"></a><h3>8.4.8.1.&nbsp;
-Fields</h3>
-
-<p>
-                    </p>
-<blockquote class="text"><dl>
-<dt>duration: (NUMBER)</dt>
-<dd>
-                            The duration of a the programme item in seconds. Please note that the published duration may be different (see <a class='info' href='#programme-publication-type'>Section&nbsp;8.4.13<span> (</span><span class='info'>Programme Publication</span><span>)</span></a>).
-                        
-</dd>
-</dl></blockquote><p>
-                
-</p>
 <a name="programme-item-relationships"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.8.2"></a><h3>8.4.8.2.&nbsp;
+<a name="rfc.section.8.4.8.1"></a><h3>8.4.8.1.&nbsp;
 Relationships</h3>
 
 <p>
@@ -3650,6 +3632,11 @@ Fields</h3>
 <p>
                     </p>
 <blockquote class="text"><dl>
+<dt>duration: (NUMBER)</dt>
+<dd>
+                            The duration of a the Version in seconds. Please note that the published duration may be different (see <a class='info' href='#programme-publication-type'>Section&nbsp;8.4.13<span> (</span><span class='info'>Programme Publication</span><span>)</span></a>).
+                        
+</dd>
 <dt>original: (BOOLEAN)</dt>
 <dd>
                             A Boolean value indicating whether or not the Version is the original.
@@ -5760,6 +5747,8 @@ Change Log</h3>
 <li>Added "audioBitrate", "minAudioBitrate", "maxAudioBitrate", "width", "height", "aspectRatio", "colourMode", "videoBitrate", "minVideoBitrate" and "maxVideoBitrate" to Programme Publication
 </li>
 <li>Removed "notRated" from Content.
+</li>
+<li>Moved "duration" to Version level.
 </li>
 </ul><p>
         
