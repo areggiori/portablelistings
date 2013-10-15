@@ -1927,7 +1927,7 @@ Links</h3>
                       If this property is omitted or null it MUST BE processed as if the value was the string "alternate".
                   
 </dd>
-<dt>type: (ENUM)</dt>
+<dt>mediaType: (ENUM)</dt>
 <dd>
                       The media type of the representation identified by the IRI of the link. The value is a hint about the type of the representation that is expected to be returned when the value of the href field is dereferenced.
                       Note that the type field does not override the actual media type returned with the representation. A link construct MAY have a type sub-field, whose value MUST conform to the syntax of a MIME media type defined in <a class='info' href='#MIMEREG'>[MIMEREG]<span> (</span><span class='info'>Freed, N. and J. Klensin, &ldquo;Media Type Specifications and Registration Procedures,&rdquo; December&nbsp;2005.</span><span>)</span></a>. Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <a class='info' href='#IANA-MIMEREG'>[IANA&#8209;MIMEREG]<span> (</span><span class='info'>IANA, &ldquo;MIME Media Types,&rdquo; .</span><span>)</span></a>.
@@ -2012,7 +2012,7 @@ Relationships</h3>
                         Although a Provider SHOULD NOT reference Entries on another Provider as this complicates processing by the Consumer.
                     
 </dd>
-<dt>type: (CONSTANT)</dt>
+<dt>mediaType: (CONSTANT)</dt>
 <dd>
                         If non-empty or null, the media type is defined to be <tt>application/listings+json</tt>.  The <tt>profile</tt> media type parameter MAY be specified as defined in <a class='info' href='#referencing-profiles'>Section&nbsp;7.4<span> (</span><span class='info'>Referencing Profiles</span><span>)</span></a>.
                     
@@ -5749,6 +5749,8 @@ Change Log</h3>
 <li>Removed "notRated" from Content.
 </li>
 <li>Moved "duration" to Version level.
+</li>
+<li>Renamed "type" to "mediaType" on Link and relationship by reference.
 </li>
 </ul><p>
         

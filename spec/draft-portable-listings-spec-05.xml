@@ -1380,7 +1380,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                       The link relation type. Unless otherwise specified, the rel value MUST be a valid Canonical Value as defined in <xref target="IANA-RELREG" /> and in <xref target="additional-link-relation-types"/>.
                       If this property is omitted or null it MUST BE processed as if the value was the string "alternate".
                   </t>
-                  <t hangText="type: (ENUM)">
+                  <t hangText="mediaType: (ENUM)">
                       The media type of the representation identified by the IRI of the link. The value is a hint about the type of the representation that is expected to be returned when the value of the href field is dereferenced.
                       Note that the type field does not override the actual media type returned with the representation. A link construct MAY have a type sub-field, whose value MUST conform to the syntax of a MIME media type defined in <xref target="MIMEREG"/>. Unless otherwise specified, the type value field MUST be a valid Canonical Value as defined by the IANA MIME Media Types registry <xref target="IANA-MIMEREG"/>.
                   </t>
@@ -1488,7 +1488,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         Note that this definition also covers the scenario of relationships expressed between Entries across Service Providers.
                         Although a Provider SHOULD NOT reference Entries on another Provider as this complicates processing by the Consumer.
                     </t>
-                    <t hangText="type: (CONSTANT)">
+                    <t hangText="mediaType: (CONSTANT)">
                         If non-empty or null, the media type is defined to be <spanx style="verb">application/listings+json</spanx>.  The <spanx style="verb">profile</spanx> media type parameter MAY be specified as defined in <xref target="referencing-profiles"/>.
                     </t>
                     <t hangText="rel: (ENUM or IRI)">
@@ -4192,6 +4192,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "audioBitrate", "minAudioBitrate", "maxAudioBitrate", "width", "height", "aspectRatio", "colourMode", "videoBitrate", "minVideoBitrate" and "maxVideoBitrate" to Programme Publication</t>
                 <t>Removed "notRated" from Content.</t>
                 <t>Moved "duration" to Version level.</t>
+                <t>Renamed "type" to "mediaType" on Link and relationship by reference.</t>
             </list>
         </t>
     </section>

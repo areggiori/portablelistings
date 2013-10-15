@@ -1798,8 +1798,8 @@ Reggiori                                                       [Page 32]
       defined in [IANA-RELREG] and in Section 8.3.  If this property is
       omitted or null it MUST BE processed as if the value was the
       string "alternate".
-   type: (ENUM)  The media type of the representation identified by the
-      IRI of the link.  The value is a hint about the type of the
+   mediaType: (ENUM)  The media type of the representation identified by
+      the IRI of the link.  The value is a hint about the type of the
       representation that is expected to be returned when the value of
       the href field is dereferenced.  Note that the type field does not
       override the actual media type returned with the representation.
@@ -1891,9 +1891,9 @@ Reggiori                                                       [Page 33]
          expressed between Entries across Service Providers.  Although a
          Provider SHOULD NOT reference Entries on another Provider as
          this complicates processing by the Consumer.
-      type: (CONSTANT)  If non-empty or null, the media type is defined
-         to be "application/listings+json".  The "profile" media type
-         parameter MAY be specified as defined in Section 7.4.
+      mediaType: (CONSTANT)  If non-empty or null, the media type is
+         defined to be "application/listings+json".  The "profile" media
+         type parameter MAY be specified as defined in Section 7.4.
 
 
 
@@ -4326,6 +4326,8 @@ Reggiori                                                       [Page 77]
       "minVideoBitrate" and "maxVideoBitrate" to Programme Publication
    o  Removed "notRated" from Content.
    o  Moved "duration" to Version level.
+   o  Renamed "type" to "mediaType" on Link and relationship by
+      reference.
 
 
 13.  References
@@ -4360,8 +4362,6 @@ Reggiori                                                       [Page 77]
    [RFC4627]  Crockford, D., "The application/json Media Type for
               JavaScript Object Notation (JSON)", RFC 4627, July 2006.
 
-   [RFC5646]  Phillips, A. and M. Davis, "Tags for Identifying
-
 
 
 Reggiori                                                       [Page 78]
@@ -4369,6 +4369,7 @@ Reggiori                                                       [Page 78]
                             Portable Listings                   May 2013
 
 
+   [RFC5646]  Phillips, A. and M. Davis, "Tags for Identifying
               Languages", BCP 47, RFC 5646, September 2009.
 
    [RFC5988]  Nottingham, M., "Web Linking", RFC 5988, October 2010.
@@ -4416,7 +4417,6 @@ Reggiori                                                       [Page 78]
    [GEO-JSON]
               "The GeoJSON Format Specification".
 
-   [HOSTMETA]
 
 
 
@@ -4425,6 +4425,7 @@ Reggiori                                                       [Page 79]
                             Portable Listings                   May 2013
 
 
+   [HOSTMETA]
               Eran Hammer-Lahav, E., "Web Host Metadata".
 
    [HTML5]    W3C, "HTML5 - A vocabulary and associated APIs for HTML
@@ -4472,7 +4473,6 @@ Reggiori                                                       [Page 79]
    [TV-ANYTIME]
               ETSI, "TV Anytime".
 
-   [WEBFINGER]
 
 
 
@@ -4481,6 +4481,7 @@ Reggiori                                                       [Page 80]
                             Portable Listings                   May 2013
 
 
+   [WEBFINGER]
               "The Webfinger Protocol".
 
    [XRD]      "Extensible Resource Descriptor (XRD) Version 1.0 -
@@ -4528,7 +4529,6 @@ Appendix A.  Examples
                {
                "type": "original",
                "value": "Northwest Passage"
-               }
 
 
 
@@ -4537,6 +4537,7 @@ Reggiori                                                       [Page 81]
                             Portable Listings                   May 2013
 
 
+               }
            ],
          "summary": "The small northwest town of Twin Peaks,
                      Washington is shaken when the body of Laura Palmer,
@@ -4584,7 +4585,6 @@ Reggiori                                                       [Page 81]
            },
            {
              "href": "2F050A9AF481",
-             "role": "writer",
 
 
 
@@ -4593,6 +4593,7 @@ Reggiori                                                       [Page 82]
                             Portable Listings                   May 2013
 
 
+             "role": "writer",
              "label": "Mark Frost"
            },
            {
@@ -4640,7 +4641,6 @@ Reggiori                                                       [Page 82]
            },
            {
              "href": "C675EDD23A2D",
-             "role": "writer",
 
 
 
@@ -4649,6 +4649,7 @@ Reggiori                                                       [Page 83]
                             Portable Listings                   May 2013
 
 
+             "role": "writer",
              "label": "David Lynch"
            },
            {
@@ -4696,7 +4697,6 @@ Appendix B.  Compatibility with EBUCore and other standards
    compatible with the Goals and Approach of this spec.  Although
    Portable Listings is an independent spec, with a more limited scope
    than other broadcast and television industry and Web standards, any
-   proposed changes to the Portable Listings spec SHOULD BE considered
 
 
 
@@ -4705,6 +4705,7 @@ Reggiori                                                       [Page 84]
                             Portable Listings                   May 2013
 
 
+   proposed changes to the Portable Listings spec SHOULD BE considered
    in the context of other communities, and we should strive not to
    break compatibility unless it is truly necessary, e.g. if the goals
    of different standard communities diverge significantly in the
@@ -4718,7 +4719,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
 
 
 
