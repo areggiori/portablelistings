@@ -3518,8 +3518,8 @@ Reggiori                                                       [Page 62]
 8.4.20.  Application Publication
 
    The Application object type extends the CONTENT object type and
-   represents an instance or publication event of an Application.  The
-   application object type is identified with the string
+   represents an instance or publication event of an application build.
+   The application object type is identified with the string
    APPLICATION_PUBLICATION.  An application is associated with a
 
 

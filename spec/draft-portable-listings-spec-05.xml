@@ -3246,7 +3246,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
 
         <section title="Application Publication" anchor="application-publication-type">
             <t>
-                The Application object type extends the CONTENT object type and represents an instance or publication event of an Application.
+                The Application object type extends the CONTENT object type and represents an instance or publication event of an application build.
                 The application object type is identified with the string APPLICATION_PUBLICATION.
                 An application is associated with a service, and with a particular application build.
             </t>
