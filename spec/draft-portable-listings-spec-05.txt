@@ -3255,6 +3255,10 @@ Reggiori                                                       [Page 58]
    subtitled: (BOOLEAN)  A Boolean value indicating whether the access
       to the programme version being broadcasted or made available on-
       demand has subtitles.
+   subtitlesType: (ENUM)  The subtitles type SHOULD BE selected from the
+      following list: "closed" or "open".  Closed subtitles can be
+      displayed or hidden under the user's control.  Open subtitles are
+      "burned in" to the video content.
    audioDescribed: (BOOLEAN)  A Boolean value indicating whether the
       access to the programme version being broadcasted or made
       available on-demand has audio description accessibility features.
@@ -3290,10 +3294,6 @@ Reggiori                                                       [Page 58]
       or restore a video).
    videoBitrate: (NUMBER)  The programme publication average video bit
       rate.
-   minVideoBitrate: (NUMBER)  The programme publication minimal video
-      bit rate.
-   maxVideoBitrate: (NUMBER)  The programme publication maximum video
-      bit rate.
 
 
 
@@ -3304,6 +3304,11 @@ Reggiori                                                       [Page 59]
 
                             Portable Listings                   May 2013
 
+
+   minVideoBitrate: (NUMBER)  The programme publication minimal video
+      bit rate.
+   maxVideoBitrate: (NUMBER)  The programme publication maximum video
+      bit rate.
 
 8.4.13.2.  Relationships
 
@@ -3346,11 +3351,6 @@ Reggiori                                                       [Page 59]
       For efficiency, Service Providers SHOULD NOT mark all non-primary
       broadcast with primaryShowing="false", but should instead omit
       this sub-field for all non-primary broadcasts.
-   repeat: (BOOLEAN)  A Boolean value indicating whether the programme
-      version being broadcasted is a repeat.
-   live: (BOOLEAN)  A Boolean value indicating whether the programme
-      version being broadcasted is a live broadcast.
-
 
 
 
@@ -3361,6 +3361,10 @@ Reggiori                                                       [Page 60]
                             Portable Listings                   May 2013
 
 
+   repeat: (BOOLEAN)  A Boolean value indicating whether the programme
+      version being broadcasted is a repeat.
+   live: (BOOLEAN)  A Boolean value indicating whether the programme
+      version being broadcasted is a live broadcast.
    dummy: (BOOLEAN)  A Boolean value indicating whether the broadcast
       represents a period of time when the service is off air.
 
@@ -3405,10 +3409,6 @@ Reggiori                                                       [Page 60]
    ZDF service schedule).
 
    Note that in order to guarantee the creation of a unqiue and
-   disambiguating schedule "id" field, the following information SHALL
-   be combined:
-
-
 
 
 
@@ -3417,6 +3417,8 @@ Reggiori                                                       [Page 61]
                             Portable Listings                   May 2013
 
 
+   disambiguating schedule "id" field, the following information SHALL
+   be combined:
    o  The metadata publishing party identifier (if defined).
    o  The parent service identifier.
    o  The start and end period values.
@@ -3462,8 +3464,6 @@ Reggiori                                                       [Page 61]
    The Application object type extends the CONTENT object type and
    represents an abstract application (e.g.  BBC iPlayer).  The
    Application object type is identified with the string APPLICATION.
-
-
 
 
 
@@ -4328,6 +4328,7 @@ Reggiori                                                       [Page 77]
    o  Moved "duration" to Version level.
    o  Renamed "type" to "mediaType" on Link and relationship by
       reference.
+   o  Added "subtitlesType".
 
 
 13.  References
@@ -4360,7 +4361,6 @@ Reggiori                                                       [Page 77]
               Syndication Format", RFC 4287, December 2005.
 
    [RFC4627]  Crockford, D., "The application/json Media Type for
-              JavaScript Object Notation (JSON)", RFC 4627, July 2006.
 
 
 
@@ -4368,6 +4368,8 @@ Reggiori                                                       [Page 78]
 
                             Portable Listings                   May 2013
 
+
+              JavaScript Object Notation (JSON)", RFC 4627, July 2006.
 
    [RFC5646]  Phillips, A. and M. Davis, "Tags for Identifying
               Languages", BCP 47, RFC 5646, September 2009.
@@ -4415,8 +4417,6 @@ Reggiori                                                       [Page 78]
               v.1.4".
 
    [GEO-JSON]
-              "The GeoJSON Format Specification".
-
 
 
 
@@ -4424,6 +4424,8 @@ Reggiori                                                       [Page 79]
 
                             Portable Listings                   May 2013
 
+
+              "The GeoJSON Format Specification".
 
    [HOSTMETA]
               Eran Hammer-Lahav, E., "Web Host Metadata".
@@ -4471,8 +4473,6 @@ Reggiori                                                       [Page 79]
               Smarr, J., "Portable Contacts 1.0 Draft C".
 
    [TV-ANYTIME]
-              ETSI, "TV Anytime".
-
 
 
 
@@ -4480,6 +4480,8 @@ Reggiori                                                       [Page 80]
 
                             Portable Listings                   May 2013
 
+
+              ETSI, "TV Anytime".
 
    [WEBFINGER]
               "The Webfinger Protocol".
@@ -4527,8 +4529,6 @@ Appendix A.  Examples
          "title": "Pilot",
          "alternativeTitle": [
                {
-               "type": "original",
-               "value": "Northwest Passage"
 
 
 
@@ -4537,6 +4537,8 @@ Reggiori                                                       [Page 81]
                             Portable Listings                   May 2013
 
 
+               "type": "original",
+               "value": "Northwest Passage"
                }
            ],
          "summary": "The small northwest town of Twin Peaks,
@@ -4583,8 +4585,6 @@ Reggiori                                                       [Page 81]
              "role": "writer",
              "label": "David Lynch"
            },
-           {
-             "href": "2F050A9AF481",
 
 
 
@@ -4593,6 +4593,8 @@ Reggiori                                                       [Page 82]
                             Portable Listings                   May 2013
 
 
+           {
+             "href": "2F050A9AF481",
              "role": "writer",
              "label": "Mark Frost"
            },
@@ -4639,8 +4641,6 @@ Reggiori                                                       [Page 82]
              "label": "Duwayne Dunham",
              "primary": true
            },
-           {
-             "href": "C675EDD23A2D",
 
 
 
@@ -4649,6 +4649,8 @@ Reggiori                                                       [Page 83]
                             Portable Listings                   May 2013
 
 
+           {
+             "href": "C675EDD23A2D",
              "role": "writer",
              "label": "David Lynch"
            },
@@ -4695,8 +4697,6 @@ Appendix B.  Compatibility with EBUCore and other standards
    It is our intention to maintain this compatibility going forward, so
    long as it is feasible, and so long as the changes required are
    compatible with the Goals and Approach of this spec.  Although
-   Portable Listings is an independent spec, with a more limited scope
-   than other broadcast and television industry and Web standards, any
 
 
 
@@ -4705,6 +4705,8 @@ Reggiori                                                       [Page 84]
                             Portable Listings                   May 2013
 
 
+   Portable Listings is an independent spec, with a more limited scope
+   than other broadcast and television industry and Web standards, any
    proposed changes to the Portable Listings spec SHOULD BE considered
    in the context of other communities, and we should strive not to
    break compatibility unless it is truly necessary, e.g. if the goals
@@ -4719,8 +4721,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
-
 
 
 

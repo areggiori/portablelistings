@@ -2951,6 +2951,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="subtitled: (BOOLEAN)">
                             A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has subtitles.
                         </t>
+                        <t hangText="subtitlesType: (ENUM)">
+                            The subtitles type SHOULD BE selected from the following list: <spanx style="verb">closed</spanx> or <spanx style="verb">open</spanx>.
+                            Closed subtitles can be displayed or hidden under the user's control.
+                            Open subtitles are "burned in" to the video content.
+                        </t>
                         <t hangText="audioDescribed: (BOOLEAN)">
                             A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has audio description accessibility features.
                         </t>
@@ -4193,6 +4198,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Removed "notRated" from Content.</t>
                 <t>Moved "duration" to Version level.</t>
                 <t>Renamed "type" to "mediaType" on Link and relationship by reference.</t>
+                <t>Added "subtitlesType".</t>
             </list>
         </t>
     </section>
