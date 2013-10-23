@@ -2401,6 +2401,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                 <t hangText="value: (STRING or HTML)">
                                     The alternative name text.
                                 </t>
+                                <t hangText="lang: (LANGUAGE)">
+                                    The language of the <spanx style="verb">international</spanx> or <spanx style="verb">translation</spanx> title when differs from the main content language returned by a Provider (see <xref target="multilingual-fields" />). The value SHALL be a valid LANGUAGE Canonical Value.
+                                </t>
                             </list>
                         </t>
                         <t hangText="synopsis: (STRING or HTML)">
@@ -4199,6 +4202,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Moved "duration" to Version level.</t>
                 <t>Renamed "type" to "mediaType" on Link and relationship by reference.</t>
                 <t>Added "subtitlesType".</t>
+                <t>Added "lang" sub-field to "alternativeTitle".</t>
             </list>
         </t>
     </section>
