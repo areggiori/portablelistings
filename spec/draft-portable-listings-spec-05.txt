@@ -3209,7 +3209,7 @@ Reggiori                                                       [Page 57]
 8.4.13.  Programme Publication
 
    The Programme Publication object type extends the CONTENT object type
-   and represents an instance or publication event of a Programme.  The
+   and represents an instance or publication event of a Version.  The
    Programme Publication object type is identified with the string
    PROGRAMME_PUBLICATION.  A programme publication is associated with a
    service, and with a particular version of a programme.  For example,

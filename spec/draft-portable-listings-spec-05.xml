@@ -2905,7 +2905,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
         <!-- potentially this class may be the base for contetn package too in supply chain/s e.g. itunes, sony bmg - see also DDEX -->
         <section title="Programme Publication" anchor="programme-publication-type">
             <t>
-                The Programme Publication object type extends the CONTENT object type and represents an instance or publication event of a Programme.
+                The Programme Publication object type extends the CONTENT object type and represents an instance or publication event of a Version.
                 The Programme Publication object type is identified with the string PROGRAMME_PUBLICATION.
                 A programme publication is associated with a service, and with a particular version of a programme.
                 For example, a programme instance on a broadcast or on-demand service.
