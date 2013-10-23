@@ -1849,7 +1849,7 @@ Fields</h3>
 </dd>
 <dt>lang: (LANGUAGE)</dt>
 <dd>
-                            The language of the attribute value. The value MUST be a valid LANGUAGE Canonical Value.
+                            The language of the attribute value when it differs from the main content language returned by a Provider (see <a class='info' href='#multilingual-fields'>Section&nbsp;7.2<span> (</span><span class='info'>Multilingual Fields</span><span>)</span></a>). The value MUST be a valid LANGUAGE Canonical Value.
                         
 </dd>
 <dt>attributionDate: (TIMESTAMP)</dt>
@@ -3049,11 +3049,6 @@ Fields</h3>
 <dt>value: (STRING or HTML)</dt>
 <dd>
                                     The alternative name text.
-                                
-</dd>
-<dt>lang: (LANGUAGE)</dt>
-<dd>
-                                    The language of the <tt>international</tt> or <tt>translation</tt> title when differs from the main content language returned by a Provider (see <a class='info' href='#multilingual-fields'>Section&nbsp;7.2<span> (</span><span class='info'>Multilingual Fields</span><span>)</span></a>). The value SHALL be a valid LANGUAGE Canonical Value.
                                 
 </dd>
 </dl></blockquote>
@@ -5765,8 +5760,6 @@ Change Log</h3>
 <li>Renamed "type" to "mediaType" on Link and relationship by reference.
 </li>
 <li>Added "subtitlesType".
-</li>
-<li>Added "lang" sub-field to "alternativeTitle".
 </li>
 </ul><p>
         

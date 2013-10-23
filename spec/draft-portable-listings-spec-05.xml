@@ -1320,7 +1320,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             A human-readable label or name associated to the <spanx style="verb">value</spanx> sub-field.
                         </t>
                         <t hangText="lang: (LANGUAGE)">
-                            The language of the attribute value. The value MUST be a valid LANGUAGE Canonical Value.
+                            The language of the attribute value when it differs from the main content language returned by a Provider (see <xref target="multilingual-fields" />). The value MUST be a valid LANGUAGE Canonical Value.
                         </t>
                         <t hangText="attributionDate: (TIMESTAMP)">
                          The date at which the specific attribute vaue was attributed.
@@ -2400,9 +2400,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                 </t>
                                 <t hangText="value: (STRING or HTML)">
                                     The alternative name text.
-                                </t>
-                                <t hangText="lang: (LANGUAGE)">
-                                    The language of the <spanx style="verb">international</spanx> or <spanx style="verb">translation</spanx> title when differs from the main content language returned by a Provider (see <xref target="multilingual-fields" />). The value SHALL be a valid LANGUAGE Canonical Value.
                                 </t>
                             </list>
                         </t>
@@ -4202,7 +4199,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Moved "duration" to Version level.</t>
                 <t>Renamed "type" to "mediaType" on Link and relationship by reference.</t>
                 <t>Added "subtitlesType".</t>
-                <t>Added "lang" sub-field to "alternativeTitle".</t>
             </list>
         </t>
     </section>
