@@ -3209,11 +3209,12 @@ Reggiori                                                       [Page 57]
 8.4.13.  Programme Publication
 
    The Programme Publication object type extends the CONTENT object type
-   and represents an instance or publication event of a Version.  The
-   Programme Publication object type is identified with the string
-   PROGRAMME_PUBLICATION.  A programme publication is associated with a
-   service, and with a particular version of a programme.  For example,
-   a programme instance on a broadcast or on-demand service.
+   and represents an instance or publication event of a programm
+   version.  The Programme Publication object type is identified with
+   the string PROGRAMME_PUBLICATION.  A programme publication is
+   associated with a service, and with a particular version of a
+   programme.  For example, a programme instance on a broadcast or on-
+   demand service.
 
    Note that in order to guarantee the creation of a unqiue and
    disambiguating programme publication "id" field, the following
@@ -3238,7 +3239,6 @@ Reggiori                                                       [Page 57]
       free-to-air (i.e. offered completely free of charge and without
       any access restrictions).  For programmes that are not free-to-air
       this field shall be set to "false".
-
 
 
 
