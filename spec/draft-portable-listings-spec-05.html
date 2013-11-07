@@ -420,8 +420,6 @@ Fields<br />
 Relationships<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#agent-type">8.4.29.</a>&nbsp;
 Agent<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#agent-fields">8.4.29.1.</a>&nbsp;
-Fields<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#person-type">8.4.30.</a>&nbsp;
 Person<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#person-relationships">8.4.30.1.</a>&nbsp;
@@ -1253,7 +1251,7 @@ Presentation</h3>
 <dd>
                 If non-empty, each Entry returned SHALL contain only the fields explicitly requested.
                 A Service Provider MAY return a subset of the requested fields if they are not supported.
-                A Provider SHOULD return at least the <tt>id</tt> and the <tt>title</tt> fields for an Entry or the <tt>id</tt> and the <tt>displayName</tt> fields for an Agent.
+                A Provider SHOULD return at least the <tt>id</tt> field for an Entry.
                 This parameter is used for efficiency when a Consumer wishes to access only a subset of the fields.                  
                 Value is a comma separated list of top level field names (e.g. id,title), and it defaults to an empty list which means it's up to the Provider which fields to return.
                 Consumers MAY request all available fields by using the special value <tt>@all_fields</tt> (i.e. any field).
@@ -1675,7 +1673,7 @@ Fields</h3>
 
 <p>
         Each field is defined as either a Singular Field, in which case there MUST NOT be more than one instance of that field per Entry, or as a Plural Field, in which case any number of instances of that field MAY be present per Entry.
-        By definition, each Entry returned to a Consumer MUST include the <tt>id</tt> and <tt>title</tt> or <tt>displayName</tt> fields with non-empty or no null values, but all other fields are optional.
+        By definition, each Entry returned to a Consumer MUST include the <tt>id</tt> field with non-empty or no null value, but all other fields are optional.
         
 </p>
 <p>
@@ -2038,7 +2036,7 @@ Relationships</h3>
 </dd>
 <dt>label: (STRING)</dt>
 <dd>
-                        If non-empty or null, the label SHOULD match the <tt>title</tt> or <tt>displayName</tt> field of the Sub-Entry.
+                        If non-empty or null, the label SHOULD be a human readable string representing the Sub-Entry (e.g. <tt>title</tt>).
                     
 </dd>
 <dt>primary: (BOOLEAN)</dt>
@@ -2083,7 +2081,7 @@ Relationships</h3>
 </dd>
 <dt>label: (STRING)</dt>
 <dd>
-                    The label SHOULD match the <tt>title</tt> or <tt>displayName</tt> field of the Sub-Entry.
+                    If non-empty or null, the label SHOULD be a human readable string representing the Sub-Entry (e.g. <tt>title</tt>).
                   
 </dd>
 <dt>primary: (BOOLEAN)</dt>
@@ -2803,20 +2801,14 @@ Fields</h3>
 <dd>
                             REQUIRED. Unique identifier for the Entry record.
                             Each Entry returned MUST include a non-empty <tt>id</tt> value.
+                            The value provided SHOULD be the primary textual field by which the Entry is normally displayed by the Service Provider when presenting it to end-users.
+                            Unless otherwise specified, the <tt>id</tt> value is used for the purposes of sorting and filtering.
                             If a metadata publishing party is defined as per a non-empty <tt>metadataPublisher</tt> relationship, this identifier MUST be unique across the metadata publishing party's entire metadata set.
                             Otherwise this identifier MUST be unique across the Service Provider entire metadata set (see <a class='info' href='#auth'>Section&nbsp;6.5<span> (</span><span class='info'>Authentication and Authorization</span><span>)</span></a>), but MAY not be unique across multiple Provider metadata sets.
                             It MUST be a stable ID that does not change when the same Entry is returned in subsequent requests.
                             Usually, an internal database ID will be the right choice here, e.g. <tt>"12345"</tt>.
                             Care MUST be taken when a Service Provider aggregates metadata from several metadata publishing parties in order to make sure that identifiers from different parties do not clash.
                             It is RECOMMENDED to use a globally unique identifier formed with a unique string prefix representing the metadata publishing party (e.g. the registered Internet Domain Name of the party) with the suffix of the metadata publishing party database ID.
-                        
-</dd>
-<dt>title: (STRING or HTML)</dt>
-<dd>
-                            REQUIRED. The main name of this Entry.
-                            Each Entry returned MUST include a non-empty <tt>title</tt> value.
-                            The value provided SHOULD be the primary textual field by which the Entry is normally displayed by the Service Provider when presenting it to end-users.
-                            Unless otherwise specified, the title value is used for the purposes of sorting and filtering.
                         
 </dd>
 <dt>objectType: (ENUM)</dt>
@@ -2964,6 +2956,11 @@ Fields</h3>
 <p>
                     </p>
 <blockquote class="text"><dl>
+<dt>label: (STRING)</dt>
+<dd>
+                            A human-readable label for display.
+                        
+</dd>
 <dt>term: (ENUM OR IRI)</dt>
 <dd>
                             A link or code to or within a classification scheme.
@@ -3028,6 +3025,11 @@ Fields</h3>
 <p>
                     </p>
 <blockquote class="text"><dl>
+<dt>title: (STRING or HTML)</dt>
+<dd>
+                            The main name of the piece of content.
+                        
+</dd>
 <dt>alternativeTitle: [COMPLEX]</dt>
 <dd>
                             An alternative name of the piece of content other than the information provided with the <tt>title</tt> field.
@@ -4945,26 +4947,6 @@ Agent</h3>
                 The Agent object type extends the basic object type ENTRY and represents a person, organisation or group.
             
 </p>
-<a name="agent-fields"></a><br /><hr />
-<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<a name="rfc.section.8.4.29.1"></a><h3>8.4.29.1.&nbsp;
-Fields</h3>
-
-<p>
-                    </p>
-<blockquote class="text"><dl>
-<dt>displayName: (STRING)</dt>
-<dd>
-                            REQUIRED. The short name of the Agent, suitable for display to end-users.
-                            This field SHALL be used instead of <tt>title</tt> for Agent entries.
-                            Each Agent returned MUST include a non-empty <tt>displayName</tt> value.
-                            The value provided SHOULD be the primary textual field by which the Agent is normally displayed by the Service Provider when presenting it to end-users.
-                            Unless otherwise specified, the <tt>displayName</tt> value is used for the purposes of sorting and filtering Agent entries.
-                        
-</dd>
-</dl></blockquote><p>            
-                
-</p>
 <a name="person-type"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.4.30"></a><h3>8.4.30.&nbsp;
@@ -5797,9 +5779,9 @@ Change Log</h3>
 </li>
 <li>Added "country" to "alternativeTitle".
 </li>
-<li>Moved "title" to Entry level and made it mandatory. Specified that "displayName" is required and shall be used in place of "title" for Agent entries.
-</li>
 <li>Better specified the "organization" relationship linking persons to organisations.
+</li>
+<li>Removed mandatory field "displayName" from entry. It can still be specified as part of the Portable Contacts profile on agent.
 </li>
 </ul><p>
         

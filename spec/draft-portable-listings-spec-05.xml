@@ -811,7 +811,7 @@ Content-Type: application/listings+json
               <t hangText="fields:">
                 If non-empty, each Entry returned SHALL contain only the fields explicitly requested.
                 A Service Provider MAY return a subset of the requested fields if they are not supported.
-                A Provider SHOULD return at least the <spanx style="verb">id</spanx> and the <spanx style="verb">title</spanx> fields for an Entry or the <spanx style="verb">id</spanx> and the <spanx style="verb">displayName</spanx> fields for an Agent.
+                A Provider SHOULD return at least the <spanx style="verb">id</spanx> field for an Entry.
                 This parameter is used for efficiency when a Consumer wishes to access only a subset of the fields.                  
                 Value is a comma separated list of top level field names (e.g. id,title), and it defaults to an empty list which means it's up to the Provider which fields to return.
                 Consumers MAY request all available fields by using the special value <spanx style="verb">@all_fields</spanx> (i.e. any field).
@@ -1203,7 +1203,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
       <section title="Fields" anchor="fields">
         <t>
         Each field is defined as either a Singular Field, in which case there MUST NOT be more than one instance of that field per Entry, or as a Plural Field, in which case any number of instances of that field MAY be present per Entry.
-        By definition, each Entry returned to a Consumer MUST include the <spanx style="verb">id</spanx> and <spanx style="verb">title</spanx> or <spanx style="verb">displayName</spanx> fields with non-empty or no null values, but all other fields are optional.
+        By definition, each Entry returned to a Consumer MUST include the <spanx style="verb">id</spanx> field with non-empty or no null value, but all other fields are optional.
         </t>    
         <t>
           Entry fields information is formatted using labeled attributes with either structured or unstructured values.
@@ -1501,7 +1501,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         The <spanx style="verb">lang</spanx> sub-field SHALL not be specified.
                     </t>
                     <t hangText="label: (STRING)">
-                        If non-empty or null, the label SHOULD match the <spanx style="verb">title</spanx> or <spanx style="verb">displayName</spanx> field of the Sub-Entry.
+                        If non-empty or null, the label SHOULD be a human readable string representing the Sub-Entry (e.g. <spanx style="verb">title</spanx>).
                     </t>
                     <t hangText="primary: (BOOLEAN)">
                         If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
@@ -1531,7 +1531,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     The value MUST be a valid LANGUAGE Canonical Value.
                   </t>
                   <t hangText="label: (STRING)">
-                    The label SHOULD match the <spanx style="verb">title</spanx> or <spanx style="verb">displayName</spanx> field of the Sub-Entry.
+                    If non-empty or null, the label SHOULD be a human readable string representing the Sub-Entry (e.g. <spanx style="verb">title</spanx>).
                   </t>
                   <t hangText="primary: (BOOLEAN)">
                     If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
@@ -2215,18 +2215,14 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <t hangText="id: (STRING)">
                             REQUIRED. Unique identifier for the Entry record.
                             Each Entry returned MUST include a non-empty <spanx style="verb">id</spanx> value.
+                            The value provided SHOULD be the primary textual field by which the Entry is normally displayed by the Service Provider when presenting it to end-users.
+                            Unless otherwise specified, the <spanx style="verb">id</spanx> value is used for the purposes of sorting and filtering.
                             If a metadata publishing party is defined as per a non-empty <spanx style="verb">metadataPublisher</spanx> relationship, this identifier MUST be unique across the metadata publishing party's entire metadata set.
                             Otherwise this identifier MUST be unique across the Service Provider entire metadata set (see <xref target="auth"/>), but MAY not be unique across multiple Provider metadata sets.
                             It MUST be a stable ID that does not change when the same Entry is returned in subsequent requests.
                             Usually, an internal database ID will be the right choice here, e.g. <spanx style="verb">"12345"</spanx>.
                             Care MUST be taken when a Service Provider aggregates metadata from several metadata publishing parties in order to make sure that identifiers from different parties do not clash.
                             It is RECOMMENDED to use a globally unique identifier formed with a unique string prefix representing the metadata publishing party (e.g. the registered Internet Domain Name of the party) with the suffix of the metadata publishing party database ID.
-                        </t>
-                        <t hangText="title: (STRING or HTML)">
-                            REQUIRED. The main name of this Entry.
-                            Each Entry returned MUST include a non-empty <spanx style="verb">title</spanx> value.
-                            The value provided SHOULD be the primary textual field by which the Entry is normally displayed by the Service Provider when presenting it to end-users.
-                            Unless otherwise specified, the title value is used for the purposes of sorting and filtering.
                         </t>
                         <t hangText="objectType: (ENUM)">
                             The object type of the Entry record. A profile defines the possible allowed Canonical Values for the <spanx style="verb">objectType</spanx> field (see <xref target="listings-format" />).
@@ -2326,6 +2322,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <section title="Fields" anchor="category-type-fields">
                 <t>
                     <list style="hanging">
+                        <t hangText="label: (STRING)">
+                            A human-readable label for display.
+                        </t>
                         <t hangText="term: (ENUM OR IRI)">
                             A link or code to or within a classification scheme.
                             The value SHOULD BE selected from a standard list of values.
@@ -2382,6 +2381,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <section title="Fields" anchor="content-type-fields">
                 <t>
                     <list style="hanging">
+                        <t hangText="title: (STRING or HTML)">
+                            The main name of the piece of content.
+                        </t>
                         <t hangText="alternativeTitle: [COMPLEX]">
                             An alternative name of the piece of content other than the information provided with the <spanx style="verb">title</spanx> field.
                             <list style="hanging">
@@ -3640,19 +3642,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <t>
                 The Agent object type extends the basic object type ENTRY and represents a person, organisation or group.
             </t>
-            <section title="Fields" anchor="agent-fields">
-                <t>
-                    <list style="hanging">
-                        <t hangText="displayName: (STRING)">
-                            REQUIRED. The short name of the Agent, suitable for display to end-users.
-                            This field SHALL be used instead of <spanx style="verb">title</spanx> for Agent entries.
-                            Each Agent returned MUST include a non-empty <spanx style="verb">displayName</spanx> value.
-                            The value provided SHOULD be the primary textual field by which the Agent is normally displayed by the Service Provider when presenting it to end-users.
-                            Unless otherwise specified, the <spanx style="verb">displayName</spanx> value is used for the purposes of sorting and filtering Agent entries.
-                        </t>
-                    </list>            
-                </t>
-            </section>
         </section>
       
         <section title="Person" anchor="person-type">
@@ -4216,8 +4205,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Renamed "type" to "mediaType" on Link and relationship by reference.</t>
                 <t>Added "subtitlesType".</t>
                 <t>Added "country" to "alternativeTitle".</t>
-                <t>Moved "title" to Entry level and made it mandatory. Specified that "displayName" is required and shall be used in place of "title" for Agent entries.</t>
                 <t>Better specified the "organization" relationship linking persons to organisations.</t>
+                <t>Removed mandatory field "displayName" from entry. It can still be specified as part of the Portable Contacts profile on agent.</t>
             </list>
         </t>
     </section>
