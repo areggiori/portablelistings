@@ -100,7 +100,7 @@ ISSUES:
             An individual item object (or result) part of a result set (listings) returned by a Service Provider. Entries are represented in a result set with the <spanx style="verb">entry</spanx> element. An entry has one or more fields and relationships associated to it.
           </t>
           <t hangText="Singular Field:">
-            An Entry field that can appear at most once per Entry, e.g. <spanx style="verb">displayName</spanx> or <spanx style="verb">id</spanx>.
+            An Entry field that can appear at most once per Entry, e.g. <spanx style="verb">id</spanx> or <spanx style="verb">title</spanx>.
           </t>
           <t hangText="Plural Field:">
             An Entry field that can appear multiple times per Entry, e.g. <spanx style="verb">keywords</spanx> or <spanx style="verb">tags</spanx>.
@@ -349,7 +349,6 @@ Content-Type: application/listings+json
     {
       "id": "5E5EEBED3173",
       "objectType": "episode",
-      "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": [
                   {
@@ -391,7 +390,6 @@ Content-Type: application/listings+json
     {
       "id": "8881860D6F31",
       "objectType": "episode",
-      "displayName": "Episode 2",
       "title": "Traces to Nowhere",
       "summary": "Cooper's investigation into the
                   murder of Laura Palmer continues,
@@ -457,7 +455,6 @@ Content-Type: application/listings+json
     "entry": {
       "id": "5E5EEBED3173",
       "objectType": "episode",
-      "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": [
                   {
@@ -750,7 +747,7 @@ Content-Type: application/listings+json
           
           <t>
             If a request specifies a <spanx style="verb">filterValue</spanx> but no <spanx style="verb">filterBy</spanx> or <spanx style="verb">filterOp</spanx>, it is up to the Service Provider how to interpret this filter request.
-            Service Providers MAY choose to default to filtering by a given field (e.g. <spanx style="verb">displayName</spanx>); they MAY choose to implement a custom, Provider-specific query syntax for <spanx style="verb">filterValue</spanx> in this case; or they MAY choose to reject requests of this type.
+            Service Providers MAY choose to default to filtering by a given field (e.g. <spanx style="verb">title</spanx>); they MAY choose to implement a custom, Provider-specific query syntax for <spanx style="verb">filterValue</spanx> in this case; or they MAY choose to reject requests of this type.
           </t>
 
           <t>
@@ -814,7 +811,7 @@ Content-Type: application/listings+json
               <t hangText="fields:">
                 If non-empty, each Entry returned SHALL contain only the fields explicitly requested.
                 A Service Provider MAY return a subset of the requested fields if they are not supported.
-                A Provider SHOULD return at least the <spanx style="verb">id</spanx> and <spanx style="verb">displayName</spanx> fields for an Entry.
+                A Provider SHOULD return at least the <spanx style="verb">id</spanx> and the <spanx style="verb">title</spanx> fields for an Entry or the <spanx style="verb">id</spanx> and the <spanx style="verb">displayName</spanx> fields for an Agent.
                 This parameter is used for efficiency when a Consumer wishes to access only a subset of the fields.                  
                 Value is a comma separated list of top level field names (e.g. id,title), and it defaults to an empty list which means it's up to the Provider which fields to return.
                 Consumers MAY request all available fields by using the special value <spanx style="verb">@all_fields</spanx> (i.e. any field).
@@ -909,7 +906,6 @@ Content-Type: application/listings+json
     "entry": {
       "id": "5E5EEBED3173",
       "objectType": "episode",
-      "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": [
             {
@@ -976,7 +972,6 @@ Content-Type: application/listings+json
     "entry": {
       "id": "5E5EEBED3173",
       "objectType": "episode",
-      "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": [
             {
@@ -1208,7 +1203,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
       <section title="Fields" anchor="fields">
         <t>
         Each field is defined as either a Singular Field, in which case there MUST NOT be more than one instance of that field per Entry, or as a Plural Field, in which case any number of instances of that field MAY be present per Entry.
-        By definition, each Entry returned to a Consumer MUST include the <spanx style="verb">id</spanx> and <spanx style="verb">displayName</spanx> fields with non-empty or no null values, but all other fields are optional.
+        By definition, each Entry returned to a Consumer MUST include the <spanx style="verb">id</spanx> and <spanx style="verb">title</spanx> or <spanx style="verb">displayName</spanx> fields with non-empty or no null values, but all other fields are optional.
         </t>    
         <t>
           Entry fields information is formatted using labeled attributes with either structured or unstructured values.
@@ -1506,7 +1501,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         The <spanx style="verb">lang</spanx> sub-field SHALL not be specified.
                     </t>
                     <t hangText="label: (STRING)">
-                        If non-empty or null, the label SHOULD match the <spanx style="verb">displayName</spanx> field of the Sub-Entry.
+                        If non-empty or null, the label SHOULD match the <spanx style="verb">title</spanx> or <spanx style="verb">displayName</spanx> field of the Sub-Entry.
                     </t>
                     <t hangText="primary: (BOOLEAN)">
                         If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
@@ -1536,7 +1531,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     The value MUST be a valid LANGUAGE Canonical Value.
                   </t>
                   <t hangText="label: (STRING)">
-                    The label SHOULD match the <spanx style="verb">displayName</spanx> field of the Sub-Entry.
+                    The label SHOULD match the <spanx style="verb">title</spanx> or <spanx style="verb">displayName</spanx> field of the Sub-Entry.
                   </t>
                   <t hangText="primary: (BOOLEAN)">
                     If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
@@ -2227,11 +2222,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             Care MUST be taken when a Service Provider aggregates metadata from several metadata publishing parties in order to make sure that identifiers from different parties do not clash.
                             It is RECOMMENDED to use a globally unique identifier formed with a unique string prefix representing the metadata publishing party (e.g. the registered Internet Domain Name of the party) with the suffix of the metadata publishing party database ID.
                         </t>
-                        <t hangText="displayName: (STRING)">
-                            REQUIRED. The short name of this Entry, suitable for display to end-users (e.g. short title).
-                            Each Entry returned MUST include a non-empty <spanx style="verb">displayName</spanx> value.
+                        <t hangText="title: (STRING or HTML)">
+                            REQUIRED. The main name of this Entry.
+                            Each Entry returned MUST include a non-empty <spanx style="verb">title</spanx> value.
                             The value provided SHOULD be the primary textual field by which the Entry is normally displayed by the Service Provider when presenting it to end-users.
-                            Unless otherwise specified, the displayName value is used for the purposes of sorting and filtering.
+                            Unless otherwise specified, the title value is used for the purposes of sorting and filtering.
                         </t>
                         <t hangText="objectType: (ENUM)">
                             The object type of the Entry record. A profile defines the possible allowed Canonical Values for the <spanx style="verb">objectType</spanx> field (see <xref target="listings-format" />).
@@ -2387,12 +2382,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <section title="Fields" anchor="content-type-fields">
                 <t>
                     <list style="hanging">
-                        <t hangText="title: (STRING or HTML)">
-                            The main name of this piece of content.
-                            The title value provided SHALL differ from the <spanx style="verb">displayName</spanx>.
-                        </t>
                         <t hangText="alternativeTitle: [COMPLEX]">
-                            An alternative name of the piece of content other than the information provided with the <spanx style="verb">displayName</spanx>, <spanx style="verb">title</spanx> and <spanx style="verb">subtitle</spanx> fields.
+                            An alternative name of the piece of content other than the information provided with the <spanx style="verb">title</spanx> field.
                             <list style="hanging">
                                 <t hangText="type: (ENUM)">
                                     The type of field SHOULD BE selected from the following list: <spanx style="verb">secondary</spanx>, <spanx style="verb">subtitle</spanx>, <spanx style="verb">alternativeSecondary</spanx>, <spanx style="verb">original</spanx>, <spanx style="verb">artWorkOriginal</spanx>, <spanx style="verb">pledged</spanx>, <spanx style="verb">working</spanx>, <spanx style="verb">alternativeWorking</spanx>, <spanx style="verb">long</spanx>, <spanx style="verb">full</spanx>, <spanx style="verb">abridged</spanx>, <spanx style="verb">transmission</spanx>, <spanx style="verb">international</spanx>, <spanx style="verb">translation</spanx>, <spanx style="verb">pseudo</spanx>, <spanx style="verb">ingest</spanx>.
@@ -3649,6 +3640,19 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <t>
                 The Agent object type extends the basic object type ENTRY and represents a person, organisation or group.
             </t>
+            <section title="Fields" anchor="agent-fields">
+                <t>
+                    <list style="hanging">
+                        <t hangText="displayName: (STRING)">
+                            REQUIRED. The short name of the Agent, suitable for display to end-users.
+                            This field SHALL be used instead of <spanx style="verb">title</spanx> for Agent entries.
+                            Each Agent returned MUST include a non-empty <spanx style="verb">displayName</spanx> value.
+                            The value provided SHOULD be the primary textual field by which the Agent is normally displayed by the Service Provider when presenting it to end-users.
+                            Unless otherwise specified, the <spanx style="verb">displayName</spanx> value is used for the purposes of sorting and filtering Agent entries.
+                        </t>
+                    </list>            
+                </t>
+            </section>
         </section>
       
         <section title="Person" anchor="person-type">
@@ -3657,13 +3661,22 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 This effectively means that a valid Portable Listings Person is a valid Portable Contacts Contact (see section 7.2 of <xref target="PortableContacts"/>).
                 The only difference is that the <spanx style="verb">organization</spanx> field is defined to be a plural relationship to one or more ORGANISATION.
             </t>
+            <section title="Relationships" anchor="person-relationships">
+                <t>
+                    <list style="hanging">
+                        <t hangText="organization: [ORGANISATION]">
+                            The list of organisations the person has worked for.
+                            The Portable Contacts Organization (see section 7.5 of <xref target="PortableContacts"/>) <spanx style="verb">department</spanx>, <spanx style="verb">title</spanx>, <spanx style="verb">type</spanx>, <spanx style="verb">startDate</spanx>, <spanx style="verb">endDate</spanx>, <spanx style="verb">description</spanx> and <spanx style="verb">salary</spanx> fields SHALL be specified as sub-fields of this relationship and SHALL NOT be specified in the organisation entry.
+                        </t>
+                    </list>
+                </t>
+            </section>
         </section>
             
         <section title="Organisation" anchor="organisation-type">
             <t>
                 The Organisation object type extends the AGENT object type and represents an organisation or institution as defined in <xref target="PortableContacts"/>.
                 A valid Portable Listings Organisation is defined to be a Portable Contacts Organization (see section 7.5 of <xref target="PortableContacts"/>) with only the <spanx style="verb">name</spanx>, <spanx style="verb">field</spanx>, <spanx style="verb">subfield</spanx>, <spanx style="verb">location</spanx> and <spanx style="verb">webpage</spanx> fields specified.
-                The <spanx style="verb">department</spanx>, <spanx style="verb">title</spanx>, <spanx style="verb">type</spanx>, <spanx style="verb">startDate</spanx>, <spanx style="verb">endDate</spanx>, <spanx style="verb">description</spanx> and <spanx style="verb">salary</spanx> fields SHALL be specified as sub-fields of the PERSON <spanx style="verb">organization</spanx> relationship due they are specific to the contact.
             </t>
             <section title="Relationships" anchor="organisation-relationships">
                 <t>
@@ -4203,6 +4216,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Renamed "type" to "mediaType" on Link and relationship by reference.</t>
                 <t>Added "subtitlesType".</t>
                 <t>Added "country" to "alternativeTitle".</t>
+                <t>Moved "title" to Entry level and made it mandatory. Specified that "displayName" is required and shall be used in place of "title" for Agent entries.</t>
+                <t>Better specified the "organization" relationship linking persons to organisations.</t>
             </list>
         </t>
     </section>
@@ -4680,7 +4695,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
       <t>
         <figure>
           <artwork>
-GET /api/listings?startIndex=1&amp;count=10&amp;sortBy=displayName HTTP/1.1
+GET /api/listings?startIndex=1&amp;count=10&amp;sortBy=title HTTP/1.1
 Host: sample.site.org
           </artwork>
         </figure>
@@ -4704,7 +4719,6 @@ Content-Type: application/listings+json;
     {
       "id": "5E5EEBED3173",
       "objectType": "episode",
-      "displayName": "Episode 1",
       "title": "Pilot",
       "alternativeTitle": [
             {
@@ -4792,7 +4806,6 @@ Content-Type: application/listings+json;
     {
       "id": "8881860D6F31",
       "objectType": "episode",
-      "displayName": "Episode 2",
       "title": "Traces to Nowhere",
       "summary": "Cooper's investigation into the murder of
                   Laura Palmer continues, as her secret
