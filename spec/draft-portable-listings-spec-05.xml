@@ -2388,8 +2388,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             An alternative name of the piece of content other than the information provided with the <spanx style="verb">title</spanx> field.
                             <list style="hanging">
                                 <t hangText="type: (ENUM)">
-                                    The type of field SHOULD BE selected from the following list: <spanx style="verb">secondary</spanx>, <spanx style="verb">subtitle</spanx>, <spanx style="verb">alternativeSecondary</spanx>, <spanx style="verb">original</spanx>, <spanx style="verb">artWorkOriginal</spanx>, <spanx style="verb">pledged</spanx>, <spanx style="verb">working</spanx>, <spanx style="verb">alternativeWorking</spanx>, <spanx style="verb">long</spanx>, <spanx style="verb">full</spanx>, <spanx style="verb">abridged</spanx>, <spanx style="verb">transmission</spanx>, <spanx style="verb">international</spanx>, <spanx style="verb">translation</spanx>, <spanx style="verb">pseudo</spanx>, <spanx style="verb">ingest</spanx>.
-                                    The <spanx style="verb">main</spanx>, <spanx style="verb">published</spanx>, <spanx style="verb">short</spanx> and <spanx style="verb">version</spanx> values SHOULD NOT be used as this complicates processing by the Consumer.
+                                    The type of field SHOULD BE selected from the following list: <spanx style="verb">short</spanx>, <spanx style="verb">secondary</spanx>, <spanx style="verb">subtitle</spanx>, <spanx style="verb">alternativeSecondary</spanx>, <spanx style="verb">original</spanx>, <spanx style="verb">artWorkOriginal</spanx>, <spanx style="verb">pledged</spanx>, <spanx style="verb">working</spanx>, <spanx style="verb">alternativeWorking</spanx>, <spanx style="verb">long</spanx>, <spanx style="verb">full</spanx>, <spanx style="verb">abridged</spanx>, <spanx style="verb">transmission</spanx>, <spanx style="verb">international</spanx>, <spanx style="verb">translation</spanx>, <spanx style="verb">pseudo</spanx>, <spanx style="verb">ingest</spanx>.
+                                    The <spanx style="verb">main</spanx> value SHOULD NOT be used as this complicates processing by the Consumer.
                                 </t>
                                 <t hangText="value: (STRING or HTML)">
                                     The alternative name text.
@@ -2578,11 +2578,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         <!-- add policy here or to the version / location ?! -->
                         
                         <t hangText="contentVersion: (STRING or NUMBER)">
-                            The version of the content.
+                            The version of the content (e.g. the version number).
                         </t>
                         
                         <t hangText="position: (NUMBER)">
-                            The position of a particular piece of content within a container or collection (e.g. Collection, Programme, Programme Group, Series).
+                            The position of a particular piece of content within a container or collection. For example, position 2 when the content parent is a Series it means 'Episode 2' or 'Series 2' if the content parent is a Brand.
                         </t>
                     </list>
                 </t>
@@ -2684,8 +2684,8 @@ WWW-Authenticate: Basic realm="sample.site.org"
                          -->
                         <t hangText="ownership: (SERVICE)">
                             Associate a Programme to the owner Service (e.g. the commissioner, national broadcaster service, content owner).
-                            In every metadata hierarchy only the top-level editorial object, whether a Brand, Series or Episode, must reference a owner Service.
-                            Objects below the root node may override this, specifying a different owning Service.
+                            In every metadata hierarchy only the top-level editorial object, whether a Brand, Series or Episode, MAY reference a owner Service.
+                            Objects below the root node MAY override this, specifying a different owning Service.
                             <!--
                              In case there is not hierarchy of services defined, the service and ownership MAY refer to the same Service.
                              -->
