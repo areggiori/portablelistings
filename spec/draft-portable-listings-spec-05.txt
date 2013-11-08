@@ -2933,7 +2933,7 @@ Reggiori                                                       [Page 52]
 
    Any additional supporting material associated to the piece of content
    SHALL be specified using one more "links" link (see Section 8.4.1.2)
-   with a relationship type of "supplemental-material".
+   with a relationship type of "supplemental-information".
 
 8.4.3.3.  Relationships
 
@@ -4282,7 +4282,7 @@ Reggiori                                                       [Page 76]
       "supplemental-information", "best-of" and "extract" link relation
       types.
    o  Removed "supportingMaterial" from Content and mandate use links of
-      type "supplemental-material" instead.
+      type "supplemental-information" instead.
    o  Added "segments" to Version.
    o  Updated "segmentType" definition.
    o  Redefined "aliases" as links and moved to Entry.

@@ -2597,7 +2597,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     </list>
                 </t>
                 <t>
-                    Any additional supporting material associated to the piece of content SHALL be specified using one more <spanx style="verb">links</spanx> link (see <xref target="entry-type-links"/>) with a relationship type of "supplemental-material".
+                    Any additional supporting material associated to the piece of content SHALL be specified using one more <spanx style="verb">links</spanx> link (see <xref target="entry-type-links"/>) with a relationship type of "supplemental-information".
                 </t>
             </section>
             
@@ -4170,7 +4170,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <list style="symbols">
                 <t>Added "alternativePublication" to Programme Publication and Application Publication.</t>
                 <t>Added "trailer", "simulcast", "ondemand", "catchup", "recommendation", "advert", "telescoped-advert", "speedbump", "product-purchase", "recap", "making-of", "content-package", "supplemental-information", "best-of" and "extract" link relation types.</t>
-                <t>Removed "supportingMaterial" from Content and mandate use links of type "supplemental-material" instead.</t>
+                <t>Removed "supportingMaterial" from Content and mandate use links of type "supplemental-information" instead.</t>
                 <t>Added "segments" to Version.</t>
                 <t>Updated "segmentType" definition.</t>
                 <t>Redefined "aliases" as links and moved to Entry.</t>
