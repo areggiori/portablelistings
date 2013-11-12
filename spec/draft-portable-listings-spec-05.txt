@@ -121,7 +121,7 @@ Reggiori                                                        [Page 2]
        8.4.12. Service  . . . . . . . . . . . . . . . . . . . . . . . 57
          8.4.12.1. Fields . . . . . . . . . . . . . . . . . . . . . . 57
          8.4.12.2. Links  . . . . . . . . . . . . . . . . . . . . . . 57
-         8.4.12.3. Relationships  . . . . . . . . . . . . . . . . . . 58
+         8.4.12.3. Relationships  . . . . . . . . . . . . . . . . . . 57
        8.4.13. Programme Publication  . . . . . . . . . . . . . . . . 58
          8.4.13.1. Fields . . . . . . . . . . . . . . . . . . . . . . 58
          8.4.13.2. Relationships  . . . . . . . . . . . . . . . . . . 60
@@ -3096,20 +3096,15 @@ Reggiori                                                       [Page 55]
    different parental guidance, alternative viewing angles etc.) only
    one is marked as original.
 
-   The addition of burned in accessibility features (e.g. hearing
-   impaired, signed and dubbed audio described) to the video requires a
-   separate editorial version from the original because these aspects of
-   the presentation are generally not selectable by a user.
-
-   However, when such accessibility features are expressed using
-   multiple external tracks (audio, video, text etc) associated and
-   syncronized to the main audio and video tracks (see Section 8.4.23)
-   such differences SHALL be represented by multiple publications of the
-   same basic editorial version since the underlying editorial content
-   is identical at scene level.  The same applies to certain types of
-   technical variation, such as video resolution.  For example HD and SD
-   variations SHALL be represented by separate publications of the same
-   editorial Version.
+   The inclusion of accessibility features (e.g. deaf and hearing
+   impaired signing, dubbing, subtitles etc.) does not require a
+   separate editorial version.  Such differences SHALL be represented by
+   multiple programme publications (see Section 8.4.13) of the same
+   basic editorial version since the underlying editorial content is
+   identical at scene level.  The same applies to certain types of
+   technical variation, such as video resolution (e.g.  HD and SD
+   variations), or when any accessibility features are "burned in" the
+   video despite the fact that the media source may be different.
 
 8.4.11.1.  Fields
 
@@ -3126,6 +3121,11 @@ Reggiori                                                       [Page 55]
 
 8.4.11.2.  Relationships
 
+   events: [SCHEDULE_EVENT]  The schedule events associated with a
+      particular version.
+   availabilities: [ONDEMAND]  The availabilities associated with a
+      particular version when it is made available on-demand.
+
 
 
 
@@ -3137,10 +3137,6 @@ Reggiori                                                       [Page 56]
                             Portable Listings                   May 2013
 
 
-   events: [SCHEDULE_EVENT]  The schedule events associated with a
-      particular version.
-   availabilities: [ONDEMAND]  The availabilities associated with a
-      particular version when it is made available on-demand.
    segments: [SEGMENT]  The segments or segment groups associated with a
       particular version (e.g. bookmarks, highlights, preview, insertion
       points, shots, speech).
@@ -3183,6 +3179,10 @@ Reggiori                                                       [Page 56]
       rel: (ENUM)  The rel value SHALL BE the "icon" relation type as
          defined in [RFC5988].
 
+8.4.12.3.  Relationships
+
+
+
 
 
 
@@ -3192,8 +3192,6 @@ Reggiori                                                       [Page 57]
 
                             Portable Listings                   May 2013
 
-
-8.4.12.3.  Relationships
 
    outlets: [SERVICE]  Relates a Service to the Outlets that are
       contained within the Service.  An outlet represents a service
@@ -3244,6 +3242,8 @@ Reggiori                                                       [Page 57]
 
 
 
+
+
 Reggiori                                                       [Page 58]
 
                             Portable Listings                   May 2013
@@ -3262,6 +3262,9 @@ Reggiori                                                       [Page 58]
    audioDescribed: (BOOLEAN)  A Boolean value indicating whether the
       access to the programme version being broadcasted or made
       available on-demand has audio description accessibility features.
+   dubbed: (BOOLEAN)  A Boolean value indicating whether the programme
+      version being broadcasted or made available on-demand has been
+      dubbed.
    hd: (BOOLEAN)  A Boolean value indicating whether the programme
       version being broadcasted or made available on-demand is high
       definition.
@@ -3292,9 +3295,6 @@ Reggiori                                                       [Page 58]
       Colour Codes.  Multiple video colours may be specified for the
       same publication (e.g. when film colorization is used to modernize
       or restore a video).
-   videoBitrate: (NUMBER)  The programme publication average video bit
-      rate.
-
 
 
 
@@ -3305,6 +3305,8 @@ Reggiori                                                       [Page 59]
                             Portable Listings                   May 2013
 
 
+   videoBitrate: (NUMBER)  The programme publication average video bit
+      rate.
    minVideoBitrate: (NUMBER)  The programme publication minimal video
       bit rate.
    maxVideoBitrate: (NUMBER)  The programme publication maximum video
@@ -3351,8 +3353,6 @@ Reggiori                                                       [Page 59]
       For efficiency, Service Providers SHOULD NOT mark all non-primary
       broadcast with primaryShowing="false", but should instead omit
       this sub-field for all non-primary broadcasts.
-
-
 
 
 
@@ -4341,6 +4341,7 @@ Reggiori                                                       [Page 77]
    o  Removed mandatory field "displayName" from entry.  It can still be
       specified as part of the Portable Contacts profile on agent.
    o  Made "parent" a plural relationship.
+   o  Added "dubbed" to Programme Publication.
 
 
 13.  References
@@ -4360,7 +4361,6 @@ Reggiori                                                       [Page 77]
               RFC 2617, June 1999.
 
    [RFC3339]  Klyne, G., Ed. and C. Newman, "Date and Time on the
-              Internet: Timestamps", RFC 3339, July 2002.
 
 
 
@@ -4368,6 +4368,8 @@ Reggiori                                                       [Page 78]
 
                             Portable Listings                   May 2013
 
+
+              Internet: Timestamps", RFC 3339, July 2002.
 
    [RFC3987]  Duerst, M. and M. Suignard, "Internationalized Resource
               Identifiers (IRIs)", RFC 3987, January 2005.
@@ -4415,8 +4417,6 @@ Reggiori                                                       [Page 78]
               Video Broadcasting (DVB) Programme Resources", March 2013.
 
    [EBU-OBJECTMODEL]
-              EBU, "EBU Object Model".
-
 
 
 
@@ -4424,6 +4424,8 @@ Reggiori                                                       [Page 79]
 
                             Portable Listings                   May 2013
 
+
+              EBU, "EBU Object Model".
 
    [EBU-REFERENCEDATA]
               EBU, "European Broadcasting Union - Metadata Reference
@@ -4471,8 +4473,6 @@ Reggiori                                                       [Page 79]
    [MIMEREG]  Freed, N. and J. Klensin, "Media Type Specifications and
               Registration Procedures", BCP 13, RFC 4288, December 2005.
 
-   [OAuth 2.0]
-              "The OAuth 2.0 Authorization Protocol".
 
 
 
@@ -4480,6 +4480,9 @@ Reggiori                                                       [Page 80]
 
                             Portable Listings                   May 2013
 
+
+   [OAuth 2.0]
+              "The OAuth 2.0 Authorization Protocol".
 
    [OpenSearch]
               Clinton, D., "OpenSearch 1.1".
@@ -4526,9 +4529,6 @@ Appendix A.  Examples
    Content-Type: application/listings+json;
                 profile="http://portablelistings.net/profiles/core/1.0/"
 
-   {
-     "startIndex": 1,
-     "itemsPerPage": 10,
 
 
 
@@ -4537,6 +4537,9 @@ Reggiori                                                       [Page 81]
                             Portable Listings                   May 2013
 
 
+   {
+     "startIndex": 1,
+     "itemsPerPage": 10,
      "totalResults": 8,
      "lang": "en",
      "entry": [
@@ -4582,9 +4585,6 @@ Reggiori                                                       [Page 81]
              "label": "Norwegian"
            }
          ],
-         "contributor": [
-           {
-             "href": "C675EDD23A2D",
 
 
 
@@ -4593,6 +4593,9 @@ Reggiori                                                       [Page 82]
                             Portable Listings                   May 2013
 
 
+         "contributor": [
+           {
+             "href": "C675EDD23A2D",
              "role": "director",
              "label": "David Lynch",
              "primary": true
@@ -4638,9 +4641,6 @@ Reggiori                                                       [Page 82]
              }
          ]
        },
-       {
-         "id": "8881860D6F31",
-         "objectType": "episode",
 
 
 
@@ -4649,6 +4649,9 @@ Reggiori                                                       [Page 83]
                             Portable Listings                   May 2013
 
 
+       {
+         "id": "8881860D6F31",
+         "objectType": "episode",
          "title": "Traces to Nowhere",
          "summary": "Cooper's investigation into the murder of
                      Laura Palmer continues, as her secret
@@ -4694,9 +4697,6 @@ Reggiori                                                       [Page 83]
        }
      ]
    }
-
-
-
 
 
 

@@ -2789,13 +2789,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 While there could be different version types (e.g. different run length, different parental guidance, alternative viewing angles etc.) only one is marked as original.
             </t>
             <t>
-                The addition of burned in accessibility features (e.g. hearing impaired, signed and dubbed audio described) to the video requires a separate editorial version from the original because these aspects of the presentation are generally not selectable by a user.
+                The inclusion of accessibility features (e.g. deaf and hearing impaired signing, dubbing, subtitles etc.) does not require a separate editorial version.
+                Such differences SHALL be represented by multiple programme publications (see <xref target="programme-publication-type"/>) of the same basic editorial version since the underlying editorial content is identical at scene level.
+                The same applies to certain types of technical variation, such as video resolution (e.g. HD and SD variations), or when any accessibility features are "burned in" the video despite the fact that the media source may be different.
             </t>
-            <t>
-                However, when such accessibility features are expressed using multiple external tracks (audio, video, text etc) associated and syncronized to the main audio and video tracks (see <xref target="mediagroup-type"/>) such differences SHALL be represented by multiple publications of the same basic editorial version since the underlying editorial content is identical at scene level.
-                The same applies to certain types of technical variation, such as video resolution. For example HD and SD variations SHALL be represented by separate publications of the same editorial Version.
-            </t>
-            
+
             <section title="Fields" anchor="version-fields">
                 <t>
                     <list style="hanging">
@@ -2955,6 +2953,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         </t>
                         <t hangText="audioDescribed: (BOOLEAN)">
                             A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has audio description accessibility features.
+                        </t>
+                        <t hangText="dubbed: (BOOLEAN)">
+                            A Boolean value indicating whether the programme version being broadcasted or made available on-demand has been dubbed.
                         </t>
                         <t hangText="hd: (BOOLEAN)">
                             A Boolean value indicating whether the programme version being broadcasted or made available on-demand is high definition.
@@ -4209,6 +4210,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Better specified the "organization" relationship linking persons to organisations.</t>
                 <t>Removed mandatory field "displayName" from entry. It can still be specified as part of the Portable Contacts profile on agent.</t>
                 <t>Made "parent" a plural relationship.</t>
+                <t>Added "dubbed" to Programme Publication.</t>
             </list>
         </t>
     </section>

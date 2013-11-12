@@ -3617,12 +3617,9 @@ Version</h3>
             
 </p>
 <p>
-                The addition of burned in accessibility features (e.g. hearing impaired, signed and dubbed audio described) to the video requires a separate editorial version from the original because these aspects of the presentation are generally not selectable by a user.
-            
-</p>
-<p>
-                However, when such accessibility features are expressed using multiple external tracks (audio, video, text etc) associated and syncronized to the main audio and video tracks (see <a class='info' href='#mediagroup-type'>Section&nbsp;8.4.23<span> (</span><span class='info'>Media Group</span><span>)</span></a>) such differences SHALL be represented by multiple publications of the same basic editorial version since the underlying editorial content is identical at scene level.
-                The same applies to certain types of technical variation, such as video resolution. For example HD and SD variations SHALL be represented by separate publications of the same editorial Version.
+                The inclusion of accessibility features (e.g. deaf and hearing impaired signing, dubbing, subtitles etc.) does not require a separate editorial version.
+                Such differences SHALL be represented by multiple programme publications (see <a class='info' href='#programme-publication-type'>Section&nbsp;8.4.13<span> (</span><span class='info'>Programme Publication</span><span>)</span></a>) of the same basic editorial version since the underlying editorial content is identical at scene level.
+                The same applies to certain types of technical variation, such as video resolution (e.g. HD and SD variations), or when any accessibility features are "burned in" the video despite the fact that the media source may be different.
             
 </p>
 <a name="version-fields"></a><br /><hr />
@@ -3858,6 +3855,11 @@ Fields</h3>
 <dt>audioDescribed: (BOOLEAN)</dt>
 <dd>
                             A Boolean value indicating whether the access to the programme version being broadcasted or made available on-demand has audio description accessibility features.
+                        
+</dd>
+<dt>dubbed: (BOOLEAN)</dt>
+<dd>
+                            A Boolean value indicating whether the programme version being broadcasted or made available on-demand has been dubbed.
                         
 </dd>
 <dt>hd: (BOOLEAN)</dt>
@@ -5785,6 +5787,8 @@ Change Log</h3>
 <li>Removed mandatory field "displayName" from entry. It can still be specified as part of the Portable Contacts profile on agent.
 </li>
 <li>Made "parent" a plural relationship.
+</li>
+<li>Added "dubbed" to Programme Publication.
 </li>
 </ul><p>
         
