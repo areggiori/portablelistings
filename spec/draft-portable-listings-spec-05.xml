@@ -2287,9 +2287,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             If set, the <spanx style="verb">rel</spanx> sub-field SHALL be <spanx style="verb">author</spanx>.
                             If not set, the metadata publishing party is left undefined.
                         </t>
-                        <t hangText="parent: (ENTRY)">
+                        <t hangText="parent: [ENTRY]">
                             Relates a piece of content to another piece of content constituting it.
                             This relationship SHOULD BE used to access the parent Entries in Collections, Programme Groups, Series and so on.
+                            An Entry may have more than one parent.
                             The following fields are refined for the parent relationship:
                             <list style="hanging">
                                 <t hangText="rel: (CONSTANT)">
@@ -4207,6 +4208,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Added "country" to "alternativeTitle".</t>
                 <t>Better specified the "organization" relationship linking persons to organisations.</t>
                 <t>Removed mandatory field "displayName" from entry. It can still be specified as part of the Portable Contacts profile on agent.</t>
+                <t>Made "parent" a plural relationship.</t>
             </list>
         </t>
     </section>
@@ -4772,10 +4774,13 @@ Content-Type: application/listings+json;
         }
       ],
       "position": 1,
-      "parent": {
+      "parent": [
+        {
         "href": "55835B5213C7",
         "label": "Series 1"
-      },
+        "rel": "up"
+        }
+      ],
       "peers": [
         {
           "href": "8881860D6F31",
@@ -4818,10 +4823,13 @@ Content-Type: application/listings+json;
         }
       ],
       "position": 2,
-      "parent": {
+      "parent": [
+        {
         "href": "55835B5213C7",
-        "label": "Series 1"
-      },
+        "label": "Series 1",
+        "rel": "up"
+        }
+      ],
       "peers": [
         {
           "href": "5E5EEBED3173",

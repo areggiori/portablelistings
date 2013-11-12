@@ -187,7 +187,7 @@ Reggiori                                                        [Page 3]
      13.1. Normative References . . . . . . . . . . . . . . . . . . . 78
      13.2. Informative References . . . . . . . . . . . . . . . . . . 79
    Appendix A.  Examples  . . . . . . . . . . . . . . . . . . . . . . 81
-   Appendix B.  Compatibility with EBUCore and other standards  . . . 84
+   Appendix B.  Compatibility with EBUCore and other standards  . . . 85
    Author's Address . . . . . . . . . . . . . . . . . . . . . . . . . 85
 
 
@@ -2650,11 +2650,11 @@ Reggiori                                                       [Page 47]
       for the metadata instances as served by a Service Provider.  If
       set, the "rel" sub-field SHALL be "author".  If not set, the
       metadata publishing party is left undefined.
-   parent: (ENTRY)  Relates a piece of content to another piece of
+   parent: [ENTRY]  Relates a piece of content to another piece of
       content constituting it.  This relationship SHOULD BE used to
       access the parent Entries in Collections, Programme Groups, Series
-      and so on.  The following fields are refined for the parent
-      relationship:
+      and so on.  An Entry may have more than one parent.  The following
+      fields are refined for the parent relationship:
       rel: (CONSTANT)  The rel value MUST BE the "up" relation type as
          defined in section 6.2.2. of [RFC5988].  If this property is
          omitted or null it MUST BE processed as if the value was the
@@ -4340,6 +4340,7 @@ Reggiori                                                       [Page 77]
       to organisations.
    o  Removed mandatory field "displayName" from entry.  It can still be
       specified as part of the Portable Contacts profile on agent.
+   o  Made "parent" a plural relationship.
 
 
 13.  References
@@ -4360,7 +4361,6 @@ Reggiori                                                       [Page 77]
 
    [RFC3339]  Klyne, G., Ed. and C. Newman, "Date and Time on the
               Internet: Timestamps", RFC 3339, July 2002.
-
 
 
 
@@ -4615,10 +4615,13 @@ Reggiori                                                       [Page 82]
            }
          ],
          "position": 1,
-         "parent": {
+         "parent": [
+           {
            "href": "55835B5213C7",
            "label": "Series 1"
-         },
+           "rel": "up"
+           }
+         ],
          "peers": [
            {
              "href": "8881860D6F31",
@@ -4638,9 +4641,6 @@ Reggiori                                                       [Page 82]
        {
          "id": "8881860D6F31",
          "objectType": "episode",
-         "title": "Traces to Nowhere",
-         "summary": "Cooper's investigation into the murder of
-                     Laura Palmer continues, as her secret
 
 
 
@@ -4649,6 +4649,9 @@ Reggiori                                                       [Page 83]
                             Portable Listings                   May 2013
 
 
+         "title": "Traces to Nowhere",
+         "summary": "Cooper's investigation into the murder of
+                     Laura Palmer continues, as her secret
                      boyfriend James Hurley is interrogated...",
          "contributor": [
            {
@@ -4669,10 +4672,13 @@ Reggiori                                                       [Page 83]
            }
          ],
          "position": 2,
-         "parent": {
+         "parent": [
+           {
            "href": "55835B5213C7",
-           "label": "Series 1"
-         },
+           "label": "Series 1",
+           "rel": "up"
+           }
+         ],
          "peers": [
            {
              "href": "5E5EEBED3173",
@@ -4690,13 +4696,7 @@ Reggiori                                                       [Page 83]
    }
 
 
-Appendix B.  Compatibility with EBUCore and other standards
 
-   This version of the Portable Listings specification is currently
-   wire-compatible with the EBUCore standard.  Additionally the
-   specification is aligned and compatible with other Open Standards
-   such as TV-Anytime, the BBC Programme ontology and HTML5 Video and
-   Multitrack related specifications.  The Person object type syntax and
 
 
 
@@ -4705,6 +4705,13 @@ Reggiori                                                       [Page 84]
                             Portable Listings                   May 2013
 
 
+Appendix B.  Compatibility with EBUCore and other standards
+
+   This version of the Portable Listings specification is currently
+   wire-compatible with the EBUCore standard.  Additionally the
+   specification is aligned and compatible with other Open Standards
+   such as TV-Anytime, the BBC Programme ontology and HTML5 Video and
+   Multitrack related specifications.  The Person object type syntax and
    definitions is currenly wire-compatible with Portable Contacts, and
    consequently with the overlapping portion of the OpenSocial RESTful
    Protocol version 2.0 format [OpenSocial].  Note though that the API
@@ -4729,13 +4736,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
-
-
-
-
-
-
 
 
 
