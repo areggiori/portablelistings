@@ -422,11 +422,13 @@ Relationships<br />
 Agent<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#person-type">8.4.30.</a>&nbsp;
 Person<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#person-relationships">8.4.30.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#person-type-links">8.4.30.1.</a>&nbsp;
+Links<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#person-type-relationships">8.4.30.2.</a>&nbsp;
 Relationships<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#organisation-type">8.4.31.</a>&nbsp;
 Organisation<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#organisation-relationships">8.4.31.1.</a>&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#organisation-type-relationships">8.4.31.1.</a>&nbsp;
 Relationships<br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#group-type">8.4.32.</a>&nbsp;
 Group<br />
@@ -4957,19 +4959,40 @@ Person</h3>
 
 <p>
                 The Person object type extends the basic object type AGENT and represents a contact as defined in <a class='info' href='#PortableContacts'>[PortableContacts]<span> (</span><span class='info'>Smarr, J., &ldquo;Portable Contacts 1.0 Draft C,&rdquo; .</span><span>)</span></a>.
-                This effectively means that a valid Portable Listings Person is a valid Portable Contacts Contact (see section 7.2 of <a class='info' href='#PortableContacts'>[PortableContacts]<span> (</span><span class='info'>Smarr, J., &ldquo;Portable Contacts 1.0 Draft C,&rdquo; .</span><span>)</span></a>).
-                The only difference is that the <tt>organization</tt> field is defined to be a plural relationship to one or more ORGANISATION.
+                The Portable Contacts <tt>urls</tt> and <tt>photos</tt> fields SHALL be expressed as links as defined in <a class='info' href='#link-structure'>Section&nbsp;7.1.2<span> (</span><span class='info'>Links</span><span>)</span></a>.
+                The <tt>organizations</tt> field SHALL be expressed as a plural relationship to one or more ORGANISATION.
             
 </p>
-<a name="person-relationships"></a><br /><hr />
+<a name="person-type-links"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.4.30.1"></a><h3>8.4.30.1.&nbsp;
+Links</h3>
+
+<p>
+                    </p>
+<blockquote class="text"><dl>
+<dt>urls: [LINK]</dt>
+<dd>
+                            One or more Web page URLs relating to this Person.
+                        
+</dd>
+<dt>photos: [LINK]</dt>
+<dd>
+                            One or more photo URLs of this Person.
+                        
+</dd>
+</dl></blockquote><p>
+                
+</p>
+<a name="person-type-relationships"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.8.4.30.2"></a><h3>8.4.30.2.&nbsp;
 Relationships</h3>
 
 <p>
                     </p>
 <blockquote class="text"><dl>
-<dt>organization: [ORGANISATION]</dt>
+<dt>organizations: [ORGANISATION]</dt>
 <dd>
                             The list of organisations the person has worked for.
                             The Portable Contacts Organization (see section 7.5 of <a class='info' href='#PortableContacts'>[PortableContacts]<span> (</span><span class='info'>Smarr, J., &ldquo;Portable Contacts 1.0 Draft C,&rdquo; .</span><span>)</span></a>) <tt>department</tt>, <tt>title</tt>, <tt>type</tt>, <tt>startDate</tt>, <tt>endDate</tt>, <tt>description</tt> and <tt>salary</tt> fields SHALL be specified as sub-fields of this relationship and SHALL NOT be specified in the organisation entry.
@@ -4988,7 +5011,7 @@ Organisation</h3>
                 A valid Portable Listings Organisation is defined to be a Portable Contacts Organization (see section 7.5 of <a class='info' href='#PortableContacts'>[PortableContacts]<span> (</span><span class='info'>Smarr, J., &ldquo;Portable Contacts 1.0 Draft C,&rdquo; .</span><span>)</span></a>) with only the <tt>name</tt>, <tt>field</tt>, <tt>subfield</tt>, <tt>location</tt> and <tt>webpage</tt> fields specified.
             
 </p>
-<a name="organisation-relationships"></a><br /><hr />
+<a name="organisation-type-relationships"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.8.4.31.1"></a><h3>8.4.31.1.&nbsp;
 Relationships</h3>
@@ -5789,6 +5812,8 @@ Change Log</h3>
 <li>Made "parent" a plural relationship.
 </li>
 <li>Added "dubbed" to Programme Publication.
+</li>
+<li>Updated Person definition to allow expressing "urls" and "photos" as links.
 </li>
 </ul><p>
         

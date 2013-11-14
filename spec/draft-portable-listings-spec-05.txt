@@ -173,7 +173,8 @@ Reggiori                                                        [Page 3]
          8.4.28.2. Relationships  . . . . . . . . . . . . . . . . . . 70
        8.4.29. Agent  . . . . . . . . . . . . . . . . . . . . . . . . 70
        8.4.30. Person . . . . . . . . . . . . . . . . . . . . . . . . 70
-         8.4.30.1. Relationships  . . . . . . . . . . . . . . . . . . 70
+         8.4.30.1. Links  . . . . . . . . . . . . . . . . . . . . . . 70
+         8.4.30.2. Relationships  . . . . . . . . . . . . . . . . . . 70
        8.4.31. Organisation . . . . . . . . . . . . . . . . . . . . . 71
          8.4.31.1. Relationships  . . . . . . . . . . . . . . . . . . 71
        8.4.32. Group  . . . . . . . . . . . . . . . . . . . . . . . . 71
@@ -189,7 +190,6 @@ Reggiori                                                        [Page 3]
    Appendix A.  Examples  . . . . . . . . . . . . . . . . . . . . . . 81
    Appendix B.  Compatibility with EBUCore and other standards  . . . 85
    Author's Address . . . . . . . . . . . . . . . . . . . . . . . . . 85
-
 
 
 
@@ -3898,20 +3898,20 @@ Reggiori                                                       [Page 69]
 8.4.30.  Person
 
    The Person object type extends the basic object type AGENT and
-   represents a contact as defined in [PortableContacts].  This
-   effectively means that a valid Portable Listings Person is a valid
-   Portable Contacts Contact (see section 7.2 of [PortableContacts]).
-   The only difference is that the "organization" field is defined to be
-   a plural relationship to one or more ORGANISATION.
+   represents a contact as defined in [PortableContacts].  The Portable
+   Contacts "urls" and "photos" fields SHALL be expressed as links as
+   defined in Section 7.1.2.  The "organizations" field SHALL be
+   expressed as a plural relationship to one or more ORGANISATION.
 
-8.4.30.1.  Relationships
+8.4.30.1.  Links
 
-   organization: [ORGANISATION]  The list of organisations the person
-      has worked for.  The Portable Contacts Organization (see section
-      7.5 of [PortableContacts]) "department", "title", "type",
-      "startDate", "endDate", "description" and "salary" fields SHALL be
-      specified as sub-fields of this relationship and SHALL NOT be
-      specified in the organisation entry.
+   urls: [LINK]  One or more Web page URLs relating to this Person.
+   photos: [LINK]  One or more photo URLs of this Person.
+
+8.4.30.2.  Relationships
+
+
+
 
 
 
@@ -3920,6 +3920,13 @@ Reggiori                                                       [Page 70]
 
                             Portable Listings                   May 2013
 
+
+   organizations: [ORGANISATION]  The list of organisations the person
+      has worked for.  The Portable Contacts Organization (see section
+      7.5 of [PortableContacts]) "department", "title", "type",
+      "startDate", "endDate", "description" and "salary" fields SHALL be
+      specified as sub-fields of this relationship and SHALL NOT be
+      specified in the organisation entry.
 
 8.4.31.  Organisation
 
@@ -3961,13 +3968,6 @@ Reggiori                                                       [Page 70]
          Section 3.1 of [RFC6906].  If this attribute is omitted
          implementations MUST process the media type as if the value was
          the string "http://portablelistings.net/profiles/core/1.0/".
-   Encoding Considerations  As defined for application/json in
-      [RFC4627].
-   Security Considerations  As defined for application/json in
-      [RFC4627].
-
-
-
 
 
 
@@ -3977,6 +3977,10 @@ Reggiori                                                       [Page 71]
                             Portable Listings                   May 2013
 
 
+   Encoding Considerations  As defined for application/json in
+      [RFC4627].
+   Security Considerations  As defined for application/json in
+      [RFC4627].
    Published Specification  This specification.
    Applications that use this media type  No applications are currently
       known to use this media type.
@@ -4020,10 +4024,6 @@ Reggiori                                                       [Page 71]
    o  Description: Refers to a resource that represents a shot.
    o  Reference: This specification, Section 8.3.7.
 
-   o  Relation Name: shot-list
-   o  Description: Refers to a resource that represents a list of shots.
-   o  Reference: This specification, Section 8.3.8.
-
 
 
 
@@ -4032,6 +4032,10 @@ Reggiori                                                       [Page 72]
 
                             Portable Listings                   May 2013
 
+
+   o  Relation Name: shot-list
+   o  Description: Refers to a resource that represents a list of shots.
+   o  Reference: This specification, Section 8.3.8.
 
    o  Relation Name: edit-decision-list
    o  Description: Refers to a resource that represents an Edit Decision
@@ -4075,11 +4079,7 @@ Reggiori                                                       [Page 72]
    o  Relation Name: recommendation
    o  Description: Refers to a resource recommended by the provider of
       the link's context.
-   o  Reference: This specification, Section 8.3.16.
 
-   o  Relation Name: insertion-points
-   o  Description: Refers to a resource containing a list of insertion-
-      points related to the link's context.
 
 
 
@@ -4089,6 +4089,11 @@ Reggiori                                                       [Page 73]
                             Portable Listings                   May 2013
 
 
+   o  Reference: This specification, Section 8.3.16.
+
+   o  Relation Name: insertion-points
+   o  Description: Refers to a resource containing a list of insertion-
+      points related to the link's context.
    o  Reference: This specification, Section 8.3.17.
 
    o  Relation Name: advert
@@ -4130,11 +4135,6 @@ Reggiori                                                       [Page 73]
       from the link's context.
    o  Reference: This specification, Section 8.3.25.
 
-   o  Relation Name: extract
-   o  Description: Refers to a resource representing an extract of the
-      link's context.
-   o  Reference: This specification, Section 8.3.26.
-
 
 
 
@@ -4143,6 +4143,12 @@ Reggiori                                                       [Page 73]
 Reggiori                                                       [Page 74]
 
                             Portable Listings                   May 2013
+
+
+   o  Relation Name: extract
+   o  Description: Refers to a resource representing an extract of the
+      link's context.
+   o  Reference: This specification, Section 8.3.26.
 
 
 10.  Security Considerations
@@ -4185,12 +4191,6 @@ Reggiori                                                       [Page 74]
    o  Updated "genre", "targetAudience" and "format" definitions so that
       "value" is primary sub-field as ENUM or IRI.
    o  Added "targetRegion", "notRated" and "adultContent" to Content.
-   o  Added "released" and "copyrighted" dates.
-   o  Added "reason", "linkToLogo", "notRated", "adultContent" and
-      "targetRegion" to "targetAudience".
-   o  Moved "firstTransmissionDate", "firstTransmissionChannel" and
-      "repeats" to Programme level.
-   o  Removed "episodes" and "series" from Programme.
 
 
 
@@ -4201,6 +4201,12 @@ Reggiori                                                       [Page 75]
                             Portable Listings                   May 2013
 
 
+   o  Added "released" and "copyrighted" dates.
+   o  Added "reason", "linkToLogo", "notRated", "adultContent" and
+      "targetRegion" to "targetAudience".
+   o  Moved "firstTransmissionDate", "firstTransmissionChannel" and
+      "repeats" to Programme level.
+   o  Removed "episodes" and "series" from Programme.
    o  Renamed simple type COUNTRY to TERRITORY.
    o  Updated Media Resource "locator" field definition.
    o  Corrected Media Resource "medium" field and renamed "type" to
@@ -4242,12 +4248,6 @@ Reggiori                                                       [Page 75]
    o  Defined "duration" at Content level.
    o  Added "listFields", "listWeblinks" and "listRelationships"
       presentation fileters.
-   o  Removed "service" field from Programme.
-   o  Made Media Resource "locator" optional and changed reference from
-      link to relationship in Programm Publication and Segment.
-   o  Added Category type and renamed "categories" to "category" in
-      Entry.
-
 
 
 
@@ -4257,6 +4257,11 @@ Reggiori                                                       [Page 76]
                             Portable Listings                   May 2013
 
 
+   o  Removed "service" field from Programme.
+   o  Made Media Resource "locator" optional and changed reference from
+      link to relationship in Programm Publication and Segment.
+   o  Added Category type and renamed "categories" to "category" in
+      Entry.
    o  Renamed "category" to "awardCategory" in Award.
    o  Removed "subtitle" and moved to "alternativeTitle".
    o  Removed "summary" and moved to "description".
@@ -4298,11 +4303,6 @@ Reggiori                                                       [Page 76]
    o  Added "dummy" and "primaryShowing" to Broadcast.
    o  Added "catchup" and "archive" to Ondemand.
    o  Added "role" to reltionships definition.
-   o  Added CONSTANT to Simple field definition.
-   o  Renamed "country" to "releaseCountry" in Programme and
-      Application.
-   o  Use "canonical" relationship type for "versions" in Programme Item
-      and "builds" in Application.
 
 
 
@@ -4313,6 +4313,11 @@ Reggiori                                                       [Page 77]
                             Portable Listings                   May 2013
 
 
+   o  Added CONSTANT to Simple field definition.
+   o  Renamed "country" to "releaseCountry" in Programme and
+      Application.
+   o  Use "canonical" relationship type for "versions" in Programme Item
+      and "builds" in Application.
    o  Simplified Content "format" and Media Resource "medium
       definitions.
    o  Redefined Organisation following Portable Contacts.
@@ -4342,6 +4347,8 @@ Reggiori                                                       [Page 77]
       specified as part of the Portable Contacts profile on agent.
    o  Made "parent" a plural relationship.
    o  Added "dubbed" to Programme Publication.
+   o  Updated Person definition to allow expressing "urls" and "photos"
+      as links.
 
 
 13.  References
@@ -4355,13 +4362,6 @@ Reggiori                                                       [Page 77]
               Masinter, L., Leach, P., and T. Berners-Lee, "Hypertext
               Transfer Protocol -- HTTP/1.1", RFC 2616, June 1999.
 
-   [RFC2617]  Franks, J., Hallam-Baker, P., Hostetler, J., Lawrence, S.,
-              Leach, P., Luotonen, A., and L. Stewart, "HTTP
-              Authentication: Basic and Digest Access Authentication",
-              RFC 2617, June 1999.
-
-   [RFC3339]  Klyne, G., Ed. and C. Newman, "Date and Time on the
-
 
 
 Reggiori                                                       [Page 78]
@@ -4369,6 +4369,12 @@ Reggiori                                                       [Page 78]
                             Portable Listings                   May 2013
 
 
+   [RFC2617]  Franks, J., Hallam-Baker, P., Hostetler, J., Lawrence, S.,
+              Leach, P., Luotonen, A., and L. Stewart, "HTTP
+              Authentication: Basic and Digest Access Authentication",
+              RFC 2617, June 1999.
+
+   [RFC3339]  Klyne, G., Ed. and C. Newman, "Date and Time on the
               Internet: Timestamps", RFC 3339, July 2002.
 
    [RFC3987]  Duerst, M. and M. Suignard, "Internationalized Resource
@@ -4412,12 +4418,6 @@ Reggiori                                                       [Page 78]
    [DCMI-PERIOD]
               "DCMI Period Encoding Scheme".
 
-   [DVB-URI]  British Broadcasting Corportation and Condition-ALPHA,
-              "Uniform Resource Identifier (URI) Scheme for Digital
-              Video Broadcasting (DVB) Programme Resources", March 2013.
-
-   [EBU-OBJECTMODEL]
-
 
 
 Reggiori                                                       [Page 79]
@@ -4425,6 +4425,11 @@ Reggiori                                                       [Page 79]
                             Portable Listings                   May 2013
 
 
+   [DVB-URI]  British Broadcasting Corportation and Condition-ALPHA,
+              "Uniform Resource Identifier (URI) Scheme for Digital
+              Video Broadcasting (DVB) Programme Resources", March 2013.
+
+   [EBU-OBJECTMODEL]
               EBU, "EBU Object Model".
 
    [EBU-REFERENCEDATA]
@@ -4468,11 +4473,6 @@ Reggiori                                                       [Page 79]
 
    [MEDIA-RSS]
               Yahoo! Inc. and RSS Advisory Board, "Media RSS
-              Specification".
-
-   [MIMEREG]  Freed, N. and J. Klensin, "Media Type Specifications and
-              Registration Procedures", BCP 13, RFC 4288, December 2005.
-
 
 
 
@@ -4480,6 +4480,11 @@ Reggiori                                                       [Page 80]
 
                             Portable Listings                   May 2013
 
+
+              Specification".
+
+   [MIMEREG]  Freed, N. and J. Klensin, "Media Type Specifications and
+              Registration Procedures", BCP 13, RFC 4288, December 2005.
 
    [OAuth 2.0]
               "The OAuth 2.0 Authorization Protocol".
@@ -4524,11 +4529,6 @@ Appendix A.  Examples
 
 
    HTTP/1.1 200 OK
-   Content-Length: ...
-   Content-Language: en
-   Content-Type: application/listings+json;
-                profile="http://portablelistings.net/profiles/core/1.0/"
-
 
 
 
@@ -4536,6 +4536,11 @@ Reggiori                                                       [Page 81]
 
                             Portable Listings                   May 2013
 
+
+   Content-Length: ...
+   Content-Language: en
+   Content-Type: application/listings+json;
+                profile="http://portablelistings.net/profiles/core/1.0/"
 
    {
      "startIndex": 1,
@@ -4580,11 +4585,6 @@ Reggiori                                                       [Page 81]
          "language": "en",
          "alternativeLanguage": [
            {
-             "type": "additionalOriginalLanguage",
-             "value": "no",
-             "label": "Norwegian"
-           }
-         ],
 
 
 
@@ -4593,6 +4593,11 @@ Reggiori                                                       [Page 82]
                             Portable Listings                   May 2013
 
 
+             "type": "additionalOriginalLanguage",
+             "value": "no",
+             "label": "Norwegian"
+           }
+         ],
          "contributor": [
            {
              "href": "C675EDD23A2D",
@@ -4636,11 +4641,6 @@ Reggiori                                                       [Page 82]
              {
                "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
              },
-             {
-               "href": "http://www.imdb.com/title/tt0278784/"
-             }
-         ]
-       },
 
 
 
@@ -4649,6 +4649,11 @@ Reggiori                                                       [Page 83]
                             Portable Listings                   May 2013
 
 
+             {
+               "href": "http://www.imdb.com/title/tt0278784/"
+             }
+         ]
+       },
        {
          "id": "8881860D6F31",
          "objectType": "episode",
@@ -4692,17 +4697,19 @@ Reggiori                                                       [Page 83]
              "href": "33D1096625D0",
              "label": "Episode 3",
              "rel": "next"
-           }
-         ]
-       }
-     ]
-   }
 
 
 
 Reggiori                                                       [Page 84]
 
                             Portable Listings                   May 2013
+
+
+           }
+         ]
+       }
+     ]
+   }
 
 
 Appendix B.  Compatibility with EBUCore and other standards
@@ -4736,13 +4743,6 @@ Author's Address
 
    Email: alberto@derrickmedia.com
    URI:   http://www.derrickmedia.com/
-
-
-
-
-
-
-
 
 
 

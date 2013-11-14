@@ -3649,13 +3649,27 @@ WWW-Authenticate: Basic realm="sample.site.org"
         <section title="Person" anchor="person-type">
             <t>
                 The Person object type extends the basic object type AGENT and represents a contact as defined in <xref target="PortableContacts"/>.
-                This effectively means that a valid Portable Listings Person is a valid Portable Contacts Contact (see section 7.2 of <xref target="PortableContacts"/>).
-                The only difference is that the <spanx style="verb">organization</spanx> field is defined to be a plural relationship to one or more ORGANISATION.
+                The Portable Contacts <spanx style="verb">urls</spanx> and <spanx style="verb">photos</spanx> fields SHALL be expressed as links as defined in <xref target="link-structure"/>.
+                The <spanx style="verb">organizations</spanx> field SHALL be expressed as a plural relationship to one or more ORGANISATION.
             </t>
-            <section title="Relationships" anchor="person-relationships">
+            
+            <section title="Links" anchor="person-type-links">
                 <t>
                     <list style="hanging">
-                        <t hangText="organization: [ORGANISATION]">
+                        <t hangText="urls: [LINK]">
+                            One or more Web page URLs relating to this Person.
+                        </t>
+                        <t hangText="photos: [LINK]">
+                            One or more photo URLs of this Person.
+                        </t>
+                    </list>
+                </t>
+            </section>
+            
+            <section title="Relationships" anchor="person-type-relationships">
+                <t>
+                    <list style="hanging">
+                        <t hangText="organizations: [ORGANISATION]">
                             The list of organisations the person has worked for.
                             The Portable Contacts Organization (see section 7.5 of <xref target="PortableContacts"/>) <spanx style="verb">department</spanx>, <spanx style="verb">title</spanx>, <spanx style="verb">type</spanx>, <spanx style="verb">startDate</spanx>, <spanx style="verb">endDate</spanx>, <spanx style="verb">description</spanx> and <spanx style="verb">salary</spanx> fields SHALL be specified as sub-fields of this relationship and SHALL NOT be specified in the organisation entry.
                         </t>
@@ -3669,7 +3683,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The Organisation object type extends the AGENT object type and represents an organisation or institution as defined in <xref target="PortableContacts"/>.
                 A valid Portable Listings Organisation is defined to be a Portable Contacts Organization (see section 7.5 of <xref target="PortableContacts"/>) with only the <spanx style="verb">name</spanx>, <spanx style="verb">field</spanx>, <spanx style="verb">subfield</spanx>, <spanx style="verb">location</spanx> and <spanx style="verb">webpage</spanx> fields specified.
             </t>
-            <section title="Relationships" anchor="organisation-relationships">
+            <section title="Relationships" anchor="organisation-type-relationships">
                 <t>
                     <list style="hanging">
                         <t hangText="members: [AGENT]">
@@ -4211,6 +4225,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Removed mandatory field "displayName" from entry. It can still be specified as part of the Portable Contacts profile on agent.</t>
                 <t>Made "parent" a plural relationship.</t>
                 <t>Added "dubbed" to Programme Publication.</t>
+                <t>Updated Person definition to allow expressing "urls" and "photos" as links.</t>
             </list>
         </t>
     </section>
