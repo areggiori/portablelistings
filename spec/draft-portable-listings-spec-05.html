@@ -831,10 +831,12 @@ Content-Type: application/listings+json
       ],
       "aliases": [
         {
-          "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+          "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)",
+          "authority": "wikimediafoundation.org"
         },
         {
-          "href": "http://www.imdb.com/title/tt0278784/"
+          "href": "http://www.imdb.com/title/tt0278784/",
+          "authority": "imdb.org"
         }
       ]
     },
@@ -934,10 +936,12 @@ Content-Type: application/listings+json
       ],
       "aliases": [
         {
-          "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
+          "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)",
+          "authority": "wikimediafoundation.org"
         },
         {
-          "href": "http://www.imdb.com/title/tt0278784/"
+          "href": "http://www.imdb.com/title/tt0278784/",
+          "authority": "imdb.org"
         }
       ]
     }
@@ -2880,6 +2884,17 @@ Links</h3>
 <dt>aliases: [LINK]</dt>
 <dd>
                             Additional or alternative identifiers for an Entry expressed as IRI.
+                            The aliases field is expressed using the LINK construct with the following additional fields:
+                            
+<blockquote class="text"><dl>
+<dt>authority: (STRING)</dt>
+<dd>
+                                    REQUIRED. The Internet Domain Name of the authority responsible for assigning the unique identifier.
+                                    Note that even if an identifier URI scheme may define the semantics for an authority string, an organisation may still allocate alternative equally valid URIs to the same Entry.
+                                    For example the alias identifier <tt>http://www.imdb.com/title/tt0278784/</tt> shall have an authority string of <tt>imdb.org</tt>.
+                                
+</dd>
+</dl></blockquote>
                         
 </dd>
 <dt>links: [LINK]</dt>
@@ -6038,12 +6053,14 @@ Content-Type: application/listings+json;
         }
       ],
       "aliases": [
-          {
-            "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)"
-          },
-          {
-            "href": "http://www.imdb.com/title/tt0278784/"
-          }
+        {
+          "href": "http://en.wikipedia.org/wiki/Pilot_(Twin_Peaks)",
+          "authority": "wikimediafoundation.org"
+        },
+        {
+          "href": "http://www.imdb.com/title/tt0278784/",
+          "authority": "imdb.org"
+        }
       ]
     },
     {
