@@ -2277,7 +2277,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                             The aliases field is expressed using the LINK construct with the following additional fields:
                             <list style="hanging">
                                 <t hangText="authority: (STRING)">
-                                    REQUIRED. The Internet Domain Name of the authority responsible for assigning the unique identifier.
+                                    The Internet Domain Name of the authority responsible for assigning the unique identifier.
                                     Note that even if an identifier URI scheme may define the semantics for an authority string, an organisation may still allocate alternative equally valid URIs to the same Entry.
                                     For example the alias identifier <spanx style="verb">http://www.imdb.com/title/tt0278784/</spanx> shall have an authority string of <spanx style="verb">imdb.org</spanx>.
                                 </t>

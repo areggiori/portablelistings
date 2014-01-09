@@ -2640,14 +2640,13 @@ Reggiori                                                       [Page 47]
    aliases: [LINK]  Additional or alternative identifiers for an Entry
       expressed as IRI.  The aliases field is expressed using the LINK
       construct with the following additional fields:
-      authority: (STRING)  REQUIRED.  The Internet Domain Name of the
-         authority responsible for assigning the unique identifier.
-         Note that even if an identifier URI scheme may define the
-         semantics for an authority string, an organisation may still
-         allocate alternative equally valid URIs to the same Entry.  For
-         example the alias identifier
-         "http://www.imdb.com/title/tt0278784/" shall have an authority
-         string of "imdb.org".
+      authority: (STRING)  The Internet Domain Name of the authority
+         responsible for assigning the unique identifier.  Note that
+         even if an identifier URI scheme may define the semantics for
+         an authority string, an organisation may still allocate
+         alternative equally valid URIs to the same Entry.  For example
+         the alias identifier "http://www.imdb.com/title/tt0278784/"
+         shall have an authority string of "imdb.org".
    links: [LINK]  An Entry MAY have associated one ore more links to
       external Web resources.  A Provider SHOULD NOT use the links
       element to express relationships by-reference as this complicates
@@ -2680,6 +2679,7 @@ Reggiori                                                       [Page 47]
          the "next" relation type as defined in section 6.2.2. of
          [RFC5988] when referring to a next Entry in a list or
          collection.
+
 
 
 
