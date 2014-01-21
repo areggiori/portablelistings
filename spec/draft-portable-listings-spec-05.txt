@@ -4458,7 +4458,7 @@ Reggiori                                                       [Page 79]
    o  Added "dubbed" to Programme Publication.
    o  Updated Person definition to allow expressing "urls" and "photos"
       as links.
-   o  Removed "programme" relationship fro programme publication and
+   o  Removed "programme" relationship from programme publication and
       segment mandating the usage of "parent" instead.
 
 

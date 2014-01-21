@@ -4300,7 +4300,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Made "parent" a plural relationship.</t>
                 <t>Added "dubbed" to Programme Publication.</t>
                 <t>Updated Person definition to allow expressing "urls" and "photos" as links.</t>
-                <t>Removed "programme" relationship fro programme publication and segment mandating the usage of "parent" instead.</t>
+                <t>Removed "programme" relationship from programme publication and segment mandating the usage of "parent" instead.</t>
             </list>
         </t>
     </section>
