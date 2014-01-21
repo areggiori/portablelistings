@@ -1507,7 +1507,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                         If non-empty or null, the label SHOULD be a human readable string representing the Sub-Entry (e.g. <spanx style="verb">title</spanx>).
                     </t>
                     <t hangText="position: (NUMBER)">
-                        Unless otherwise specified, this is an optional sub-field used to represent the position of the Target Entry within a container or collection. For example, a position of 2 for a <spanx style="verb">parent</spanx> relationship between an Episode and a parent Series it indicates the Episode is the second Episode of the Series.
+                        This is an optional sub-field for a Plural Relationship to be used for indicating the position of the Source Entry or the Target Entry within an ordered container or collection.
+                        For example, a position of 2 for a <spanx style="verb">parent</spanx> relationship between an Source Entry Episode and a parent Target Entry Series it indicates the Source Entry is the second Episode in the Series.
+                        Similarly, a position of 2 for a <spanx style="verb">programmes</spanx> relationship indicates that the Source Entry Series contains a Target Entry Episode, which is the second Episode in the Series.
                     </t>
                     <t hangText="primary: (BOOLEAN)">
                         If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
@@ -1540,7 +1542,9 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     If non-empty or null, the label SHOULD be a human readable string representing the Sub-Entry (e.g. <spanx style="verb">title</spanx>).
                   </t>
                   <t hangText="position: (NUMBER)">
-                        Unless otherwise specified, this is an optional sub-field used to represent the position of the Target Entry within a container or collection. For example, a position of 2 for a <spanx style="verb">parent</spanx> relationship between an Episode and a parent Series it indicates the Episode is the second Episode of the Series.
+                    This is an optional sub-field for a Plural Relationship to be used for indicating the position of the Source Entry or the Target Entry within an ordered container or collection.
+                    For example, a position of 2 for a <spanx style="verb">parent</spanx> relationship between an Source Entry Episode and a parent Target Entry Series it indicates the Source Entry is the second Episode in the Series.
+                    Similarly, a position of 2 for a <spanx style="verb">programmes</spanx> relationship indicates that the Source Entry Series contains a Target Entry Episode, which is the second Episode in the Series.
                   </t>
                   <t hangText="primary: (BOOLEAN)">
                     If the inline entry construct is used in a Plural Field, this is a boolean value indicating whether this instance of the relationship is the primary or preferred value of for the relationship, e.g. the preferred relationship.
@@ -2114,6 +2118,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <t><xref target="entry-type">Entry</xref>
                 <list style="empty">
                       <t><xref target="category-type">Category</xref>
+                            <list style="empty">
+                                <t><xref target="category-group-type">Category Group</xref>
+                                </t>
+                            </list>
                       </t>
                       <t><xref target="content-type">Content</xref>
                         <list style="empty">
@@ -2356,12 +2364,28 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     </list>
                 </t>
             </section>
-            
-            <section title="Relationships" anchor="category-type-relationships">
+        </section>
+        
+        <section title="Category Group" anchor="category-group-type">
+            <t>
+                The Category Group object type extends the CATEGORY object type and represents collection of categories that are grouped together.
+                A category group can contain categories or category groups so that Categories MAY be grouped hierarchically.
+                The Category Group object type is identified with the string CATEGORY_GROUP.
+            </t>
+            <section title="Fields" anchor="category-group-type-fields">
                 <t>
                     <list style="hanging">
-                        <t hangText="subCategories: [CATEGORY]">
-                            The list of sub-categories. Categories MAY be grouped hierarchically.
+                        <t hangText="ordered: (BOOLEAN)">
+                         A Boolean value indicating whether the category group is ordered.
+                        </t>
+                    </list>
+                </t>
+            </section>
+            <section title="Relationships" anchor="category-group-type-relationships">
+                <t>
+                    <list style="hanging">
+                        <t hangText="categories: [CATEGORY]">
+                            The list of sub-categories.
                             <list style="hanging">
                                 <t hangText="rel: (CONSTANT)">
                                     The rel value MUST BE the "item" relation type as defined in <xref target="RFC6573" /> when referring to a Category part of a hierarchical collection of categories.
@@ -2734,7 +2758,17 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 The Programme Group object type is identified with the string PROGRAMME_GROUP.
                 For example, a collection of programmes, mini-Series, compilation, serial, concept, show, theme etc.
             </t>
-            <section title="Relationships" anchor="programme-group-relationships">
+            <section title="Fields" anchor="programme-group-type-fields">
+                <t>
+                    <list style="hanging">
+                        <!-- eventually add top-level boolean to flag if the group is root or not -->
+                        <t hangText="ordered: (BOOLEAN)">
+                         A Boolean value indicating whether the programme group is ordered.
+                        </t>
+                    </list>
+                </t>
+            </section>
+            <section title="Relationships" anchor="programme-group-type-relationships">
                 <t>
                     <list style="hanging">
                         <t hangText="programmes: [PROGRAMME]">
@@ -3455,7 +3489,17 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 Note that a MEDIA_GROUP locator field MAY BE empty and instead one or more alternative media sources MAY specified.
                 A Consumer MUST BE able to select the main alternative media source by stepping through each of the specified sources in the given order.
             </t>
-            <section title="Relationships" anchor="mediagroup-relationships">
+            <section title="Fields" anchor="mediagroup-type-fields">
+                <t>
+                    <list style="hanging">
+                        <!-- eventually add top-level boolean to flag if the group is root or not -->
+                        <t hangText="ordered: (BOOLEAN)">
+                         A Boolean value indicating whether the media group is ordered.
+                        </t>
+                    </list>
+                </t>
+            </section>
+            <section title="Relationships" anchor="mediagroup-type-relationships">
                 <t>
                     <list style="hanging">
                         <t hangText="sources: [MEDIA_RESOURCE]">
@@ -3538,19 +3582,23 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 A segment group can contain segments or segment groups.
                 The Segment Group object type is identified with the string SEGMENT_GROUP.
             </t>
-            <section title="Relationships" anchor="segment-group-relationships">    
+            <section title="Fields" anchor="segment-group-type-fields">
+                <t>
+                    <list style="hanging">
+                        <!-- eventually add top-level boolean to flag if the group is root or not -->
+                        <t hangText="ordered: (BOOLEAN)">
+                         A Boolean value indicating whether the programme segment group is ordered.
+                        </t>
+                    </list>
+                </t>
+            </section>
+            <section title="Relationships" anchor="segment-group-type-relationships">
                 <t>
                     <list style="hanging">
                         <t hangText="segments: [SEGMENT]">
                             The list of segments that are contained within the segment group.
                             The order of the references to segments determines the temporal playback order of segments in this group.
                         </t>
-                        <!--
-                         <t hangText="ordered: (BOOLEAN)">
-                         A Boolean value indicating whether the programme segment group is ordered.
-                         </t>
-                         -->
-                        <!-- eventually add top-level boolean to flag if the group is root or not -->
                     </list>
                 </t>
             </section>
@@ -3560,7 +3608,17 @@ WWW-Authenticate: Basic realm="sample.site.org"
             <t>
                 The Content Collection object type extends the CONTENT object type and represents a group or list of related pieces of content, and it has the following fields and relationships:
             </t>
-            <section title="Relationships" anchor="content-collection-relationships">
+            <section title="Fields" anchor="content-collection-type-fields">
+                <t>
+                    <list style="hanging">
+                        <!-- eventually add top-level boolean to flag if the group is root or not -->
+                        <t hangText="ordered: (BOOLEAN)">
+                         A Boolean value indicating whether the content collection is ordered.
+                        </t>
+                    </list>
+                </t>
+            </section>
+            <section title="Relationships" anchor="content-collection-type-relationships">
                 <t>
                     <list style="hanging">
                         <t hangText="contents: [CONTENT]">
@@ -3714,6 +3772,10 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     <list style="hanging">
                         <t hangText="name: (STRING)">
                             The name of the group.
+                        </t>
+                        <!-- eventually add top-level boolean to flag if the group is root or not -->
+                        <t hangText="ordered: (BOOLEAN)">
+                         A Boolean value indicating whether the group is ordered.
                         </t>
                     </list>
                 </t>
