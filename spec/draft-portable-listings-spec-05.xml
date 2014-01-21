@@ -2631,9 +2631,6 @@ WWW-Authenticate: Basic realm="sample.site.org"
                                     REQUIRED. A Canonical Value representing the role played by the Target Entry as contributor (e.g. director, actor, producer).
                                     The value SHOULD BE selected from a standard list of values such as the European Broadcasting Union Role Codes <xref target="EBU-ROLE-CODES"/>.
                                 </t>
-                                <t hangText="roleLabel: (STRING)">
-                                    A human-readable label or name associated to the <spanx style="verb">role</spanx> sub-field.
-                                </t>
                                 <t hangText="stageName: (STRING or HTML)">
                                     A human-readable label or name attributed to the person or organisation on stage (e.g. 'character name' or 'interviewer').
                                 </t>
