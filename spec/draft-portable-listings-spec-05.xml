@@ -3050,12 +3050,13 @@ WWW-Authenticate: Basic realm="sample.site.org"
             </section>
             <section title="Relationships" anchor="programme-publication-relationships">
                 <t>
+                    The <spanx style="verb">parent</spanx> relationship MAY be used to reference to the programme version the publication belongs to.
+                </t>
+                <t>
+                    In addition the following relationships have been defined for a programme publication:
                     <list style="hanging">
                         <t hangText="service: (SERVICE)">
                             A reference to the Service on which the programme instance will be broadcasted or made available on demand.
-                        </t>
-                        <t hangText="programme: (VERSION)">
-                            A reference to the Programme version.
                         </t>
                         <t hangText="media: (MEDIA_RESOURCE)">
                             A reference to the programme version AudioVisual media resource.
@@ -3557,11 +3558,11 @@ WWW-Authenticate: Basic realm="sample.site.org"
             </section>
             <section title="Relationships" anchor="segment-relationships">
                 <t>
+                    The <spanx style="verb">parent</spanx> relationship MAY be used to reference to the programme version this segment belongs to.
+                </t>
+                <t>
+                    In addition the following relationships have been defined for a segment:
                     <list style="hanging">
-                        <t hangText="programme: (VERSION)">
-                            A reference to the programme version this segment belongs to.
-                            If the segment is part of a segment group, this field MAY be left empty and the segment is assumed to belong to the programme as referenced by the parent segment group.
-                        </t>
                         <t hangText="media: (MEDIA_RESOURCE)">
                             A reference to the media resource representing the segment.
                             <list style="hanging">
@@ -4299,6 +4300,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                 <t>Made "parent" a plural relationship.</t>
                 <t>Added "dubbed" to Programme Publication.</t>
                 <t>Updated Person definition to allow expressing "urls" and "photos" as links.</t>
+                <t>Removed "programme" relationship fro programme publication and segment mandating the usage of "parent" instead.</t>
             </list>
         </t>
     </section>

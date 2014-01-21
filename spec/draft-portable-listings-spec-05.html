@@ -4022,16 +4022,16 @@ Fields</h3>
 Relationships</h3>
 
 <p>
+                    The <tt>parent</tt> relationship MAY be used to reference to the programme version the publication belongs to.
+                
+</p>
+<p>
+                    In addition the following relationships have been defined for a programme publication:
                     </p>
 <blockquote class="text"><dl>
 <dt>service: (SERVICE)</dt>
 <dd>
                             A reference to the Service on which the programme instance will be broadcasted or made available on demand.
-                        
-</dd>
-<dt>programme: (VERSION)</dt>
-<dd>
-                            A reference to the Programme version.
                         
 </dd>
 <dt>media: (MEDIA_RESOURCE)</dt>
@@ -4829,14 +4829,13 @@ Fields</h3>
 Relationships</h3>
 
 <p>
+                    The <tt>parent</tt> relationship MAY be used to reference to the programme version this segment belongs to.
+                
+</p>
+<p>
+                    In addition the following relationships have been defined for a segment:
                     </p>
 <blockquote class="text"><dl>
-<dt>programme: (VERSION)</dt>
-<dd>
-                            A reference to the programme version this segment belongs to.
-                            If the segment is part of a segment group, this field MAY be left empty and the segment is assumed to belong to the programme as referenced by the parent segment group.
-                        
-</dd>
 <dt>media: (MEDIA_RESOURCE)</dt>
 <dd>
                             A reference to the media resource representing the segment.
@@ -5946,6 +5945,8 @@ Change Log</h3>
 <li>Added "dubbed" to Programme Publication.
 </li>
 <li>Updated Person definition to allow expressing "urls" and "photos" as links.
+</li>
+<li>Removed "programme" relationship fro programme publication and segment mandating the usage of "parent" instead.
 </li>
 </ul><p>
         
