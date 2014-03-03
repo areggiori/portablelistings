@@ -3212,7 +3212,7 @@ Reggiori                                                       [Page 57]
 
    serviceType: (ENUM)  The service type SHOULD BE selected from the
       following list: "broadcast", "virtual", "iptv", "ondemand",
-      "owning", "application".
+      "owning", "interactive".
    entitlementType: (ENUM)  The service entitlement type SHOULD BE
       selected from the following list: "free-to-view", "subscription",
       "rental", "ownership".

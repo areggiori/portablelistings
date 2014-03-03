@@ -2883,7 +2883,7 @@ WWW-Authenticate: Basic realm="sample.site.org"
                     <list style="hanging">
                         <!-- possible additions: geo coverage -->
                         <t hangText="serviceType: (ENUM)">
-                            The service type SHOULD BE selected from the following list: <spanx style="verb">broadcast</spanx>, <spanx style="verb">virtual</spanx>, <spanx style="verb">iptv</spanx>, <spanx style="verb">ondemand</spanx>, <spanx style="verb">owning</spanx>, <spanx style="verb">application</spanx>.
+                            The service type SHOULD BE selected from the following list: <spanx style="verb">broadcast</spanx>, <spanx style="verb">virtual</spanx>, <spanx style="verb">iptv</spanx>, <spanx style="verb">ondemand</spanx>, <spanx style="verb">owning</spanx>, <spanx style="verb">interactive</spanx>.
                         </t>
                         <t hangText="entitlementType: (ENUM)">
                             The service entitlement type SHOULD BE selected from the following list: <spanx style="verb">free-to-view</spanx>, <spanx style="verb">subscription</spanx>, <spanx style="verb">rental</spanx>, <spanx style="verb">ownership</spanx>.
